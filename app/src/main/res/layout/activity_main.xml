@@ -11,10 +11,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="16dp"
-        android:text="Hello World!"
+        android:text="@string/main_menu_title"
         android:layout_marginTop="16dp"
-        android:id="@+id/title"
+        android:id="@+id/main_menu_title"
         android:layout_alignParentTop="true"
+        android:textColor="#ff0099cc"
+        android:textStyle="bold"
         android:layout_alignParentStart="true" />
 
     <View

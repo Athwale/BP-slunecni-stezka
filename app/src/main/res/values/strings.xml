@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">SunTrail</string>
+    <string name="app_name">Sun Trail</string>
+    <string name="main_menu_title">Main menu</string>
 </resources>
