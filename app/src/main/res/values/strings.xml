@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Sun Trail</string>
     <string name="main_menu_title">Main menu</string>
+    <string name="main_menu_info_icon_text">Help</string>
+    <string name="main_menu_inventory_icon_text">Inventory</string>
+    <string name="main_menu_scan_icon_text">Scan</string>
+    <string name="main_menu_all_boards_icon_text">View all boards</string>
+    <string name="main_menu_settings_icon_text">Settings</string>
+    <string name="main_menu_exit_icon_text">Exit</string>
 </resources>

@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Sluneční Stezka</string>
     <string name="main_menu_title">Hlavní menu</string>
+    <string name="main_menu_info_icon_text">Informace</string>
+    <string name="main_menu_inventory_icon_text">Inventář</string>
+    <string name="main_menu_scan_icon_text">Skenovat</string>
+    <string name="main_menu_all_boards_icon_text">Všechny tabule</string>
+    <string name="main_menu_settings_icon_text">Nastavení</string>
+    <string name="main_menu_exit_icon_text">Zavřít</string>
 </resources>

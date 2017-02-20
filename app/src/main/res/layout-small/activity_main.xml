@@ -31,6 +31,45 @@
         android:id="@+id/view" />
 
     <Button
+        android:text="@string/main_menu_inventory_icon_text"
+        android:id="@+id/main_menu_button_inventory"
+        android:drawableTop="@drawable/ic_menu_inventory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#000000"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp" />
+
+    <Button
+        android:text="@string/main_menu_exit_icon_text"
+        android:id="@+id/main_menu_button_exit"
+        android:drawableTop="@drawable/ic_menu_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#000000"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/main_menu_button_settings"
+        android:layout_marginBottom="29dp" />
+
+    <Button
+        android:text="@string/main_menu_settings_icon_text"
+        android:id="@+id/main_menu_button_settings"
+        android:drawableTop="@drawable/ic_menu_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#000000"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_above="@+id/main_menu_button_exit"
+        android:layout_alignEnd="@+id/main_menu_button_all_boards"
+        android:layout_marginBottom="31dp" />
+
+    <Button
         android:text="@string/main_menu_info_icon_text"
         android:id="@+id/main_menu_button_info"
         android:layout_width="wrap_content"
@@ -69,43 +108,5 @@
         android:layout_alignBottom="@+id/main_menu_button_inventory"
         android:layout_toEndOf="@+id/main_menu_button_scan"
         android:layout_marginStart="9dp" />
-
-    <Button
-        android:text="@string/main_menu_settings_icon_text"
-        android:id="@+id/main_menu_button_settings"
-        android:drawableTop="@drawable/ic_menu_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textColor="#000000"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/main_menu_button_scan"
-        android:layout_alignStart="@+id/main_menu_button_inventory" />
-
-    <Button
-        android:text="@string/main_menu_exit_icon_text"
-        android:id="@+id/main_menu_button_exit"
-        android:drawableTop="@drawable/ic_menu_exit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textColor="#000000"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_alignBaseline="@+id/main_menu_button_settings"
-        android:layout_alignBottom="@+id/main_menu_button_settings"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:text="@string/main_menu_inventory_icon_text"
-        android:id="@+id/main_menu_button_inventory"
-        android:drawableTop="@drawable/ic_menu_inventory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textColor="#000000"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/main_menu_button_scan" />
 
 </RelativeLayout>
