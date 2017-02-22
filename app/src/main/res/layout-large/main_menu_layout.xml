@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/yellow_activity_background"
     tools:context="ondrej.mejzlik.suntrail.MainActivity">
 
     <TextView
@@ -39,9 +39,11 @@
         android:drawableTop="@drawable/ic_menu_info"
         android:textSize="14sp"
         android:textColor="#000000"
+        android:background="@drawable/yellow_button_background"
         style="?android:attr/borderlessButtonStyle"
         android:layout_below="@+id/view"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="infoButtonHandler" />
 
     <Button
         android:text="@string/main_menu_scan_icon_text"
@@ -51,6 +53,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="#000000"
+        android:background="@drawable/yellow_button_background"
         style="?android:attr/borderlessButtonStyle"
         android:layout_alignTop="@+id/main_menu_button_inventory"
         android:layout_alignStart="@+id/main_menu_button_info"
@@ -64,6 +67,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="#000000"
+        android:background="@drawable/yellow_button_background"
         style="?android:attr/borderlessButtonStyle"
         android:layout_marginTop="27dp"
         android:layout_below="@+id/main_menu_button_scan"
@@ -77,6 +81,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="#000000"
+        android:background="@drawable/yellow_button_background"
         style="?android:attr/borderlessButtonStyle"
         android:layout_alignBaseline="@+id/main_menu_button_settings"
         android:layout_alignBottom="@+id/main_menu_button_settings"
@@ -90,6 +95,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="#000000"
+        android:background="@drawable/yellow_button_background"
         style="?android:attr/borderlessButtonStyle"
         android:layout_centerVertical="true"
         android:layout_toStartOf="@+id/main_menu_button_scan"
@@ -103,6 +109,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="#000000"
+        android:background="@drawable/yellow_button_background"
         style="?android:attr/borderlessButtonStyle"
         android:layout_marginStart="50dp"
         android:layout_centerVertical="true"

@@ -7,4 +7,5 @@
     <string name="main_menu_all_boards_icon_text">Všechny tabule</string>
     <string name="main_menu_settings_icon_text">Nastavení</string>
     <string name="main_menu_exit_icon_text">Zavřít</string>
+    <string name="info_screen_title">Informace</string>
 </resources>
