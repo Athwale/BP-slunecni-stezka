@@ -8,4 +8,8 @@
     <string name="main_menu_settings_icon_text">Settings</string>
     <string name="main_menu_exit_icon_text">Exit</string>
     <string name="info_screen_title">Basic information</string>
+    <string name="info_screen_map_button_description">Sun path map</string>
+    <string name="how_to_play_button_description">How to play</string>
+    <string name="sun_path_info_top">
+   </string>
 </resources>

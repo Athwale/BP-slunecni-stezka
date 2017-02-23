@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_info_screen"
     android:layout_width="match_parent"
@@ -26,19 +27,91 @@
         android:layout_marginTop="48dp"
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
-        tools:ignore="UnknownId"
+        tools:ignore="UnknownId,UnknownIdInLayout"
         android:id="@+id/view" />
 
     <ScrollView
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true">
+        android:layout_below="@+id/view">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:text="TextView"
+                android:linksClickable="true"
+                android:textColor="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/info_screen_text_view_top" />
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/overall_map"
+                android:id="@+id/info_screen_map_button"
+                android:background="@drawable/yellow_button_background"
+                style="?android:attr/borderlessButtonStyle"
+                android:contentDescription="@string/info_screen_map_button_description"
+                android:scaleType="centerCrop"
+                android:onClick="mapButtonHandler" />
+
+            <TextView
+                android:text="TextView"
+                android:linksClickable="true"
+                android:paddingTop="15dp"
+                android:textColor="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_screen_text_view_middle" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:text="@string/how_to_play_button_description"
+                    android:id="@+id/info_screen_button_how_to_play"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_menu_info"
+                    android:textSize="12sp"
+                    android:textColor="#000000"
+                    android:background="@drawable/yellow_button_background"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:text="@string/main_menu_all_boards_icon_text"
+                    android:id="@+id/info_screen_button_all_boards"
+                    android:drawableTop="@drawable/ic_menu_all_boards"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#000000"
+                    android:background="@drawable/yellow_button_background"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <TextView
+                android:text="TextView"
+                android:linksClickable="true"
+                android:paddingTop="15dp"
+                android:textColor="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_screen_text_view_bottom" />
+
+        </LinearLayout>
     </ScrollView>
 
 </RelativeLayout>

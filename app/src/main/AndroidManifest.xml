@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InfoScreenActivity"></activity>
+        <activity android:name=".InfoScreenActivity" />
+        <activity android:name=".ZoomableWebViewActivity"></activity>
     </application>
 
 </manifest>

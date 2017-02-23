@@ -8,4 +8,76 @@
     <string name="main_menu_settings_icon_text">Nastavení</string>
     <string name="main_menu_exit_icon_text">Zavřít</string>
     <string name="info_screen_title">Informace</string>
+    <string name="info_screen_map_button_description">Mapa trasy</string>
+    <string name="how_to_play_button_description">How to play</string>
+    <string name="sun_path_info_top">
+        <![CDATA[
+        <h2>Sluneční stezka</h2>
+        <p>
+        Sluneční stezka městysu Křtiny vám nabízí nejen krásnou procházku po značené turistické
+        trase, ale zároveň absolvujete průlet naší Sluneční soustavou v měřítku 1 ku jedné miliardě
+        se zastavením u jednotlivých planet a dalších významných objektů. V uvedeném měřítku se
+        nachází nejen makety planet, ale i pochodové vzdálenosti mezi nimi. Kromě zajimavých
+        informací tak máte možnost na vlastní chodidla pocítit blízkost planet vnitřní sluneční
+        soustavy i vzrůstající osamělost těch vnějších.
+        </p>
+        <p>
+        Naše Sluneční stezka čerpá inspiraci z <a href="http://www.astrohk.cz/planetarni_stezka/">
+        Planetární stezky vybudované hvězdárnou v Hradci Králové</a>, nejedná se však o pouhou
+        kopii. Realizace Sluneční stezky byla původně plánována pouze svépomocí a v omezeném
+        rozsahu. Díky podpoře ŠLP Křtiny, městyse Křtiny a Jihomoravského kraje bylo možné vytvořit
+        stezku v propracovanější formě. Hlavní část stezky byla vytvářena během roku 2014 se
+        slavnostním otevřením v roce 2015. Prohlédněte si
+         <a href="http://slunecnistezka.cz/www/index.php/priprava/">fotodokumentaci</a> z budování
+         stezky.
+        </p>
+        ]]>
+   </string>
+   <string name="sun_path_info_middle">
+        <![CDATA[
+        <h2>Trasa</h2>
+        <p>
+        Sluneční stezku lze procházet z obou stran. Můžete začít od Slunce ve Křtinách a dojít k
+        Neptunu poblíž Arboreta ŠLP Křtiny, odkud se můžete vrátit procházkou po druhé straně údolí,
+        nebo využít autobusového linky <a href="http://idsjmk.cz/jrady/201.pdf">IDS JMK číslo 201 (Křtiny, Hájovna na lukách)</a>. Nebo se naopak
+        budete přibližovat z hloubky vesmíru k naší mateřské hvězdě.
+        </p>
+        <p>
+        Trasa vede po dobře značených, převážně lesních, stezkách a má délku zhruba 4.5km. Pokud se
+        budete do Křtin vracet zpět po svých, počítejte s obdobnou vzdáleností i pro cestu zpět. Pro
+        absolvování vám stačí běžná obuv, celkové převýšení je jen zhruba 160 metrů.
+        </p>
+        <p>
+        Lze absolvovat zkrácenou variantu končící planetou Saturn, po které se vrátíte z Viligruntu
+        obdobnou cestou zase zpět (Saturn je zhruba 1.5km vzdálený od začátku stezky).
+        </p>
+        <p>
+        Panely u jednotlivých planet obsahují řadu zajímavých informací s anglickou a německou
+        jazykovou verzí dostupnou v této aplikaci. Můžete si zahrát i hru při které tuto aplikaci
+        využijete.
+        </p>
+        ]]>
+   </string>
+    <string name="sun_path_info_bottom">
+        <![CDATA[
+        <h2>Aktuality, kontakt</h2>
+        <p>
+        Pokud se Vám stezka líbila, napište nám na <b>kontakt@slunecnistezka.cz</b>. Přečtěte si, co nám
+        <a href="http://slunecnistezka.cz/www/index.php/napsali/">napsali ostatní</a>.
+        </p>
+        <p>
+        Pokud chcete mít přehled o aktuálních novinkách, využijte náš
+        <a href="https://www.facebook.com/pages/Slune%C4%8Dn%C3%AD-stezka-ve-K%C5%99tin%C3%A1ch/822780534412385">Facebook</a>
+        nebo <a href="https://twitter.com/SlunecniStezka">Twitter</a>.
+        S nápady, upozorněními na poškozené panely nebo dotazy nás prosím
+        kontaktujte na stejnou výše uvedenou adresu.
+        </p>
+        <p>
+        Pomohla nám už celá řada lidí, rádi uvítáme i Vás!
+        </p>
+        <p>
+        Sluneční stezka je provozována pod záštitou <a href="http://www.krtiny.cz/">Městysu Křtiny.</a>
+        <p>
+        ]]>
+   </string>
 </resources>
