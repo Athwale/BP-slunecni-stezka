@@ -50,4 +50,9 @@ public class InfoScreenActivity extends Activity {
         Intent intent = new Intent(this, ZoomableWebViewActivity.class);
         startActivity(intent);
     }
+
+    public void howToPlayButtonHandler(View view) {
+        Intent intent = new Intent(this, GameInfoActivity.class);
+        startActivity(intent);
+    }
 }

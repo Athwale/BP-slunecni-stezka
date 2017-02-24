@@ -13,7 +13,7 @@ public class ZoomableWebViewActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zoomable_web_view);
 
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        //this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         WebView webView = (WebView) (findViewById(R.id.zoomable_webview));
         webView.getSettings().setLoadWithOverviewMode(true);

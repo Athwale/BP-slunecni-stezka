@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_game_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/yellow_activity_background"
+    tools:context="ondrej.mejzlik.suntrail.GameInfoActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:text="@string/game_info_screen_title"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentTop="true"
+        android:textColor="#ff0099cc"
+        android:textStyle="bold"
+        android:layout_alignParentStart="true"
+        android:id="@+id/main_menu_title"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="#ff0099cc"
+        android:layout_height="2dp"
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        tools:ignore="UnknownId,UnknownIdInLayout"
+        android:id="@+id/view" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/view">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:text="TextView"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:linksClickable="true"
+                android:textColor="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/game_info_text_view_top" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/infographics_gameplay"
+                android:id="@+id/imageView"
+                android:adjustViewBounds="true"
+                android:cropToPadding="false"
+                android:contentDescription="@string/how_to_play_image_description" />
+
+            <TextView
+                android:text="TextView"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:linksClickable="true"
+                android:paddingTop="15dp"
+                android:textColor="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/game_info_text_view_bottom" />
+
+            <Button
+                android:text="@string/run_scanner_button_description"
+                android:id="@+id/game_info_button_scanner"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:paddingBottom="16dp"
+                android:drawableTop="@drawable/ic_menu_scan"
+                android:textSize="12sp"
+                android:textColor="#000000"
+                android:background="@drawable/yellow_button_background"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
