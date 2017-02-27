@@ -30,6 +30,8 @@ public class SunPathInfoFragment extends Fragment {
         return view;
     }
 
+    //TODO implement necessary fragment methods.
+
     private void fillText(View view) {
         // Load strings into textviews
         TextView textViewTop = (TextView) (view.findViewById(R.id.info_screen_text_view_top));
