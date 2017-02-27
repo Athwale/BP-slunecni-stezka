@@ -31,21 +31,6 @@
         android:id="@+id/view" />
 
     <Button
-        android:text="@string/main_menu_info_icon_text"
-        android:id="@+id/main_menu_button_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:drawableTop="@drawable/ic_menu_info"
-        android:textSize="14sp"
-        android:textColor="#000000"
-        android:background="@drawable/yellow_button_background"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_below="@+id/view"
-        android:layout_centerHorizontal="true"
-        android:onClick="infoButtonHandler" />
-
-    <Button
         android:text="@string/main_menu_scan_icon_text"
         android:id="@+id/main_menu_button_scan"
         android:drawableTop="@drawable/ic_menu_scan"
@@ -114,5 +99,20 @@
         android:layout_marginStart="50dp"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/main_menu_button_scan" />
+
+    <Button
+        android:text="@string/main_menu_info_icon_text"
+        android:id="@+id/main_menu_button_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_menu_info"
+        android:textSize="14sp"
+        android:textColor="#000000"
+        android:background="@drawable/yellow_button_background"
+        style="?android:attr/borderlessButtonStyle"
+        android:onClick="infoButtonHandler"
+        android:layout_marginBottom="15dp"
+        android:layout_above="@+id/main_menu_button_scan"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
