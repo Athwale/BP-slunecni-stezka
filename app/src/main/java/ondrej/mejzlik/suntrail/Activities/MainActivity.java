@@ -1,9 +1,11 @@
-package ondrej.mejzlik.suntrail;
+package ondrej.mejzlik.suntrail.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import ondrej.mejzlik.suntrail.R;
 
 public class MainActivity extends Activity {
 

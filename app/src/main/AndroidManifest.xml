@@ -12,23 +12,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTheme.NoActionBar.SunTrail">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- ATTENTION: This data URL was auto-generated. We recommend that you use the HTTP scheme.
+                  TODO: Change the host or pathPrefix as necessary. -->
+                <data
+                    android:host="[ENTER-YOUR-HTTP-HOST-HERE]"
+                    android:pathPrefix="/main"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".InfoScreenActivity"
+            android:name=".Activities.InfoScreenActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ZoomableWebViewActivity"
             android:screenOrientation="landscape" />
-        <activity
-            android:name=".GameInfoActivity"
-            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
