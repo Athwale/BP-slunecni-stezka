@@ -14,8 +14,8 @@ import ondrej.mejzlik.suntrail.ZoomableWebViewActivity;
 
 public class InfoScreenActivity extends Activity {
     // Create a new Fragments to be placed in the activity layout
-    GameInfoFragment gameInfoFragment = new GameInfoFragment();
-    SunPathInfoFragment infoFragment = new SunPathInfoFragment();
+    private GameInfoFragment mGameInfoFragment = new GameInfoFragment();
+    private SunPathInfoFragment mInfoFragment = new SunPathInfoFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +35,12 @@ public class InfoScreenActivity extends Activity {
 
             // In case this activity was started with special instructions from an
             // Intent, pass the Intent's extras to the fragment as arguments
-            infoFragment.setArguments(getIntent().getExtras());
+            mInfoFragment.setArguments(getIntent().getExtras());
 
             // Add the fragment to the 'fragment_container' FrameLayout
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.add(R.id.fragment_container, infoFragment);
+            transaction.add(R.id.fragment_container, mInfoFragment);
             transaction.commit();
         }
     }
@@ -57,7 +57,7 @@ public class InfoScreenActivity extends Activity {
 
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.fragment_container, gameInfoFragment);
+        transaction.replace(R.id.fragment_container, mGameInfoFragment);
         transaction.addToBackStack(null);
         transaction.commit();
 

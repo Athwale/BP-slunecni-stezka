@@ -15,7 +15,7 @@ import ondrej.mejzlik.suntrail.Utilities.HtmlConverter;
  * Fragment class for how to play info screen.
  */
 public class GameInfoFragment extends Fragment {
-    HtmlConverter htmlConverter = new HtmlConverter();
+    private HtmlConverter mHtmlConverter = new HtmlConverter();
 
     public GameInfoFragment() {
         // Required empty public constructor
@@ -33,10 +33,10 @@ public class GameInfoFragment extends Fragment {
 
     private void fillText(View view) {
         TextView textViewTop = (TextView) (view.findViewById(R.id.game_info_text_view_top));
-        textViewTop.setText(htmlConverter.getHtmlForTextView(getString(R.string.game_info_text_top)));
+        textViewTop.setText(mHtmlConverter.getHtmlForTextView(getString(R.string.game_info_text_top)));
 
         TextView textViewMiddle = (TextView) (view.findViewById(R.id.game_info_text_view_bottom));
-        textViewMiddle.setText(htmlConverter.getHtmlForTextView(getString(R.string.game_info_text_bottom)));
+        textViewMiddle.setText(mHtmlConverter.getHtmlForTextView(getString(R.string.game_info_text_bottom)));
     }
 
 }

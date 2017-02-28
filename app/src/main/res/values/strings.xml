@@ -14,6 +14,11 @@
     <string name="run_scanner_button_description">Run scanner and start to play</string>
     <string name="game_info_screen_title">How to play</string>
     <string name="settings_title">Settings</string>
+    <string name="settings_scan_method">Scanning method</string>
+    <string name="radio_NFC">NFC</string>
+    <string name="radio_QR">QR Code</string>
+    <string name="checkbox_clear_data">Clear game data</string>
+    <string name="button_clear_data">Clear</string>
     <string name="sun_path_info_top">
         <![CDATA[
         <h2>Sun path</h2>

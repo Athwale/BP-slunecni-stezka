@@ -8,26 +8,97 @@
     tools:context="ondrej.mejzlik.suntrail.Activities.SettingsActivity">
 
     <TextView
+        android:id="@+id/settings_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:text="@string/settings_title"
-        android:layout_marginTop="16dp"
-        android:layout_alignParentTop="true"
-        android:textColor="#ff0099cc"
-        android:textStyle="bold"
         android:layout_alignParentStart="true"
-        android:id="@+id/settings_title"/>
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:text="@string/settings_title"
+        android:textColor="#ff0099cc"
+        android:textStyle="bold" />
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:background="#ff0099cc"
         android:layout_height="2dp"
-        android:layout_marginTop="48dp"
-        android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
-        tools:ignore="UnknownId,UnknownIdInLayout"
-        android:id="@+id/view" />
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="48dp"
+        android:background="#ff0099cc"
+        tools:ignore="UnknownId,UnknownIdInLayout" />
+
+    <TextView
+        android:id="@+id/ScanMethodTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:text="@string/settings_scan_method"
+        android:textColor="#000000" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/ScanMethodTextView"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/radioGroup">
+
+        <RadioButton
+            android:id="@+id/nfc_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_NFC"
+            android:textColor="#000000"
+            android:layout_weight="1"/>
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            tools:ignore="UnknownId,UnknownIdInLayout" />
+
+        <RadioButton
+            android:id="@+id/qr_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/radio_QR"
+            android:textColor="#000000"
+            android:layout_weight="1" />
+
+    </RadioGroup>
+
+    <CheckBox
+        android:text="@string/checkbox_clear_data"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/clear_game_data_checkbox"
+        android:layout_marginTop="152dp"
+        android:layout_below="@+id/radioGroup"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="@string/button_clear_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/clear_game_data_button"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/clear_game_data_checkbox"
+        android:layout_alignEnd="@+id/radioGroup" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

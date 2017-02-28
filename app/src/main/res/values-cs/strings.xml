@@ -14,6 +14,11 @@
     <string name="run_scanner_button_description">Spustit scanner a začít hrát</string>
     <string name="game_info_screen_title">Jak hrát</string>
     <string name="settings_title">Nastavení</string>
+    <string name="settings_scan_method">Metoda skenování</string>
+    <string name="checkbox_NFC">NFC</string>
+    <string name="checkbox_QR">QR Kód</string>
+    <string name="checkbox_clear_data">Vymazat herní data</string>
+    <string name="button_clear_data">Vymazat</string>
     <string name="sun_path_info_top">
         <![CDATA[
         <h2>Sluneční stezka</h2>
