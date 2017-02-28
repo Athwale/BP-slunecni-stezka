@@ -12,11 +12,16 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_menu_layout);
+        setContentView(R.layout.activity_main_menu);
     }
 
     public void infoButtonHandler(View view) {
         Intent intent = new Intent(this, InfoScreenActivity.class);
+        startActivity(intent);
+    }
+
+    public void settingsButtonHandler(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 }

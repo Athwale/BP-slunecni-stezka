@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/yellow_activity_background"
+    tools:context="ondrej.mejzlik.suntrail.Activities.MainActivity">
+
+    <TextView
+        android:id="@+id/main_menu_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:text="@string/main_menu_title"
+        android:textColor="#ff0099cc"
+        android:textStyle="bold"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="48dp"
+        android:background="#ff0099cc"
+        tools:ignore="UnknownId,UnknownIdInLayout" />
+
+    <Button
+        android:id="@+id/main_menu_button_scan"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/main_menu_button_info"
+        android:layout_alignTop="@+id/main_menu_button_inventory"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/yellow_button_background"
+        android:drawableTop="@drawable/ic_menu_scan"
+        android:text="@string/main_menu_scan_icon_text"
+        android:textColor="#000000"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/main_menu_button_settings"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/main_menu_button_inventory"
+        android:layout_below="@+id/main_menu_button_scan"
+        android:layout_marginTop="27dp"
+        android:background="@drawable/yellow_button_background"
+        android:drawableTop="@drawable/ic_menu_settings"
+        android:text="@string/main_menu_settings_icon_text"
+        android:textColor="#000000"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/main_menu_button_exit"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/main_menu_button_settings"
+        android:layout_alignBottom="@+id/main_menu_button_settings"
+        android:layout_alignEnd="@+id/main_menu_button_all_boards"
+        android:background="@drawable/yellow_button_background"
+        android:drawableTop="@drawable/ic_menu_exit"
+        android:text="@string/main_menu_exit_icon_text"
+        android:textColor="#000000"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/main_menu_button_inventory"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="44dp"
+        android:layout_toStartOf="@+id/main_menu_button_scan"
+        android:background="@drawable/yellow_button_background"
+        android:drawableTop="@drawable/ic_menu_inventory"
+        android:text="@string/main_menu_inventory_icon_text"
+        android:textColor="#000000"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/main_menu_button_all_boards"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="50dp"
+        android:layout_toEndOf="@+id/main_menu_button_scan"
+        android:background="@drawable/yellow_button_background"
+        android:drawableTop="@drawable/ic_menu_all_boards"
+        android:text="@string/main_menu_all_boards_icon_text"
+        android:textColor="#000000"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/main_menu_button_info"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/main_menu_button_scan"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/yellow_button_background"
+        android:drawableTop="@drawable/ic_menu_info"
+        android:onClick="infoButtonHandler"
+        android:text="@string/main_menu_info_icon_text"
+        android:textColor="#000000"
+        android:textSize="14sp" />
+
+</RelativeLayout>

@@ -13,6 +13,7 @@
     <string name="how_to_play_image_description">Cartoon image displaying game play</string>
     <string name="run_scanner_button_description">Run scanner and start to play</string>
     <string name="game_info_screen_title">How to play</string>
+    <string name="settings_title">Settings</string>
     <string name="sun_path_info_top">
         <![CDATA[
         <h2>Sun path</h2>
