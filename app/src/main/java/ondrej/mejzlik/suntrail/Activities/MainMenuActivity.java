@@ -7,7 +7,7 @@ import android.view.View;
 
 import ondrej.mejzlik.suntrail.R;
 
-public class MainActivity extends Activity {
+public class MainMenuActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

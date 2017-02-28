@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    android:id="@+id/main_menu_activity_relative_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/yellow_activity_background"
-    tools:context="ondrej.mejzlik.suntrail.Activities.MainActivity">
+    tools:context="ondrej.mejzlik.suntrail.Activities.MainMenuActivity">
 
     <TextView
-        android:id="@+id/main_menu_title"
+        android:id="@+id/main_menu_text_view_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -21,7 +21,7 @@
         android:textStyle="bold"/>
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/main_menu_view_spacer"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_alignParentStart="true"
@@ -64,7 +64,7 @@
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/view"
+        android:layout_below="@+id/main_menu_view_spacer"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="9dp"
         android:background="@drawable/yellow_button_background"

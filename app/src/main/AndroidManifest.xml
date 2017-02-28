@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTheme.NoActionBar.SunTrail">
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".Activities.MainMenuActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +37,7 @@
             android:name=".Activities.InfoScreenActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ZoomableWebViewActivity"
+            android:name=".Activities.ZoomableWebViewActivity"
             android:screenOrientation="landscape" />
         <activity android:name=".Activities.SettingsActivity"></activity>
     </application>

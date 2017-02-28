@@ -1,10 +1,12 @@
-package ondrej.mejzlik.suntrail;
+package ondrej.mejzlik.suntrail.Activities;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.webkit.WebView;
+
+import ondrej.mejzlik.suntrail.R;
 
 public class ZoomableWebViewActivity extends Activity {
 

@@ -10,12 +10,11 @@ import android.view.View;
 import ondrej.mejzlik.suntrail.Fragments.GameInfoFragment;
 import ondrej.mejzlik.suntrail.Fragments.SunPathInfoFragment;
 import ondrej.mejzlik.suntrail.R;
-import ondrej.mejzlik.suntrail.ZoomableWebViewActivity;
 
 public class InfoScreenActivity extends Activity {
     // Create a new Fragments to be placed in the activity layout
-    private GameInfoFragment mGameInfoFragment = new GameInfoFragment();
-    private SunPathInfoFragment mInfoFragment = new SunPathInfoFragment();
+    private GameInfoFragment gameInfoFragment = new GameInfoFragment();
+    private SunPathInfoFragment infoFragment = new SunPathInfoFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +23,7 @@ public class InfoScreenActivity extends Activity {
 
         // Check that the activity is using the layout version with
         // the fragment_container FrameLayout
-        if (findViewById(R.id.fragment_container) != null) {
+        if (findViewById(R.id.info_screen_fragment_container) != null) {
 
             // However, if we're being restored from a previous state,
             // then we don't need to do anything and should return or else
@@ -35,12 +34,12 @@ public class InfoScreenActivity extends Activity {
 
             // In case this activity was started with special instructions from an
             // Intent, pass the Intent's extras to the fragment as arguments
-            mInfoFragment.setArguments(getIntent().getExtras());
+            infoFragment.setArguments(getIntent().getExtras());
 
             // Add the fragment to the 'fragment_container' FrameLayout
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.add(R.id.fragment_container, mInfoFragment);
+            transaction.add(R.id.info_screen_fragment_container, infoFragment);
             transaction.commit();
         }
     }
@@ -57,7 +56,7 @@ public class InfoScreenActivity extends Activity {
 
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.fragment_container, mGameInfoFragment);
+        transaction.replace(R.id.info_screen_fragment_container, gameInfoFragment);
         transaction.addToBackStack(null);
         transaction.commit();
 

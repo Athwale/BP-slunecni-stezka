@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_zoomable_web_view"
+    android:id="@+id/zoomable_web_view_activity_relative_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/yellow_activity_background"
-    tools:context="ondrej.mejzlik.suntrail.ZoomableWebViewActivity">
+    tools:context="ondrej.mejzlik.suntrail.Activities.ZoomableWebViewActivity">
 
     <WebView
         android:id="@+id/zoomable_webview"

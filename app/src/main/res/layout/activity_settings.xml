@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_settings"
+    android:id="@+id/settings_activity_relative_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/yellow_activity_background"
     tools:context="ondrej.mejzlik.suntrail.Activities.SettingsActivity">
 
     <TextView
-        android:id="@+id/settings_title"
+        android:id="@+id/settings_text_view_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -21,7 +21,7 @@
         android:textStyle="bold" />
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/settings_view_spacer"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_alignParentStart="true"
@@ -31,74 +31,75 @@
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <TextView
-        android:id="@+id/ScanMethodTextView"
+        android:id="@+id/settings_text_view_scan_method"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/view"
+        android:layout_below="@+id/settings_view_spacer"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp"
         android:text="@string/settings_scan_method"
         android:textColor="#000000" />
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="11dp"
-        android:layout_below="@+id/ScanMethodTextView"
+        android:layout_below="@+id/settings_text_view_scan_method"
         android:layout_centerHorizontal="true"
-        android:id="@+id/radioGroup">
+        android:layout_marginTop="11dp"
+        android:orientation="vertical">
 
         <RadioButton
-            android:id="@+id/nfc_radio_button"
+            android:id="@+id/settings_radio_button_nfc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:checked="true"
             android:text="@string/radio_NFC"
-            android:textColor="#000000"
-            android:layout_weight="1"/>
+            android:textColor="#000000"/>
 
         <View
-            android:id="@+id/view1"
+            android:id="@+id/settings_view_spacer1"
             android:layout_width="match_parent"
             android:layout_height="10dp"
             tools:ignore="UnknownId,UnknownIdInLayout" />
 
         <RadioButton
-            android:id="@+id/qr_radio_button"
+            android:id="@+id/settings_radio_button_qr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:checked="false"
             android:text="@string/radio_QR"
-            android:textColor="#000000"
-            android:layout_weight="1" />
+            android:textColor="#000000" />
 
     </RadioGroup>
 
+    <Spinner
+        android:id="@+id/settings_spinner_language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true" />
+
     <CheckBox
-        android:text="@string/checkbox_clear_data"
-        android:textColor="#000000"
+        android:id="@+id/settings_checkbox_clear_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/clear_game_data_checkbox"
-        android:layout_marginTop="152dp"
-        android:layout_below="@+id/radioGroup"
+        android:layout_marginTop="47dp"
+        android:text="@string/checkbox_clear_data"
+        android:textColor="#000000"
+        android:layout_below="@+id/settings_spinner_language"
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="@string/button_clear_data"
+        android:id="@+id/settings_button_clear_data"
+        android:textColor="#000000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/clear_game_data_button"
         android:layout_marginTop="11dp"
-        android:layout_below="@+id/clear_game_data_checkbox"
-        android:layout_alignEnd="@+id/radioGroup" />
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:text="@string/button_clear_data"
+        android:layout_below="@+id/settings_checkbox_clear_data"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
