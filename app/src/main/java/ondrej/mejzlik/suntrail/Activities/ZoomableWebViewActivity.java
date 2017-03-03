@@ -8,6 +8,7 @@ import android.webkit.WebView;
 
 import ondrej.mejzlik.suntrail.R;
 
+// TODO replace with zoomable image view
 public class ZoomableWebViewActivity extends Activity {
 
     @Override

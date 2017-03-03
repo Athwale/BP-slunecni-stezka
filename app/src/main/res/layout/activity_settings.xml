@@ -56,7 +56,8 @@
             android:layout_weight="1"
             android:checked="true"
             android:text="@string/radio_NFC"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:onClick="radioButtonClicked"/>
 
         <View
             android:id="@+id/settings_view_spacer1"
@@ -71,35 +72,32 @@
             android:layout_weight="1"
             android:checked="false"
             android:text="@string/radio_QR"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:onClick="radioButtonClicked"/>
 
     </RadioGroup>
-
-    <Spinner
-        android:id="@+id/settings_spinner_language"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true" />
-
-    <CheckBox
-        android:id="@+id/settings_checkbox_clear_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="47dp"
-        android:text="@string/checkbox_clear_data"
-        android:textColor="#000000"
-        android:layout_below="@+id/settings_spinner_language"
-        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/settings_button_clear_data"
         android:textColor="#000000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
         android:text="@string/button_clear_data"
-        android:layout_below="@+id/settings_checkbox_clear_data"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginBottom="139dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/radioGroup"
+        android:onClick="clearButtonHandler"
+        android:enabled="false"/>
+
+    <CheckBox
+        android:id="@+id/settings_checkbox_clear_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/settings_button_clear_data"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:text="@string/checkbox_clear_data"
+        android:textColor="#000000"
+        android:onClick="clearCheckBoxHandler"/>
 
 </RelativeLayout>

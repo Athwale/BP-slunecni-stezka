@@ -13,6 +13,7 @@ import ondrej.mejzlik.suntrail.Utilities.HtmlConverter;
 
 /**
  * Fragment class for how to play info screen.
+ * Shows instructions on how to play the game.
  */
 public class GameInfoFragment extends Fragment {
     private HtmlConverter htmlConverter = new HtmlConverter();
@@ -31,6 +32,13 @@ public class GameInfoFragment extends Fragment {
         return view;
     }
 
+    //TODO implement necessary fragment methods.
+
+    /**
+     * Fills text views of this fragment with required strings.
+     * This can not be done from xml since xml does not support using html markup in strings.
+     * @param view The main view of this fragment
+     */
     private void fillText(View view) {
         TextView textViewTop = (TextView) (view.findViewById(R.id.game_info_text_view_top));
         textViewTop.setText(htmlConverter.getHtmlForTextView(getString(R.string.game_info_text_top)));
@@ -38,5 +46,4 @@ public class GameInfoFragment extends Fragment {
         TextView textViewMiddle = (TextView) (view.findViewById(R.id.game_info_text_view_bottom));
         textViewMiddle.setText(htmlConverter.getHtmlForTextView(getString(R.string.game_info_text_bottom)));
     }
-
 }

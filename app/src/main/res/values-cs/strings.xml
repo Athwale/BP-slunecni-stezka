@@ -19,6 +19,8 @@
     <string name="checkbox_QR">QR Kód</string>
     <string name="checkbox_clear_data">Vymazat herní data</string>
     <string name="button_clear_data">Vymazat</string>
+    <string name="scanner_screen_title_nfc">Přiložte zařízení k NFC tagu</string>
+    <string name="scanner_screen_title_qr">Naskenujte QR kód</string>
     <string name="sun_path_info_top">
         <![CDATA[
         <h2>Sluneční stezka</h2>
@@ -92,7 +94,7 @@
    <string name="game_info_text_top">
        <![CDATA[
        <p>
-       Hru spustíte naskenováním NFC nálepky nebo QR kódu z tabule skenerem této aplikace.
+       Hru spustíte naskenováním NFC nálepky nebo QR kódu z tabule na stezce skenerem této aplikace.
        </p>
        <p>
        V herním módu můžete na každé zastávce Sluneční stezky prodávat a nakupovat věci.
@@ -111,8 +113,6 @@
        <![CDATA[
        <p>
        Některé věci lze prodat pouze na určených planetách, jiné kdekoli. Informace o konkrétní věci získáte
-       </p>
-       <p>
        klepnutím na ikonu červeného otazníku v obchodě nebo inventáři.
        </p>
        <p>

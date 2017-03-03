@@ -13,6 +13,7 @@ import ondrej.mejzlik.suntrail.Utilities.HtmlConverter;
 
 /**
  * Fragment class for general Sun path information.
+ * Shows general information about the Sun Path.
  */
 public class SunPathInfoFragment extends Fragment {
     private HtmlConverter htmlConverter = new HtmlConverter();
@@ -32,6 +33,11 @@ public class SunPathInfoFragment extends Fragment {
 
     //TODO implement necessary fragment methods.
 
+    /**
+     * Fills text views of this fragment with required strings.
+     * This can not be done from xml since xml does not support using html markup in strings.
+     * @param view The main view of this fragment
+     */
     private void fillText(View view) {
         // Load strings into textviews
         TextView textViewTop = (TextView) (view.findViewById(R.id.sun_path_info_text_view_top));

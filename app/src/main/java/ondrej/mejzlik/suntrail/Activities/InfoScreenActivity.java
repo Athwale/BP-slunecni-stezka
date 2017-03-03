@@ -11,6 +11,10 @@ import ondrej.mejzlik.suntrail.Fragments.GameInfoFragment;
 import ondrej.mejzlik.suntrail.Fragments.SunPathInfoFragment;
 import ondrej.mejzlik.suntrail.R;
 
+/**
+ * This activity displays general information about Sun Path and How to play information using
+ * fragments.
+ */
 public class InfoScreenActivity extends Activity {
     // Create a new Fragments to be placed in the activity layout
     private GameInfoFragment gameInfoFragment = new GameInfoFragment();
@@ -32,10 +36,6 @@ public class InfoScreenActivity extends Activity {
                 return;
             }
 
-            // In case this activity was started with special instructions from an
-            // Intent, pass the Intent's extras to the fragment as arguments
-            infoFragment.setArguments(getIntent().getExtras());
-
             // Add the fragment to the 'fragment_container' FrameLayout
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -44,11 +44,20 @@ public class InfoScreenActivity extends Activity {
         }
     }
 
+    /**
+     * Handles clicks from image button displaying the map
+     * @param view The button which has been clicked
+     */
     public void mapButtonHandler(View view) {
         Intent intent = new Intent(this, ZoomableWebViewActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Handles clicks from how to play button on information screen.
+     * Replaces info screen fragment with game info fragment.
+     * @param view The button which has been clicked
+     */
     public void howToPlayButtonHandler(View view) {
         // Add the fragment to the 'fragment_container' FrameLayout
         FragmentManager fragmentManager = getFragmentManager();
@@ -59,6 +68,15 @@ public class InfoScreenActivity extends Activity {
         transaction.replace(R.id.info_screen_fragment_container, gameInfoFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
 
+    /**
+     * Handles clicks from scanner button in game info screen.
+     * Launches a new activity with scanner screen.
+     * @param view The button that has been clicked
+     */
+    public void scannerButtonHandlerInfoScreen(View view) {
+        Intent intent = new Intent(this, ScannerActivity.class);
+        startActivity(intent);
     }
 }

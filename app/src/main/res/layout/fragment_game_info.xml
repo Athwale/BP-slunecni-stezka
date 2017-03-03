@@ -83,7 +83,8 @@
                 android:paddingBottom="16dp"
                 android:text="@string/run_scanner_button_description"
                 android:textColor="#000000"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:onClick="scannerButtonHandlerInfoScreen"/>
 
         </LinearLayout>
     </ScrollView>

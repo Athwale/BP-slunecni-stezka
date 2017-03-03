@@ -19,13 +19,20 @@
     <string name="radio_QR">QR Code</string>
     <string name="checkbox_clear_data">Clear game data</string>
     <string name="button_clear_data">Clear</string>
+    <string name="scanner_screen_title_nfc">Place your device onto the NFC tag</string>
+    <string name="scanner_screen_title_qr">Scan the QR code with your device</string>
+
     <string name="sun_path_info_top">
         <![CDATA[
-        <h2>Sun path</h2>
-
+        <h2>The Sun path</h2>
+        <p>
+        The Sun path of city Křtiny not only offers you a beautiful stroll along a marked tourist trail
+        , but also an imaginary fly through our Solar system scaled down to 1 to 1 billion.
+        You will visit individual...
+        </p>
         ]]>
    </string>
-   <string name="sun_path_info_middle">
+    <string name="sun_path_info_middle">
         <![CDATA[
         <h2>Route</h2>
 
@@ -37,17 +44,42 @@
 
         ]]>
    </string>
-   <string name="game_info_text_top">
+    <string name="game_info_text_top">
        <![CDATA[
        <p>
-       You can run the game by...
+       You can launch the game by scanning a NFC tag or QR code from an information board on the Sun
+       trail with the scanner in this app.
+       </p>
+       <p>
+       In the game mode you can buy and sell items at each stop along the trail.
+       You earn credits for trading these goods.<br>
+       Before you finish the game at the last stop, try to earn as much as you can.
+       </p>
+       <p>
+       In the beginning you will be given a basic space ship. A trusworthy <b>Ikarus M</b>
+       and a small amount of <b>42 space credits</b> Which are used as money.
+       </p>
+       <p>
+       At each stop you must scan the code of the planet. Then you can enter the shop and trade items.
        </p>
        ]]>
    </string>
-   <string name="game_info_text_bottom">
+    <string name="game_info_text_bottom">
        <![CDATA[
        <p>
-       Some things can be sold...
+       Certain items can be sold only on certain planets. Other items can be sold everywhere.
+       You can read info about each item by tapping the red question mark either in the shop or in
+       your inventory.
+       <p>
+       During the game you will have a chance to buy better, larger space ships. Those will allow you
+       to transport larger amount of goods.
+       </p>
+       <p>
+       Based on how much credits you earn at the end of the game, you will be rewarded with a space
+       fleet officer rank.
+       </p>
+       <p>
+       <b>Have fun.</b>
        </p>
        ]]>
     </string>
