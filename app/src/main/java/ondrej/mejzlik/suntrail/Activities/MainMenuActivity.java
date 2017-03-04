@@ -44,14 +44,12 @@ public class MainMenuActivity extends Activity {
             editor.putBoolean(getResources().getString(R.string.preferences_filled), true);
 
             // Put the default values in
-            // Enable qr if available and set it as default scan method
+            // Enable nfc if available and set it as default scan method
             String scanMethod = getResources().getString(R.string.preference_scan_method);
-            if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
-                editor.putString(scanMethod, getResources().getString(R.string.preference_qr));
-            }
-            // If nfc is available overwrite qr
             if (packageManager.hasSystemFeature(PackageManager.FEATURE_NFC)) {
                 editor.putString(scanMethod, getResources().getString(R.string.preference_nfc));
+            } else if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+                editor.putString(scanMethod, getResources().getString(R.string.preference_qr));
             } else {
                 editor.putString(scanMethod, getResources().getString(R.string.preference_none));
             }

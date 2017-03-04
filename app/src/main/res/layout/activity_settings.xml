@@ -54,10 +54,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:checked="true"
+            android:checked="false"
+            android:onClick="radioButtonClicked"
             android:text="@string/radio_NFC"
             android:textColor="#000000"
-            android:onClick="radioButtonClicked"/>
+            android:enabled="false"/>
 
         <View
             android:id="@+id/settings_view_spacer1"
@@ -73,7 +74,8 @@
             android:checked="false"
             android:text="@string/radio_QR"
             android:textColor="#000000"
-            android:onClick="radioButtonClicked"/>
+            android:onClick="radioButtonClicked"
+            android:enabled="false"/>
 
     </RadioGroup>
 

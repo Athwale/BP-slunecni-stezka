@@ -30,10 +30,19 @@ public class SettingsActivity extends Activity {
      * Loads preferences from app shared preferences and sets the radiobuttons according to them.
      */
     private void loadPreferences() {
-        // Get scan method
         String scanMethod = preferences.getString(getResources().getString(R.string.preference_scan_method), null);
         RadioButton radioButtonNfc = (RadioButton) findViewById(R.id.settings_radio_button_nfc);
         RadioButton radioButtonQr = (RadioButton) findViewById(R.id.settings_radio_button_qr);
+        // Enable buttons
+        PackageManager packageManager = getPackageManager();
+        if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+            radioButtonQr.setEnabled(true);
+        }
+        // If nfc is available overwrite qr
+        if (packageManager.hasSystemFeature(PackageManager.FEATURE_NFC)) {
+            radioButtonNfc.setEnabled(true);
+        }
+        // Set button as checked according to scan method from preferences
         if (scanMethod.equals(getResources().getString(R.string.preference_qr))) {
             radioButtonQr.setChecked(true);
         } else if (scanMethod.equals(getResources().getString(R.string.preference_nfc))) {
