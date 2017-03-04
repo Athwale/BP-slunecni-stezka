@@ -31,16 +31,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- No history does not keep the activity on stack. We do not want this
+         because once the user leaves for the scanner, we want to return to main menu
+         from there. -->
         <activity
             android:name=".Activities.InfoScreenActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.ZoomableWebViewActivity"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".Activities.SettingsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activities.ScannerActivity"></activity>
+        <activity android:name=".Activities.ScannerActivity" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

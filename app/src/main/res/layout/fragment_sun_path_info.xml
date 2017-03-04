@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sun_path_info_fragment_relative_layout"
     android:layout_width="match_parent"
@@ -52,16 +53,18 @@
                 android:textColor="#000000"
                 tools:text="TextView" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/sun_path_info_button_map"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:background="@drawable/yellow_button_background"
-                android:contentDescription="@string/info_screen_map_button_description"
-                android:onClick="mapButtonHandler"
-                android:scaleType="centerCrop"
-                android:src="@drawable/overall_map" />
+                android:drawableTop="@drawable/ic_menu_map"
+                android:text="@string/info_screen_map_button"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                android:onClick="mapButtonHandler"/>
 
             <TextView
                 android:id="@+id/sun_path_info_text_view_middle"

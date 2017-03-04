@@ -18,6 +18,7 @@ import ondrej.mejzlik.suntrail.Utilities.HtmlConverter;
 public class SunPathInfoFragment extends Fragment {
     private HtmlConverter htmlConverter = new HtmlConverter();
 
+
     public SunPathInfoFragment() {
         // Required empty public constructor
     }
@@ -30,8 +31,6 @@ public class SunPathInfoFragment extends Fragment {
         this.fillText(view);
         return view;
     }
-
-    //TODO implement necessary fragment methods.
 
     /**
      * Fills text views of this fragment with required strings.

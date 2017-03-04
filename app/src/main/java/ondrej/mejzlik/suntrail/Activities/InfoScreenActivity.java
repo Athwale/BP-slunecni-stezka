@@ -9,6 +9,7 @@ import android.view.View;
 
 import ondrej.mejzlik.suntrail.Fragments.GameInfoFragment;
 import ondrej.mejzlik.suntrail.Fragments.SunPathInfoFragment;
+import ondrej.mejzlik.suntrail.Fragments.ZoomableImageFragment;
 import ondrej.mejzlik.suntrail.R;
 
 /**
@@ -19,6 +20,7 @@ public class InfoScreenActivity extends Activity {
     // Create a new Fragments to be placed in the activity layout
     private GameInfoFragment gameInfoFragment = new GameInfoFragment();
     private SunPathInfoFragment infoFragment = new SunPathInfoFragment();
+    private ZoomableImageFragment imageFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,15 @@ public class InfoScreenActivity extends Activity {
                 return;
             }
 
-            // Add the fragment to the 'fragment_container' FrameLayout
+            // Prepare zoomable image fragment with map
+            Bundle arguments = new Bundle();
+            int imageId = R.drawable.overall_map_full_size;
+            arguments.putInt("image", imageId);
+            // set fragment arguments
+            imageFragment = new ZoomableImageFragment();
+            imageFragment.setArguments(arguments);
+
+            // Add the fragment to the fragment_container in FrameLayout
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.add(R.id.info_screen_fragment_container, infoFragment);
@@ -45,12 +55,19 @@ public class InfoScreenActivity extends Activity {
     }
 
     /**
-     * Handles clicks from image button displaying the map
+     * Handles clicks from display map button.
+     * Opens a new fragment with the map.
      * @param view The button which has been clicked
      */
     public void mapButtonHandler(View view) {
-        Intent intent = new Intent(this, ZoomableWebViewActivity.class);
-        startActivity(intent);
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack so the user can navigate back
+        transaction.replace(R.id.info_screen_fragment_container, imageFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     /**
@@ -59,12 +76,9 @@ public class InfoScreenActivity extends Activity {
      * @param view The button which has been clicked
      */
     public void howToPlayButtonHandler(View view) {
-        // Add the fragment to the 'fragment_container' FrameLayout
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack so the user can navigate back
         transaction.replace(R.id.info_screen_fragment_container, gameInfoFragment);
         transaction.addToBackStack(null);
         transaction.commit();
@@ -78,5 +92,8 @@ public class InfoScreenActivity extends Activity {
     public void scannerButtonHandlerInfoScreen(View view) {
         Intent intent = new Intent(this, ScannerActivity.class);
         startActivity(intent);
+        // Finish this activity, removes activity from back stack but allows resuming it
+        // until user clicks scanner button.
+        this.finish();
     }
 }

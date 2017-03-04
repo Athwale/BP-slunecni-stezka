@@ -8,7 +8,7 @@
     <string name="main_menu_settings_icon_text">Settings</string>
     <string name="main_menu_exit_icon_text">Exit</string>
     <string name="info_screen_title">Basic information</string>
-    <string name="info_screen_map_button_description">Sun path map</string>
+    <string name="info_screen_map_button">View map</string>
     <string name="how_to_play_button_description">How to play?</string>
     <string name="how_to_play_image_description">Cartoon image displaying game play</string>
     <string name="run_scanner_button_description">Run scanner and start to play</string>
@@ -21,6 +21,7 @@
     <string name="button_clear_data">Clear</string>
     <string name="scanner_screen_title_nfc">Place your device onto the NFC tag</string>
     <string name="scanner_screen_title_qr">Scan the QR code with your device</string>
+    <string name="default_image_description">Image</string>
 
     <string name="sun_path_info_top">
         <![CDATA[
@@ -31,19 +32,19 @@
         You will visit individual...
         </p>
         ]]>
-   </string>
+    </string>
     <string name="sun_path_info_middle">
         <![CDATA[
         <h2>Route</h2>
 
         ]]>
-   </string>
+    </string>
     <string name="sun_path_info_bottom">
         <![CDATA[
         <h2>News and contact</h2>
 
         ]]>
-   </string>
+    </string>
     <string name="game_info_text_top">
        <![CDATA[
        <p>
@@ -63,7 +64,7 @@
        At each stop you must scan the code of the planet. Then you can enter the shop and trade items.
        </p>
        ]]>
-   </string>
+    </string>
     <string name="game_info_text_bottom">
        <![CDATA[
        <p>
@@ -83,4 +84,12 @@
        </p>
        ]]>
     </string>
+    <!-- Do not translate -->
+    <string name="preferences_filled">filled</string>
+    <string name="preference_nfc">nfc</string>
+    <string name="preference_qr">qr</string>
+    <string name="preference_none">none</string>
+    <string name="preference_scan_method">scanMethod</string>
+    <!-- Do not translate -->
+
 </resources>

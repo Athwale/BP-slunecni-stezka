@@ -32,8 +32,6 @@ public class GameInfoFragment extends Fragment {
         return view;
     }
 
-    //TODO implement necessary fragment methods.
-
     /**
      * Fills text views of this fragment with required strings.
      * This can not be done from xml since xml does not support using html markup in strings.
