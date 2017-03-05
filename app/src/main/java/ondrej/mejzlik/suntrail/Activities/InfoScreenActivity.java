@@ -93,7 +93,8 @@ public class InfoScreenActivity extends Activity {
         Intent intent = new Intent(this, ScannerActivity.class);
         startActivity(intent);
         // Finish this activity, removes activity from back stack but allows resuming it
-        // until user clicks scanner button.
+        // until user clicks scanner button. User will return to main menu from scanner.
+        // This is ok to do.
         this.finish();
     }
 }
