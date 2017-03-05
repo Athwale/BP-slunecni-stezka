@@ -22,6 +22,7 @@
     <string name="scanner_screen_title_nfc">Přiložte zařízení k NFC tagu</string>
     <string name="scanner_screen_title_qr">Naskenujte QR kód</string>
     <string name="default_image_description">Obrázek</string>
+    <string name="all_boards_screen_title">Prohlížet všechny tabule</string>
     <string name="sun_path_info_top">
         <![CDATA[
         <h2>Sluneční stezka</h2>

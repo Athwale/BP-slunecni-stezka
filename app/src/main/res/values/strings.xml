@@ -22,7 +22,7 @@
     <string name="scanner_screen_title_nfc">Place your device onto the NFC tag</string>
     <string name="scanner_screen_title_qr">Scan the QR code with your device</string>
     <string name="default_image_description">Image</string>
-
+    <string name="all_boards_screen_title">View all boards</string>
     <string name="sun_path_info_top">
         <![CDATA[
         <h2>The Sun path</h2>

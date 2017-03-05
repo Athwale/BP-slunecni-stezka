@@ -86,4 +86,14 @@ public class MainMenuActivity extends Activity {
         Intent intent = new Intent(this, ScannerActivity.class);
         startActivity(intent);
     }
+
+    /**
+     * Handles clicks from all boards button in main menu.
+     * Launches a new activity with scanner screen.
+     * @param view The button that has been clicked
+     */
+    public void allBoardsButtonHandler(View view) {
+        Intent intent = new Intent(this, AllBoardsActivity.class);
+        startActivity(intent);
+    }
 }
