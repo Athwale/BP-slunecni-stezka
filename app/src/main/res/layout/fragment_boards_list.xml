@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/all_boards_fragment_relative_layout"
     android:layout_width="match_parent"
@@ -34,7 +33,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/all_boards_view_spacer">
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/all_boards_view_spacer"
+        android:layout_centerVertical="true">
 
         <TableLayout
             android:layout_width="match_parent"
@@ -43,6 +44,7 @@
             android:orientation="horizontal">
 
             <TableRow>
+
                 <Button
                     android:id="@+id/all_boards_button_sun"
                     style="?android:attr/borderlessButtonStyle"
@@ -69,7 +71,9 @@
                     android:textColor="#000000"
                     android:textSize="12sp" />
             </TableRow>
+
             <TableRow>
+
                 <Button
                     android:id="@+id/all_boards_button_venus"
                     style="?android:attr/borderlessButtonStyle"
@@ -96,7 +100,9 @@
                     android:textColor="#000000"
                     android:textSize="12sp" />
             </TableRow>
+
             <TableRow>
+
                 <Button
                     android:id="@+id/all_boards_button_moon"
                     style="?android:attr/borderlessButtonStyle"
@@ -123,7 +129,9 @@
                     android:textColor="#000000"
                     android:textSize="12sp" />
             </TableRow>
+
             <TableRow>
+
                 <Button
                     android:id="@+id/all_boards_button_ceres"
                     style="?android:attr/borderlessButtonStyle"
@@ -150,7 +158,9 @@
                     android:textColor="#000000"
                     android:textSize="12sp" />
             </TableRow>
+
             <TableRow>
+
                 <Button
                     android:id="@+id/all_boards_button_halley"
                     style="?android:attr/borderlessButtonStyle"
@@ -177,7 +187,9 @@
                     android:textColor="#000000"
                     android:textSize="12sp" />
             </TableRow>
-            <TableRow>
+
+            <TableRow android:paddingBottom="16dp">
+
                 <Button
                     android:id="@+id/all_boards_button_uranus"
                     style="?android:attr/borderlessButtonStyle"

@@ -57,6 +57,7 @@ public class InfoScreenActivity extends Activity {
     /**
      * Handles clicks from display map button.
      * Opens a new fragment with the map.
+     *
      * @param view The button which has been clicked
      */
     public void mapButtonHandler(View view) {
@@ -73,6 +74,7 @@ public class InfoScreenActivity extends Activity {
     /**
      * Handles clicks from how to play button on information screen.
      * Replaces info screen fragment with game info fragment.
+     *
      * @param view The button which has been clicked
      */
     public void howToPlayButtonHandler(View view) {
@@ -87,6 +89,7 @@ public class InfoScreenActivity extends Activity {
     /**
      * Handles clicks from scanner button in game info screen.
      * Launches a new activity with scanner screen.
+     *
      * @param view The button that has been clicked
      */
     public void scannerButtonHandlerInfoScreen(View view) {
@@ -101,6 +104,7 @@ public class InfoScreenActivity extends Activity {
     /**
      * Handles clicks from scanner button in game info screen.
      * Launches a new activity with scanner screen.
+     *
      * @param view The button that has been clicked
      */
     public void allBoardsButtonHandlerInfoScreen(View view) {

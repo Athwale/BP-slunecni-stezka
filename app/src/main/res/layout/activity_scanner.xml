@@ -16,9 +16,9 @@
         android:layout_marginTop="16dp"
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
-        tools:text="Place your device onto the NFC tag"
         android:textColor="#ff0099cc"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        tools:text="Place your device onto the NFC tag" />
 
     <View
         android:id="@+id/scanner_view_spacer"

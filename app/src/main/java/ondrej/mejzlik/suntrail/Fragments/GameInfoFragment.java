@@ -35,6 +35,7 @@ public class GameInfoFragment extends Fragment {
     /**
      * Fills text views of this fragment with required strings.
      * This can not be done from xml since xml does not support using html markup in strings.
+     *
      * @param view The main view of this fragment
      */
     private void fillText(View view) {

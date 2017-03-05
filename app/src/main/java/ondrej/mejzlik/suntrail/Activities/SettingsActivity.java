@@ -56,6 +56,7 @@ public class SettingsActivity extends Activity {
     /**
      * Handles clicks from radio buttons in settings screen.
      * Writes values into shared preferences according to selected button.
+     *
      * @param radioButton The radio button that has been clicked
      */
     public void radioButtonClicked(View radioButton) {
@@ -84,11 +85,12 @@ public class SettingsActivity extends Activity {
     /**
      * Handles clicks from clear game data checkbox in settings.
      * If the checkbox is clicked and checked, enables clear game data button.
+     *
      * @param checkBoxClear The button that has been clicked
      */
     public void clearCheckBoxHandler(View checkBoxClear) {
         Button buttonClear = (Button) findViewById(R.id.settings_button_clear_data);
-        if (((CheckBox)checkBoxClear).isChecked()) {
+        if (((CheckBox) checkBoxClear).isChecked()) {
             buttonClear.setEnabled(true);
         } else {
             buttonClear.setEnabled(false);
@@ -99,6 +101,7 @@ public class SettingsActivity extends Activity {
      * Handles clicks from clear game data button in settings.
      * If clear game data checkbox is checked, clears game data.
      * After completion disables itself and uncheckes clear game data checkbox.
+     *
      * @param view The button that has been clicked
      */
     public void clearButtonHandler(View view) {

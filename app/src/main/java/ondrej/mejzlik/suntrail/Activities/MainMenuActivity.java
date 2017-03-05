@@ -35,9 +35,7 @@ public class MainMenuActivity extends Activity {
         // Get shared preferences for the whole app
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         // Set default preferences only if we run the first time
-        if (preferences.contains(getResources().getString(R.string.preferences_filled))) {
-            return;
-        } else {
+        if (!preferences.contains(getResources().getString(R.string.preferences_filled))) {
             PackageManager packageManager = getPackageManager();
             // Disable setting default values next time
             SharedPreferences.Editor editor = preferences.edit();
@@ -60,6 +58,7 @@ public class MainMenuActivity extends Activity {
     /**
      * Handles clicks from info button in main menu.
      * Launches a new activity with info screen.
+     *
      * @param view The button that has been clicked
      */
     public void infoButtonHandler(View view) {
@@ -70,6 +69,7 @@ public class MainMenuActivity extends Activity {
     /**
      * Handles clicks from settings button in main menu.
      * Launches a new activity with settings screen.
+     *
      * @param view The button that has been clicked
      */
     public void settingsButtonHandler(View view) {
@@ -80,6 +80,7 @@ public class MainMenuActivity extends Activity {
     /**
      * Handles clicks from scanner button in main menu.
      * Launches a new activity with scanner screen.
+     *
      * @param view The button that has been clicked
      */
     public void scannerButtonHandler(View view) {
@@ -90,6 +91,7 @@ public class MainMenuActivity extends Activity {
     /**
      * Handles clicks from all boards button in main menu.
      * Launches a new activity with scanner screen.
+     *
      * @param view The button that has been clicked
      */
     public void allBoardsButtonHandler(View view) {

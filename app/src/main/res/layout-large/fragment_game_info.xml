@@ -18,7 +18,7 @@
         android:paddingStart="16dp"
         android:text="@string/game_info_screen_title"
         android:textColor="#ff0099cc"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <View
         android:id="@+id/game_info_view_spacer"
@@ -80,11 +80,11 @@
                 android:layout_weight="1"
                 android:background="@drawable/yellow_button_background"
                 android:drawableTop="@drawable/ic_menu_scan"
+                android:onClick="scannerButtonHandlerInfoScreen"
                 android:paddingBottom="16dp"
                 android:text="@string/run_scanner_button_description"
                 android:textColor="#000000"
-                android:textSize="12sp"
-                android:onClick="scannerButtonHandlerInfoScreen"/>
+                android:textSize="12sp" />
 
         </LinearLayout>
     </ScrollView>
