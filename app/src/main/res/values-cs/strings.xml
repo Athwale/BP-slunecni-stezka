@@ -23,6 +23,18 @@
     <string name="scanner_screen_title_qr">Naskenujte QR kód</string>
     <string name="default_image_description">Obrázek</string>
     <string name="all_boards_screen_title">Prohlížet všechny tabule</string>
+    <string name="all_boards_button_name_sun">Slunce</string>
+    <string name="all_boards_button_name_mercury">Merkur</string>
+    <string name="all_boards_button_name_venus">Venuše</string>
+    <string name="all_boards_button_name_earth">Země</string>
+    <string name="all_boards_button_name_mars">Mars</string>
+    <string name="all_boards_button_name_moon">Měsíc</string>
+    <string name="all_boards_button_name_ceres">Ceres</string>
+    <string name="all_boards_button_name_jupiter">Jupiter</string>
+    <string name="all_boards_button_name_saturn">Saturn</string>
+    <string name="all_boards_button_name_uranus">Uran</string>
+    <string name="all_boards_button_name_neptune">Neptun</string>
+    <string name="all_boards_button_name_halley">Halleyova kometa</string>
     <string name="sun_path_info_top">
         <![CDATA[
         <h2>Sluneční stezka</h2>

@@ -97,4 +97,15 @@ public class InfoScreenActivity extends Activity {
         // This is ok to do.
         this.finish();
     }
+
+    /**
+     * Handles clicks from scanner button in game info screen.
+     * Launches a new activity with scanner screen.
+     * @param view The button that has been clicked
+     */
+    public void allBoardsButtonHandlerInfoScreen(View view) {
+        Intent intent = new Intent(this, AllBoardsActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
 }

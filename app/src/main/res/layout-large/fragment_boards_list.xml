@@ -43,6 +43,7 @@
             android:orientation="horizontal">
 
             <TableRow>
+
                 <Button
                     android:id="@+id/all_boards_button_sun"
                     style="?android:attr/borderlessButtonStyle"
@@ -68,8 +69,7 @@
                     android:text="@string/all_boards_button_name_mercury"
                     android:textColor="#000000"
                     android:textSize="12sp" />
-            </TableRow>
-            <TableRow>
+
                 <Button
                     android:id="@+id/all_boards_button_venus"
                     style="?android:attr/borderlessButtonStyle"
@@ -82,6 +82,9 @@
                     android:text="@string/all_boards_button_name_venus"
                     android:textColor="#000000"
                     android:textSize="12sp" />
+            </TableRow>
+
+            <TableRow>
 
                 <Button
                     android:id="@+id/all_boards_button_earth"
@@ -95,8 +98,7 @@
                     android:text="@string/all_boards_button_name_earth"
                     android:textColor="#000000"
                     android:textSize="12sp" />
-            </TableRow>
-            <TableRow>
+
                 <Button
                     android:id="@+id/all_boards_button_moon"
                     style="?android:attr/borderlessButtonStyle"
@@ -123,7 +125,9 @@
                     android:textColor="#000000"
                     android:textSize="12sp" />
             </TableRow>
+
             <TableRow>
+
                 <Button
                     android:id="@+id/all_boards_button_ceres"
                     style="?android:attr/borderlessButtonStyle"
@@ -149,8 +153,7 @@
                     android:text="@string/all_boards_button_name_jupiter"
                     android:textColor="#000000"
                     android:textSize="12sp" />
-            </TableRow>
-            <TableRow>
+
                 <Button
                     android:id="@+id/all_boards_button_halley"
                     style="?android:attr/borderlessButtonStyle"
@@ -163,6 +166,9 @@
                     android:text="@string/all_boards_button_name_halley"
                     android:textColor="#000000"
                     android:textSize="12sp" />
+            </TableRow>
+
+            <TableRow>
 
                 <Button
                     android:id="@+id/all_boards_button_saturn"
@@ -176,8 +182,7 @@
                     android:text="@string/all_boards_button_name_saturn"
                     android:textColor="#000000"
                     android:textSize="12sp" />
-            </TableRow>
-            <TableRow>
+
                 <Button
                     android:id="@+id/all_boards_button_uranus"
                     style="?android:attr/borderlessButtonStyle"
@@ -204,7 +209,6 @@
                     android:textColor="#000000"
                     android:textSize="12sp" />
             </TableRow>
-
         </TableLayout>
     </ScrollView>
 

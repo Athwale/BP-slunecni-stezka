@@ -23,6 +23,18 @@
     <string name="scanner_screen_title_qr">Scan the QR code with your device</string>
     <string name="default_image_description">Image</string>
     <string name="all_boards_screen_title">View all boards</string>
+    <string name="all_boards_button_name_sun">Sun</string>
+    <string name="all_boards_button_name_mercury">Mecrury</string>
+    <string name="all_boards_button_name_venus">Venus</string>
+    <string name="all_boards_button_name_earth">Earth</string>
+    <string name="all_boards_button_name_mars">Mars</string>
+    <string name="all_boards_button_name_moon">Moon</string>
+    <string name="all_boards_button_name_ceres">Ceres</string>
+    <string name="all_boards_button_name_jupiter">Jupiter</string>
+    <string name="all_boards_button_name_saturn">Saturn</string>
+    <string name="all_boards_button_name_uranus">Uranus</string>
+    <string name="all_boards_button_name_neptune">Neptune</string>
+    <string name="all_boards_button_name_halley">Halley comet</string>
     <string name="sun_path_info_top">
         <![CDATA[
         <h2>The Sun path</h2>
