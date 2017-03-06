@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/yellow_activity_background"
-    tools:context="ondrej.mejzlik.suntrail.Fragments.BoardsListFragment">
+    tools:context="ondrej.mejzlik.suntrail.fragments.BoardsListFragment">
 
     <TextView
         android:id="@+id/all_boards_title"
@@ -43,178 +43,270 @@
             android:clipChildren="false"
             android:orientation="horizontal">
 
-            <TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
 
-                <Button
-                    android:id="@+id/all_boards_button_sun"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_planet"
-                    android:text="@string/all_boards_button_name_sun"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal">
 
-                <Button
-                    android:id="@+id/all_boards_button_mercury"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/all_boards_button_sun"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_planet"
+                        android:text="@string/all_boards_button_name_sun"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_planet"
-                    android:text="@string/all_boards_button_name_mercury"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal">
+
+                    <Button
+                        android:id="@+id/all_boards_button_mercury"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_planet"
+                        android:text="@string/all_boards_button_name_mercury"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
 
-                <Button
-                    android:id="@+id/all_boards_button_venus"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_planet"
-                    android:text="@string/all_boards_button_name_venus"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal">
 
-                <Button
-                    android:id="@+id/all_boards_button_earth"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/all_boards_button_venus"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_planet"
+                        android:text="@string/all_boards_button_name_venus"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_planet"
-                    android:text="@string/all_boards_button_name_earth"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal">
+
+                    <Button
+                        android:id="@+id/all_boards_button_earth"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_planet"
+                        android:text="@string/all_boards_button_name_earth"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
 
-                <Button
-                    android:id="@+id/all_boards_button_moon"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_planet"
-                    android:text="@string/all_boards_button_name_moon"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal">
 
-                <Button
-                    android:id="@+id/all_boards_button_mars"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/all_boards_button_moon"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_planet"
+                        android:text="@string/all_boards_button_name_moon"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_planet"
-                    android:text="@string/all_boards_button_name_mars"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal">
+
+                    <Button
+                        android:id="@+id/all_boards_button_mars"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_planet"
+                        android:text="@string/all_boards_button_name_mars"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
 
-                <Button
-                    android:id="@+id/all_boards_button_ceres"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_planet"
-                    android:text="@string/all_boards_button_name_ceres"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal">
 
-                <Button
-                    android:id="@+id/all_boards_button_jupiter"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/all_boards_button_ceres"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_planet"
+                        android:text="@string/all_boards_button_name_ceres"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_planet"
-                    android:text="@string/all_boards_button_name_jupiter"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal">
+
+                    <Button
+                        android:id="@+id/all_boards_button_jupiter"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_planet"
+                        android:text="@string/all_boards_button_name_jupiter"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
 
-                <Button
-                    android:id="@+id/all_boards_button_halley"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_planet"
-                    android:text="@string/all_boards_button_name_halley"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal">
 
-                <Button
-                    android:id="@+id/all_boards_button_saturn"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/all_boards_button_halley"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_planet"
+                        android:text="@string/all_boards_button_name_halley"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_planet"
-                    android:text="@string/all_boards_button_name_saturn"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal">
+
+                    <Button
+                        android:id="@+id/all_boards_button_saturn"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_planet"
+                        android:text="@string/all_boards_button_name_saturn"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingBottom="16dp">
 
-                <Button
-                    android:id="@+id/all_boards_button_uranus"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_planet"
-                    android:text="@string/all_boards_button_name_uranus"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal">
 
-                <Button
-                    android:id="@+id/all_boards_button_neptune"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/all_boards_button_uranus"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_planet"
+                        android:text="@string/all_boards_button_name_uranus"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_planet"
-                    android:text="@string/all_boards_button_name_neptune"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal">
+
+                    <Button
+                        android:id="@+id/all_boards_button_neptune"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_planet"
+                        android:text="@string/all_boards_button_name_neptune"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </TableRow>
 
         </TableLayout>

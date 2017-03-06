@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/yellow_activity_background"
-    tools:context="ondrej.mejzlik.suntrail.Fragments.GameInfoFragment">
+    tools:context="ondrej.mejzlik.suntrail.fragments.GameInfoFragment">
 
     <TextView
         android:id="@+id/game_info_text_view_title"

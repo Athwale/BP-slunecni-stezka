@@ -1,4 +1,4 @@
-package ondrej.mejzlik.suntrail.Activities;
+package ondrej.mejzlik.suntrail.activities;
 
 import android.app.Activity;
 import android.content.SharedPreferences;

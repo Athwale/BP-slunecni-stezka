@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTheme.NoActionBar.SunTrail">
         <activity
-            android:name=".Activities.MainMenuActivity"
+            android:name=".activities.MainMenuActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,15 +37,17 @@
          from there.
         -->
         <activity
-            android:name=".Activities.InfoScreenActivity"
+            android:name=".activities.InfoScreenActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.ScannerActivity"
+            android:name=".activities.ScannerActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activities.AllBoardsActivity"></activity>
+        <activity
+            android:name=".activities.AllBoardsActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

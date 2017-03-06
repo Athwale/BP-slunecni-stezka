@@ -1,4 +1,4 @@
-package ondrej.mejzlik.suntrail.Fragments;
+package ondrej.mejzlik.suntrail.fragments;
 
 import android.os.Bundle;
 import android.app.Fragment;

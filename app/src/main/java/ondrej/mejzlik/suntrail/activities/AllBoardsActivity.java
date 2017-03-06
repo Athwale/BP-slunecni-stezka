@@ -1,11 +1,11 @@
-package ondrej.mejzlik.suntrail.Activities;
+package ondrej.mejzlik.suntrail.activities;
 
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
-import ondrej.mejzlik.suntrail.Fragments.BoardsListFragment;
+import ondrej.mejzlik.suntrail.fragments.BoardsListFragment;
 import ondrej.mejzlik.suntrail.R;
 
 public class AllBoardsActivity extends Activity {

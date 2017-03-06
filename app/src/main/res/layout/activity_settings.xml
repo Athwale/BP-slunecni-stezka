@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/yellow_activity_background"
-    tools:context="ondrej.mejzlik.suntrail.Activities.SettingsActivity">
+    tools:context="ondrej.mejzlik.suntrail.activities.SettingsActivity">
 
     <TextView
         android:id="@+id/settings_text_view_title"

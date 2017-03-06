@@ -1,4 +1,4 @@
-package ondrej.mejzlik.suntrail.Fragments;
+package ondrej.mejzlik.suntrail.fragments;
 
 
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import ondrej.mejzlik.suntrail.R;
-import ondrej.mejzlik.suntrail.Utilities.HtmlConverter;
+import ondrej.mejzlik.suntrail.utilities.HtmlConverter;
 
 /**
  * Fragment class for how to play info screen.

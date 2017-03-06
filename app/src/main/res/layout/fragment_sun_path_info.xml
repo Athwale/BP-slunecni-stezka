@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/yellow_activity_background"
-    tools:context="ondrej.mejzlik.suntrail.Fragments.SunPathInfoFragment">
+    tools:context="ondrej.mejzlik.suntrail.fragments.SunPathInfoFragment">
 
     <TextView
         android:id="@+id/sun_path_info_title"
@@ -75,35 +75,49 @@
                 tools:text="TextView" />
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:gravity="center_horizontal">
 
-                <Button
-                    android:id="@+id/sun_path_info_button_how_to_play"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_menu_info"
-                    android:onClick="howToPlayButtonHandler"
-                    android:text="@string/how_to_play_button_description"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal">
 
-                <Button
-                    android:id="@+id/sun_path_info_button_all_boards"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="match_parent"
+                    <Button
+                        android:id="@+id/sun_path_info_button_how_to_play"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_menu_info"
+                        android:onClick="howToPlayButtonHandler"
+                        android:text="@string/how_to_play_button_description"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_menu_all_boards"
-                    android:onClick="allBoardsButtonHandlerInfoScreen"
-                    android:text="@string/main_menu_all_boards_icon_text"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal">
+
+                    <Button
+                        android:id="@+id/sun_path_info_button_all_boards"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_menu_all_boards"
+                        android:onClick="allBoardsButtonHandlerInfoScreen"
+                        android:text="@string/main_menu_all_boards_icon_text"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <TextView

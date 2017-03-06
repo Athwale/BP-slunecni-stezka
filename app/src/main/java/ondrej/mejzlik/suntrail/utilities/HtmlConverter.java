@@ -1,4 +1,4 @@
-package ondrej.mejzlik.suntrail.Utilities;
+package ondrej.mejzlik.suntrail.utilities;
 
 import android.text.Html;
 import android.text.Spanned;

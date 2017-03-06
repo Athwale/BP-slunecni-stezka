@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/yellow_activity_background"
-    tools:context="ondrej.mejzlik.suntrail.Activities.MainMenuActivity">
+    tools:context="ondrej.mejzlik.suntrail.activities.MainMenuActivity">
 
     <TextView
         android:id="@+id/main_menu_title"

@@ -1,4 +1,4 @@
-package ondrej.mejzlik.suntrail.Activities;
+package ondrej.mejzlik.suntrail.activities;
 
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -7,9 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import ondrej.mejzlik.suntrail.Fragments.GameInfoFragment;
-import ondrej.mejzlik.suntrail.Fragments.SunPathInfoFragment;
-import ondrej.mejzlik.suntrail.Fragments.ZoomableImageFragment;
+import ondrej.mejzlik.suntrail.fragments.GameInfoFragment;
+import ondrej.mejzlik.suntrail.fragments.SunPathInfoFragment;
+import ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment;
 import ondrej.mejzlik.suntrail.R;
 
 /**
