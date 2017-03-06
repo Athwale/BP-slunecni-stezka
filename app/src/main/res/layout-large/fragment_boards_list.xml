@@ -63,7 +63,8 @@
                         android:drawableTop="@drawable/ic_planet"
                         android:text="@string/all_boards_button_name_sun"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:onClick="planetButtonsHandler"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -82,7 +83,8 @@
                         android:drawableTop="@drawable/ic_planet"
                         android:text="@string/all_boards_button_name_mercury"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:onClick="planetButtonsHandler"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -101,7 +103,8 @@
                         android:drawableTop="@drawable/ic_planet"
                         android:text="@string/all_boards_button_name_venus"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:onClick="planetButtonsHandler"/>
                 </LinearLayout>
             </TableRow>
 
@@ -126,7 +129,8 @@
                         android:drawableTop="@drawable/ic_planet"
                         android:text="@string/all_boards_button_name_earth"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:onClick="planetButtonsHandler"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -145,7 +149,8 @@
                         android:drawableTop="@drawable/ic_planet"
                         android:text="@string/all_boards_button_name_moon"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:onClick="planetButtonsHandler"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -164,7 +169,8 @@
                         android:drawableTop="@drawable/ic_planet"
                         android:text="@string/all_boards_button_name_mars"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:onClick="planetButtonsHandler"/>
                 </LinearLayout>
             </TableRow>
 
@@ -189,7 +195,8 @@
                         android:drawableTop="@drawable/ic_planet"
                         android:text="@string/all_boards_button_name_ceres"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:onClick="planetButtonsHandler"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -208,7 +215,8 @@
                         android:drawableTop="@drawable/ic_planet"
                         android:text="@string/all_boards_button_name_jupiter"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:onClick="planetButtonsHandler"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -227,7 +235,8 @@
                         android:drawableTop="@drawable/ic_planet"
                         android:text="@string/all_boards_button_name_halley"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:onClick="planetButtonsHandler"/>
                 </LinearLayout>
             </TableRow>
 
@@ -253,7 +262,8 @@
                         android:drawableTop="@drawable/ic_planet"
                         android:text="@string/all_boards_button_name_saturn"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:onClick="planetButtonsHandler"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -272,7 +282,8 @@
                         android:drawableTop="@drawable/ic_planet"
                         android:text="@string/all_boards_button_name_uranus"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:onClick="planetButtonsHandler"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -291,7 +302,8 @@
                         android:drawableTop="@drawable/ic_planet"
                         android:text="@string/all_boards_button_name_neptune"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:onClick="planetButtonsHandler"/>
                 </LinearLayout>
             </TableRow>
         </TableLayout>

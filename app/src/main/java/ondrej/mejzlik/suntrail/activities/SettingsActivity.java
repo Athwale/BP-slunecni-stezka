@@ -13,7 +13,7 @@ import android.widget.RadioButton;
 import ondrej.mejzlik.suntrail.R;
 
 public class SettingsActivity extends Activity {
-    private SharedPreferences preferences;
+    private SharedPreferences preferences = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

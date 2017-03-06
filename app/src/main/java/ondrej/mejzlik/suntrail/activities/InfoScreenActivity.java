@@ -17,10 +17,11 @@ import ondrej.mejzlik.suntrail.R;
  * fragments.
  */
 public class InfoScreenActivity extends Activity {
-    // Create a new Fragments to be placed in the activity layout
-    private GameInfoFragment gameInfoFragment = new GameInfoFragment();
-    private SunPathInfoFragment infoFragment = new SunPathInfoFragment();
-    private ZoomableImageFragment imageFragment;
+    // Name for the key in arguments that identifies the saved image
+    public static final String IMAGE_KEY = "image";
+    // Name for the bundle of arguments as an identifier in saved state
+    public static final String IMAGE_ARGUMENT = "imageArgument";
+    private Bundle arguments = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,27 +32,41 @@ public class InfoScreenActivity extends Activity {
         // the fragment_container FrameLayout
         if (findViewById(R.id.info_screen_fragment_container) != null) {
 
-            // However, if we're being restored from a previous state,
+            // If we're being restored from a previous state,
             // then we don't need to do anything and should return or else
             // we could end up with overlapping fragments.
             if (savedInstanceState != null) {
+                // Restore bundle with image
+                this.arguments = savedInstanceState.getBundle(IMAGE_ARGUMENT);
                 return;
             }
 
-            // Prepare zoomable image fragment with map
-            Bundle arguments = new Bundle();
-            int imageId = R.drawable.overall_map_full_size;
-            arguments.putInt("image", imageId);
-            // set fragment arguments
-            imageFragment = new ZoomableImageFragment();
-            imageFragment.setArguments(arguments);
+            // Prepare map for zoomable image argument
+            this.arguments = new Bundle();
+            arguments.putInt(IMAGE_KEY, R.drawable.overall_map_full_size);
 
             // Add the fragment to the fragment_container in FrameLayout
+            SunPathInfoFragment infoFragment = new SunPathInfoFragment();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.add(R.id.info_screen_fragment_container, infoFragment);
             transaction.commit();
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the bundle with image
+        savedInstanceState.putBundle(IMAGE_ARGUMENT, arguments);
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+        this.arguments = savedInstanceState.getBundle(IMAGE_ARGUMENT);
     }
 
     /**
@@ -63,6 +78,10 @@ public class InfoScreenActivity extends Activity {
     public void mapButtonHandler(View view) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        // Create fragment and set fragment arguments
+        ZoomableImageFragment imageFragment = new ZoomableImageFragment();
+        imageFragment.setArguments(arguments);
 
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
@@ -78,6 +97,7 @@ public class InfoScreenActivity extends Activity {
      * @param view The button which has been clicked
      */
     public void howToPlayButtonHandler(View view) {
+        GameInfoFragment gameInfoFragment = new GameInfoFragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 

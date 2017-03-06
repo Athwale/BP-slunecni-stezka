@@ -11,8 +11,11 @@ import android.widget.ImageView;
 import ondrej.mejzlik.suntrail.R;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
+import static ondrej.mejzlik.suntrail.activities.InfoScreenActivity.IMAGE_KEY;
+
 /**
  * Fragment class which can show a zoomable imageview.
+ * Accepts a bundle with an argument key "image" which is an id of an image resource.
  */
 public class ZoomableImageFragment extends Fragment {
     private PhotoViewAttacher zoomer;
@@ -35,8 +38,8 @@ public class ZoomableImageFragment extends Fragment {
         // The map resource is always there
         // Otherwise blank fragment is opened
         Bundle arguments = getArguments();
-        if (arguments != null && arguments.containsKey("image")) {
-            int imageResource = getArguments().getInt("image");
+        if (arguments != null && arguments.containsKey(IMAGE_KEY)) {
+            int imageResource = getArguments().getInt(IMAGE_KEY);
             ImageView imageView = (ImageView) (view.findViewById(R.id.zoomable_image_view));
             // Set image into image view
             imageView.setImageResource(imageResource);
