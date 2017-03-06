@@ -31,6 +31,7 @@
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <ScrollView
+        android:id="@+id/game_info_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/game_info_view_spacer"
