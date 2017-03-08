@@ -8,7 +8,7 @@
     tools:context="ondrej.mejzlik.suntrail.activities.MainMenuActivity">
 
     <TextView
-        android:id="@+id/main_menu_text_view_title"
+        android:id="@+id/main_menu_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -30,92 +30,130 @@
         android:background="#ff0099cc"
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
-    <Button
-        android:id="@+id/main_menu_button_scan"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/main_menu_linear_layout_top"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/main_menu_button_info"
-        android:layout_alignTop="@+id/main_menu_button_inventory"
-        android:layout_marginTop="19dp"
-        android:background="@drawable/yellow_button_background"
-        android:drawableTop="@drawable/ic_menu_scan"
-        android:onClick="scannerButtonHandler"
-        android:text="@string/main_menu_scan_icon_text"
-        android:textColor="#000000"
-        android:textSize="14sp" />
+        android:layout_above="@+id/linearLayout3"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="29dp"
+        android:baselineAligned="false"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/main_menu_button_how_to_play"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/yellow_button_background"
+                android:drawableTop="@drawable/ic_menu_info"
+                android:onClick="infoButtonHandler"
+                android:text="@string/main_menu_info_icon_text"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/main_menu_button_all_boards"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/yellow_button_background"
+                android:drawableTop="@drawable/ic_menu_all_boards"
+                android:onClick="allBoardsButtonHandler"
+                android:text="@string/main_menu_all_boards_icon_text"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/main_menu_button_info"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/yellow_button_background"
+                android:drawableTop="@drawable/ic_menu_info"
+                android:onClick="infoButtonHandler"
+                android:text="@string/main_menu_info_icon_text"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/main_menu_button_settings"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/main_menu_button_inventory"
-        android:layout_below="@+id/main_menu_button_scan"
-        android:layout_marginTop="27dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="14dp"
         android:background="@drawable/yellow_button_background"
         android:drawableTop="@drawable/ic_menu_settings"
         android:onClick="settingsButtonHandler"
         android:text="@string/main_menu_settings_icon_text"
         android:textColor="#000000"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
 
-    <Button
-        android:id="@+id/main_menu_button_exit"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/main_menu_button_settings"
-        android:layout_alignBottom="@+id/main_menu_button_settings"
-        android:layout_alignEnd="@+id/main_menu_button_all_boards"
-        android:background="@drawable/yellow_button_background"
-        android:drawableTop="@drawable/ic_menu_exit"
-        android:text="@string/main_menu_exit_icon_text"
-        android:textColor="#000000"
-        android:textSize="14sp" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/main_menu_button_inventory"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/main_menu_button_inventory"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/yellow_button_background"
+            android:drawableTop="@drawable/ic_menu_inventory"
+            android:text="@string/main_menu_inventory_icon_text"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="44dp"
-        android:layout_toStartOf="@+id/main_menu_button_scan"
-        android:background="@drawable/yellow_button_background"
-        android:drawableTop="@drawable/ic_menu_inventory"
-        android:text="@string/main_menu_inventory_icon_text"
-        android:textColor="#000000"
-        android:textSize="14sp" />
+        android:gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/main_menu_button_all_boards"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="50dp"
-        android:layout_toEndOf="@+id/main_menu_button_scan"
-        android:background="@drawable/yellow_button_background"
-        android:drawableTop="@drawable/ic_menu_all_boards"
-        android:onClick="allBoardsButtonHandler"
-        android:text="@string/main_menu_all_boards_icon_text"
-        android:textColor="#000000"
-        android:textSize="14sp" />
-
-    <Button
-        android:id="@+id/main_menu_button_info"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/main_menu_button_scan"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/yellow_button_background"
-        android:drawableTop="@drawable/ic_menu_info"
-        android:onClick="infoButtonHandler"
-        android:text="@string/main_menu_info_icon_text"
-        android:textColor="#000000"
-        android:textSize="14sp" />
+        <Button
+            android:id="@+id/main_menu_button_scan"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/yellow_button_background"
+            android:drawableTop="@drawable/ic_menu_scan"
+            android:onClick="scannerButtonHandler"
+            android:text="@string/main_menu_scan_icon_text"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+    </LinearLayout>
 
 </RelativeLayout>
