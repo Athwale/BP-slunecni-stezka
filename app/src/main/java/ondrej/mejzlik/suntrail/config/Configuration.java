@@ -20,5 +20,19 @@ public class Configuration {
     // Used in fragments to save scroll position
     public static final String SCROLL_POSITION_KEY = "scrollPosition";
 
+    // Used to identify which data should PlanetText fragment load
+    public static final int PLANET_ID_SUN = 1;
+    public static final int PLANET_ID_MERCURY = 2;
+    public static final int PLANET_ID_VENUS = 3;
+    public static final int PLANET_ID_EARTH = 4;
+    public static final int PLANET_ID_MOON = 5;
+    public static final int PLANET_ID_MARS = 6;
+    public static final int PLANET_ID_CERES = 7;
+    public static final int PLANET_ID_JUPITER = 8;
+    public static final int PLANET_ID_HALLEY = 9;
+    public static final int PLANET_ID_SATURN = 10;
+    public static final int PLANET_ID_URANUS = 11;
+    public static final int PLANET_ID_NEPTUNE = 12;
+    // Identifier key for planet id when saved in bundle of arguments for fragment
     public static final String PLANET_ID_KEY = "planet";
 }
