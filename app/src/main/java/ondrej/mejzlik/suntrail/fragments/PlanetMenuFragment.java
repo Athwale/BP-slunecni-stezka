@@ -1,6 +1,5 @@
 package ondrej.mejzlik.suntrail.fragments;
 
-
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,7 +9,7 @@ import android.widget.TextView;
 
 import ondrej.mejzlik.suntrail.R;
 
-import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.PLANET_ID_KEY;
+import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_KEY;
 
 
 /**

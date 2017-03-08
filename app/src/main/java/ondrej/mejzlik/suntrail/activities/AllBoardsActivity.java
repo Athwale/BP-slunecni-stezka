@@ -11,8 +11,9 @@ import ondrej.mejzlik.suntrail.fragments.BoardsListFragment;
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment;
 
+import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_KEY;
+
 public class AllBoardsActivity extends Activity {
-    public static final String PLANET_ID_KEY = "planet";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class AllBoardsActivity extends Activity {
                 return;
             }
 
-            // Add the fragment to the fragment_container
+            // Add planet list fragment to the fragment_container
             BoardsListFragment boardsListFragment = new BoardsListFragment();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();

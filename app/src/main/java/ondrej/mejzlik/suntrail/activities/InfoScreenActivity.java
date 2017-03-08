@@ -12,15 +12,17 @@ import ondrej.mejzlik.suntrail.fragments.SunPathInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment;
 import ondrej.mejzlik.suntrail.R;
 
+import static ondrej.mejzlik.suntrail.config.Configuration.IMAGE_ARGUMENT;
+import static ondrej.mejzlik.suntrail.config.Configuration.IMAGE_KEY;
+import static ondrej.mejzlik.suntrail.config.Configuration.INFO_BUTTON_GAME;
+import static ondrej.mejzlik.suntrail.config.Configuration.INFO_BUTTON_GENERAL;
+import static ondrej.mejzlik.suntrail.config.Configuration.INFO_BUTTON_INTENT_KEY;
+
 /**
  * This activity displays general information about Sun Path and How to play information using
  * fragments.
  */
 public class InfoScreenActivity extends Activity {
-    // Name for the key in arguments that identifies the saved image
-    public static final String IMAGE_KEY = "image";
-    // Name for the bundle of arguments as an identifier in saved state
-    public static final String IMAGE_ARGUMENT = "imageArgument";
     private Bundle arguments = null;
 
     @Override
@@ -41,15 +43,24 @@ public class InfoScreenActivity extends Activity {
                 return;
             }
 
-            // Prepare map for zoomable image argument
-            this.arguments = new Bundle();
-            arguments.putInt(IMAGE_KEY, R.drawable.overall_map_full_size);
-
-            // Add the fragment to the fragment_container in FrameLayout
-            SunPathInfoFragment infoFragment = new SunPathInfoFragment();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.add(R.id.info_screen_fragment_container, infoFragment);
+
+            // Load the fragment according to which button we used
+            Intent intent = this.getIntent();
+            int type = intent.getIntExtra(INFO_BUTTON_INTENT_KEY, INFO_BUTTON_GENERAL);
+            if (type == INFO_BUTTON_GENERAL) {
+                // Prepare map for zoomable image argument
+                this.arguments = new Bundle();
+                arguments.putInt(IMAGE_KEY, R.drawable.overall_map_full_size);
+                SunPathInfoFragment infoFragment = new SunPathInfoFragment();
+                // Add the fragment to the fragment_container in FrameLayout
+                transaction.add(R.id.info_screen_fragment_container, infoFragment);
+            } else if (type == INFO_BUTTON_GAME) {
+                GameInfoFragment gameInfoFragment = new GameInfoFragment();
+                transaction.add(R.id.info_screen_fragment_container, gameInfoFragment);
+            }
+            // Commit changes and display fragment
             transaction.commit();
         }
     }
