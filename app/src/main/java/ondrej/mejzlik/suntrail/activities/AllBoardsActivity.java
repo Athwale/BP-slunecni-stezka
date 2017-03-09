@@ -26,6 +26,11 @@ import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_URANUS;
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_VENUS;
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_NAME_KEY;
 
+/**
+ * This activity displays a list of all available planets on the Sun path.
+ * Users can select one and then be presented with a choice whether to display the text
+ * or play an audio file.
+ */
 public class AllBoardsActivity extends Activity {
     private int chosenPlanet = 0;
 
