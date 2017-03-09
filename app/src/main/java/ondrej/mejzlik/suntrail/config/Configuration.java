@@ -13,7 +13,7 @@ public class Configuration {
 
     // Name for the key in arguments that identifies the saved image.
     // Used to start ZoomableImageFragment with an image identified by R.id.
-    public static final String IMAGE_KEY = "image";
+    public static final String IMAGE_KEY = "imageKey";
     // Name for the bundle of arguments as an identifier in saved state
     public static final String IMAGE_ARGUMENT = "imageArgument";
 
@@ -34,5 +34,8 @@ public class Configuration {
     public static final int PLANET_ID_URANUS = 11;
     public static final int PLANET_ID_NEPTUNE = 12;
     // Identifier key for planet id when saved in bundle of arguments for fragment
-    public static final String PLANET_ID_KEY = "planet";
+    public static final String PLANET_ID_KEY = "planetId";
+    // Used to pass name of the planet to planet menu fragment
+    public static final String PLANET_NAME_KEY = "planetName";
+
 }
