@@ -3,8 +3,8 @@ package ondrej.mejzlik.suntrail.activities;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.CheckBox;
 
@@ -12,6 +12,8 @@ import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.fragments.QrScannerFragment;
 import ondrej.mejzlik.suntrail.fragments.ScannerChoiceFragment;
 
+import static ondrej.mejzlik.suntrail.config.Configuration.PERMISSION_CAMERA;
+import static ondrej.mejzlik.suntrail.config.Configuration.QR_SCANNER_TAG;
 import static ondrej.mejzlik.suntrail.config.Configuration.USE_FLASH_KEY;
 
 /**
@@ -43,6 +45,19 @@ public class ScannerActivity extends Activity {
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        if (requestCode == PERMISSION_CAMERA) {
+            // If request is cancelled, the result arrays are empty.
+            if (grantResults.length == 0) {
+                // permission denied, remove this fragment
+                FragmentManager fragmentManager = getFragmentManager();
+                // TODO remove scanner fragment
+                //fragmentManager.getFragment()
+            }
+        }
+    }
+
     /**
      * Handles clicks from qr scanner button in scanner choice fragment.
      * Launches a new fragment with qr scanner.
@@ -59,7 +74,7 @@ public class ScannerActivity extends Activity {
 
         arguments.putBoolean(USE_FLASH_KEY, useFlash);
         qrScannerFragment.setArguments(arguments);
-        transaction.replace(R.id.scanner_fragment_container, qrScannerFragment);
+        transaction.replace(R.id.scanner_fragment_container, qrScannerFragment, QR_SCANNER_TAG);
         transaction.addToBackStack(null);
         transaction.commit();
     }

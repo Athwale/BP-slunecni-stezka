@@ -1,8 +1,13 @@
 package ondrej.mejzlik.suntrail.fragments;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +23,12 @@ import java.util.LinkedList;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import ondrej.mejzlik.suntrail.R;
 
+import static ondrej.mejzlik.suntrail.config.Configuration.PERMISSION_CAMERA;
 import static ondrej.mejzlik.suntrail.config.Configuration.USE_FLASH_KEY;
 
 /**
- * A simple {@link Fragment} subclass.
+ * This fragment contains the qr scanner which uses zxing library.
+ * This fragment asks for camera permissions.
  */
 public class QrScannerFragment extends Fragment implements ZXingScannerView.ResultHandler {
     private ZXingScannerView scannerView;
@@ -32,6 +39,9 @@ public class QrScannerFragment extends Fragment implements ZXingScannerView.Resu
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        this.getPermissions();
+
         scannerView = new ZXingScannerView(getActivity());
         // Turn on flash if the user wants it
         Bundle arguments = getArguments();
@@ -40,10 +50,24 @@ public class QrScannerFragment extends Fragment implements ZXingScannerView.Resu
             scannerView.setFlash(arguments.getBoolean(USE_FLASH_KEY));
         }
         // Set supported format to QR code only.
-        ArrayList formats = new ArrayList<BarcodeFormat>();
+        ArrayList<BarcodeFormat> formats = new ArrayList<>();
         formats.add(BarcodeFormat.QR_CODE);
         scannerView.setFormats(formats);
         return scannerView;
+    }
+
+    /**
+     * Checks if this app has camera permission, if not, asks the user to allow using camera.
+     * After this the onRequestPermissionsResult in scanner activity is called.
+     */
+    private void getPermissions() {
+        // Fragment is attached, onAttach is called before onCreateView
+        int cameraPermission = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA);
+        if (cameraPermission != PackageManager.PERMISSION_GRANTED) {
+            // Ask for camera permission
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA},
+                    PERMISSION_CAMERA);
+        }
     }
 
     @Override

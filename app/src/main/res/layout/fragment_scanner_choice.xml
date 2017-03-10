@@ -39,6 +39,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/scanner_choice_linear_layout_qr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -66,7 +67,18 @@
                 android:textColor="#000000" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/scanner_choice_text_view_no_scanner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:text="@string/scanner_choice_no_scanner"
+            android:textAlignment="center"
+            android:textColor="#e71a24" />
+
         <LinearLayout
+            android:id="@+id/scanner_choice_linear_layout_nfc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

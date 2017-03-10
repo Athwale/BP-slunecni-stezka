@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import ondrej.mejzlik.suntrail.R;
 
@@ -109,6 +110,7 @@ public class SettingsActivity extends Activity {
         if (checkBoxClear.isChecked()) {
             // Clear game data
 
+            Toast.makeText(this, getResources().getString(R.string.toast_game_data_clear), Toast.LENGTH_SHORT).show();
             checkBoxClear.setChecked(false);
             view.setEnabled(false);
         }

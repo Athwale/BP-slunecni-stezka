@@ -39,5 +39,14 @@ public class Configuration {
     public static final String PLANET_NAME_KEY = "planetName";
     // Used in scanner choice fragment and qr fragment to pass argument whether to use flash
     public static final String USE_FLASH_KEY = "useFlash";
+    // Used to indicate which scanner or scanner options should the app use or offer in scanner choice
+    public static final int HAS_NOTHING = 0;
+    public static final int HAS_NFC_QR = 1;
+    public static final int HAS_ONLY_QR = 2;
+    public static final int HAS_ONLY_NFC = 3;
+    // Used in scanner activity and qr fragment to identify camera permission request
+    public static final int PERMISSION_CAMERA = 1;
+    // Used as identifier for qr scanner fragment
+    public static final String QR_SCANNER_TAG = "qrFragment";
 
 }

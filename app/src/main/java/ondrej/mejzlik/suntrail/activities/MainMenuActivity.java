@@ -25,38 +25,6 @@ public class MainMenuActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        // Inicialize settings based on available hadrdware
-        this.initSettings();
-    }
-
-    /**
-     * Initializes settings based on available device hardware.
-     * Runs only once.
-     */
-    // We need to do it here because scanner activity can be launched before user does it in
-    // settings activity.
-    private void initSettings() {
-        // Get shared preferences for the whole app
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        // Set default preferences only if we run the first time
-        if (!preferences.contains(getResources().getString(R.string.preferences_filled))) {
-            PackageManager packageManager = getPackageManager();
-            // Disable setting default values next time
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean(getResources().getString(R.string.preferences_filled), true);
-
-            // Put the default values in
-            // Enable nfc if available and set it as default scan method
-            String scanMethod = getResources().getString(R.string.preference_scan_method);
-            if (packageManager.hasSystemFeature(PackageManager.FEATURE_NFC)) {
-                editor.putString(scanMethod, getResources().getString(R.string.preference_nfc));
-            } else if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
-                editor.putString(scanMethod, getResources().getString(R.string.preference_qr));
-            } else {
-                editor.putString(scanMethod, getResources().getString(R.string.preference_none));
-            }
-            editor.apply();
-        }
     }
 
     /**
