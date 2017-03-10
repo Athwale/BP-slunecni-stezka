@@ -3,10 +3,16 @@ package ondrej.mejzlik.suntrail.activities;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.CheckBox;
 
 import ondrej.mejzlik.suntrail.R;
+import ondrej.mejzlik.suntrail.fragments.QrScannerFragment;
 import ondrej.mejzlik.suntrail.fragments.ScannerChoiceFragment;
+
+import static ondrej.mejzlik.suntrail.config.Configuration.USE_FLASH_KEY;
 
 /**
  * This activity allows the user to pick which scanner to use. Then starts corresponding feagment
@@ -35,5 +41,36 @@ public class ScannerActivity extends Activity {
             transaction.add(R.id.scanner_fragment_container, scannerChoiceFragment);
             transaction.commit();
         }
+    }
+
+    /**
+     * Handles clicks from qr scanner button in scanner choice fragment.
+     * Launches a new fragment with qr scanner.
+     *
+     * @param view The button that has been clicked
+     */
+    public void qrScannerButtonHandler(View view) {
+        Bundle arguments = new Bundle();
+        QrScannerFragment qrScannerFragment = new QrScannerFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        // Check if the qr code should use flash and put it into arguments
+        boolean useFlash = ((CheckBox) findViewById(R.id.scanner_choice_checkBox_flash)).isChecked();
+
+        arguments.putBoolean(USE_FLASH_KEY, useFlash);
+        qrScannerFragment.setArguments(arguments);
+        transaction.replace(R.id.scanner_fragment_container, qrScannerFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    /**
+     * Handles clicks from nfc scanner button in scanner choice fragment.
+     * Launches a new fragment with nfc scanner.
+     *
+     * @param view The button that has been clicked
+     */
+    public void nfcScannerButtonHandler(View view) {
+
     }
 }

@@ -30,7 +30,7 @@ public class ZoomableImageFragment extends Fragment {
         // Get display size to set image view size in order to be able to zoom infinitely
         DisplayMetrics displaymetrics = new DisplayMetrics();
         // Fragment is attached, onAttach is called before onCreateView
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        this.getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
 
         // Get image resource id from passed arguments if it is there
         // The map resource is always there

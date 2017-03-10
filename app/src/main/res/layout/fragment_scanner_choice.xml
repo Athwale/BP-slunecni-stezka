@@ -42,18 +42,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
             <Button
-                android:id="@+id/game_info_button_scanner_qr"
+                android:id="@+id/scanner_choice_button_scanner_qr"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/yellow_button_background"
                 android:drawableTop="@drawable/ic_menu_scan"
+                android:onClick="qrScannerButtonHandler"
+                android:paddingBottom="16dp"
                 android:text="@string/scanner_choice_qr"
                 android:textColor="#000000"
                 android:textSize="12sp" />
+
+            <CheckBox
+                android:id="@+id/scanner_choice_checkBox_flash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/scanner_choice_use_flash"
+                android:textColor="#000000" />
         </LinearLayout>
 
         <LinearLayout
@@ -63,7 +73,7 @@
             android:gravity="center_vertical">
 
             <Button
-                android:id="@+id/game_info_button_scanner_nfc"
+                android:id="@+id/scanner_choice_button_scanner_nfc"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

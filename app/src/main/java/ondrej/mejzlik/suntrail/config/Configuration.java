@@ -37,5 +37,7 @@ public class Configuration {
     public static final String PLANET_ID_KEY = "planetId";
     // Used to pass name of the planet to planet menu fragment
     public static final String PLANET_NAME_KEY = "planetName";
+    // Used in scanner choice fragment and qr fragment to pass argument whether to use flash
+    public static final String USE_FLASH_KEY = "useFlash";
 
 }

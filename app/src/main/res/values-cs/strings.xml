@@ -38,6 +38,7 @@
     <string name="scanner_choice_title">Vyberte způsob skenování</string>
     <string name="scanner_choice_qr">QR kód</string>
     <string name="scanner_choice_nfc">NFC tag</string>
+    <string name="scanner_choice_use_flash">Použít blesk</string>
     <string name="sun_path_info_top">
         <![CDATA[
         <h2>Sluneční stezka</h2>
