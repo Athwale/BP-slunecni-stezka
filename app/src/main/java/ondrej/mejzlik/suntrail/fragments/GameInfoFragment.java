@@ -16,7 +16,6 @@ import ondrej.mejzlik.suntrail.utilities.HtmlConverter;
  * Shows instructions on how to play the game.
  */
 public class GameInfoFragment extends Fragment {
-    private HtmlConverter htmlConverter = new HtmlConverter();
 
     public GameInfoFragment() {
         // Required empty public constructor
@@ -39,6 +38,7 @@ public class GameInfoFragment extends Fragment {
      * @param view The main view of this fragment
      */
     private void fillText(View view) {
+        HtmlConverter htmlConverter = new HtmlConverter();
         TextView textViewTop = (TextView) (view.findViewById(R.id.game_info_text_view_top));
         textViewTop.setText(htmlConverter.getHtmlForTextView(getString(R.string.game_info_text_top)));
 

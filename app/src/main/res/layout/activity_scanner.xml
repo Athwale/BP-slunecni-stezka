@@ -1,33 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scanner_activity_relative_layout"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scanner_fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/yellow_activity_background"
-    tools:context="ondrej.mejzlik.suntrail.activities.ScannerActivity">
+    android:baselineAligned="false">
 
-    <TextView
-        android:id="@+id/scanner_text_view_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:textColor="#ff0099cc"
-        android:textStyle="bold"
-        tools:text="Place your device onto the NFC tag" />
-
-    <View
-        android:id="@+id/scanner_view_spacer"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="48dp"
-        android:background="#ff0099cc"
-        tools:ignore="UnknownId,UnknownIdInLayout" />
-
-</RelativeLayout>
+</FrameLayout>

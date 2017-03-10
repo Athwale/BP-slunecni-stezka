@@ -1,15 +1,16 @@
 package ondrej.mejzlik.suntrail.activities;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.widget.TextView;
 
 import ondrej.mejzlik.suntrail.R;
+import ondrej.mejzlik.suntrail.fragments.ScannerChoiceFragment;
 
 /**
- * This activity provides NFC or QR code scanner depending on used settings.
+ * This activity allows the user to pick which scanner to use. Then starts corresponding feagment
+ * with the selected scanner.
  */
 public class ScannerActivity extends Activity {
 
@@ -17,24 +18,22 @@ public class ScannerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
-        this.setTitle();
-    }
 
-    // TODO USE INTENT TO START THIS SCANNER
-    private void setTitle() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        TextView title = (TextView) findViewById(R.id.scanner_text_view_title);
-        String scanMethodIdentifier = getResources().getString(R.string.preference_scan_method);
-        String scanMethod = preferences.getString(scanMethodIdentifier, null);
-        String qr = getResources().getString(R.string.preference_qr);
-        String nfc = getResources().getString(R.string.preference_nfc);
-        String none = getResources().getString(R.string.preference_none);
-        if (scanMethod.equals(qr)) {
-            title.setText(getString(R.string.scanner_screen_title_qr));
-        } else if (scanMethod.equals(nfc)) {
-            title.setText(getString(R.string.scanner_screen_title_nfc));
-        } else if (scanMethod.equals(none)) {
-            title.setText("No scanner available");
+        if (findViewById(R.id.scanner_fragment_container) != null) {
+            // If we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                // Restore bundle with image
+                return;
+            }
+
+            // Add scanner choice as first fragment to the fragment_container
+            ScannerChoiceFragment scannerChoiceFragment = new ScannerChoiceFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.add(R.id.scanner_fragment_container, scannerChoiceFragment);
+            transaction.commit();
         }
     }
 }

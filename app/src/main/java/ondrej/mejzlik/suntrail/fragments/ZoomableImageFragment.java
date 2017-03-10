@@ -11,15 +11,13 @@ import android.widget.ImageView;
 import ondrej.mejzlik.suntrail.R;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
-import static ondrej.mejzlik.suntrail.activities.InfoScreenActivity.IMAGE_KEY;
+import static ondrej.mejzlik.suntrail.config.Configuration.IMAGE_KEY;
 
 /**
  * Fragment class which can show a zoomable imageview.
  * Accepts a bundle with an argument key "image" which is an id of an image resource.
  */
 public class ZoomableImageFragment extends Fragment {
-    private PhotoViewAttacher zoomer;
-
     public ZoomableImageFragment() {
         // Required empty public constructor
     }
@@ -47,9 +45,8 @@ public class ZoomableImageFragment extends Fragment {
             imageView.getLayoutParams().height = displaymetrics.heightPixels;
             imageView.getLayoutParams().width = displaymetrics.widthPixels;
             // Attach zooming capabilities
-            zoomer = new PhotoViewAttacher(imageView);
+            PhotoViewAttacher zoomer = new PhotoViewAttacher(imageView);
         }
-
         return view;
     }
 

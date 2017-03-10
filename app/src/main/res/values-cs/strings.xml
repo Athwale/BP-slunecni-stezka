@@ -9,7 +9,7 @@
     <string name="main_menu_exit_icon_text">Zavřít</string>
     <string name="info_screen_title">Informace</string>
     <string name="info_screen_map_button">Zobrazit mapu</string>
-    <string name="how_to_play_button_description">Jak hrát?</string>
+    <string name="how_to_play_button_description">Jak hrát</string>
     <string name="how_to_play_image_description">Kreslený obrázek znázorňující průběh hry</string>
     <string name="run_scanner_button_description">Spustit scanner a začít hrát</string>
     <string name="game_info_screen_title">Jak hrát</string>
@@ -35,6 +35,9 @@
     <string name="all_boards_button_name_halley">Halleyova kometa</string>
     <string name="planet_menu_icon_read_text">Zobrazit text</string>
     <string name="planet_menu_icon_listen">Přehrát</string>
+    <string name="scanner_choice_title">Vyberte způsob skenování</string>
+    <string name="scanner_choice_qr">QR kód</string>
+    <string name="scanner_choice_nfc">NFC tag</string>
     <string name="sun_path_info_top">
         <![CDATA[
         <h2>Sluneční stezka</h2>
