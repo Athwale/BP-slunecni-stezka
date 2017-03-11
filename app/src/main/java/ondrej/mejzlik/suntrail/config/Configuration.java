@@ -46,7 +46,4 @@ public class Configuration {
     public static final int HAS_ONLY_NFC = 3;
     // Used in scanner activity and qr fragment to identify camera permission request
     public static final int PERMISSION_CAMERA = 1;
-    // Used as identifier for qr scanner fragment
-    public static final String QR_SCANNER_TAG = "qrFragment";
-
 }

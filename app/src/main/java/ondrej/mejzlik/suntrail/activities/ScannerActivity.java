@@ -3,17 +3,18 @@ package ondrej.mejzlik.suntrail.activities;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.fragments.QrScannerFragment;
 import ondrej.mejzlik.suntrail.fragments.ScannerChoiceFragment;
 
 import static ondrej.mejzlik.suntrail.config.Configuration.PERMISSION_CAMERA;
-import static ondrej.mejzlik.suntrail.config.Configuration.QR_SCANNER_TAG;
 import static ondrej.mejzlik.suntrail.config.Configuration.USE_FLASH_KEY;
 
 /**
@@ -49,11 +50,12 @@ public class ScannerActivity extends Activity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         if (requestCode == PERMISSION_CAMERA) {
             // If request is cancelled, the result arrays are empty.
-            if (grantResults.length == 0) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, getResources().getString(R.string.toast_permission_qr), Toast.LENGTH_SHORT).show();
+            } else {
                 // permission denied, remove this fragment
                 FragmentManager fragmentManager = getFragmentManager();
-                // TODO remove scanner fragment
-                //fragmentManager.getFragment()
+                fragmentManager.popBackStackImmediate();
             }
         }
     }
@@ -74,7 +76,7 @@ public class ScannerActivity extends Activity {
 
         arguments.putBoolean(USE_FLASH_KEY, useFlash);
         qrScannerFragment.setArguments(arguments);
-        transaction.replace(R.id.scanner_fragment_container, qrScannerFragment, QR_SCANNER_TAG);
+        transaction.replace(R.id.scanner_fragment_container, qrScannerFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }

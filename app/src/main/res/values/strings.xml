@@ -42,6 +42,7 @@
     <string name="scanner_choice_nfc">NFC tag</string>
     <string name="scanner_choice_use_flash">Use flash</string>
     <string name="toast_game_data_clear">Game data cleared</string>
+    <string name="toast_permission_qr">Camera permission granted</string>
     <string name="scanner_choice_no_scanner">This device does not have a camera or NFC scanner.
         Scan function disabled.</string>
     <string name="sun_path_info_top">
@@ -50,7 +51,7 @@
         <p>
         The Sun path of city Křtiny not only offers you a beautiful stroll along a marked tourist trail
         , but also an imaginary fly through our Solar system scaled down to 1 to 1 billion.
-        You will visit individual...
+        You will visit individual.
         </p>
         ]]>
     </string>
