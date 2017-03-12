@@ -63,6 +63,7 @@
                 android:id="@+id/scanner_choice_checkBox_flash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="@string/scanner_choice_use_flash"
                 android:textColor="#000000" />
         </LinearLayout>
