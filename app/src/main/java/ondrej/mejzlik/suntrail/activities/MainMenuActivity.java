@@ -2,12 +2,11 @@ package ondrej.mejzlik.suntrail.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import ondrej.mejzlik.suntrail.R;
 
@@ -25,6 +24,37 @@ public class MainMenuActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        // Remove scan button if the device does not have both a camera and a nfc reader
+        this.disableScanButton();
+    }
+
+    /**
+     * Disables game related buttons in main menu if the device does not have both a camera
+     * and a NFC reader.
+     */
+    private void disableScanButton() {
+        PackageManager packageManager = this.getPackageManager();
+        boolean camera = packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA);
+        boolean nfc = packageManager.hasSystemFeature(PackageManager.FEATURE_NFC);
+        Button scanButton = (Button) findViewById(R.id.main_menu_button_scan);
+        Button inventoryButton = (Button) findViewById(R.id.main_menu_button_inventory);
+        Button settingsButton = (Button) findViewById(R.id.main_menu_button_settings);
+        Button howToPlayButton = (Button) findViewById(R.id.main_menu_button_how_to_play);
+        TextView warningNoScanner = (TextView) findViewById(R.id.main_menu_text_view_no_scanner);
+        if (!camera && !nfc) {
+            scanButton.setVisibility(View.GONE);
+            inventoryButton.setVisibility(View.GONE);
+            settingsButton.setVisibility(View.GONE);
+            howToPlayButton.setVisibility(View.GONE);
+            warningNoScanner.setVisibility(View.VISIBLE);
+        } else {
+            warningNoScanner.setVisibility(View.GONE);
+            scanButton.setVisibility(View.VISIBLE);
+            inventoryButton.setVisibility(View.VISIBLE);
+            settingsButton.setVisibility(View.VISIBLE);
+            howToPlayButton.setVisibility(View.VISIBLE);
+        }
     }
 
     /**

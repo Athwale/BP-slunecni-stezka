@@ -7,6 +7,8 @@
     <string name="main_menu_all_boards_icon_text">View all boards</string>
     <string name="main_menu_settings_icon_text">Settings</string>
     <string name="main_menu_exit_icon_text">Exit</string>
+    <string name="main_menu_no_scanner">This device does not have a camera or a NFC reader./n
+    Board scanning functions are disabled. Game mode unavailable</string>
     <string name="info_screen_title">Basic information</string>
     <string name="info_screen_map_button">View map</string>
     <string name="how_to_play_button_description">How to play</string>
