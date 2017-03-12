@@ -40,8 +40,7 @@
     <string name="scanner_choice_use_flash">Use flash</string>
     <string name="toast_game_data_clear">Game data cleared</string>
     <string name="toast_permission_qr">Camera permission granted</string>
-    <string name="scanner_choice_no_scanner">This device does not have a camera or NFC scanner.
-        Scan function disabled.</string>
+    <string name="toast_no_scanner">Scanning functions unavailable</string>
     <string name="sun_path_info_top">
         <![CDATA[
         <h2>The Sun path</h2>

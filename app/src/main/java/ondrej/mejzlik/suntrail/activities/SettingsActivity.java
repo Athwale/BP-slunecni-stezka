@@ -2,13 +2,11 @@ package ondrej.mejzlik.suntrail.activities;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import ondrej.mejzlik.suntrail.R;
@@ -24,12 +22,10 @@ public class SettingsActivity extends Activity {
         this.preferences = PreferenceManager.getDefaultSharedPreferences(this);
         // Preferences has been set to default when the main activity was first started
         // We can load them.
-        this.loadPreferences();
+        //this.loadPreferences();
     }
 
-    /**
-     * Loads preferences from app shared preferences and sets the radiobuttons according to them.
-     */
+    /*
     private void loadPreferences() {
         String scanMethod = preferences.getString(getResources().getString(R.string.preference_scan_method), null);
         RadioButton radioButtonNfc = (RadioButton) findViewById(R.id.settings_radio_button_nfc);
@@ -54,12 +50,6 @@ public class SettingsActivity extends Activity {
         }
     }
 
-    /**
-     * Handles clicks from radio buttons in settings screen.
-     * Writes values into shared preferences according to selected button.
-     *
-     * @param radioButton The radio button that has been clicked
-     */
     public void radioButtonClicked(View radioButton) {
         SharedPreferences.Editor editor = preferences.edit();
         String scanMethod = getResources().getString(R.string.preference_scan_method);
@@ -82,6 +72,7 @@ public class SettingsActivity extends Activity {
         }
         editor.apply();
     }
+    */
 
     /**
      * Handles clicks from clear game data checkbox in settings.
