@@ -20,7 +20,8 @@
     <string name="button_clear_data">Clear</string>
     <string name="scanner_screen_title_nfc">Place your device onto the NFC tag</string>
     <string name="scanner_screen_title_qr">Scan the QR code with your device</string>
-    <string name="default_image_description">Image</string>
+    <string name="default_image_description">Picture</string>
+    <string name="planet_image_description">Picture of the planet</string>
     <string name="all_boards_screen_title">View all boards</string>
     <string name="all_boards_button_name_sun">Sun</string>
     <string name="all_boards_button_name_mercury">Mecrury</string>
