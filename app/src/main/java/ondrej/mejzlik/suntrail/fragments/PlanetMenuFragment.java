@@ -1,7 +1,7 @@
 package ondrej.mejzlik.suntrail.fragments;
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +53,11 @@ public class PlanetMenuFragment extends Fragment {
         super.onSaveInstanceState(outState);
         // Save scroll view position
         ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.all_boards_scroll_view);
-        outState.putInt(SCROLL_POSITION_KEY, scrollView.getScrollY());
+        // scrollView can be null if the system tries to save position when the user presses home
+        // from a fragment opened from this fragment.
+        if (scrollView != null) {
+            outState.putInt(SCROLL_POSITION_KEY, scrollView.getScrollY());
+        }
     }
 
 }

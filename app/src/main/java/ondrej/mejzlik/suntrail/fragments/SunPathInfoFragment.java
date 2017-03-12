@@ -1,7 +1,7 @@
 package ondrej.mejzlik.suntrail.fragments;
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +45,11 @@ public class SunPathInfoFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.sun_path_info_scroll_view);
-        outState.putInt(SCROLL_POSITION_KEY, scrollView.getScrollY());
+        // scrollView can be null if the system tries to save position when the user presses home
+        // from a fragment opened from this fragment.
+        if (scrollView != null) {
+            outState.putInt(SCROLL_POSITION_KEY, scrollView.getScrollY());
+        }
     }
 
     /**
