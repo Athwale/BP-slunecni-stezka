@@ -4,7 +4,7 @@
     android:id="@+id/game_info_fragment_relative_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/yellow_activity_background"
+    android:background="@drawable/pict_yellow_activity_background"
     tools:context="ondrej.mejzlik.suntrail.fragments.GameInfoFragment">
 
     <TextView
@@ -59,7 +59,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/how_to_play_image_description"
                 android:cropToPadding="false"
-                android:src="@drawable/infographics_gameplay" />
+                android:src="@drawable/pict_infographics_gameplay" />
 
             <TextView
                 android:id="@+id/game_info_text_view_bottom"
