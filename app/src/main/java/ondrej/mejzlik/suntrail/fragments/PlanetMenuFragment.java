@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -24,6 +25,8 @@ import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_SATURN;
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_SUN;
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_URANUS;
 import static ondrej.mejzlik.suntrail.config.Configuration.SCROLL_POSITION_KEY;
+import static ondrej.mejzlik.suntrail.config.Configuration.SHOW_GAME_BUTTON;
+import static ondrej.mejzlik.suntrail.config.Configuration.SHOW_GAME_BUTTON_KEY;
 
 
 /**
@@ -131,6 +134,15 @@ public class PlanetMenuFragment extends Fragment {
             }
             // Set new title
             mainTitle.setText(newTitle);
+            // Make game mode button visible if we started this fragment from scanner.
+            Button gameButton = (Button) (view.findViewById(R.id.planet_menu_button_play_game));
+            if (arguments.containsKey(SHOW_GAME_BUTTON_KEY)) {
+                if (arguments.getString(SHOW_GAME_BUTTON_KEY).equals(SHOW_GAME_BUTTON)) {
+                    gameButton.setVisibility(View.VISIBLE);
+                }
+            } else {
+                gameButton.setVisibility(View.GONE);
+            }
         }
     }
 

@@ -5,6 +5,10 @@ package ondrej.mejzlik.suntrail.config;
  * You can change values here to modify or repair app behavior.
  */
 public class Configuration {
+
+    // Changes in this part of the code should not be necessary ------------------------------------
+    // ---------------------------------------------------------------------------------------------
+
     // Used in main menu in infoButtonsHandler to start either general info or game info fragment
     // in InfoScreen activity
     public static final String INFO_BUTTON_INTENT_KEY = "StartFragment";
@@ -63,4 +67,8 @@ public class Configuration {
     public static final String NAME_NEPTUNE = "neptun";
     // Cheat authors name shows up
     public static final String NAME_ATHWALE = "Athwale";
+    // Used in scanner activity and planet menu fragment to indicate that we scanned a planet
+    // and want the game mode button to appear.
+    public static final String SHOW_GAME_BUTTON_KEY = "gameModeKey";
+    public static final String SHOW_GAME_BUTTON = "gameMode";
 }

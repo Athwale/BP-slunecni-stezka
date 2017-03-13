@@ -23,6 +23,8 @@ import static ondrej.mejzlik.suntrail.config.Configuration.PERMISSION_CAMERA;
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_ATHWALE;
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_INVALID;
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_KEY;
+import static ondrej.mejzlik.suntrail.config.Configuration.SHOW_GAME_BUTTON;
+import static ondrej.mejzlik.suntrail.config.Configuration.SHOW_GAME_BUTTON_KEY;
 import static ondrej.mejzlik.suntrail.config.Configuration.USE_FLASH_KEY;
 
 /**
@@ -157,6 +159,8 @@ public class ScannerActivity extends Activity {
             // Open planet menu fragment.
             Bundle arguments = new Bundle();
             arguments.putInt(PLANET_ID_KEY, planetId);
+            // Make the menu fragment show the game mode button
+            arguments.putString(SHOW_GAME_BUTTON_KEY, SHOW_GAME_BUTTON);
 
             PlanetMenuFragment planetMenuFragment = new PlanetMenuFragment();
             planetMenuFragment.setArguments(arguments);
