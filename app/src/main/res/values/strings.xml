@@ -35,8 +35,9 @@
     <string name="all_boards_button_name_uranus">Uranus</string>
     <string name="all_boards_button_name_neptune">Neptune</string>
     <string name="all_boards_button_name_halley">Halley comet</string>
-    <string name="planet_menu_icon_read_text">View text</string>
-    <string name="planet_menu_icon_listen">Play audio</string>
+    <string name="planet_menu_button_read_text">View text</string>
+    <string name="planet_menu_button_listen">Play audio</string>
+    <string name="planet_menu_button_game">Play game</string>
     <string name="scanner_choice_title">Which scanner to use</string>
     <string name="scanner_choice_qr">QR Code</string>
     <string name="scanner_choice_nfc">NFC tag</string>

@@ -35,8 +35,9 @@
     <string name="all_boards_button_name_uranus">Uran</string>
     <string name="all_boards_button_name_neptune">Neptun</string>
     <string name="all_boards_button_name_halley">Halleyova kometa</string>
-    <string name="planet_menu_icon_read_text">Zobrazit text</string>
-    <string name="planet_menu_icon_listen">Přehrát</string>
+    <string name="planet_menu_button_read_text">Zobrazit text</string>
+    <string name="planet_menu_button_listen">Přehrát audio</string>
+    <string name="planet_menu_button_game">Hrát hru</string>
     <string name="scanner_choice_title">Vyberte způsob skenování</string>
     <string name="scanner_choice_qr">QR kód</string>
     <string name="scanner_choice_nfc">NFC tag</string>
