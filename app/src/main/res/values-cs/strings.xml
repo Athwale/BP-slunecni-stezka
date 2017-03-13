@@ -44,6 +44,9 @@
     <string name="toast_game_data_clear">Herní data vymazána</string>
     <string name="toast_permission_qr">Přístup ke kameře povolen</string>
     <string name="toast_no_scanner">Scanning functions unavailable</string>
+    <string name="toast_scanning_success">Skenování úspěšné</string>
+    <string name="toast_scanning_fail">Špatný QR kód</string>
+    <string name="toast_athwale">Athwale</string>
     <string name="sun_path_info_top">
         <![CDATA[
         <h2>Sluneční stezka</h2>

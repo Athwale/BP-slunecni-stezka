@@ -3,8 +3,10 @@ package ondrej.mejzlik.suntrail.fragments;
 import android.Manifest;
 import android.app.Fragment;
 import android.content.pm.PackageManager;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -18,6 +20,9 @@ import com.google.zxing.Result;
 import java.util.ArrayList;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import ondrej.mejzlik.suntrail.R;
+import ondrej.mejzlik.suntrail.activities.ScannerActivity;
+import ondrej.mejzlik.suntrail.utilities.PlanetIdentifier;
 
 import static ondrej.mejzlik.suntrail.config.Configuration.PERMISSION_CAMERA;
 import static ondrej.mejzlik.suntrail.config.Configuration.USE_FLASH_KEY;
@@ -28,6 +33,7 @@ import static ondrej.mejzlik.suntrail.config.Configuration.USE_FLASH_KEY;
  */
 public class QrScannerFragment extends Fragment implements ZXingScannerView.ResultHandler {
     private ZXingScannerView scannerView;
+    private PlanetIdentifier identifier;
 
     public QrScannerFragment() {
         // Required empty public constructor
@@ -35,7 +41,7 @@ public class QrScannerFragment extends Fragment implements ZXingScannerView.Resu
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        this.identifier = new PlanetIdentifier();
         this.getPermissions();
 
         scannerView = new ZXingScannerView(getActivity());
@@ -81,16 +87,21 @@ public class QrScannerFragment extends Fragment implements ZXingScannerView.Resu
 
     @Override
     public void handleResult(Result rawResult) {
-        Toast.makeText(getActivity(), "Contents = " + rawResult.getText() +
-                ", Format = " + rawResult.getBarcodeFormat().toString(), Toast.LENGTH_SHORT).show();
-        // Wait 2 seconds to resume the preview.
-        // On older devices stopping and resuming camera preview can result in freezing the app.
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                scannerView.resumeCameraPreview(QrScannerFragment.this);
-            }
-        }, 2000);
+        // Scanner is run from scanner activity only.
+        scannerView.stopCamera();
+
+        // Play sound
+        try {
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone r = RingtoneManager.getRingtone(getActivity().getApplicationContext(), notification);
+            r.play();
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), getResources().getString(R.string.toast_scanning_success), Toast.LENGTH_SHORT).show();
+            // If the device can not provide built in ringtone, there is not much else we can do.
+        }
+
+        // Parse and pass planet id to scanner activity
+        int planetId = this.identifier.getPlanetId(rawResult.getText());
+        ((ScannerActivity) this.getActivity()).processQrScannerResult(planetId);
     }
 }

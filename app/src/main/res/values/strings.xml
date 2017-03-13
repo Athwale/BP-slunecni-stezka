@@ -44,6 +44,9 @@
     <string name="toast_game_data_clear">Game data cleared</string>
     <string name="toast_permission_qr">Camera permission granted</string>
     <string name="toast_no_scanner">Scanning functions unavailable</string>
+    <string name="toast_scanning_success">Scanning success</string>
+    <string name="toast_scanning_fail">Incorrect QR code</string>
+    <string name="toast_athwale">Athwale</string>
     <string name="sun_path_info_top">
         <![CDATA[
         <h2>The Sun path</h2>

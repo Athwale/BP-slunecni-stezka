@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import ondrej.mejzlik.suntrail.R;
+import ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment;
 import ondrej.mejzlik.suntrail.fragments.QrScannerFragment;
 import ondrej.mejzlik.suntrail.fragments.ScannerChoiceFragment;
 
@@ -19,6 +20,9 @@ import static ondrej.mejzlik.suntrail.config.Configuration.HAS_NOTHING;
 import static ondrej.mejzlik.suntrail.config.Configuration.HAS_ONLY_NFC;
 import static ondrej.mejzlik.suntrail.config.Configuration.HAS_ONLY_QR;
 import static ondrej.mejzlik.suntrail.config.Configuration.PERMISSION_CAMERA;
+import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_ATHWALE;
+import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_INVALID;
+import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_KEY;
 import static ondrej.mejzlik.suntrail.config.Configuration.USE_FLASH_KEY;
 
 /**
@@ -116,6 +120,50 @@ public class ScannerActivity extends Activity {
             return HAS_NOTHING;
         }
 
+    }
+
+    /**
+     * Takes planet ID from qr scanner and runs the corresponding planet menu fragment.
+     * QR scanner fragment is destroyed.
+     *
+     * @param planetId Result from QR scanner
+     */
+    public void processQrScannerResult(int planetId) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        // Remove QR scanner fragment which is on top of the stack.
+        // This repeats last add operation. If this is used on a device with only one scanner
+        // It will add the scanner back onto screen because there is no scanner choice fragment.
+        // On such devices if the QR code is incorrect, we have to finish scanner activity.
+        fragmentManager.popBackStackImmediate();
+
+        // Scanned code is not a Sun trail QR planet identifier
+        if (planetId == PLANET_ID_ATHWALE || planetId == PLANET_ID_INVALID) {
+            if (planetId == PLANET_ID_ATHWALE) {
+                Toast.makeText(this, getResources().getString(R.string.toast_athwale), Toast.LENGTH_SHORT).show();
+            } else {
+                // If it is not Athwale it is definitely invalid
+                Toast.makeText(this, getResources().getString(R.string.toast_scanning_fail), Toast.LENGTH_SHORT).show();
+            }
+            // Close scanner activity and return to menu if we have a device with only one scanner
+            int features = this.checkFeatures();
+            if (features == HAS_ONLY_NFC || features == HAS_ONLY_QR) {
+                this.finish();
+            }
+        } else {
+            // Code valid we have a planet
+            Toast.makeText(this, getResources().getString(R.string.toast_scanning_success), Toast.LENGTH_SHORT).show();
+            // Open planet menu fragment.
+            Bundle arguments = new Bundle();
+            arguments.putInt(PLANET_ID_KEY, planetId);
+
+            PlanetMenuFragment planetMenuFragment = new PlanetMenuFragment();
+            planetMenuFragment.setArguments(arguments);
+            transaction.replace(R.id.scanner_fragment_container, planetMenuFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
     }
 
     /**

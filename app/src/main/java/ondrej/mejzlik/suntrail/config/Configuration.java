@@ -33,6 +33,9 @@ public class Configuration {
     public static final int PLANET_ID_SATURN = 10;
     public static final int PLANET_ID_URANUS = 11;
     public static final int PLANET_ID_NEPTUNE = 12;
+    public static final int PLANET_ID_INVALID = 13;
+    // Cheat authors name shows up
+    public static final int PLANET_ID_ATHWALE = 14;
     // Identifier key for planet id when saved in bundle of arguments for fragment
     public static final String PLANET_ID_KEY = "planetId";
     // Used in scanner choice fragment and qr fragment to pass argument whether to use flash
@@ -44,9 +47,20 @@ public class Configuration {
     public static final int HAS_ONLY_NFC = 3;
     // Used in scanner activity and qr fragment to identify camera permission request
     public static final int PERMISSION_CAMERA = 1;
-    // Used in planet menu fragment to set image size for normal and large screens
-    public static final int NORMAL_SIZE = 90;
-    public static final int LARGE_SIZE = 65;
-    // Used in planet menu fragment to identify layout size
-    public static final String LAYOUT_LARGE_SIZE = "large";
+    // Strings that the QR code must contain in order to verify which planet the user scanned
+    public static final String SUN_TRAIL_NAME = "http://slunecnistezka.cz/app/";
+    public static final String NAME_SUN = "slunce";
+    public static final String NAME_MERCURY = "merkur";
+    public static final String NAME_VENUS = "venuse";
+    public static final String NAME_EARTH = "zeme";
+    public static final String NAME_MOON = "mesic";
+    public static final String NAME_MARS = "mars";
+    public static final String NAME_CERES = "ceres";
+    public static final String NAME_JUPITER = "jupiter";
+    public static final String NAME_HALLEY = "halley";
+    public static final String NAME_SATURN = "saturn";
+    public static final String NAME_URANUS = "uran";
+    public static final String NAME_NEPTUNE = "neptun";
+    // Cheat authors name shows up
+    public static final String NAME_ATHWALE = "Athwale";
 }
