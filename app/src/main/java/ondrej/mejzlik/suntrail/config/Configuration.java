@@ -35,8 +35,6 @@ public class Configuration {
     public static final int PLANET_ID_NEPTUNE = 12;
     // Identifier key for planet id when saved in bundle of arguments for fragment
     public static final String PLANET_ID_KEY = "planetId";
-    // Used to pass name of the planet to planet menu fragment
-    public static final String PLANET_NAME_KEY = "planetName";
     // Used in scanner choice fragment and qr fragment to pass argument whether to use flash
     public static final String USE_FLASH_KEY = "useFlash";
     // Used to indicate which scanner or scanner options should the app use or offer in scanner choice
@@ -46,4 +44,9 @@ public class Configuration {
     public static final int HAS_ONLY_NFC = 3;
     // Used in scanner activity and qr fragment to identify camera permission request
     public static final int PERMISSION_CAMERA = 1;
+    // Used in planet menu fragment to set image size for normal and large screens
+    public static final int NORMAL_SIZE = 90;
+    public static final int LARGE_SIZE = 65;
+    // Used in planet menu fragment to identify layout size
+    public static final String LAYOUT_LARGE_SIZE = "large";
 }

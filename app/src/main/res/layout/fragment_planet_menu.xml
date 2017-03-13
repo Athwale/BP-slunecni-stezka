@@ -31,13 +31,18 @@
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/planet_menu_image_view_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/planet_image_description"
-        android:paddingBottom="90dp"
+        android:cropToPadding="false"
+        android:paddingBottom="100dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:scaleType="fitCenter"
         tools:src="@drawable/pict_sun" />
 
     <LinearLayout
@@ -46,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="50dp"
         android:baselineAligned="false"
         android:gravity="center_horizontal">
 

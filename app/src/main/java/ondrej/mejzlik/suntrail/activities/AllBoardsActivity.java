@@ -5,10 +5,9 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
-import ondrej.mejzlik.suntrail.fragments.BoardsListFragment;
 import ondrej.mejzlik.suntrail.R;
+import ondrej.mejzlik.suntrail.fragments.BoardsListFragment;
 import ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment;
 
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_CERES;
@@ -24,7 +23,6 @@ import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_SATURN;
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_SUN;
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_URANUS;
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_VENUS;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_NAME_KEY;
 
 /**
  * This activity displays a list of all available planets on the Sun path.
@@ -84,8 +82,8 @@ public class AllBoardsActivity extends Activity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        String planetName = ((Button) planetButton).getText().toString();
-        arguments.putString(PLANET_NAME_KEY, planetName);
+        int planetId = this.getPlanetIdFromButton(planetButton);
+        arguments.putInt(PLANET_ID_KEY, planetId);
 
         PlanetMenuFragment planetMenuFragment = new PlanetMenuFragment();
         planetMenuFragment.setArguments(arguments);

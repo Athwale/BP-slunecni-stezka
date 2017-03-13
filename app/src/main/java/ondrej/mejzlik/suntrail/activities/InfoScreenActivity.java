@@ -7,10 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.fragments.GameInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.SunPathInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment;
-import ondrej.mejzlik.suntrail.R;
 
 import static ondrej.mejzlik.suntrail.config.Configuration.IMAGE_ARGUMENT;
 import static ondrej.mejzlik.suntrail.config.Configuration.IMAGE_KEY;
@@ -97,22 +97,7 @@ public class InfoScreenActivity extends Activity {
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
         transaction.replace(R.id.info_screen_fragment_container, imageFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-
-    /**
-     * Handles clicks from how to play button on information screen.
-     * Replaces info screen fragment with game info fragment.
-     *
-     * @param view The button which has been clicked
-     */
-    public void howToPlayButtonHandler(View view) {
-        GameInfoFragment gameInfoFragment = new GameInfoFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-        transaction.replace(R.id.info_screen_fragment_container, gameInfoFragment);
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.addToBackStack(null);
         transaction.commit();
     }

@@ -1,27 +1,23 @@
 package ondrej.mejzlik.suntrail.fragments;
 
 import android.Manifest;
+import android.app.Fragment;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-import ondrej.mejzlik.suntrail.R;
 
 import static ondrej.mejzlik.suntrail.config.Configuration.PERMISSION_CAMERA;
 import static ondrej.mejzlik.suntrail.config.Configuration.USE_FLASH_KEY;
