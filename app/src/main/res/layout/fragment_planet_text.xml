@@ -39,5 +39,14 @@
 
     </ScrollView>
 
+    <ImageView
+        android:id="@+id/planet_text_image_view_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitEnd"
+        tools:src="@drawable/pict_sun_quarter" />
+
 
 </RelativeLayout>
