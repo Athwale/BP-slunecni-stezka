@@ -48,6 +48,7 @@
     <string name="toast_scanning_success">Skenování úspěšné</string>
     <string name="toast_scanning_fail">Špatný QR kód</string>
     <string name="toast_athwale">Athwale</string>
+    <string name="toast_author">Autor: </string>
     <string name="sun_path_info_top">
         <![CDATA[
         <h2>Sluneční stezka</h2>

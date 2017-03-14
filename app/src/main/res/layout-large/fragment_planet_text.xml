@@ -49,8 +49,7 @@
         android:contentDescription="@string/planet_image_description"
         android:cropToPadding="false"
         android:scaleType="fitEnd"
-        android:tag="normal"
-        tools:src="@drawable/pict_sun_quarter" />
-
+        android:tag="large"
+        tools:src="@drawable/pict_sun_quarter_large" />
 
 </RelativeLayout>

@@ -48,6 +48,7 @@
     <string name="toast_scanning_success">Scanning success</string>
     <string name="toast_scanning_fail">Incorrect QR code</string>
     <string name="toast_athwale">Athwale</string>
+    <string name="toast_author">Author: </string>
     <string name="sun_path_info_top">
         <![CDATA[
         <h2>The Sun path</h2>
