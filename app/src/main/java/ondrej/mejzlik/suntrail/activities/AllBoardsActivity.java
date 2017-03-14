@@ -10,6 +10,7 @@ import android.widget.Button;
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.fragments.BoardsListFragment;
 import ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment;
+import ondrej.mejzlik.suntrail.fragments.PlanetTextFragment;
 import ondrej.mejzlik.suntrail.utilities.PlanetIdentifier;
 
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_KEY;
@@ -75,12 +76,33 @@ public class AllBoardsActivity extends Activity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         // Identify planet and get it's ID
-        int planetId = this.identifier.getPlanetId((Button) planetButton);
-        arguments.putInt(PLANET_ID_KEY, planetId);
+        this.chosenPlanet = this.identifier.getPlanetId((Button) planetButton);
+        arguments.putInt(PLANET_ID_KEY, this.chosenPlanet);
 
         PlanetMenuFragment planetMenuFragment = new PlanetMenuFragment();
         planetMenuFragment.setArguments(arguments);
         transaction.replace(R.id.all_boards_fragment_container, planetMenuFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    /**
+     * Handles clicks from view text button in planet menu.
+     * Launches a new fragment corresponding to selected button.
+     *
+     * @param planetButton The button that has been clicked
+     */
+    public void viewTextButtonHandler(View planetButton) {
+        Bundle arguments = new Bundle();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        // Pass chosen planet to fragment
+        arguments.putInt(PLANET_ID_KEY, this.chosenPlanet);
+
+        PlanetTextFragment planetTextFragment = new PlanetTextFragment();
+        planetTextFragment.setArguments(arguments);
+        transaction.replace(R.id.all_boards_fragment_container, planetTextFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }

@@ -1,7 +1,43 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/planet_text_fragment_relative_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pict_yellow_activity_background"
     tools:context="ondrej.mejzlik.suntrail.fragments.PlanetTextFragment">
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/planet_text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:textColor="#ff0099cc"
+        android:textStyle="bold"
+        tools:text="Sun" />
+
+    <View
+        android:id="@+id/planet_text_view_spacer"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="48dp"
+        android:background="#ff0099cc"
+        tools:ignore="UnknownId,UnknownIdInLayout" />
+
+    <ScrollView
+        android:id="@+id/planet_text_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/planet_text_view_spacer">
+
+    </ScrollView>
+
+
+</RelativeLayout>

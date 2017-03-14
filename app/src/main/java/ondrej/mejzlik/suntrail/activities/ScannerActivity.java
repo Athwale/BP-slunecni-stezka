@@ -86,7 +86,7 @@ public class ScannerActivity extends Activity {
                 break;
             }
             case HAS_ONLY_NFC: {
-                // TODO Run NFC scanner
+                // TODO Run NFC scanner activity
 
                 break;
             }
@@ -198,6 +198,7 @@ public class ScannerActivity extends Activity {
      * @param view The button that has been clicked
      */
     public void nfcScannerButtonHandler(View view) {
-
+        // TODO Pro nfc scanner startovat novou aktivitu abychom ji mohli enable a disable a tím
+        // TODO zmemožňovat čtení nfc z jiného místa než scanneru
     }
 }
