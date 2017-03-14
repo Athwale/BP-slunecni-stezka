@@ -49,16 +49,17 @@
     <string name="toast_scanning_fail">Špatný QR kód</string>
     <string name="toast_athwale">Athwale</string>
     <string name="toast_author">Autor: </string>
-    <string name="sun_path_info_top">
+    <string name="sun_path_info_one">
         <![CDATA[
         <h2>Sluneční stezka</h2>
         <p>
-        Sluneční stezka městysu Křtiny vám nabízí nejen krásnou procházku po značené turistické
-        trase, ale zároveň absolvujete průlet naší Sluneční soustavou v měřítku 1 ku jedné miliardě
-        se zastavením u jednotlivých planet a dalších významných objektů. V uvedeném měřítku se
-        nachází nejen makety planet, ale i pochodové vzdálenosti mezi nimi. Kromě zajimavých
-        informací tak máte možnost na vlastní chodidla pocítit blízkost planet vnitřní sluneční
-        soustavy i vzrůstající osamělost těch vnějších.
+        Sluneční stezka městysu Křtiny je model naší Sluneční soustavy v měřítku 1:1 miliardě.
+        Tomuto měřítku odpovídají i rozměry těles (modelů Slunce a planet) i vzdálenosti,
+        které mezi nimi musíte ujít.
+        </p>
+        <p>
+        Na každé zastávce najdete kouli představující planetu a příslušnou informační tabuli,
+        na níž jsou uvedeny základní údaje a zajímavosti o dané planetě.
         </p>
         <p>
         Naše Sluneční stezka čerpá inspiraci z <a href="http://www.astrohk.cz/planetarni_stezka/">
@@ -66,93 +67,113 @@
         kopii. Realizace Sluneční stezky byla původně plánována pouze svépomocí a v omezeném
         rozsahu. Díky podpoře ŠLP Křtiny, městyse Křtiny a Jihomoravského kraje bylo možné vytvořit
         stezku v propracovanější formě. Hlavní část stezky byla vytvářena během roku 2014 se
-        slavnostním otevřením v roce 2015. Prohlédněte si
-         <a href="http://slunecnistezka.cz/www/index.php/priprava/">fotodokumentaci</a> z budování
-         stezky.
+        slavnostním otevřením v roce 2015.
+        </p>
+        <p>
+        Když se po stezce vydáte, máte možnost na vlastní chodidla pocítit blízkost planet vnitřní sluneční
+        soustavy i vzrůstající osamělost těch vnějších. Zároveň také poznáte malebnou krajinu okolí Křtin.
         </p>
         ]]>
-   </string>
-   <string name="sun_path_info_middle">
+    </string>
+    <string name="sun_path_info_two">
         <![CDATA[
         <h2>Trasa</h2>
         <p>
         Sluneční stezku lze procházet z obou stran. Můžete začít od Slunce ve Křtinách a dojít k
-        Neptunu poblíž Arboreta ŠLP Křtiny, odkud se můžete vrátit procházkou po druhé straně údolí,
-        nebo využít autobusového linky <a href="http://idsjmk.cz/jrady/201.pdf">IDS JMK číslo 201 (Křtiny, Hájovna na lukách)</a>. Nebo se naopak
-        budete přibližovat z hloubky vesmíru k naší mateřské hvězdě.
+        Neptunu poblíž Arboreta ŠLP Křtiny. Poté můžete navázat jeho prohlídkou, vydat se dále po žluté značce směrem k Jedovnicím nebo
+        využít autobusové linky <a href="http://idsjmk.cz/jrady/201.pdf">IDS JMK číslo 201 (Křtiny, Hájovna na lukách)</a>.<br>
+        Nebo se můžete přibližovat z hloubky vesmíru k naší mateřské hvězdě z opačného konce stezky.
         </p>
         <p>
-        Trasa vede po dobře značených, převážně lesních, stezkách a má délku zhruba 4.5km. Pokud se
-        budete do Křtin vracet zpět po svých, počítejte s obdobnou vzdáleností i pro cestu zpět. Pro
-        absolvování vám stačí běžná obuv, celkové převýšení je jen zhruba 160 metrů.
-        </p>
-        <p>
-        Lze absolvovat zkrácenou variantu končící planetou Saturn, po které se vrátíte z Viligruntu
-        obdobnou cestou zase zpět (Saturn je zhruba 1.5km vzdálený od začátku stezky).
-        </p>
-        <p>
-        Panely u jednotlivých planet obsahují řadu zajímavých informací s anglickou a německou
-        jazykovou verzí dostupnou v této aplikaci. Můžete si zahrát i hru při které tuto aplikaci
-        využijete.
+        Trasa vede po dobře značených, převážně lesních, cestách a má délku zhruba 4.5 km. Pro lepší
+        orientaci vám může sloužit mapa. Pokud se budete do Křtin vracet zpět po svých, počítejte s
+        obdobnou vzdáleností i pro cestu zpět. Pro absolvování vám stačí běžná obuv, celkové
+        převýšení je jen zhruba 160 metrů.
         </p>
         ]]>
-   </string>
-   <string name="sun_path_info_bottom">
-       <![CDATA[
-       <h2>Aktuality, kontakt</h2>
-       <p>
-       Pokud se Vám stezka líbila, napište nám na <b>kontakt@slunecnistezka.cz</b>. Přečtěte si, co nám
-       <a href="http://slunecnistezka.cz/www/index.php/napsali/">napsali ostatní</a>.
-       </p>
-       <p>
-       Pokud chcete mít přehled o aktuálních novinkách, využijte náš
-       <a href="https://www.facebook.com/pages/Slune%C4%8Dn%C3%AD-stezka-ve-K%C5%99tin%C3%A1ch/822780534412385">Facebook</a>
-       nebo <a href="https://twitter.com/SlunecniStezka">Twitter</a>.
-       S nápady, upozorněními na poškozené panely nebo dotazy nás prosím
-       kontaktujte na stejnou výše uvedenou adresu.
-       </p>
-       <p>
-       Pomohla nám už celá řada lidí, rádi uvítáme i Vás!
-       </p>
-       <p>
-       Sluneční stezka je provozována pod záštitou <a href="http://www.krtiny.cz/">Městysu Křtiny.</a>
-       <p>
-       ]]>
-   </string>
-   <string name="game_info_text_top">
-       <![CDATA[
-       <p>
-       Hru spustíte naskenováním NFC nálepky nebo QR kódu z tabule na stezce skenerem této aplikace.
-       </p>
-       <p>
-       V herním módu můžete na každé zastávce Sluneční stezky prodávat a nakupovat věci.
-       Za převážení věcí získáváte kredity.<br>
-       Než doletíte na konec, zkuste si vydělat co nejvíc.
-       </p>
-       <p>
-       Na začátku dostanete základní, léty prověřenou loď <b>Ikarus M</b> a malý obnos <b>42 vesmírných kreditů</b>.
-       </p>
-       <p>
-       Na zastávce naskenujete kód planety. Pak můžete vstoupit do obchodu.
-       </p>
-       ]]>
-   </string>
-   <string name="game_info_text_bottom">
-       <![CDATA[
-       <p>
-       Některé věci lze prodat pouze na určených planetách, jiné kdekoli. Informace o konkrétní věci získáte
-       klepnutím na ikonu červeného otazníku v obchodě nebo inventáři.
-       </p>
-       <p>
-       V průběhu hry budete mít možnost koupit větší, lepší lodě. Umožní vám převážet větší množství nákladu.
-       </p>
-       <p>
-       Podle počtu kreditů získáte na konci hry hodnost důstojníka planetární flotily.
-       </p>
-       <p>
-       <b>Přejeme příjemnou zábavu.</b>
-       </p>
-       ]]>
+    </string>
+    <string name="sun_path_info_four_schema">
+        <![CDATA[
+        <p>
+        Lze také absolvovat zkrácenou variantu končící planetou Saturn, po které se vrátíte z
+        Viligruntu obdobnou cestou zpět (Saturn je zhruba 1.5km vzdálený od začátku stezky).
+        </p>
+        <p>
+        Překlady informačních tabulí jednotlivých planet do angličtiny a němčiny najdete v této
+        aplikaci. <b>Můžete si zahrát i hru při které využijete svůj telefon nebo tablet.</b>
+        </p>
+        <h2>Sluneční soustava</h2>
+        <p>
+        Následující obrázek ukazuje nárys a bokorys oběžných drah těles Sluneční soustavy, která
+        jsou znázorněna na sluneční stezce. Vnitřní část Sluneční soustavy je pro přehlednost ještě
+        10krát zvětšena.<br>
+        Měřítko je v astronomických jednotkách.<br>(1 AU = 149 597 870,691 km)<br>
+        Ryskami jsou značeny polohy planet, planetky (1) Ceres a komety 1P/Halley k datu 1.
+        září 2003.
+        </p>
+        ]]>
+    </string>
+    <string name="sun_path_info_five">
+        <![CDATA[
+        <h2>Aktuality, kontakt</h2>
+        <p>
+        Pokud se Vám stezka líbila, napište nám na <b>kontakt@slunecnistezka.cz</b>. Přečtěte si, co nám
+        <a href="http://slunecnistezka.cz/www/index.php/napsali/">napsali ostatní</a>.
+        </p>
+        <p>
+        Pokud chcete mít přehled o aktuálních novinkách, využijte náš
+        <a href="https://www.facebook.com/pages/Slune%C4%8Dn%C3%AD-stezka-ve-K%C5%99tin%C3%A1ch/822780534412385">Facebook</a>
+        nebo <a href="https://twitter.com/SlunecniStezka">Twitter</a>.<br>
+        S nápady, upozorněními na poškozené panely nebo dotazy nás prosím
+        kontaktujte na stejnou výše uvedenou adresu. <br>
+        Pomohla nám už celá řada lidí, rádi uvítáme i Vás!
+        </p>
+        <p>
+        Sluneční stezka vznikla jako komunitní projekt a je provozována pod záštitou
+        <a href="http://www.krtiny.cz/">Městysu Křtiny.</a><br>
+        Více na <a href="http://slunecnistezka.cz/www/">Sluneční stezka</a>
+        </p>
+        <p>
+        Prohlédněte si i
+        <a href="http://slunecnistezka.cz/www/index.php/priprava/">fotodokumentaci</a> z budování
+        stezky.
+        </p>
+        ]]>
+    </string>
+    <string name="game_info_text_top">
+        <![CDATA[
+        <p>
+        Hru spustíte naskenováním NFC nálepky nebo QR kódu z tabule na stezce skenerem této aplikace.
+        </p>
+        <p>
+        V herním módu můžete na každé zastávce Sluneční stezky prodávat a nakupovat věci.
+        Za převážení věcí získáváte kredity.<br>
+        Než doletíte na konec, zkuste si vydělat co nejvíc.
+        </p>
+        <p>
+        Na začátku dostanete základní, léty prověřenou loď <b>Ikarus M</b> a malý obnos <b>42 vesmírných kreditů</b>.
+        </p>
+        <p>
+        Na zastávce naskenujete kód planety. Pak můžete vstoupit do obchodu.
+        </p>
+        ]]>
+    </string>
+    <string name="game_info_text_bottom">
+        <![CDATA[
+        <p>
+        Některé věci lze prodat pouze na určených planetách, jiné kdekoli. Informace o konkrétní věci získáte
+        klepnutím na ikonu červeného otazníku v obchodě nebo inventáři.
+        </p>
+        <p>
+        V průběhu hry budete mít možnost koupit větší, lepší lodě. Umožní vám převážet větší množství nákladu.
+        </p>
+        <p>
+        Podle počtu kreditů získáte na konci hry hodnost důstojníka planetární flotily.
+        </p>
+        <p>
+        <b>Přejeme příjemnou zábavu.</b>
+        </p>
+        ]]>
     </string>
 
 </resources>

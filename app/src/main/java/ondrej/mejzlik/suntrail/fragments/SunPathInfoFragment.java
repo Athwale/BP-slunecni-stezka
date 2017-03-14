@@ -61,16 +61,20 @@ public class SunPathInfoFragment extends Fragment {
     private void fillText(View view) {
         HtmlConverter htmlConverter = new HtmlConverter();
         // Load strings into textviews
-        TextView textViewTop = (TextView) (view.findViewById(R.id.sun_path_info_text_view_top));
-        textViewTop.setText(htmlConverter.getHtmlForTextView(getString(R.string.sun_path_info_top)));
-        textViewTop.setMovementMethod(LinkMovementMethod.getInstance());
+        TextView textViewOne = (TextView) (view.findViewById(R.id.sun_path_info_text_view_one));
+        textViewOne.setText(htmlConverter.getHtmlForTextView(getString(R.string.sun_path_info_one)));
+        textViewOne.setMovementMethod(LinkMovementMethod.getInstance());
 
-        TextView textViewMiddle = (TextView) (view.findViewById(R.id.sun_path_info_text_view_middle));
-        textViewMiddle.setText(htmlConverter.getHtmlForTextView(getString(R.string.sun_path_info_middle)));
-        textViewMiddle.setMovementMethod(LinkMovementMethod.getInstance());
+        TextView textViewTwo = (TextView) (view.findViewById(R.id.sun_path_info_text_view_two));
+        textViewTwo.setText(htmlConverter.getHtmlForTextView(getString(R.string.sun_path_info_two)));
+        textViewTwo.setMovementMethod(LinkMovementMethod.getInstance());
 
-        TextView textViewBottom = (TextView) (view.findViewById(R.id.sun_path_info_text_view_bottom));
-        textViewBottom.setText(htmlConverter.getHtmlForTextView(getString(R.string.sun_path_info_bottom)));
-        textViewBottom.setMovementMethod(LinkMovementMethod.getInstance());
+        TextView textViewFour = (TextView) (view.findViewById(R.id.sun_path_info_text_view_four));
+        textViewFour.setText(htmlConverter.getHtmlForTextView(getString(R.string.sun_path_info_four_schema)));
+        textViewFour.setMovementMethod(LinkMovementMethod.getInstance());
+
+        TextView textViewFive = (TextView) (view.findViewById(R.id.sun_path_info_text_view_five));
+        textViewFive.setText(htmlConverter.getHtmlForTextView(getString(R.string.sun_path_info_five)));
+        textViewFive.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }

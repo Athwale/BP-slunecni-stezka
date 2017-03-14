@@ -49,25 +49,28 @@
     <string name="toast_scanning_fail">Incorrect QR code</string>
     <string name="toast_athwale">Athwale</string>
     <string name="toast_author">Author: </string>
-    <string name="sun_path_info_top">
+    <string name="sun_path_info_one">
         <![CDATA[
-        <h2>The Sun path</h2>
-        <p>
-        The Sun path of city Křtiny not only offers you a beautiful stroll along a marked tourist trail
-        , but also an imaginary fly through our Solar system scaled down to 1 to 1 billion.
-        You will visit individual.
-        </p>
-        ]]>
-    </string>
-    <string name="sun_path_info_middle">
-        <![CDATA[
-        <h2>Route</h2>
 
         ]]>
     </string>
-    <string name="sun_path_info_bottom">
+    <string name="sun_path_info_two">
         <![CDATA[
-        <h2>News and contact</h2>
+
+        ]]>
+    </string>
+    <string name="sun_path_info_three">
+        <![CDATA[
+
+        ]]>
+    </string>
+    <string name="sun_path_info_four_schema">
+        <![CDATA[
+
+        ]]>
+    </string>
+    <string name="sun_path_info_five">
+        <![CDATA[
 
         ]]>
     </string>
