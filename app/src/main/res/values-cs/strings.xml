@@ -14,6 +14,7 @@
     <string name="how_to_play_button_description">Jak hrát</string>
     <string name="how_to_play_image_description">Kreslený obrázek znázorňující průběh hry</string>
     <string name="run_scanner_button_description">Spustit scanner a začít hrát</string>
+    <string name="schema_image_description">Schéma solárního systému</string>
     <string name="game_info_screen_title">Jak hrát</string>
     <string name="settings_title">Nastavení</string>
     <string name="checkbox_clear_data">Vymazat herní data</string>
@@ -137,6 +138,21 @@
         Prohlédněte si i
         <a href="http://slunecnistezka.cz/www/index.php/priprava/">fotodokumentaci</a> z budování
         stezky.
+        </p>
+        <h2>Autoři fotografií</h2>
+        <p>
+        Slunce: NASA/Goddard/SDO<br>
+        Merkur: NASA/Messenger<br>
+        Venuše: NASA/JPL/Magellan<br>
+        Země: NASA/Goddard<br>
+        Měsíc: Fred Locklear<br>
+        Mars: NASA/Hubble<br>
+        Ceres: NASA/JPL-Caltech<br>
+        Jupiter: NASA/JPL/Voyager 1<br>
+        Halley: Giotto Project, ESA<br>
+        Saturn: NASA/ESA/JPL/Cassini<br>
+        Uran: NASA/JPL/Voyager 2/Joe Ruhinski<br>
+        Neptun: NASA/JPL/Voyager 2
         </p>
         ]]>
     </string>

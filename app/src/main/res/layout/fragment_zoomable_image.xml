@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/zoomable_image_fragment_relative_layout"
     android:layout_width="match_parent"
@@ -17,5 +16,5 @@
         android:adjustViewBounds="false"
         android:contentDescription="@string/default_image_description"
         android:cropToPadding="false"
-        app:srcCompat="@drawable/overall_map_full_size" />
+        tools:src="@drawable/pict_overall_map_full_size" />
 </RelativeLayout>
