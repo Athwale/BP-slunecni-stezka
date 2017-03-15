@@ -41,25 +41,25 @@
             android:id="@+id/planet_text_text_view_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
             android:linksClickable="true"
             android:paddingEnd="16dp"
             android:paddingStart="16dp"
+            android:paddingTop="10dp"
             android:textColor="#000000"
-            tools:text="Sample text" />
+            tools:text="Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text" />
     </ScrollView>
 
     <ImageView
         android:id="@+id/planet_text_image_view_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
         android:contentDescription="@string/planet_image_description"
         android:cropToPadding="false"
-        android:scaleType="fitEnd"
-        android:tag="normal"
-        tools:src="@drawable/pict_sun_quarter_normal" />
-
+        android:scaleType="fitXY"
+        tools:src="@drawable/pict_sun_quarter" />
 
 </RelativeLayout>

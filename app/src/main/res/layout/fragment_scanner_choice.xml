@@ -52,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/yellow_button_background"
-                android:drawableTop="@drawable/ic_scan_qr"
+                android:drawableTop="@drawable/ic_menu_scan_qr"
                 android:onClick="qrScannerButtonHandler"
                 android:paddingBottom="16dp"
                 android:text="@string/scanner_choice_qr"

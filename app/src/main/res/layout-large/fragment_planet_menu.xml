@@ -4,7 +4,7 @@
     android:id="@+id/all_boards_fragment_relative_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@drawable/pict_yellow_activity_background"
+    android:background="@drawable/pict_yellow_activity_background"
     tools:context="ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment">
 
     <TextView
@@ -39,7 +39,7 @@
 
         <ImageView
             android:id="@+id/planet_menu_image_view_photo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:contentDescription="@string/planet_image_description"

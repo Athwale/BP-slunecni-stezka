@@ -70,7 +70,7 @@ public class PlanetMenuFragment extends Fragment {
         Bundle arguments = getArguments();
         TextView mainTitle = (TextView) (view.findViewById(R.id.planet_menu_title));
         String newTitle;
-        String author = "";
+        String author;
         ImageView planetPhoto = (ImageView) (view.findViewById(R.id.planet_menu_image_view_photo));
 
         if (arguments != null && arguments.containsKey(PLANET_ID_KEY)) {

@@ -191,23 +191,63 @@
         </p>
         ]]>
     </string>
-    <string name="text_sun">
+    <string name="planet_text_sun" formatted="false">
         <![CDATA[
         <p>
-        Slunce je hvězda. V porovnání s velikostí planet je to obrovská koule plynu. V jeho středu
-        dosahuje teplota 15 milionů °C, tlak 2,48 · 10<sup>16</sup> Pa (na povrchu Země je standard
+        <b>Slunce</b> je hvězda. V porovnání s velikostí planet je to obrovská koule plynu. V jeho středu
+        dosahuje teplota 15 milionů °C, tlak 2,48 · 10^16 Pa (na povrchu Země je standard
         101 325 Pa) a hustota 162 000 kg/m3. Při těchto podmínkách probíhá slučování jader atomů
         vodíku na jádra atomů hélia. Tím se vytvářejí fotony a neutrina. Fotonová zářivost Slunce je
-        3,85 · 10<sup>26</sup> W. Na 1 m<sup>2<sup> povrchu Země dopadá v průměru 342 W. Tato
+        3,85 · 10^26 W. Na 1 m^2 povrchu Země dopadá v průměru 342 W. Tato
         energie umožňuje život na Zemi. Stáří Slunce je 4,6 až 4,7 miliardy let, bude zářit ještě 5
         miliard let. Ke konci života projde stadiem červeného obra, jehož rozsáhlá atmosféra se
         rychlostí asi 1 000 km/s odpojí a obnaží tak nitro. To bude pozorovatelné jako chladnoucí
         bílý trpaslík, rozpínající se obálka vytvoří planetární mlhovinu.
         </p>
         <p>
-        Mytologické pozadí jména: Slunce si bezpochyby lidé uvědomovali odpradávna. Často s ním
-        spojovali svá božstva − − ve staroegyptské civilizaci se bůh Slunce nazýval Re, staří Řekové
+        <b>Mytologické pozadí jména:</b> Slunce si bezpochyby lidé uvědomovali odpradávna. Často s ním
+        spojovali svá božstva ve staroegyptské civilizaci se bůh Slunce nazýval Re, staří Řekové
         měli svého Hélia a Apollóna.
+        </p>
+        <h2>Fyzikální údaje</h2>
+        <p>
+        <b>Rovníkový průměr</b><br>
+        1 391 020 km<br>
+        <br><b>Rotační perioda</b><br>
+        25 až 33 dní (diferenciální)<br>
+        <br><b>Hmotnost</b><br>
+        1,99 · 10^30 kg = 332946 hmotností Země<br>
+        <br><b>Průměrná hustota</b><br>
+        1400 kg/m^3<br>
+        <br><b>Teplota na povrchu</b><br>
+        5 500°C<br>
+        <br><b>Rozsah teplot</b><br>
+        5 500 až 15 000 000°C<br>
+        <br><b>Geometrické albedo</b><br>
+        0<br>
+        <br><b>Chemické složení</b><br>
+        plazma H (71%),<br>
+        He (27%),<br>
+        těžší prvky (2%),<br>
+        <br><b>Složení atmosféry</b><br>
+        H (71%), He (27%)<br>
+        <br><b>Tlak</b><br>
+        2,48 · 10^10 MPa (Na povrchu Země je tlak 0,1 MPa<br>
+        <br><b>Sklon rotační osy (Úhel mezi rovinou rovníku Slunce a rovinou oběžné dráhy Země - ekliptikou</b><br>
+        7,25°<br>
+        <br><b>Úniková rychlost</b><br>
+        617 km/s<br>
+        <br><b>Tíhové zrychlení</b><br>
+        274 m/s^2<br>
+        <br><b>Magnetické pole</b><br>
+        10^-4 T až 0,3 T (skvrny)<br>
+        <br><b>Průměr modelu (1:1 mld.)</b><br>
+        139 cm<br>
+        </p>
+        <h2>Další zastávka</h2>
+        <p>
+        Merkur, 58 mil. km<br>
+        (tj. 58 m na stezce)
         </p>
         ]]>
     </string>

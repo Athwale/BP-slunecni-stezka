@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import ondrej.mejzlik.suntrail.R;
+import ondrej.mejzlik.suntrail.utilities.HtmlConverter;
 
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_CERES;
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_EARTH;
@@ -29,11 +30,6 @@ import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_URANUS;
  * views based on which planet we want to display.
  */
 public class PlanetTextFragment extends Fragment {
-    // This is used to build resource id in order to use correct image size for display size.
-    // Image view in fragment_planet_text should have a tag with layout size
-    // Then resources for quarter planets must have a name "pict_*planet*_quarter_*size*"
-    private static final String LAYOUT_SIZE_NORMAL = "normal";
-    private static final String LAYOUT_SIZE_LARGE = "large";
 
     public PlanetTextFragment() {
         // Required empty public constructor
@@ -59,14 +55,6 @@ public class PlanetTextFragment extends Fragment {
         // This will be used to build resource name
         String imageResourceName;
         ImageView planetPhoto = (ImageView) (view.findViewById(R.id.planet_text_image_view_photo));
-        // Check if the size of the layout is set in the tag. If yes get layout size.
-        // Otherwise use default value.
-        String layoutSize;
-        if (planetPhoto.getTag() != null) {
-            layoutSize = planetPhoto.getTag().toString();
-        } else {
-            layoutSize = LAYOUT_SIZE_NORMAL;
-        }
         // Holder for a new main title which is set according to which planet ID we get.
         String newTitle;
 
@@ -135,9 +123,9 @@ public class PlanetTextFragment extends Fragment {
                 }
             }
 
-            // Set image resource according to layout size
-            // The resources for planet quarters must have a name "pict_*planet*_quarter_*size*"
-            String resourceName = "pict_" + imageResourceName + "_quarter_" + layoutSize;
+            // Set image resource according to which planet we are displaying
+            // The resources for planet quarters must have a name "pict_*planet*_quarter"
+            String resourceName = "pict_" + imageResourceName + "_quarter";
             int resourceId = this.getResources().getIdentifier(resourceName, "drawable", getActivity().getPackageName());
             // Set new image
             // If the resource is not found no image is displayed. Anyway resources do not change
@@ -145,7 +133,29 @@ public class PlanetTextFragment extends Fragment {
             planetPhoto.setImageResource(resourceId);
             // Set new title
             mainTitle.setText(newTitle);
+            // Fill text views
+            this.fillText(view, imageResourceName);
         }
+    }
+
+    /**
+     * Fills text views of this fragment with required strings.
+     * This can not be done from xml since xml does not support using html markup in strings.
+     *
+     * @param view The main view of this fragment
+     * @param name Name of the planet which is determined by setContents method.
+     */
+    private void fillText(View view, String name) {
+        HtmlConverter htmlConverter = new HtmlConverter();
+        // Get text resource according to which planet we are displaying
+        // The resources for planet text must have a name "planet_text_*name*"
+        // If resource is not found it throws resouceNotFoundException
+        // But since resources do not change after install, this should not happen.
+        String resourceName = "planet_text_" + name;
+        int resourceId = this.getResources().getIdentifier(resourceName, "string", getActivity().getPackageName());
+        // Load strings into textviews
+        TextView textViewOne = (TextView) (view.findViewById(R.id.planet_text_text_view_top));
+        textViewOne.setText(htmlConverter.getHtmlForTextView(getString(resourceId)));
     }
 
 }
