@@ -308,9 +308,9 @@
         <br><b>Geometrické albedo</b><br>
         0,367<br>
         <br><b>Chemické složení</b><br>
-        jádro vnitřní Fe, Ni (30%),<br>
+        Jádro vnitřní Fe, Ni (30%),<br>
         Vnější (příměs S, O), plastický plášť,<br>
-        tenká kůra O, Si Al (pohyblicé litosférické desky)<br>
+        Tenká kůra O, Si Al (pohyblicé litosférické desky)<br>
         <br><b>Složení atmosféry</b><br>
         N2 (78,1%), 02 (20,9%)<br>
         <br><b>Tlak atmosféry</b><br>
@@ -405,8 +405,8 @@
         <br><b>Průměr modelu</b> (1:1 mld.)<br>
         0,015 mm<br>
         </p>
-
-    ]]></string>
+        ]]>
+    </string>
     <string name="planet_text_jupiter_top">
     <![CDATA[
         <p>
@@ -587,7 +587,7 @@
         <br><b>Geometrické albedo</b><br>
         0,12<br>
         <br><b>Chemické složení</b><br>
-        jádro Fe (70%),<br>
+        Jádro Fe (70%),<br>
         Plášť křemičitany (30%),<br>
         <br><b>Složení atmosféry</b><br>
         O2 (42%), Na (40%), O (15%)<br>
@@ -659,7 +659,7 @@
         <br><b>Geometrické albedo</b><br>
         0,12<br>
         <br><b>Chemické složení</b><br>
-        jádro Fe, FeS<br>
+        Jádro Fe, FeS<br>
         Plášť z křemičitanů (olivín, pyroxen),<br>
         Kůra (plagioklas)<br>
         <br><b>Složení atmosféry</b><br>
@@ -872,7 +872,7 @@
         <br><b>Chemické složení</b><br>
         plazma H (71%),<br>
         He (27%),<br>
-        těžší prvky (2%),<br>
+        Těžší prvky (2%),<br>
         <br><b>Složení atmosféry</b><br>
         H (71%), He (27%)<br>
         <br><b>Tlak</b><br>
@@ -1000,7 +1000,7 @@
         <br><b>Teplota na povrchu</b><br>
         464°C<br>
         <br><b>Rozsah teplot</b><br>
-        min. +464°C, max. +464°C<br>
+        Min. +464°C, max. +464°C<br>
         <br><b>Geometrické albedo</b><br>
         0,65<br>
         <br><b>Chemické složení</b><br>
