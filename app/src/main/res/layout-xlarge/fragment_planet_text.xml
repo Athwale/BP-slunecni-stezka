@@ -60,8 +60,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/planet_text_image_view_photo"
                 android:lineSpacingExtra="3dp"
-                android:paddingEnd="50dp"
-                android:paddingStart="50dp"
+                android:paddingEnd="70dp"
+                android:paddingStart="70dp"
                 android:paddingTop="5dp"
                 android:textColor="#000000"
                 tools:text="Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text" />
@@ -88,8 +88,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/sun_path_info_button_map"
                 android:lineSpacingExtra="3dp"
-                android:paddingEnd="50dp"
-                android:paddingStart="50dp"
+                android:paddingEnd="70dp"
+                android:paddingStart="70dp"
                 android:textColor="#000000"
                 tools:text="Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text" />
         </RelativeLayout>

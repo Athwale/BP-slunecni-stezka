@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import ondrej.mejzlik.suntrail.R;
@@ -23,6 +24,7 @@ import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_NEPTUNE;
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_SATURN;
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_SUN;
 import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_URANUS;
+import static ondrej.mejzlik.suntrail.config.Configuration.SCROLL_POSITION_KEY;
 
 /**
  * this fragment displays text identical to what is on the Sun path information boards.
@@ -41,7 +43,25 @@ public class PlanetTextFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_planet_text, container, false);
         this.setContents(view);
+        // If we're being restored from a previous state,
+        // Move to last known position
+        if (savedInstanceState != null) {
+            int scrollPosition = savedInstanceState.getInt(SCROLL_POSITION_KEY);
+            ScrollView scrollView = (ScrollView) view.findViewById(R.id.planet_text_scroll_view);
+            scrollView.scrollTo(0, scrollPosition);
+        }
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.planet_text_scroll_view);
+        // scrollView can be null if the system tries to save position when the user presses home
+        // from a fragment opened from this fragment.
+        if (scrollView != null) {
+            outState.putInt(SCROLL_POSITION_KEY, scrollView.getScrollY());
+        }
     }
 
     /**
@@ -125,7 +145,7 @@ public class PlanetTextFragment extends Fragment {
 
             // Set image resource according to which planet we are displaying
             // The resources for planet quarters must have a name "pict_*planet*_quarter"
-            String resourceName = "pict_" + imageResourceName + "_quarter";
+            String resourceName = "pict_" + imageResourceName + "_half";
             int resourceId = this.getResources().getIdentifier(resourceName, "drawable", getActivity().getPackageName());
             // Set new image
             // If the resource is not found no image is displayed. Anyway resources do not change
@@ -151,11 +171,15 @@ public class PlanetTextFragment extends Fragment {
         // The resources for planet text must have a name "planet_text_*name*"
         // If resource is not found it throws resouceNotFoundException
         // But since resources do not change after install, this should not happen.
-        String resourceName = "planet_text_" + name;
-        int resourceId = this.getResources().getIdentifier(resourceName, "string", getActivity().getPackageName());
+        String textTopName = "planet_text_" + name + "_top";
+        String textBottomName = "planet_text_" + name + "_tech";
+        int textTopId = this.getResources().getIdentifier(textTopName, "string", getActivity().getPackageName());
+        int textTechId = this.getResources().getIdentifier(textBottomName, "string", getActivity().getPackageName());
         // Load strings into textviews
-        TextView textViewOne = (TextView) (view.findViewById(R.id.planet_text_text_view_top));
-        textViewOne.setText(htmlConverter.getHtmlForTextView(getString(resourceId)));
+        TextView textViewTop = (TextView) (view.findViewById(R.id.planet_text_text_view_top));
+        textViewTop.setText(htmlConverter.getHtmlForTextView(getString(textTopId)));
+        TextView textViewBottom = (TextView) (view.findViewById(R.id.planet_text_text_view_tech));
+        textViewBottom.setText(htmlConverter.getHtmlForTextView(getString(textTechId)));
     }
 
 }

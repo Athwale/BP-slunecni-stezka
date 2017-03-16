@@ -37,29 +37,63 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/planet_text_view_spacer">
 
-        <TextView
-            android:id="@+id/planet_text_text_view_top"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lineSpacingExtra="3dp"
-            android:linksClickable="true"
-            android:paddingEnd="16dp"
-            android:paddingStart="16dp"
-            android:paddingTop="10dp"
-            android:textColor="#000000"
-            tools:text="Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/planet_text_image_view_photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/planet_image_description"
+                android:cropToPadding="false"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
+                android:scaleType="fitXY"
+                tools:src="@drawable/pict_sun_half" />
+
+            <TextView
+                android:id="@+id/planet_text_text_view_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/planet_text_image_view_photo"
+                android:lineSpacingExtra="3dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="5dp"
+                android:textColor="#000000"
+                tools:text="Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text" />
+
+            <Button
+                android:id="@+id/sun_path_info_button_map"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/planet_text_text_view_top"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/yellow_button_background"
+                android:drawableTop="@drawable/ic_menu_map"
+                android:onClick="imageButtonsHandler"
+                android:paddingBottom="16dp"
+                android:text="@string/info_screen_map_button"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/planet_text_text_view_tech"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/sun_path_info_button_map"
+                android:lineSpacingExtra="3dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:textColor="#000000"
+                tools:text="Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text" />
+        </RelativeLayout>
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/planet_text_image_view_photo"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/planet_image_description"
-        android:cropToPadding="false"
-        android:scaleType="fitXY"
-        tools:src="@drawable/pict_sun_quarter" />
 
 </RelativeLayout>

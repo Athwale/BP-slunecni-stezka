@@ -114,6 +114,79 @@
        </p>
        ]]>
     </string>
+    <string name="planet_text_ceres_top">
+
+    </string>
+    <string name="planet_text_ceres_tech" formatted="false">
+
+    </string>
+    <string name="planet_text_earth_top">
+
+    </string>
+    <string name="planet_text_earth_tech" formatted="false">
+
+    </string>
+    <string name="planet_text_halley_top">
+
+    </string>
+    <string name="planet_text_halley_tech" formatted="false">
+
+    </string>
+    <string name="planet_text_jupiter_top">
+
+    </string>
+    <string name="planet_text_jupiter_tech" formatted="false">
+
+    </string>
+    <string name="planet_text_mars_top">
+
+    </string>
+    <string name="planet_text_mars_tech" formatted="false">
+
+    </string>
+    <string name="planet_text_mercury_top">
+
+    </string>
+    <string name="planet_text_mercury_tech" formatted="false">
+
+    </string>
+    <string name="planet_text_moon_top">
+
+    </string>
+    <string name="planet_text_moon_tech" formatted="false">
+
+    </string>
+    <string name="planet_text_neptune_top">
+
+    </string>
+    <string name="planet_text_neptune_tech" formatted="false">
+
+    </string>
+    <string name="planet_text_saturn_top">
+
+    </string>
+    <string name="planet_text_saturn_tech" formatted="false">
+
+    </string>
+    <string name="planet_text_sun_top">
+
+    </string>
+    <string name="planet_text_sun_tech" formatted="false">
+
+    </string>
+    <string name="planet_text_uranus_top">
+
+    </string>
+    <string name="planet_text_uranus_tech" formatted="false">
+
+    </string>
+    <string name="planet_text_venus_top">
+
+    </string>
+    <string name="planet_text_venus_tech" formatted="false">
+
+    </string>
+
     <!-- Do not translate -->
     <string name="preferences_filled">filled</string>
     <string name="preference_nfc">nfc</string>

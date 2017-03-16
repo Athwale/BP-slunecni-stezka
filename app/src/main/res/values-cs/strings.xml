@@ -51,7 +51,7 @@
     <string name="toast_athwale">Athwale</string>
     <string name="toast_author">Autor: </string>
     <string name="sun_path_info_one">
-        <![CDATA[
+    <![CDATA[
         <h2>Sluneční stezka</h2>
         <p>
         Sluneční stezka městysu Křtiny je model naší Sluneční soustavy v měřítku 1:1 miliardě.
@@ -74,10 +74,10 @@
         Když se po stezce vydáte, máte možnost na vlastní chodidla pocítit blízkost planet vnitřní sluneční
         soustavy i vzrůstající osamělost těch vnějších. Zároveň také poznáte malebnou krajinu okolí Křtin.
         </p>
-        ]]>
+    ]]>
     </string>
     <string name="sun_path_info_two">
-        <![CDATA[
+    <![CDATA[
         <h2>Trasa</h2>
         <p>
         Sluneční stezku lze procházet z obou stran. Můžete začít od Slunce ve Křtinách a dojít k
@@ -91,10 +91,10 @@
         obdobnou vzdáleností i pro cestu zpět. Pro absolvování vám stačí běžná obuv, celkové
         převýšení je jen zhruba 160 metrů.
         </p>
-        ]]>
+    ]]>
     </string>
     <string name="sun_path_info_four_schema">
-        <![CDATA[
+    <![CDATA[
         <p>
         Lze také absolvovat zkrácenou variantu končící planetou Saturn, po které se vrátíte z
         Viligruntu obdobnou cestou zpět (Saturn je zhruba 1.5km vzdálený od začátku stezky).
@@ -112,10 +112,10 @@
         Ryskami jsou značeny polohy planet, planetky (1) Ceres a komety 1P/Halley k datu 1.
         září 2003.
         </p>
-        ]]>
+    ]]>
     </string>
     <string name="sun_path_info_five">
-        <![CDATA[
+    <![CDATA[
         <h2>Aktuality, kontakt</h2>
         <p>
         Pokud se Vám stezka líbila, napište nám na <b>kontakt@slunecnistezka.cz</b>. Přečtěte si, co nám
@@ -154,10 +154,10 @@
         Uran: NASA/JPL/Voyager 2/Joe Ruhinski<br>
         Neptun: NASA/JPL/Voyager 2
         </p>
-        ]]>
+    ]]>
     </string>
     <string name="game_info_text_top">
-        <![CDATA[
+    <![CDATA[
         <p>
         Hru spustíte naskenováním NFC nálepky nebo QR kódu z tabule na stezce skenerem této aplikace.
         </p>
@@ -172,10 +172,10 @@
         <p>
         Na zastávce naskenujete kód planety. Pak můžete vstoupit do obchodu.
         </p>
-        ]]>
+    ]]>
     </string>
     <string name="game_info_text_bottom">
-        <![CDATA[
+    <![CDATA[
         <p>
         Některé věci lze prodat pouze na určených planetách, jiné kdekoli. Informace o konkrétní věci získáte
         klepnutím na ikonu červeného otazníku v obchodě nebo inventáři.
@@ -189,12 +189,647 @@
         <p>
         <b>Přejeme příjemnou zábavu.</b>
         </p>
-        ]]>
+    ]]>
     </string>
-    <string name="planet_text_sun" formatted="false">
-        <![CDATA[
+    <!-- Planet texts ************************************************************************** -->
+    <string name="planet_text_ceres_top">
+    <![CDATA[
         <p>
-        <b>Slunce</b> je hvězda. V porovnání s velikostí planet je to obrovská koule plynu. V jeho středu
+        V pásu mezi Marsem a Jupiterem obíhá velké množství těles, která jsou menší než planety;
+        říká se jim planetky nebo asteroidy. První objevená a zároveň největší z nich, o rozměru
+        téměř 1000 km, je (1) Ceres. Další v pořadí byly (2) Pallas, (3) Juno a (4) Vesta. Žádná
+        není pozorovatelná prostým okem. Existuje asi 100 000 planetek větších než 1 km. Jejich
+        celková hmotnost však nedosahuje ani hmotnosti Merkuru. U většiny planetek nedošlo nikdy v
+        minulosti k přetavení, protože uvnitř malých těles nebyla dostatečná teplota a tlak. Jsou
+        tím pádem pravděpodobně tvořeny nepřeměněnými horninami, z nichž kdysi vznikly i velké
+        planety.
+        </p>
+        <p>
+        <b>Mytologické pozadí jména:</b> Ceres byla italskou bohyní růstu obilí a zemědělství vůbec.
+        </p>
+        <h2>Další zastávka</h2>
+        <p>
+        Jupiter, 364 mil. km<br>
+        (tj. 364 m na stezce)
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_ceres_tech" formatted="false">
+    <![CDATA[
+        <h2>Fyzikální údaje</h2>
+        <p>
+        <b>Vzdálenost od Slunce</b><br>
+        413,9 milionu km<br>
+        <br><b>Rovníkový průměr</b><br>
+        952 km<br>
+        <br><b>Oběžná doba</b><br>
+        4,6 roku<br>
+        <br><b>Rotační perioda</b><br>
+        9,075<br>
+        <br><b>Hmotnost</b><br>
+        9,43 · 10^20 kg = 0,0004 hmotností Země<br>
+        <br><b>Průměrná hustota</b><br>
+        2 700 kg/m^3<br>
+        <br><b>Rozsah teplot</b><br>
+        -200 až -38°C<br>
+        <br><b>Geometrické albedo</b><br>
+        0,09<br>
+        <br><b>Chemické složení</b><br>
+        Jako meteority,<br>
+        (uhlíkaté chondrity),<br>
+        Nediferencovatelná struktura<br>
+        <br><b>Složení atmosféry</b><br>
+        Nemá atmosféru<br>
+        <br><b>Tlak atmosféry</b><br>
+        0 Pa<br>
+        <br><b>Velká poloosa</b><br>
+        2,767 AU<br>
+        <br><b>Extrentricita</b><br>
+        0,08<br>
+        <br><b>Sklon dráhy</b><br>
+        10,6°<br>
+        <br><b>Sklon rotační osy</b><br>
+        ?<br>
+        <br><b>Oběžná rychlost</b><br>
+        17,9 km/s<br>
+        <br><b>Úniková rychlost</b><br>
+        0,1 km/s<br>
+        <br><b>Tíhové zrychlení</b><br>
+        0,3 m/s^2<br>
+        <br><b>Magnetické pole</b><br>
+        0 T<br>
+        <br><b>Průměr modelu</b> (1:1 mld.)<br>
+        0,9 mm<br>
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_earth_top">
+    <![CDATA[
+        <p>
+        Na Zemi (jako jediném tělese sluneční soustavy) existuje díky kapalné vodě potvrzený život.
+        Země vznikla spolu se Sluncem a ostatními tělesy před 4,56 miliardami let. Je to planeta
+        stejného typu jako Merkur, Venuše a Mars: má kovové jádro a objemný kamenný plášť.
+        Zemské těleso není přesně kulaté, ale zploštělé (polární průměr činí 12 714 km). Země obíhá
+        Slunce, otáčí se kolem své osy, ale koná i další pohyby. Nejvýraznější je precese − kývání
+        zemské osy s periodou 26 500 let. V současné době směřuje osa k hvězdě Polárce. Kromě osmi
+        planet ve sluneční soustavě je známo již přes tisíc extrasolárních planet, jež obíhají kolem
+        cizích hvězd.
+        </p>
+        <p>
+        <b>Mytologické pozadí jména:</b> řecká bohyně Gáia („Země“) vzešla z prvotního chaosu. Sama
+        ze sebe zrodila Úrana („Nebe“), hory i Pontos („Moře“) a posléze s Úranem zplodila řadu
+        bohů. Byla matkou všeho živého.
+        </p>
+        <h2>Další zastávka</h2>
+        <p>
+        Měsíc, 0,38 mil. km<br>
+        (tj. 0,38 m na stezce)
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_earth_tech" formatted="false">
+    <![CDATA[
+        <h2>Fyzikální údaje</h2>
+        <p>
+        <b>Vzdálenost od Slunce</b><br>
+        149,6 milionu km<br>
+        <br><b>Rovníkový průměr</b><br>
+        12 756 km<br>
+        <br><b>Oběžná doba</b><br>
+        365,25 dní<br>
+        <br><b>Rotační perioda</b><br>
+        23 h 56 min 4 s<br>
+        <br><b>Hmotnost</b><br>
+        5,97 · 10^24 kg<br>
+        <br><b>Průměrná hustota</b><br>
+        5 500 kg/m^3<br>
+        <br><b>Rozsah teplot</b><br>
+        -80 až +50°C<br>
+        <br><b>Geometrické albedo</b><br>
+        0,367<br>
+        <br><b>Chemické složení</b><br>
+        jádro vnitřní Fe, Ni (30%),<br>
+        Vnější (příměs S, O), plastický plášť,<br>
+        tenká kůra O, Si Al (pohyblicé litosférické desky)<br>
+        <br><b>Složení atmosféry</b><br>
+        N2 (78,1%), 02 (20,9%)<br>
+        <br><b>Tlak atmosféry</b><br>
+        101 326 Pa<br>
+        <br><b>Velká poloosa</b><br>
+        1 AU<br>
+        <br><b>Extrentricita</b><br>
+        0,017<br>
+        <br><b>Sklon dráhy</b><br>
+        0°<br>
+        <br><b>Sklon rotační osy</b><br>
+        23,45°<br>
+        <br><b>Oběžná rychlost</b><br>
+        29,8 km/s<br>
+        <br><b>Úniková rychlost</b><br>
+        11,2 km/s<br>
+        <br><b>Tíhové zrychlení</b><br>
+        9,78 m/s^2<br>
+        <br><b>Magnetické pole</b><br>
+        3.1 · 10^-5 T<br>
+        <br><b>Průměr modelu</b> (1:1 mld.)<br>
+        12,8 mm<br>
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_halley_top">
+    <![CDATA[
+        <p>
+        Dráhy komet bývají protáhlejší a více skloněné k rovině ekliptiky než dráhy planet. Když se
+        jádro komety přiblíží k Slunci asi na vzdálenost Marsu, zahřeje se natolik, že začne led
+        sublimovat a do okolí se uvolní prach a plyn − vznikne hlava komety (koma). Interakcí se
+        slunečním větrem se pak vytváří ohon. Na této zastávce je znázorněno pouze jádro komety, a
+        to jako špička špendlíku. Zatímco jádro je většinou malé (jednotky či desítky kilometrů),
+        koma může dosáhnout tisíců až miliónů kilometrů a protažený ohon dokonce i více než 150
+        miliónů kilometrů (vzdálenost Země od Slunce) – – v našem měřítku by šlo až o stovky metrů.
+        </p>
+        <p>
+        <b>Původ jména:</b> Komety se obvykle pojmenovávají po svých objevitelích. Edmund Halley
+        (1656–1742) sice kometu neobjevil, ale jako první přepověděl její návrat.
+        </p>
+        <h2>Další zastávka</h2>
+        <p>
+        Saturn, 329 mil. km<br>
+        (tj. 329 m na stezce)
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_halley_tech" formatted="false"><![CDATA[
+
+        <h2>Fyzikální údaje</h2>
+        <p>
+        <b>Vzdálenost od Slunce</b><br>
+        87,8 až 5 234 milionu km<br>
+        <br><b>Rovníkový průměr</b><br>
+        15 km<br>
+        <br><b>Oběžná doba</b><br>
+        75,3 roku<br>
+        <br><b>Rotační perioda</b><br>
+        2,2 dne<br>
+        <br><b>Hmotnost</b><br>
+        2,2 · 10^14 kg = 1,10 · 10^-11 hmotností Země<br>
+        <br><b>Průměrná hustota</b><br>
+        60 kg/m^3<br>
+        <br><b>Rozsah teplot</b><br>
+        -100 až +200°C<br>
+        <br><b>Geometrické albedo</b><br>
+        0,04<br>
+        <br><b>Chemické složení</b><br>
+        Zmrzlé plyny (H2O),<br>
+        Prachové částice,<br>
+        (Organické molekuly)<br>
+        <br><b>Složení atmosféry</b><br>
+        H20, OH, CN, C2, H2CO,…<br>
+        <br><b>Tlak atmosféry</b><br>
+        0 Pa<br>
+        <br><b>Velká poloosa</b><br>
+        35,0 AU<br>
+        <br><b>Extrentricita</b><br>
+        0,967<br>
+        <br><b>Sklon dráhy</b><br>
+        162,2°<br>
+        <br><b>Sklon rotační osy</b><br>
+        ?<br>
+        <br><b>Oběžná rychlost</b><br>
+        0,9 až 55 km/s<br>
+        <br><b>Úniková rychlost</b><br>
+        0,001 km/s<br>
+        <br><b>Tíhové zrychlení</b><br>
+        5 · 10^-5 m/s^2<br>
+        <br><b>Magnetické pole</b><br>
+        0 T<br>
+        <br><b>Průměr modelu</b> (1:1 mld.)<br>
+        0,015 mm<br>
+        </p>
+
+    ]]></string>
+    <string name="planet_text_jupiter_top">
+    <![CDATA[
+        <p>
+        Jupiter je největší planetou sluneční soustavy, ale přesto jeho hmotnost nedosahuje ani
+        1/1000 hmotnosti Slunce. Narozdíl od 4 vnitřních planet mají vnější planety relativně malé
+        kamenné jádro, objemný obal z vodíku nebo ledů a rozsáhlou, postupně řídnoucí atmosféru;
+        nenajdeme na nich pevný, ostře ohraničený povrch. Galileo Galilei v roce 1610 objevil
+        dalekohledem čtyři velké měsíce: Io, Europu, Ganymed, Kalistu. (Na našem modelu by byly asi
+        3 mm velké a obíhaly by ve vzdálenostech 42 až 189 cm.)
+        </p>
+        <p>
+        <b>Mytologické pozadí jména:</b> Iuppiter byl nejvyšším božstvem italských kmenů, později
+        byl ztotožňován s řeckým Diem. Byl vládcem bohů i lidí.
+        </p>
+        <h2>Další zastávka</h2>
+        <p>
+        Halley, 322 mil. km<br>
+        (tj. 322 m na stezce)
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_jupiter_tech" formatted="false">
+    <![CDATA[
+        <h2>Fyzikální údaje</h2>
+        <p>
+        <b>Vzdálenost od Slunce</b><br>
+        778,3 milionu km<br>
+        <br><b>Rovníkový průměr</b><br>
+        142 984 km<br>
+        <br><b>Oběžná doba</b><br>
+        11,9 roku<br>
+        <br><b>Rotační perioda</b><br>
+        9,9 h<br>
+        <br><b>Hmotnost</b><br>
+        1,90 · 10^27 kg = 317,7 hmotností Země<br>
+        <br><b>Průměrná hustota</b><br>
+        1 300 kg/m^3<br>
+        <br><b>Teplota na povrchu </b>(V tlakové hladině 10^5 Pa)<br>
+        -163°C<br>
+        <br><b>Geometrické albedo</b><br>
+        0,52<br>
+        <br><b>Chemické složení</b><br>
+        Kamenné jádro,<br>
+        Křemičitany,<br>
+        Obal (Kovový H), H2<br>
+        <br><b>Složení atmosféry</b><br>
+        H2 (89%), He (11%)<br>
+        <br><b>Tlak atmosféry</b><br>
+        Větší než 10^7 Pa<br>
+        <br><b>Velká poloosa</b><br>
+        5,203 AU<br>
+        <br><b>Extrentricita</b><br>
+        0,048<br>
+        <br><b>Sklon dráhy</b><br>
+        1,3°<br>
+        <br><b>Sklon rotační osy</b><br>
+        3°<br>
+        <br><b>Oběžná rychlost</b><br>
+        13,1 km/s<br>
+        <br><b>Úniková rychlost</b><br>
+        60 km/s<br>
+        <br><b>Tíhové zrychlení</b><br>
+        23,1 m/s^2<br>
+        <br><b>Magnetické pole</b><br>
+        4,28 · 10^-4 T<br>
+        <br><b>Průměr modelu</b> (1:1 mld.)<br>
+        14,3 mm<br>
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_mars_top">
+    <![CDATA[
+        <p>
+        Už při pohledu očima si všimnete typické červené barvy Marsu, mohou za ni oxidy železa.
+        Bílé polární čepičky jsou tvořeny ledem CO2 a H2O. V současné době nemůže být na Marsu voda
+        v kapalném stavu, protože ovzduší je příliš řídké (atmosférický tlak je 100krát nižší než na
+        Zemi). Mars má dva malé měsíce nepravidelného tvaru: Fobos (27 km × 21 km × × 19 km) a
+        Deimos. Jsou to pravděpodobně zachycené planetky.
+        </p>
+        <p>
+        <b>Mytologické pozadí jména:</b> Mars byl římskou obdobou řeckého boha války Area, syna
+        nejvyšších bohů Iova a Iunony. Fobos a Deimos, personifikace Strachu a Hrůzy, byli Areovými
+        průvodci a objevovali se po jeho boku v bitvách.
+        </p>
+        <h2>Další zastávka</h2>
+        <p>
+        Ceres, 186 mil. km<br>
+        (tj. 168 m na stezce)
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_mars_tech" formatted="false">
+    <![CDATA[
+        <h2>Fyzikální údaje</h2>
+        <p>
+        <b>Vzdálenost od Slunce</b><br>
+        227,9 milionu km<br>
+        <br><b>Rovníkový průměr</b><br>
+        6 792 km<br>
+        <br><b>Oběžná doba</b><br>
+        687 dní<br>
+        <br><b>Rotační perioda</b><br>
+        24,6 h<br>
+        <br><b>Hmotnost</b><br>
+        6,42 · 10^23 kg = 0,107 hmotností Země<br>
+        <br><b>Průměrná hustota</b><br>
+        3 900 kg/m^3<br>
+        <br><b>Rozsah teplot</b><br>
+        -120 až +20°C<br>
+        <br><b>Geometrické albedo</b><br>
+        0,15<br>
+        <br><b>Chemické složení</b><br>
+        Jádro Fe, Plášť křemičitany,<br>
+        Jednotlitá kůra (SiO2, Fe0, Al2O3)<br>
+        <br><b>Složení atmosféry</b><br>
+        CO2 (95,3%), N2 (2,7%), Ar (1,6%), O2 (0,1%)<br>
+        <br><b>Tlak atmosféry</b><br>
+        800 Pa<br>
+        <br><b>Velká poloosa</b><br>
+        1,524 AU<br>
+        <br><b>Extrentricita</b><br>
+        0,093<br>
+        <br><b>Sklon dráhy</b><br>
+        1,9°<br>
+        <br><b>Sklon rotační osy</b><br>
+        25°<br>
+        <br><b>Oběžná rychlost</b><br>
+        24,1 km/s<br>
+        <br><b>Úniková rychlost</b><br>
+        5 km/s<br>
+        <br><b>Tíhové zrychlení</b><br>
+        3,7 m/s^2<br>
+        <br><b>Magnetické pole</b><br>
+        5 · 10^-9 T<br>
+        <br><b>Průměr modelu</b> (1:1 mld.)<br>
+        6,8 mm<br>
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_mercury_top">
+    <![CDATA[
+        <p>
+        Planety, narozdíl od hvězd, nesvítí vlastním světlem, nýbrž odrážejí sluneční světlo. Merkur je
+        planeta Slunci nejbližší. Astronomové se pokoušeli nalézt i hypotetickou planetu Vulkán, která
+        by obíhala kolem Slunce ještě blíž, ale nebyli úspěšní. Ač je Merkur malý − asi jako náš Měsíc −
+        má velké železné jádro.
+        </p>
+        <p>
+        <b>Mytologické pozadí jména:</b> Mercurius byl římskou obdobou řeckého Herma, syna Diova a
+        Pléiady Máie. Byl to bůh taškářů, zlodějů, dárce nenadálého zisku i důmyslný vynálezce
+        (sestrojil první lyru a zhotovil první sandály).
+        </p>
+        <h2>Další zastávka</h2>
+        <p>
+        Venuše, 50,3 mil. km<br>
+        (tj. 50,3 m na stezce)
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_mercury_tech" formatted="false">
+    <![CDATA[
+        <h2>Fyzikální údaje</h2>
+        <p>
+        <b>Vzdálenost od Slunce</b><br>
+        57,9 milionu km<br>
+        <br><b>Rovníkový průměr</b><br>
+        4 880 km<br>
+        <br><b>Oběžná doba</b><br>
+        88 dní<br>
+        <br><b>Rotační perioda</b><br>
+        58 dní<br>
+        <br><b>Hmotnost</b><br>
+        3,30 · 10^23 kg = 0,055 hmotností Země<br>
+        <br><b>Průměrná hustota</b><br>
+        5 400 kg/m^3<br>
+        <br><b>Rozsah teplot</b><br>
+        -170 až +430°C<br>
+        <br><b>Geometrické albedo</b><br>
+        0,12<br>
+        <br><b>Chemické složení</b><br>
+        jádro Fe (70%),<br>
+        Plášť křemičitany (30%),<br>
+        <br><b>Složení atmosféry</b><br>
+        O2 (42%), Na (40%), O (15%)<br>
+        Ostatní He, K (2%)<br>
+        <br><b>Tlak atmosféry</b><br>
+        ? (velmi řídká)<br>
+        <br><b>Velká poloosa</b><br>
+        0,387 AU<br>
+        <br><b>Extrentricita</b><br>
+        0,206<br>
+        <br><b>Sklon dráhy</b><br>
+        7°<br>
+        <br><b>Sklon rotační osy</b><br>
+        0,1°<br>
+        <br><b>Oběžná rychlost</b><br>
+        47,9 km/s<br>
+        <br><b>Úniková rychlost</b><br>
+        4,4 km/s<br>
+        <br><b>Tíhové zrychlení</b><br>
+        3,7 m/s^2<br>
+        <br><b>Magnetické pole</b><br>
+        3.3 · 10^-7 T<br>
+        <br><b>Průměr modelu</b> (1:1 mld.)<br>
+        4,9 mm<br>
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_moon_top">
+    <![CDATA[
+        <p>
+        Měsíc obíhá kolem Země jako přirozená družice. V porovnání s ní je asi čtyřikrát menší.
+        Protože jeho oběžná doba kolem Země je rovna době jedné otočky kolem osy, je k Zemi stále
+        přivrácena jen jedna polokoule. Tento jev se nazývá vázaná rotace a je způsoben slapovými
+        silami Země, které v minulosti původní rychlé otáčení zabrzdily. Podle současných poznatků
+        vznikl Měsíc tak, že se s „proto–Zemí“ srazilo těleso asi o velikosti Marsu, do okolí se
+        uvolnilo velké množství úlomků, které buď dopadly zpět na Zem, nebo vytvořily prstenec a
+        posléze Měsíc.
+        <p>
+        <p>
+        <b>Mytologické pozadí jména:</b> básnické pojmenování Měsíce „Luna“ pochází z latiny. Římská
+        bohyně pyšnící se tímto jménem byla obdobou řecké Selény. Bohyní měsíce byla později i
+        Artemis, Měsíc v neviditelné fázi pak reprezentovala Hekaté.
+        </p>
+        <h2>Další zastávka</h2>
+        <p>
+        Venuše, 78,3 mil. km<br>
+        (tj. 78,3 m na stezce)
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_moon_tech" formatted="false">
+    <![CDATA[
+        <h2>Fyzikální údaje</h2>
+        <p>
+        <b>Vzdálenost od Země</b><br>
+        384 400 km<br>
+        <br><b>Rovníkový průměr</b><br>
+        3 476 km<br>
+        <br><b>Oběžná doba kolem Země</b><br>
+        27,32 dní<br>
+        <br><b>Rotační perioda</b><br>
+        27,32 dní<br>
+        <br><b>Hmotnost</b><br>
+        7,35 · 10^22 kg = 0,012 hmotností Země<br>
+        <br><b>Průměrná hustota</b><br>
+        3 340 kg/m^3<br>
+        <br><b>Rozsah teplot</b><br>
+        -180 až +110°C<br>
+        <br><b>Geometrické albedo</b><br>
+        0,12<br>
+        <br><b>Chemické složení</b><br>
+        jádro Fe, FeS<br>
+        Plášť z křemičitanů (olivín, pyroxen),<br>
+        Kůra (plagioklas)<br>
+        <br><b>Složení atmosféry</b><br>
+        Nemá atmosféru<br>
+        <br><b>Tlak atmosféry</b><br>
+        0 Pa<br>
+        <br><b>Velká poloosa</b><br>
+        0,0026 AU<br>
+        <br><b>Extrentricita</b><br>
+        0,055<br>
+        <br><b>Sklon dráhy kolem Země</b><br>
+        5,1°<br>
+        <br><b>Sklon rotační osy kolem Země</b><br>
+        6,7°<br>
+        <br><b>Oběžná rychlost kolem Země</b><br>
+        1,0 km/s<br>
+        <br><b>Úniková rychlost</b><br>
+        2,4 km/s<br>
+        <br><b>Tíhové zrychlení</b><br>
+        1,62 m/s^2<br>
+        <br><b>Magnetické pole</b><br>
+        Menší než 2 · 10^-10 T<br>
+        <br><b>Průměr modelu</b> (1:1 mld.)<br>
+        3,5 mm<br>
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_neptune_top">
+    <![CDATA[
+        <p>
+        Neptun je planeta, jež byla objevena nejprve matematickým výpočtem a až poté na obloze.
+        J. C. Adams a nezávisle U. J. J. Leverrier v roce 1845 vypočetli její dráhu z odchylek dráhy
+        Uranu. J. G. Galle ji našel 1° od přepovězené polohy. Abychom mohli Neptun spatřit na obloze,
+        potřebujeme nezbytně dalekohled. Donedávna byly známé jen dva jeho měsíce: velký Triton,
+        obíhající po kruhové dráze, a malá Nereida, jejíž dráha je protáhlou elipsou. (Nereida se
+        může vzdálit až na 110 průměrů Neptunu.)
+        </p>
+        <p>
+        <b>Mytologické pozadí jména:</b> Neptun byl italským božstvem pramenících vod, později byl
+        ztotožněn s řeckým Poseidónem, a stal se tak vládcem moře. Svým trojzubcem mohl rozbouřit
+        moře i otřást zemi.
+        </p>
+        <p>
+        Planeta Neptun je <b>poslední stanoviště</b> křtinské Sluneční stezky. Jeji začátek se
+        nchází u ZŠ ve Křtinách.
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_neptune_tech" formatted="false">
+    <![CDATA[
+        <h2>Fyzikální údaje</h2>
+        <p>
+        <b>Vzdálenost od Slunce</b><br>
+        4 504 milionu km<br>
+        <br><b>Rovníkový průměr</b><br>
+        49 532 km<br>
+        <br><b>Oběžná doba</b><br>
+        163,7 roku<br>
+        <br><b>Rotační perioda</b><br>
+        16,1 h<br>
+        <br><b>Hmotnost</b><br>
+        1,02 · 10^26 kg = 17,14 hmotností Země<br>
+        <br><b>Průměrná hustota</b><br>
+        1600 kg/m^3<br>
+        <br><b>Teplota na povrchu</b> (v tlakové hladině 10^5 Pa)<br>
+        -201°C<br>
+        <br><b>Geometrické albedo</b><br>
+        0,41<br>
+        <br><b>Chemické složení</b><br>
+        Kamenné jádro,<br>
+        Ledový plášť, H2 (15%)<br>
+        <br><b>Složení atmosféry</b><br>
+        H2 (80%), He (19%), CH4<br>
+        <br><b>Tlak atmosféry</b><br>
+        Větší než 10^7 Pa <br>
+        <br><b>Velká poloosa</b><br>
+        30,11 AU<br>
+        <br><b>Extrentricita</b><br>
+        0,009<br>
+        <br><b>Sklon dráhy</b><br>
+        1,8°<br>
+        <br><b>Sklon rotační osy</b><br>
+        30°<br>
+        <br><b>Oběžná rychlost</b><br>
+        5,5 km/s<br>
+        <br><b>Úniková rychlost</b><br>
+        23 km/s<br>
+        <br><b>Tíhové zrychlení</b><br>
+        11,0 m/s^2<br>
+        <br><b>Magnetické pole</b><br>
+        1,4 · 10^-5 T<br>
+        <br><b>Průměr modelu</b> (1:1 mld.)<br>
+        5 cm<br>
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_saturn_top">
+    <![CDATA[
+        <p>
+        Saturn je velkou plynnou planetou s průměrnou hustotou menší než je hustota vody.
+        Nejnápadnějším útvarem jsou jeho prstence; byly poprvé popsány až v roce 1655 Christianem
+        Huygensem. Jsou tvořené drobnými úlomky (typicky 1 cm až 100 m velkými), které obíhají
+        okolo Saturnu prakticky v jedné rovině. Okolo planety obíhá početná rodina měsíců.
+        Nejzáhadnější z nich je Titan s metanovou atmosférou. (Měsíc o průměru 3000 km má totiž
+        příliš malou přitažlivost, aby si takový plynný obal mohl dlouhodobě udržet.
+        </p>
+        <p>
+        <b>Mytologické pozadí jména:</b> Saturnus byl římský bůh později ztotožněný s řeckým Kronem,
+        synem Úrana a Gáie. Připisovalo se mu zavedení zemědělství, ovocnářství i vinařství.
+        </p>
+        <h2>Další zastávka</h2>
+        <p>
+        Uran, 1 446 mil. km<br>
+        (tj. 1 446 m na stezce)
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_saturn_tech" formatted="false">
+    <![CDATA[
+        <h2>Fyzikální údaje</h2>
+        <p>
+        <b>Vzdálenost od Slunce</b><br>
+        1 429 milionu km<br>
+        <br><b>Rovníkový průměr</b><br>
+        120 536 km<br>
+        <br><b>Oběžná doba</b><br>
+        29,4 roku<br>
+        <br><b>Rotační perioda</b><br>
+        10,6 h<br>
+        <br><b>Hmotnost</b><br>
+        5,69 · 10^26 kg = 95,16 hmotností Země<br>
+        <br><b>Průměrná hustota</b><br>
+        700 kg/m^3<br>
+        <br><b>Teplota na povrchu</b> (v tlakové hladině 10^5 Pa)<br>
+        -139°C<br>
+        <br><b>Geometrické albedo</b><br>
+        0,46<br>
+        <br><b>Chemické složení</b><br>
+        Kamenné jádro,<br>
+        Vnitřní obal kovový H,<br>
+        Vnější obal molekulární H2<br>
+        <br><b>Složení atmosféry</b><br>
+        H2 (89%), He (11%)<br>
+        <br><b>Tlak atmosféry</b><br>
+        Větší než 10^7 Pa <br>
+        <br><b>Velká poloosa</b><br>
+        9,555 AU<br>
+        <br><b>Extrentricita</b><br>
+        0,056<br>
+        <br><b>Sklon dráhy</b><br>
+        2,5°<br>
+        <br><b>Sklon rotační osy</b><br>
+        27°<br>
+        <br><b>Oběžná rychlost</b><br>
+        9,7 km/s<br>
+        <br><b>Úniková rychlost</b><br>
+        36 km/s<br>
+        <br><b>Tíhové zrychlení</b><br>
+        9,0 m/s^2<br>
+        <br><b>Magnetické pole</b><br>
+        Menší než 2,1 · 10^-5 T<br>
+        <br><b>Průměr modelu</b> (1:1 mld.)<br>
+        12,05 mm<br>
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_sun_top">
+    <![CDATA[
+        <p>
+        Slunce je hvězda. V porovnání s velikostí planet je to obrovská koule plynu. V jeho středu
         dosahuje teplota 15 milionů °C, tlak 2,48 · 10^16 Pa (na povrchu Země je standard
         101 325 Pa) a hustota 162 000 kg/m3. Při těchto podmínkách probíhá slučování jader atomů
         vodíku na jádra atomů hélia. Tím se vytvářejí fotony a neutrina. Fotonová zářivost Slunce je
@@ -209,6 +844,15 @@
         spojovali svá božstva ve staroegyptské civilizaci se bůh Slunce nazýval Re, staří Řekové
         měli svého Hélia a Apollóna.
         </p>
+        <h2>Další zastávka</h2>
+        <p>
+        Merkur, 58 mil. km<br>
+        (tj. 58 m na stezce)
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_sun_tech" formatted="false">
+    <![CDATA[
         <h2>Fyzikální údaje</h2>
         <p>
         <b>Rovníkový průměr</b><br>
@@ -218,7 +862,7 @@
         <br><b>Hmotnost</b><br>
         1,99 · 10^30 kg = 332946 hmotností Země<br>
         <br><b>Průměrná hustota</b><br>
-        1400 kg/m^3<br>
+        1 400 kg/m^3<br>
         <br><b>Teplota na povrchu</b><br>
         5 500°C<br>
         <br><b>Rozsah teplot</b><br>
@@ -232,8 +876,8 @@
         <br><b>Složení atmosféry</b><br>
         H (71%), He (27%)<br>
         <br><b>Tlak</b><br>
-        2,48 · 10^10 MPa (Na povrchu Země je tlak 0,1 MPa<br>
-        <br><b>Sklon rotační osy (Úhel mezi rovinou rovníku Slunce a rovinou oběžné dráhy Země - ekliptikou</b><br>
+        2,48 · 10^10 MPa (Na povrchu Země je tlak 0,1 MPa)<br>
+        <br><b>Sklon rotační osy</b><br> (Úhel mezi rovinou rovníku Slunce a rovinou oběžné dráhy Země - ekliptikou)<br>
         7,25°<br>
         <br><b>Úniková rychlost</b><br>
         617 km/s<br>
@@ -241,15 +885,152 @@
         274 m/s^2<br>
         <br><b>Magnetické pole</b><br>
         10^-4 T až 0,3 T (skvrny)<br>
-        <br><b>Průměr modelu (1:1 mld.)</b><br>
+        <br><b>Průměr modelu</b> (1:1 mld.)<br>
         139 cm<br>
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_uranus_top">
+    <![CDATA[
+        <p>
+        Uran je na hranici viditelnosti okem, a proto byl objeven až dalekohledem. Jeho prstence
+        jsou velmi tmavé (odrážejí jen 4 % slunečního záření); byly zjištěny v roce 1977 nepřímo,
+        při zákrytu hvězdy touto planetou. Zvláštností je velký sklon rotační osy − leží téměř v
+        rovině dráhy a na planetu se tak střídavě díváme ve směru jejího severního a jižního pólu.
+        </p>
+        <p>
+        <b>Mytologické pozadí jména:</b> Řecký bůh Úranos (česky „Nebe“) měl jen jednoho rodiče, Gáiu
+        („Zemi)“. Spolu s ní pak zplodil dvanáct Titánů. Jména měsíců Uranu jsou výjimečná, neboť
+        nepocházejí z antické mythologie, nýbrž z divadelních her renesančního dramatika a básníka
+        Williama Shakespearea (např. Titania, Oberon, Miranda, Ariel, Umbriel)
         </p>
         <h2>Další zastávka</h2>
         <p>
-        Merkur, 58 mil. km<br>
-        (tj. 58 m na stezce)
+        Neptun, 1 629 mil. km<br>
+        (tj. 1 629 m na stezce)
         </p>
-        ]]>
+    ]]>
+    </string>
+    <string name="planet_text_uranus_tech" formatted="false">
+    <![CDATA[
+        <h2>Fyzikální údaje</h2>
+        <p>
+        <b>Vzdálenost od Slunce</b><br>
+        2 875 milionu km<br>
+        <br><b>Rovníkový průměr</b><br>
+        51 118 km<br>
+        <br><b>Oběžná doba</b><br>
+        83,7 roku<br>
+        <br><b>Rotační perioda</b><br>
+        17,2 h<br>
+        <br><b>Hmotnost</b><br>
+        8,68 · 10^25 kg = 14,53 hmotností Země<br>
+        <br><b>Průměrná hustota</b><br>
+        1 300 kg/m^3<br>
+        <br><b>Teplota na povrchu</b> (v tlakové hladině 10^5 Pa)<br>
+        -197°C<br>
+        <br><b>Geometrické albedo</b><br>
+        0,51<br>
+        <br><b>Chemické složení</b><br>
+        Jádro (Křemičitany, Fe),<br>
+        Ledový plášť (H2O, CH4, amoniak),<br>
+        H2 (jen asi 15%)<br>
+        <br><b>Složení atmosféry</b><br>
+        H2 (89%), He (11%), CH4<br>
+        <br><b>Tlak atmosféry</b><br>
+        Vetší než 10 · 10^7 Pa<br>
+        <br><b>Velká poloosa</b><br>
+        19,22 AU<br>
+        <br><b>Extrentricita</b><br>
+        0,046<br>
+        <br><b>Sklon dráhy</b><br>
+        0,8°<br>
+        <br><b>Sklon rotační osy</b><br>
+        98°<br>
+        <br><b>Oběžná rychlost</b><br>
+        6,8 km/s<br>
+        <br><b>Úniková rychlost</b><br>
+        21 km/s<br>
+        <br><b>Tíhové zrychlení</b><br>
+        8,7 m/s^2<br>
+        <br><b>Magnetické pole</b><br>
+        2,3 · 10^-5 T<br>
+        <br><b>Průměr modelu</b> (1:1 mld.)<br>
+        5,1 cm<br>
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_venus_top">
+    <![CDATA[
+        <p>
+        Venuše je stále zahalena do hustých mraků; na povrchu tak není vidět přímý sluneční svit.
+        Vysoká povrchová teplota (dokonce vyšší než u Merkuru) je způsobena skleníkovým efektem −
+        viditelné sluneční záření pronikne atmosférou, zahřeje povrch, který potom září v
+        infračerveném záření, avšak to je atmosférou účinně pohlcováno. Obdobný proces funguje i v
+        zemské atmosféře, ale je podstatně méně účinný. Planeta se okolo své osy otáčí velmi pomalu
+        a opačným směrem (retrográdně), než obíhá okolo Slunce.
+        </p>
+        <p>
+        <b>Mytologické pozadí jména:</b> Venuše byla římskou obdobou řecké bohyně krásy, lásky a
+        plodnosti Afrodíty. Zrodila se z mořské pěny, která vznikla z pyje vykastrovaného Úrana.
+        </p>
+        <h2>Další zastávka</h2>
+        <p>
+        Země, 41,4 mil. km<br>
+        (tj. 41,4 m na stezce)
+        </p>
+    ]]>
+    </string>
+    <string name="planet_text_venus_tech" formatted="false">
+    <![CDATA[
+        <h2>Fyzikální údaje</h2>
+        <p>
+        <b>Vzdálenost od Slunce</b><br>
+        108,2 milionu km<br>
+        <br><b>Rovníkový průměr</b><br>
+        12 104 km<br>
+        <br><b>Oběžná doba</b><br>
+        225 dní<br>
+        <br><b>Rotační perioda</b><br>
+        243 dní<br>
+        <br><b>Hmotnost</b><br>
+        4,87 · 10^24 kg = 0,815 hmotností Země<br>
+        <br><b>Průměrná hustota</b><br>
+        5 200 kg/m^3<br>
+        <br><b>Teplota na povrchu</b><br>
+        464°C<br>
+        <br><b>Rozsah teplot</b><br>
+        min. +464°C, max. +464°C<br>
+        <br><b>Geometrické albedo</b><br>
+        0,65<br>
+        <br><b>Chemické složení</b><br>
+        Asi podobné Zemi,<br>
+        Méně husté jádro,<br>
+        Jednolitá kůra<br>
+        <br><b>Složení atmosféry</b><br>
+        CO2 (96,5%), N2 (3,5%)<br>
+        <br><b>Tlak atmosféry</b><br>
+        9,6 · 10^6 Pa = 90 krát tlak na Zemi <br>
+        <br><b>Velká poloosa</b><br>
+        0,723 AU<br>
+        <br><b>Extrentricita</b><br>
+        0,007<br>
+        <br><b>Sklon dráhy</b><br>
+        4,3°<br>
+        <br><b>Sklon rotační osy</b><br>
+        177°<br>
+        <br><b>Oběžná rychlost</b><br>
+        35,0 km/s<br>
+        <br><b>Úniková rychlost</b><br>
+        10,4 km/s<br>
+        <br><b>Tíhové zrychlení</b><br>
+        8,9 m/s^2<br>
+        <br><b>Magnetické pole</b><br>
+        Menší než 2 · 10^-9 T<br>
+        <br><b>Průměr modelu</b> (1:1 mld.)<br>
+        12,1 mm<br>
+        </p>
+    ]]>
     </string>
 
 </resources>
