@@ -73,8 +73,9 @@ public class PlanetTextFragment extends Fragment {
         Bundle arguments = getArguments();
         TextView mainTitle = (TextView) (view.findViewById(R.id.planet_text_title));
         // This will be used to build resource name
-        String imageResourceName;
+        String planetName;
         ImageView planetPhoto = (ImageView) (view.findViewById(R.id.planet_text_image_view_photo));
+        ImageView planetSymbol = (ImageView) (view.findViewById(R.id.planet_text_image_view_symbol));
         // Holder for a new main title which is set according to which planet ID we get.
         String newTitle;
 
@@ -82,79 +83,84 @@ public class PlanetTextFragment extends Fragment {
             switch (arguments.getInt(PLANET_ID_KEY)) {
                 case PLANET_ID_CERES: {
                     newTitle = getResources().getString(R.string.all_boards_button_name_ceres);
-                    imageResourceName = "ceres";
+                    planetName = "ceres";
                     break;
                 }
                 case PLANET_ID_EARTH: {
                     newTitle = getResources().getString(R.string.all_boards_button_name_earth);
-                    imageResourceName = "earth";
+                    planetName = "earth";
                     break;
                 }
                 case PLANET_ID_HALLEY: {
                     newTitle = getResources().getString(R.string.all_boards_button_name_halley);
-                    imageResourceName = "halley";
+                    planetName = "halley";
                     break;
                 }
                 case PLANET_ID_JUPITER: {
                     newTitle = getResources().getString(R.string.all_boards_button_name_jupiter);
-                    imageResourceName = "jupiter";
+                    planetName = "jupiter";
                     break;
                 }
                 case PLANET_ID_MARS: {
                     newTitle = getResources().getString(R.string.all_boards_button_name_mars);
-                    imageResourceName = "mars";
+                    planetName = "mars";
                     break;
                 }
                 case PLANET_ID_MERCURY: {
                     newTitle = getResources().getString(R.string.all_boards_button_name_mercury);
-                    imageResourceName = "mercury";
+                    planetName = "mercury";
                     break;
                 }
                 case PLANET_ID_MOON: {
                     newTitle = getResources().getString(R.string.all_boards_button_name_moon);
-                    imageResourceName = "moon";
+                    planetName = "moon";
                     break;
                 }
                 case PLANET_ID_NEPTUNE: {
                     newTitle = getResources().getString(R.string.all_boards_button_name_neptune);
-                    imageResourceName = "neptune";
+                    planetName = "neptune";
                     break;
                 }
                 case PLANET_ID_SATURN: {
                     newTitle = getResources().getString(R.string.all_boards_button_name_saturn);
-                    imageResourceName = "saturn";
+                    planetName = "saturn";
                     break;
                 }
                 case PLANET_ID_SUN: {
                     newTitle = getResources().getString(R.string.all_boards_button_name_sun);
-                    imageResourceName = "sun";
+                    planetName = "sun";
                     break;
                 }
                 case PLANET_ID_URANUS: {
                     newTitle = getResources().getString(R.string.all_boards_button_name_uranus);
-                    imageResourceName = "uranus";
+                    planetName = "uranus";
                     break;
                 }
                 // Only other possible option is venus
                 default: {
                     newTitle = getResources().getString(R.string.all_boards_button_name_venus);
-                    imageResourceName = "venus";
+                    planetName = "venus";
                     break;
                 }
             }
 
-            // Set image resource according to which planet we are displaying
-            // The resources for planet quarters must have a name "pict_*planet*_quarter"
-            String resourceName = "pict_" + imageResourceName + "_half";
-            int resourceId = this.getResources().getIdentifier(resourceName, "drawable", getActivity().getPackageName());
-            // Set new image
+            // Get main image resource according to which planet we are displaying
+            // The resources for planet halves must have a name "pict_*planet*_half"
+            String planetResourceName = "pict_" + planetName + "_half";
+            int planetResourceId = this.getResources().getIdentifier(planetResourceName, "drawable", getActivity().getPackageName());
+            // Get symbol image resource
+            // The resources for planet symbols must have a name "pict_symbol_*name*"
+            String planetSymbolResourceName = "pict_symbol_" + planetName;
+            int symbolResourceId = this.getResources().getIdentifier(planetSymbolResourceName, "drawable", getActivity().getPackageName());
+            // Set new images
             // If the resource is not found no image is displayed. Anyway resources do not change
             // the photo should always be found.
-            planetPhoto.setImageResource(resourceId);
+            planetPhoto.setImageResource(planetResourceId);
+            planetSymbol.setImageResource(symbolResourceId);
             // Set new title
             mainTitle.setText(newTitle);
             // Fill text views
-            this.fillText(view, imageResourceName);
+            this.fillText(view, planetName);
         }
     }
 

@@ -30,6 +30,22 @@
         android:background="#ff0099cc"
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
+    <ImageView
+        android:id="@+id/planet_text_image_view_symbol"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/planet_image_description"
+        android:cropToPadding="false"
+        android:paddingBottom="2dp"
+        android:paddingEnd="2dp"
+        android:paddingStart="2dp"
+        android:paddingTop="2dp"
+        android:scaleType="fitXY"
+        tools:src="@drawable/pict_symbol_sun" />
+
     <ScrollView
         android:id="@+id/planet_text_scroll_view"
         android:layout_width="match_parent"

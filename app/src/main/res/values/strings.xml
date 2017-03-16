@@ -32,7 +32,7 @@
     <string name="all_boards_button_name_moon">Moon</string>
     <string name="all_boards_button_name_ceres">Ceres</string>
     <string name="all_boards_button_name_jupiter">Jupiter</string>
-    <string name="all_boards_button_name_saturn">Saturn</string>
+    <string name="all_boards_button_name_Aturn">Aturn</string>
     <string name="all_boards_button_name_uranus">Uranus</string>
     <string name="all_boards_button_name_neptune">Neptune</string>
     <string name="all_boards_button_name_halley">Halley comet</string>
@@ -114,84 +114,793 @@
        </p>
        ]]>
     </string>
+    <!-- Planet texts ************************************************************************** -->
     <string name="planet_text_ceres_top">
-
+    <![CDATA[
+        <p>
+        Translation missing...
+        </p>
+        <p>
+        Next stop<br>
+        Jupiter, 364 million km
+        (That is 364 m on the path)
+        </p>
+    ]]>
     </string>
     <string name="planet_text_ceres_tech" formatted="false">
-
+    <![CDATA[
+        <h2>Physical characteristics</h2>
+        <p>
+        <b>Distance from the Sun</b><br>
+        413,9 million km<br>
+        <br><b>Equatorial radius</b><br>
+        952 km<br>
+        <br><b>Orbital period</b><br>
+        4,6 years<br>
+        <br><b>Sidereal rotation period</b><br>
+        9,075 h<br>
+        <br><b>Mass</b><br>
+        9,43 · 10^20 kg = 0,0004 Earth mass<br>
+        <br><b>Mean density</b><br>
+        2 700 kg/m^3<br>
+        <br><b>Temperature span</b><br>
+        -200 to -38°C<br>
+        <br><b>Albedo</b><br>
+        0,09<br>
+        <br><b>Chemical composition</b><br>
+        Same as meteorite,<br>
+        (carbon based chondrite),<br>
+        Uniform structure<br>
+        <br><b>Atmosphere composition</b><br>
+        Does not have atmosphere<br>
+        <br><b>Atmospheric pressure</b><br>
+        0 Pa<br>
+        <br><b>Semi-major axis</b><br>
+        2,767 AU<br>
+        <br><b>Eccentricity</b><br>
+        0,08<br>
+        <br><b>Orbital inclination</b><br>
+        10,6°<br>
+        <br><b>Axial tilt</b><br>
+        ?<br>
+        <br><b>Orbital speed</b><br>
+        17,9 km/s<br>
+        <br><b>Escape velocity</b><br>
+        0,1 km/s<br>
+        <br><b>Surface gravity</b><br>
+        0,3 m/s^2<br>
+        <br><b>Magnetic field</b><br>
+        0 T<br>
+        <br><b>Model diameter</b> (1:1 billion)<br>
+        0,9 mm<br>
+        </p>
+    ]]>
     </string>
     <string name="planet_text_earth_top">
-
+    <![CDATA[
+        <p>
+        Because of the existence of liquid water on Earth, it is the only planet known to support
+        life. The Earth was formed about 4,56 milliard years ago, together with the Sun and other
+        objects of the Solar system. It is almost the same planet as Mercury, Venus or Mars. It has
+        an iron core and a thick rocky layer. The Earth is not exactly round – it is slightly
+        flattened (the polar diameter is 12 714 km). The Earth orbits the Sun and rotates around
+        it’s own axis. But it also makes other movements. The most significant is axial precession,
+        which is the change in orientation of the Earth’s rotational axis, which happens every
+        26 500 years. Currently, the Earth’s axis points towards the star Polaris. The Solar system
+        consists of eight orbiting planets but there are more than one thousand extrasolar planets,
+        which orbit other stars.
+        </p>
+        <p>
+        <b>The mythological origin of the name:</b> The Greek name is Gaia, she was the mother of
+        people and the gods.
+        </p>
+        <p>
+        Next stop<br>
+        Moon, 0,38 million km
+        (That is 0,38 m on the path)
+        </p>
+    ]]>
     </string>
     <string name="planet_text_earth_tech" formatted="false">
-
+    <![CDATA[
+        <h2>Physical characteristics</h2>
+        <p>
+        <b>Distance from the Sun</b><br>
+        149,6 million km<br>
+        <br><b>Equatorial radius</b><br>
+        12 756 km<br>
+        <br><b>Orbital period</b><br>
+        365,25 days<br>
+        <br><b>Sidereal rotation period</b><br>
+        23h 56min 4s<br>
+        <br><b>Mass</b><br>
+        5,97 · 10^24 kg<br>
+        <br><b>Mean density</b><br>
+        5 500 kg/m^3<br>
+        <br><b>Temperature span</b><br>
+        -80 to +50°C<br>
+        <br><b>Albedo</b><br>
+        0,367<br>
+        <br><b>Chemical composition</b><br>
+        Inner core Fe, Ni (30%),<br>
+        Outer core (admixture S, O), plastic cloak,<br>
+        Thin crust O, Si Al (moving lithosphere)<br>
+        <br><b>Atmosphere composition</b><br>
+        N2 (78,1%), 02 (20,9%)<br>
+        <br><b>Atmospheric pressure</b><br>
+        101 326 Pa<br>
+        <br><b>Semi-major axis</b><br>
+        1 AU<br>
+        <br><b>Eccentricity</b><br>
+        0,017<br>
+        <br><b>Orbital inclination</b><br>
+        0°<br>
+        <br><b>Axial tilt</b><br>
+        23,45°<br>
+        <br><b>Orbital speed</b><br>
+        29,8 km/s<br>
+        <br><b>Escape velocity</b><br>
+        11,2 km/s<br>
+        <br><b>Surface gravity</b><br>
+        9,78 m/s^2<br>
+        <br><b>Magnetic field</b><br>
+        3.1 · 10^-5 T<br>
+        <br><b>Model diameter</b> (1:1 billion)<br>
+        12,8 mm<br>
+        </p>
+    ]]>
     </string>
     <string name="planet_text_halley_top">
-
+    <![CDATA[
+        <p>
+        Translation missing...
+        </p>
+        <p>
+        Next stop<br>
+        Saturn, 329 million km
+        (That is 329 m on the path)
+        </p>
+    ]]>
     </string>
-    <string name="planet_text_halley_tech" formatted="false">
-
+    <string name="planet_text_halley_tech" formatted="false"><![CDATA[
+    <![CDATA[
+        <h2>Physical characteristics</h2>
+        <p>
+        <b>Distance from the Sun</b><br>
+        87,8 to 5 234 million km<br>
+        <br><b>Equatorial radius</b><br>
+        15 km<br>
+        <br><b>Orbital period</b><br>
+        75,3 years<br>
+        <br><b>Sidereal rotation period</b><br>
+        2,2 days<br>
+        <br><b>Mass</b><br>
+        2,2 · 10^14 kg = 1,10 · 10^-11 Earth mass<br>
+        <br><b>Mean density</b><br>
+        60 kg/m^3<br>
+        <br><b>Temperature span</b><br>
+        -100 to +200°C<br>
+        <br><b>Albedo</b><br>
+        0,04<br>
+        <br><b>Chemical composition</b><br>
+        Frozen gass (H2O),<br>
+        Dust particles,<br>
+        (Organic molecules)<br>
+        <br><b>Atmosphere composition</b><br>
+        H20, OH, CN, C2, H2CO,…<br>
+        <br><b>Atmospheric pressure</b><br>
+        0 Pa<br>
+        <br><b>Semi-major axis</b><br>
+        35,0 AU<br>
+        <br><b>Eccentricity</b><br>
+        0,967<br>
+        <br><b>Orbital inclination</b><br>
+        162,2°<br>
+        <br><b>Axial tilt</b><br>
+        ?<br>
+        <br><b>Orbital speed</b><br>
+        0,9 to 55 km/s<br>
+        <br><b>Escape velocity</b><br>
+        0,001 km/s<br>
+        <br><b>Surface gravity</b><br>
+        5 · 10^-5 m/s^2<br>
+        <br><b>Magnetic field</b><br>
+        0 T<br>
+        <br><b>Model diameter</b> (1:1 billion)<br>
+        0,015 mm<br>
+        </p>
+    ]]>
     </string>
     <string name="planet_text_jupiter_top">
-
+    <![CDATA[
+        <p>
+        Despite the fact that Jupiter weights less than 1/1000 of mass of the Sun, it is still the
+        largest planet of the Solar system. Compared to the four inner planets, Jupiter and other
+        outer planets have a relatively small rocky core, bulky hydrogen or icy layer, and a large
+        and gradually thinning atmosphere. Consequently, we do not observe sharply defined surface
+        boundaries for these outer planets. In 1610, Galileo Galilei discovered with his telescope
+        four big moons of Jupiter: Io, Europa, Ganymede and Callisto. To show these moons in our
+        model of Solar system, they would need to be around 3 mm in diameter and would orbit Jupiter
+        in distances ranging from 42 to 189 cm.
+        </p>
+        <p>
+        <b>The mythological origin of the name:</b> Greek name is Zeus. He was the son of Titan
+        Cronus and his wife Rhea. His grandfather was Uranus and grandmother was Gaia. Zeus was the
+        Father of gods and men.
+        </p>
+        <p>
+        Next stop<br>
+        Halley, 322 million km
+        (That is 322 m on the path)
+        </p>
+    ]]>
     </string>
     <string name="planet_text_jupiter_tech" formatted="false">
-
+    <![CDATA[
+        <h2>Physical characteristics</h2>
+        <p>
+        <b>Distance from the Sun</b><br>
+        778,3 million km<br>
+        <br><b>Equatorial radius</b><br>
+        142 984 km<br>
+        <br><b>Orbital period</b><br>
+        11,9 years<br>
+        <br><b>Sidereal rotation period</b><br>
+        9,9 h<br>
+        <br><b>Mass</b><br>
+        1,90 · 10^27 kg = 317,7 Earth mass<br>
+        <br><b>Mean density</b><br>
+        1 300 kg/m^3<br>
+        <br><b>Surface temperature </b>(In pressure depth 10^5 Pa)<br>
+        -163°C<br>
+        <br><b>Albedo</b><br>
+        0,52<br>
+        <br><b>Chemical composition</b><br>
+        Rock core,<br>
+        Silicates,<br>
+        Cloak (Metal H), H2<br>
+        <br><b>Atmosphere composition</b><br>
+        H2 (89%), He (11%)<br>
+        <br><b>Atmospheric pressure</b><br>
+        More than 10^7 Pa<br>
+        <br><b>Semi-major axis</b><br>
+        5,203 AU<br>
+        <br><b>Eccentricity</b><br>
+        0,048<br>
+        <br><b>Orbital inclination</b><br>
+        1,3°<br>
+        <br><b>Axial tilt</b><br>
+        3°<br>
+        <br><b>Orbital speed</b><br>
+        13,1 km/s<br>
+        <br><b>Escape velocity</b><br>
+        60 km/s<br>
+        <br><b>Surface gravity</b><br>
+        23,1 m/s^2<br>
+        <br><b>Magnetic field</b><br>
+        4,28 · 10^-4 T<br>
+        <br><b>Model diameter</b> (1:1 billion)<br>
+        14,3 mm<br>
+        </p>
+    ]]>
     </string>
     <string name="planet_text_mars_top">
-
+    <![CDATA[
+        <p>
+        Translation missing...
+        </p>
+        <p>
+        Next stop<br>
+        Ceres, 186 million km
+        (That is 168 m on the path)
+        </p>
+    ]]>
     </string>
     <string name="planet_text_mars_tech" formatted="false">
-
+    <![CDATA[
+        <h2>Physical characteristics</h2>
+        <p>
+        <b>Distance from the Sun</b><br>
+        227,9 million km<br>
+        <br><b>Equatorial radius</b><br>
+        6 792 km<br>
+        <br><b>Orbital period</b><br>
+        687 days<br>
+        <br><b>Sidereal rotation period</b><br>
+        24,6 h<br>
+        <br><b>Mass</b><br>
+        6,42 · 10^23 kg = 0,107 Earth mass<br>
+        <br><b>Mean density</b><br>
+        3 900 kg/m^3<br>
+        <br><b>Temperature span</b><br>
+        -120 to +20°C<br>
+        <br><b>Albedo</b><br>
+        0,15<br>
+        <br><b>Chemical composition</b><br>
+        Core Fe, cloak Silicates,<br>
+        Monolithic crust (SiO2, Fe0, Al2O3)<br>
+        <br><b>Atmosphere composition</b><br>
+        CO2 (95,3%), N2 (2,7%), Ar (1,6%), O2 (0,1%)<br>
+        <br><b>Atmospheric pressure</b><br>
+        800 Pa<br>
+        <br><b>Semi-major axis</b><br>
+        1,524 AU<br>
+        <br><b>Eccentricity</b><br>
+        0,093<br>
+        <br><b>Orbital inclination</b><br>
+        1,9°<br>
+        <br><b>Axial tilt</b><br>
+        25°<br>
+        <br><b>Orbital speed</b><br>
+        24,1 km/s<br>
+        <br><b>Escape velocity</b><br>
+        5 km/s<br>
+        <br><b>Surface gravity</b><br>
+        3,7 m/s^2<br>
+        <br><b>Magnetic field</b><br>
+        5 · 10^-9 T<br>
+        <br><b>Model diameter</b> (1:1 billion)<br>
+        6,8 mm<br>
+        </p>
+    ]]>
     </string>
     <string name="planet_text_mercury_top">
-
+    <![CDATA[
+        <p>
+        Planets, differently from the stars, do not shine by themselves but only reflect light from
+        the Sun. Mercury is the closest planet to the Sun. Astronomers previously tried to discover
+        a hypothetical planet Vulcan that would orbit even closer but were not successful. Even
+        though Mercury is small (about the size of our Moon), it has a massive iron core.
+        </p>
+        <p>
+        <b>The mythological origin of the name:</b> Greek name is Hermes, who was Jupiter`s
+        illegitimate son and Apollo’s (god of the Sun) brother. Mercury was a god with split
+        personality: on one side, he was the god of wisdom but on the other, he was a deceitful
+        thief.
+        </p>
+        <p>
+        Next stop<br>
+        Venus, 50,3 million km
+        (That is 50,3 m on the path)
+        </p>
+    ]]>
     </string>
     <string name="planet_text_mercury_tech" formatted="false">
-
+    <![CDATA[
+        <h2>Physical characteristics</h2>
+        <p>
+        <b>Distance from the Sun</b><br>
+        57,9 million km<br>
+        <br><b>Equatorial radius</b><br>
+        4 880 km<br>
+        <br><b>Orbital period</b><br>
+        88 days<br>
+        <br><b>Sidereal rotation period</b><br>
+        58 days<br>
+        <br><b>Mass</b><br>
+        3,30 · 10^23 kg = 0,055 Earth mass<br>
+        <br><b>Mean density</b><br>
+        5 400 kg/m^3<br>
+        <br><b>Temperature span</b><br>
+        -170 to +430°C<br>
+        <br><b>Albedo</b><br>
+        0,12<br>
+        <br><b>Chemical composition</b><br>
+        Core Fe (70%),<br>
+        Cloak Silicates (30%),<br>
+        <br><b>Atmosphere composition</b><br>
+        O2 (42%), Na (40%), O (15%)<br>
+        Ostatní He, K (2%)<br>
+        <br><b>Atmospheric pressure</b><br>
+        ? (very thin)<br>
+        <br><b>Semi-major axis</b><br>
+        0,387 AU<br>
+        <br><b>Eccentricity</b><br>
+        0,206<br>
+        <br><b>Orbital inclination</b><br>
+        7°<br>
+        <br><b>Axial tilt</b><br>
+        0,1°<br>
+        <br><b>Orbital speed</b><br>
+        47,9 km/s<br>
+        <br><b>Escape velocity</b><br>
+        4,4 km/s<br>
+        <br><b>Surface gravity</b><br>
+        3,7 m/s^2<br>
+        <br><b>Magnetic field</b><br>
+        3.3 · 10^-7 T<br>
+        <br><b>Model diameter</b> (1:1 billion)<br>
+        4,9 mm<br>
+        </p>
+    ]]>
     </string>
     <string name="planet_text_moon_top">
-
+    <![CDATA[
+        <p>
+        Translation missing...
+        </p>
+        <p>
+        Next stop<br>
+        Mars, 78,3 million km
+        (That is 78,3 m on the path)
+        </p>
+    ]]>
     </string>
     <string name="planet_text_moon_tech" formatted="false">
-
+    <![CDATA[
+        <h2>Physical characteristics</h2>
+        <p>
+        <b>Distance from Earth</b><br>
+        384 400 km<br>
+        <br><b>Equatorial radius</b><br>
+        3 476 km<br>
+        <br><b>Orbital period around Earth</b><br>
+        27,32 days<br>
+        <br><b>Sidereal rotation period</b><br>
+        27,32 days<br>
+        <br><b>Mass</b><br>
+        7,35 · 10^22 kg = 0,012 Earth mass<br>
+        <br><b>Mean density</b><br>
+        3 340 kg/m^3<br>
+        <br><b>Temperature span</b><br>
+        -180 to +110°C<br>
+        <br><b>Albedo</b><br>
+        0,12<br>
+        <br><b>Chemical composition</b><br>
+        Core Fe, FeS<br>
+        Cloak from Silicates (olivine, pyroxene),<br>
+        Crust (plagioclase)<br>
+        <br><b>Atmosphere composition</b><br>
+        Does not have atmosphere<br>
+        <br><b>Atmospheric pressure</b><br>
+        0 Pa<br>
+        <br><b>Semi-major axis</b><br>
+        0,0026 AU<br>
+        <br><b>Eccentricity</b><br>
+        0,055<br>
+        <br><b>Orbital inclination around Earth</b><br>
+        5,1°<br>
+        <br><b>Axial tilt around Earth</b><br>
+        6,7°<br>
+        <br><b>Orbital speed around Earth</b><br>
+        1,0 km/s<br>
+        <br><b>Escape velocity</b><br>
+        2,4 km/s<br>
+        <br><b>Surface gravity</b><br>
+        1,62 m/s^2<br>
+        <br><b>Magnetic field</b><br>
+        Menší než 2 · 10^-10 T<br>
+        <br><b>Model diameter</b> (1:1 billion)<br>
+        3,5 mm<br>
+        </p>
+    ]]>
     </string>
     <string name="planet_text_neptune_top">
-
+    <![CDATA[
+        <p>
+        Translation missing...
+        </p>
+        <p>
+        Neptune is <b>the last stop</b> of the Sun path of Křtiny. The beginning of the Sun path is
+        located near Křitny elementary school.
+        </p>
+    ]]>
     </string>
     <string name="planet_text_neptune_tech" formatted="false">
-
+    <![CDATA[
+        <h2>Physical characteristics</h2>
+        <p>
+        <b>Distance from the Sun</b><br>
+        4 504 million km<br>
+        <br><b>Equatorial radius</b><br>
+        49 532 km<br>
+        <br><b>Orbital period</b><br>
+        163,7 years<br>
+        <br><b>Sidereal rotation period</b><br>
+        16,1 h<br>
+        <br><b>Mass</b><br>
+        1,02 · 10^26 kg = 17,14 Earth mass<br>
+        <br><b>Mean density</b><br>
+        1600 kg/m^3<br>
+        <br><b>Surface temperature</b> (In pressure depth 10^5 Pa)<br>
+        -201°C<br>
+        <br><b>Albedo</b><br>
+        0,41<br>
+        <br><b>Chemical composition</b><br>
+        Rock core,<br>
+        Frozen cloak, H2 (15%)<br>
+        <br><b>Atmosphere composition</b><br>
+        H2 (80%), He (19%), CH4<br>
+        <br><b>Atmospheric pressure</b><br>
+        More than 10^7 Pa <br>
+        <br><b>Semi-major axis</b><br>
+        30,11 AU<br>
+        <br><b>Eccentricity</b><br>
+        0,009<br>
+        <br><b>Orbital inclination</b><br>
+        1,8°<br>
+        <br><b>Axial tilt</b><br>
+        30°<br>
+        <br><b>Orbital speed</b><br>
+        5,5 km/s<br>
+        <br><b>Escape velocity</b><br>
+        23 km/s<br>
+        <br><b>Surface gravity</b><br>
+        11,0 m/s^2<br>
+        <br><b>Magnetic field</b><br>
+        1,4 · 10^-5 T<br>
+        <br><b>Model diameter</b> (1:1 billion)<br>
+        5 cm<br>
+        </p>
+    ]]>
     </string>
     <string name="planet_text_saturn_top">
-
+    <![CDATA[
+        <p>
+        Saturn is a giant gaseous planet with an average density lower than that of water. The most
+        noticeable are the Saturn`s rings. They were first described only in 1655 by Christian
+        Huygens. The rings consist of tiny particles (the size varies from 1cm to 100 m). These
+        particles orbit Saturn in essentially a single plane. Saturn has numerous moons. The most
+        mysterious is Titan with its methane atmosphere (the moon with 3000 km diameter has too low
+        gravitation to permanently keep its gaseous atmosphere).
+        </p>
+        <p>
+        <b>The mythological origin of the name:</b> the Greek name is Kronos, who was the son of
+        Uranus and Gaia. Saturn was the god of agriculture.
+        <p>
+        Next stop<br>
+        Uranus, 1 446 million km
+        (That is 1 446 m on the path)
+        </p>
+    ]]>
     </string>
     <string name="planet_text_saturn_tech" formatted="false">
-
+    <![CDATA[
+        <h2>Physical characteristics</h2>
+        <p>
+        <b>Distance from the Sun</b><br>
+        1 429 million km<br>
+        <br><b>Equatorial radius</b><br>
+        120 536 km<br>
+        <br><b>Orbital period</b><br>
+        29,4 years<br>
+        <br><b>Sidereal rotation period</b><br>
+        10,6 h<br>
+        <br><b>Mass</b><br>
+        5,69 · 10^26 kg = 95,16 Earth mass<br>
+        <br><b>Mean density</b><br>
+        700 kg/m^3<br>
+        <br><b>Surface temperature</b> (In pressure depth 10^5 Pa)<br>
+        -139°C<br>
+        <br><b>Albedo</b><br>
+        0,46<br>
+        <br><b>Chemical composition</b><br>
+        Rock core,<br>
+        Inner cloak metal H,<br>
+        Outer cloak molecular H2<br>
+        <br><b>Atmosphere composition</b><br>
+        H2 (89%), He (11%)<br>
+        <br><b>Atmospheric pressure</b><br>
+        More than 10^7 Pa <br>
+        <br><b>Semi-major axis</b><br>
+        9,555 AU<br>
+        <br><b>Eccentricity</b><br>
+        0,056<br>
+        <br><b>Orbital inclination</b><br>
+        2,5°<br>
+        <br><b>Axial tilt</b><br>
+        27°<br>
+        <br><b>Orbital speed</b><br>
+        9,7 km/s<br>
+        <br><b>Escape velocity</b><br>
+        36 km/s<br>
+        <br><b>Surface gravity</b><br>
+        9,0 m/s^2<br>
+        <br><b>Magnetic field</b><br>
+        Less than 2,1 · 10^-5 T<br>
+        <br><b>Model diameter</b> (1:1 billion)<br>
+        12,05 mm<br>
+        </p>
+    ]]>
     </string>
     <string name="planet_text_sun_top">
-
+    <![CDATA[
+        <p>
+        The Sun is a star. Compared to the other planets, it is a massive ball full of gas. The core
+        temperature is about 15 million °C, the pressure is 2,48·10^16 Pa (the standard pressure on
+        Earth is 101 325 Pa) and density is 162 000 kg/m3. Under these conditions, the nuclei of
+        hydrogen atoms fuse to form helium atoms and generate photons and neutrinos. Photon
+        luminosity of the Sun is 3,85 · 10^26 W. Energy of about 342W per 1 m2 lands on Earth and
+        this energy enables the existence of life on our planet. The Sun is between 4.6 to 4.7
+        billion years old and it will continue to shine for another 5 billion years. At the end of
+        its life, the Sun will go through the state of a red giant. At the speed of about 1 000km/s,
+        the atmosphere of this red giant will separate to expose the Sun`s core. This event will be
+        observable as a cooling white dwarf and its expanding cover will create planetary nebula.
+        </p>
+        <p>
+        <b>The mythological origin of the name:</b> people were always aware of the Sun’s existence.
+        Many of their gods were linked to the Sun. In the ancient Egypt, god of the Sun was called Ra.
+        For Greeks, the god of the Sun was Apollo.
+        </p>
+        <p>
+        Next stop<br>
+        Mercury, 58 million km
+        (That is 58 m on the path)
+        </p>
+    ]]>
     </string>
     <string name="planet_text_sun_tech" formatted="false">
-
+    <![CDATA[
+        <h2>Physical characteristics</h2>
+        <p>
+        <b>Equatorial radius</b><br>
+        1 391 020 km<br>
+        <br><b>Sidereal rotation period</b><br>
+        25 to 33 days (differential)<br>
+        <br><b>Mass</b><br>
+        1,99 · 10^30 kg = 332946 Earth mass<br>
+        <br><b>Mean density</b><br>
+        1 400 kg/m^3<br>
+        <br><b>Surface temperature</b><br>
+        5 500°C<br>
+        <br><b>Temperature span</b><br>
+        5 500 to 15 000 000°C<br>
+        <br><b>Albedo</b><br>
+        0<br>
+        <br><b>Chemical composition</b><br>
+        Plasma H (71%),<br>
+        He (27%),<br>
+        Heavier elements (2%),<br>
+        <br><b>Atmosphere composition</b><br>
+        H (71%), He (27%)<br>
+        <br><b>Pressure</b><br>
+        2,48 · 10^10 MPa (Pressure on the surface of Earth is 0,1 MPa)<br>
+        <br><b>Axial tilt</b><br> (Angle between the equator of the Sun and the orbit of the Earth - ecliptic)<br>
+        7,25°<br>
+        <br><b>Escape velocity</b><br>
+        617 km/s<br>
+        <br><b>Surface gravity</b><br>
+        274 m/s^2<br>
+        <br><b>Magnetic field</b><br>
+        10^-4 T to 0,3 T (sunspots)<br>
+        <br><b>Model diameter</b> (1:1 billion)<br>
+        139 cm<br>
+        </p>
+    ]]>
     </string>
     <string name="planet_text_uranus_top">
-
+    <![CDATA[
+        <p>
+        Uranus was discovered only with the use of telescopes due to its small size, which is at the
+        limits of visibility by naked eye. Rings of the Uranus are extremely dark (they reflect only
+        about 4% of the sunshine) and were located indirectly in 1977, when the planet overlaid a
+        star. The unique feature of Uranus is the greatly tilted axis of rotation - it lies close to
+        its plane of revolution about the Sun and, as a consequence, we observe alternating north or
+        south poles of the planet.
+        </p>
+        <p>
+        <b>The mythological origin of the name:</b> Uranus; together with Gaia, was the oldest god
+        on Earth. He arose out of night. The names of Uranus`s moons are interesting, because they
+        do not come from the Greek mythology but from the theater plays of William Shakespeare (e.g.
+        Titania, Oberon, Miranda, Ariel, Umbriel).
+        <p>
+        Next stop<br>
+        Neptune, 1 629 million km
+        (That is 1 629 m on the path)
+        </p>
+    ]]>
     </string>
     <string name="planet_text_uranus_tech" formatted="false">
-
+    <![CDATA[
+        <h2>Physical characteristics</h2>
+        <p>
+        <b>Distance from the Sun</b><br>
+        2 875 million km<br>
+        <br><b>Equatorial radius</b><br>
+        51 118 km<br>
+        <br><b>Orbital period</b><br>
+        83,7 years<br>
+        <br><b>Sidereal rotation period</b><br>
+        17,2 h<br>
+        <br><b>Mass</b><br>
+        8,68 · 10^25 kg = 14,53 Earth mass<br>
+        <br><b>Mean density</b><br>
+        1 300 kg/m^3<br>
+        <br><b>Surface temperature</b> (In pressure depth 10^5 Pa)<br>
+        -197°C<br>
+        <br><b>Albedo</b><br>
+        0,51<br>
+        <br><b>Chemical composition</b><br>
+        Core (Silicates, Fe),<br>
+        Frozen cloak (H2O, CH4, ammonia),<br>
+        H2 (about 15%)<br>
+        <br><b>Atmosphere composition</b><br>
+        H2 (89%), He (11%), CH4<br>
+        <br><b>Atmospheric pressure</b><br>
+        More than 10 · 10^7 Pa<br>
+        <br><b>Semi-major axis</b><br>
+        19,22 AU<br>
+        <br><b>Eccentricity</b><br>
+        0,046<br>
+        <br><b>Orbital inclination</b><br>
+        0,8°<br>
+        <br><b>Axial tilt</b><br>
+        98°<br>
+        <br><b>Orbital speed</b><br>
+        6,8 km/s<br>
+        <br><b>Escape velocity</b><br>
+        21 km/s<br>
+        <br><b>Surface gravity</b><br>
+        8,7 m/s^2<br>
+        <br><b>Magnetic field</b><br>
+        2,3 · 10^-5 T<br>
+        <br><b>Model diameter</b> (1:1 billion)<br>
+        5,1 cm<br>
+        </p>
+    ]]>
     </string>
     <string name="planet_text_venus_top">
-
+    <![CDATA[
+        <p>
+        Translation missing...
+        </p>
+        <p>
+        Next stop<br>
+        Earth, 41,4 million km
+        (That is 41,4 m on the path)
+        </p>
+    ]]>
     </string>
     <string name="planet_text_venus_tech" formatted="false">
-
+    <![CDATA[
+        <h2>Physical characteristics</h2>
+        <p>
+        <b>Distance from the Sun</b><br>
+        108,2 million km<br>
+        <br><b>Equatorial radius</b><br>
+        12 104 km<br>
+        <br><b>Orbital period</b><br>
+        225 days<br>
+        <br><b>Sidereal rotation period</b><br>
+        243 days<br>
+        <br><b>Mass</b><br>
+        4,87 · 10^24 kg = 0,815 Earth mass<br>
+        <br><b>Mean density</b><br>
+        5 200 kg/m^3<br>
+        <br><b>Surface temperature</b><br>
+        464°C<br>
+        <br><b>Temperature span</b><br>
+        min. +464°C, max. +464°C<br>
+        <br><b>Albedo</b><br>
+        0,65<br>
+        <br><b>Chemical composition</b><br>
+        Approximately similar to Earth,<br>
+        Less dense core,<br>
+        Monolithic crust<br>
+        <br><b>Atmosphere composition</b><br>
+        CO2 (96,5%), N2 (3,5%)<br>
+        <br><b>Atmospheric pressure</b><br>
+        9,6 · 10^6 Pa = 90 times Earth atmospheric pressure <br>
+        <br><b>Semi-major axis</b><br>
+        0,723 AU<br>
+        <br><b>Eccentricity</b><br>
+        0,007<br>
+        <br><b>Orbital inclination</b><br>
+        4,3°<br>
+        <br><b>Axial tilt</b><br>
+        177°<br>
+        <br><b>Orbital speed</b><br>
+        35,0 km/s<br>
+        <br><b>Escape velocity</b><br>
+        10,4 km/s<br>
+        <br><b>Surface gravity</b><br>
+        8,9 m/s^2<br>
+        <br><b>Magnetic field</b><br>
+        Menší než 2 · 10^-9 T<br>
+        <br><b>Model diameter</b> (1:1 billion)<br>
+        12,1 mm<br>
+        </p>
+    ]]>
     </string>
-
-    <!-- Do not translate -->
-    <string name="preferences_filled">filled</string>
-    <string name="preference_nfc">nfc</string>
-    <string name="preference_qr">qr</string>
-    <string name="preference_none">none</string>
-    <string name="preference_scan_method">scanMethod</string>
 
 </resources>
