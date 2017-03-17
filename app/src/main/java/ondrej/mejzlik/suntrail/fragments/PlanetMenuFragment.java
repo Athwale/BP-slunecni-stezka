@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.utilities.ParametrizedToastOnClickListener;
@@ -74,7 +75,7 @@ public class PlanetMenuFragment extends Fragment {
             }
             // Set on click listener once for photo to show author
             ParametrizedToastOnClickListener listener = new ParametrizedToastOnClickListener();
-            listener.setToast(author, getActivity());
+            listener.setToast(author, getActivity(), Toast.LENGTH_SHORT);
             planetPhoto.setOnClickListener(listener);
         }
     }

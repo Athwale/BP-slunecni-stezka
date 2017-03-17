@@ -37,8 +37,9 @@
         android:orientation="vertical"
         android:paddingTop="10dp">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/planet_menu_image_view_photo"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"

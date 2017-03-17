@@ -1,15 +1,18 @@
 package ondrej.mejzlik.suntrail.fragments;
 
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.utilities.HtmlConverter;
+
+import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.SCROLL_POSITION_KEY;
 
 /**
  * Fragment class for how to play info screen.
@@ -28,7 +31,26 @@ public class GameInfoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_game_info, container, false);
         this.fillText(view);
+
+        // If we're being restored from a previous state,
+        // Move to last known position
+        if (savedInstanceState != null) {
+            int scrollPosition = savedInstanceState.getInt(SCROLL_POSITION_KEY);
+            ScrollView scrollView = (ScrollView) view.findViewById(R.id.game_info_scroll_view);
+            scrollView.scrollTo(0, scrollPosition);
+        }
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.game_info_scroll_view);
+        // scrollView can be null if the system tries to save position when the user presses home
+        // from a fragment opened from this fragment.
+        if (scrollView != null) {
+            outState.putInt(SCROLL_POSITION_KEY, scrollView.getScrollY());
+        }
     }
 
     /**
