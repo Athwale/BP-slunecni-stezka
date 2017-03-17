@@ -1,7 +1,7 @@
 package ondrej.mejzlik.suntrail.fragments;
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +11,14 @@ import android.widget.ImageView;
 import ondrej.mejzlik.suntrail.R;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
-import static ondrej.mejzlik.suntrail.config.Configuration.IMAGE_KEY;
-
 /**
  * Fragment class which can show a zoomable imageview.
  * Accepts a bundle with an argument key "image" which is an id of an image resource.
  */
 public class ZoomableImageFragment extends Fragment {
+    // Used to identify image inside a bundle of arguments for zoomable image fragment
+    public static final String IMAGE_KEY = "imageKey";
+
     public ZoomableImageFragment() {
         // Required empty public constructor
     }

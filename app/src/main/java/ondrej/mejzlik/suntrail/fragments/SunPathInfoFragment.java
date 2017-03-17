@@ -12,7 +12,7 @@ import android.widget.TextView;
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.utilities.HtmlConverter;
 
-import static ondrej.mejzlik.suntrail.config.Configuration.SCROLL_POSITION_KEY;
+import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.SCROLL_POSITION_KEY;
 
 /**
  * Fragment class for general Sun path information.

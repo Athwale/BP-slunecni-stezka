@@ -12,17 +12,19 @@ import ondrej.mejzlik.suntrail.fragments.GameInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.SunPathInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment;
 
-import static ondrej.mejzlik.suntrail.config.Configuration.IMAGE_ARGUMENT;
-import static ondrej.mejzlik.suntrail.config.Configuration.IMAGE_KEY;
-import static ondrej.mejzlik.suntrail.config.Configuration.INFO_BUTTON_GAME;
-import static ondrej.mejzlik.suntrail.config.Configuration.INFO_BUTTON_GENERAL;
-import static ondrej.mejzlik.suntrail.config.Configuration.INFO_BUTTON_INTENT_KEY;
+import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.INFO_BUTTON_GAME;
+import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.INFO_BUTTON_GENERAL;
+import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.INFO_BUTTON_INTENT_KEY;
+import static ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment.IMAGE_KEY;
 
 /**
  * This activity displays general information about Sun Path and How to play information using
  * fragments.
  */
 public class InfoScreenActivity extends Activity {
+    // Name for the bundle of arguments with a map inside saved instance state bundle
+    public static final String IMAGE_ARGUMENT = "imageArgument";
+    // Zoomable image fragment accepts a bundle with an image id
     private Bundle arguments = null;
 
     @Override
@@ -66,7 +68,7 @@ public class InfoScreenActivity extends Activity {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         // Save the bundle with image
-        savedInstanceState.putBundle(IMAGE_ARGUMENT, arguments);
+        savedInstanceState.putBundle(IMAGE_ARGUMENT, this.arguments);
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -101,7 +103,7 @@ public class InfoScreenActivity extends Activity {
 
         // Create fragment and set fragment arguments
         ZoomableImageFragment imageFragment = new ZoomableImageFragment();
-        imageFragment.setArguments(arguments);
+        imageFragment.setArguments(this.arguments);
 
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back

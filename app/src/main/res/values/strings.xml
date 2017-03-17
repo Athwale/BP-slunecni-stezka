@@ -32,7 +32,7 @@
     <string name="all_boards_button_name_moon">Moon</string>
     <string name="all_boards_button_name_ceres">Ceres</string>
     <string name="all_boards_button_name_jupiter">Jupiter</string>
-    <string name="all_boards_button_name_Aturn">Aturn</string>
+    <string name="all_boards_button_name_saturn">Aturn</string>
     <string name="all_boards_button_name_uranus">Uranus</string>
     <string name="all_boards_button_name_neptune">Neptune</string>
     <string name="all_boards_button_name_halley">Halley comet</string>
@@ -825,7 +825,7 @@
         </p>
     ]]>
     </string>
-    <string name="planet_text_uranus_top">
+    <string name="planet_text_uranus_top" formatted="false">
     <![CDATA[
         <p>
         Uranus was discovered only with the use of telescopes due to its small size, which is at the

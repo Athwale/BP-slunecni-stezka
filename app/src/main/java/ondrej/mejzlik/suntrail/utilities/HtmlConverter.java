@@ -3,10 +3,11 @@ package ondrej.mejzlik.suntrail.utilities;
 import android.text.Html;
 import android.text.Spanned;
 
-/**
- * Created by Ondrej Mejzlik on 2/27/17.
- */
 
+/**
+ * This class provides a support method to convert html from string resources into spanned text
+ * which shows correctly in Text Views.
+ */
 public class HtmlConverter {
 
     /**

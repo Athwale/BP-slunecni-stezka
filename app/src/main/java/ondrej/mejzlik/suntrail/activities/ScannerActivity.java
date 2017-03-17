@@ -12,38 +12,52 @@ import android.widget.Toast;
 
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment;
+import ondrej.mejzlik.suntrail.fragments.PlanetTextFragment;
 import ondrej.mejzlik.suntrail.fragments.QrScannerFragment;
 import ondrej.mejzlik.suntrail.fragments.ScannerChoiceFragment;
+import ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector;
 
-import static ondrej.mejzlik.suntrail.config.Configuration.HAS_NFC_QR;
-import static ondrej.mejzlik.suntrail.config.Configuration.HAS_NOTHING;
-import static ondrej.mejzlik.suntrail.config.Configuration.HAS_ONLY_NFC;
-import static ondrej.mejzlik.suntrail.config.Configuration.HAS_ONLY_QR;
-import static ondrej.mejzlik.suntrail.config.Configuration.PERMISSION_CAMERA;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_ATHWALE;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_INVALID;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_KEY;
-import static ondrej.mejzlik.suntrail.config.Configuration.SHOW_GAME_BUTTON;
-import static ondrej.mejzlik.suntrail.config.Configuration.SHOW_GAME_BUTTON_KEY;
-import static ondrej.mejzlik.suntrail.config.Configuration.USE_FLASH_KEY;
+import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.PLANET_RESOURCES_KEY;
+import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_ATHWALE;
+import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_INVALID;
 
 /**
  * This activity allows the user to pick which scanner to use. Then starts corresponding feagment
  * with the selected scanner.
  */
 public class ScannerActivity extends Activity {
+    // Used in scanner choice fragment and qr fragment to pass argument whether to use flash
+    public static final String USE_FLASH_KEY = "useFlash";
+    // Used to indicate which scanner or scanner options should the app use or offer in
+    // scanner choice fragment and scanner activity
+    public static final int HAS_NOTHING = 0;
+    public static final int HAS_NFC_QR = 1;
+    public static final int HAS_ONLY_QR = 2;
+    public static final int HAS_ONLY_NFC = 3;
+    // Used in scanner activity and qr fragment to identify camera permission request
+    public static final int PERMISSION_CAMERA = 1;
+    // Used in scanner activity and planet menu fragment to indicate that we scanned a planet
+    // and want the game mode button to appear.
+    public static final String SHOW_GAME_BUTTON_KEY = "gameModeKey";
+    public static final String SHOW_GAME_BUTTON = "gameMode";
+
+    private PlanetResourceCollector resourceCollector;
+    private Bundle planetResources = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
 
+        this.resourceCollector = new PlanetResourceCollector();
+        this.planetResources = new Bundle();
         if (findViewById(R.id.scanner_fragment_container) != null) {
             // If we're being restored from a previous state,
             // then we don't need to do anything and should return or else
             // we could end up with overlapping fragments.
             if (savedInstanceState != null) {
-                // Restore bundle with image
+                // Restore planet resources
+                this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
                 return;
             }
 
@@ -67,6 +81,21 @@ public class ScannerActivity extends Activity {
                 fragmentManager.popBackStackImmediate();
             }
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the chosen planet resources for use in planet text and audio fragments
+        savedInstanceState.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+        this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
     }
 
     /**
@@ -156,14 +185,14 @@ public class ScannerActivity extends Activity {
         } else {
             // Code valid we have a planet
             Toast.makeText(this, getResources().getString(R.string.toast_scanning_success), Toast.LENGTH_SHORT).show();
-            // Open planet menu fragment.
-            Bundle arguments = new Bundle();
-            arguments.putInt(PLANET_ID_KEY, planetId);
+            // Get all planet resources
+            this.planetResources = this.resourceCollector.getPlanetResources(planetId, this);
             // Make the menu fragment show the game mode button
-            arguments.putString(SHOW_GAME_BUTTON_KEY, SHOW_GAME_BUTTON);
+            this.planetResources.putString(SHOW_GAME_BUTTON_KEY, SHOW_GAME_BUTTON);
 
+            // Open planet menu fragment.
             PlanetMenuFragment planetMenuFragment = new PlanetMenuFragment();
-            planetMenuFragment.setArguments(arguments);
+            planetMenuFragment.setArguments(this.planetResources);
             transaction.replace(R.id.scanner_fragment_container, planetMenuFragment);
             transaction.addToBackStack(null);
             transaction.commit();
@@ -187,6 +216,24 @@ public class ScannerActivity extends Activity {
         arguments.putBoolean(USE_FLASH_KEY, useFlash);
         qrScannerFragment.setArguments(arguments);
         transaction.replace(R.id.scanner_fragment_container, qrScannerFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    /**
+     * Handles clicks from view text button in planet menu.
+     * Launches a new fragment corresponding to selected button.
+     *
+     * @param planetButton The button that has been clicked
+     */
+    public void viewTextButtonHandler(View planetButton) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        // Pass identified planet to fragment
+        PlanetTextFragment planetTextFragment = new PlanetTextFragment();
+        planetTextFragment.setArguments(this.planetResources);
+        transaction.replace(R.id.scanner_fragment_container, planetTextFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }

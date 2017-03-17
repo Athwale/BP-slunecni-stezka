@@ -24,8 +24,8 @@ import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.activities.ScannerActivity;
 import ondrej.mejzlik.suntrail.utilities.PlanetIdentifier;
 
-import static ondrej.mejzlik.suntrail.config.Configuration.PERMISSION_CAMERA;
-import static ondrej.mejzlik.suntrail.config.Configuration.USE_FLASH_KEY;
+import static ondrej.mejzlik.suntrail.activities.ScannerActivity.PERMISSION_CAMERA;
+import static ondrej.mejzlik.suntrail.activities.ScannerActivity.USE_FLASH_KEY;
 
 /**
  * This fragment contains the qr scanner which uses zxing library.

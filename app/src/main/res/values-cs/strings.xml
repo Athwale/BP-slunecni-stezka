@@ -890,7 +890,7 @@
         </p>
     ]]>
     </string>
-    <string name="planet_text_uranus_top">
+    <string name="planet_text_uranus_top" formatted="false">
     <![CDATA[
         <p>
         Uran je na hranici viditelnosti okem, a proto byl objeven až dalekohledem. Jeho prstence

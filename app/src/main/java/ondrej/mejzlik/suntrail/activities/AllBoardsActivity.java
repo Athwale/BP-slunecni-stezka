@@ -13,10 +13,9 @@ import ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment;
 import ondrej.mejzlik.suntrail.fragments.PlanetTextFragment;
 import ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment;
 import ondrej.mejzlik.suntrail.utilities.PlanetIdentifier;
+import ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector;
 
-import static ondrej.mejzlik.suntrail.config.Configuration.IMAGE_ARGUMENT;
-import static ondrej.mejzlik.suntrail.config.Configuration.IMAGE_KEY;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_KEY;
+import static ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment.IMAGE_KEY;
 
 /**
  * This activity displays a list of all available planets on the Sun path.
@@ -24,30 +23,40 @@ import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_KEY;
  * or play an audio file.
  */
 public class AllBoardsActivity extends Activity {
-    private int chosenPlanet = 0;
+    // Key to identify planet resources in a bundle
+    public static final String PLANET_RESOURCES_KEY = "planetResourcesKey";
+    // Key to identify bundle with sun trail map in a saved instance bundle
+    public static final String MAP_KEY = "mapKey";
+    // mapArguments hold the sun trail map for zoomable image fragment
+    private Bundle mapArguments = null;
+    private Bundle planetResources = null;
     private PlanetIdentifier identifier;
-    private Bundle arguments = null;
+    private PlanetResourceCollector resourceCollector = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_boards);
 
-        this.arguments = new Bundle();
+        // Initialize variables
+        this.mapArguments = new Bundle();
+        this.planetResources = new Bundle();
         this.identifier = new PlanetIdentifier();
+        this.resourceCollector = new PlanetResourceCollector();
+
         if (findViewById(R.id.all_boards_fragment_container) != null) {
             // If we're being restored from a previous state,
             // then we don't need to do anything and should return or else
             // we could end up with overlapping fragments.
             if (savedInstanceState != null) {
                 // Restore bundle with planet id and image
-                this.chosenPlanet = savedInstanceState.getInt(PLANET_ID_KEY);
-                this.arguments = savedInstanceState.getBundle(IMAGE_ARGUMENT);
+                this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
+                this.mapArguments = savedInstanceState.getBundle(MAP_KEY);
                 return;
             }
 
-            // Put the map into argument. We will not change the image any more, we can do it once.
-            this.arguments.putInt(IMAGE_KEY, R.drawable.pict_map_planets);
+            // Put the map into mapArguments. We will not change the image any more, we can do it once.
+            this.mapArguments.putInt(IMAGE_KEY, R.drawable.pict_map_planets);
             // Add planet list fragment to the fragment_container
             BoardsListFragment boardsListFragment = new BoardsListFragment();
             FragmentManager fragmentManager = getFragmentManager();
@@ -59,10 +68,10 @@ public class AllBoardsActivity extends Activity {
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        // Save the chosen planet id
-        savedInstanceState.putInt(PLANET_ID_KEY, chosenPlanet);
-        // Save the bundle with image
-        savedInstanceState.putBundle(IMAGE_ARGUMENT, arguments);
+        // Save the chosen planet resources for use in planet text and audio fragments
+        savedInstanceState.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
+        // Save the bundle with sun trail map
+        savedInstanceState.putBundle(MAP_KEY, this.mapArguments);
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -71,8 +80,8 @@ public class AllBoardsActivity extends Activity {
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         // Always call the superclass so it can restore the view hierarchy
         super.onRestoreInstanceState(savedInstanceState);
-        this.chosenPlanet = savedInstanceState.getInt(PLANET_ID_KEY);
-        this.arguments = savedInstanceState.getBundle(IMAGE_ARGUMENT);
+        this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
+        this.mapArguments = savedInstanceState.getBundle(MAP_KEY);
     }
 
     /**
@@ -82,16 +91,15 @@ public class AllBoardsActivity extends Activity {
      * @param planetButton The button that has been clicked
      */
     public void planetButtonsHandler(View planetButton) {
-        Bundle arguments = new Bundle();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        // Identify planet and get it's ID
-        this.chosenPlanet = this.identifier.getPlanetId((Button) planetButton);
-        arguments.putInt(PLANET_ID_KEY, this.chosenPlanet);
+        // Identify planet and get it's ID and get all planet resources
+        int chosenPlanet = this.identifier.getPlanetId((Button) planetButton);
+        this.planetResources = this.resourceCollector.getPlanetResources(chosenPlanet, this);
 
         PlanetMenuFragment planetMenuFragment = new PlanetMenuFragment();
-        planetMenuFragment.setArguments(arguments);
+        planetMenuFragment.setArguments(this.planetResources);
         transaction.replace(R.id.all_boards_fragment_container, planetMenuFragment);
         transaction.addToBackStack(null);
         transaction.commit();
@@ -104,18 +112,27 @@ public class AllBoardsActivity extends Activity {
      * @param planetButton The button that has been clicked
      */
     public void viewTextButtonHandler(View planetButton) {
-        Bundle arguments = new Bundle();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         // Pass chosen planet to fragment
-        arguments.putInt(PLANET_ID_KEY, this.chosenPlanet);
-
         PlanetTextFragment planetTextFragment = new PlanetTextFragment();
-        planetTextFragment.setArguments(arguments);
+        planetTextFragment.setArguments(this.planetResources);
         transaction.replace(R.id.all_boards_fragment_container, planetTextFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    /**
+     * Handles clicks from play audio button in planet menu.
+     * Launches a new fragment corresponding to selected button.
+     *
+     * @param planetButton The button that has been clicked
+     */
+    public void playAudioButtonHandler(View planetButton) {
+
+        // Pass chosen planet to fragment
+
     }
 
     /**
@@ -124,14 +141,14 @@ public class AllBoardsActivity extends Activity {
      *
      * @param view The button which has been clicked
      */
-    public void imageButtonsHandler(View view) {
+    public void mapButtonHandler(View view) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        // Create fragment and set fragment arguments
+        // Create fragment and set fragment mapArguments
         ZoomableImageFragment imageFragment = new ZoomableImageFragment();
         // Set the argument to contain boards map
-        imageFragment.setArguments(this.arguments);
+        imageFragment.setArguments(this.mapArguments);
 
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back

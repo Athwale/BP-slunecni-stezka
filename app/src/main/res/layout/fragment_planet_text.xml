@@ -4,7 +4,7 @@
     android:id="@+id/planet_text_fragment_relative_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@drawable/pict_yellow_activity_background"
+    android:background="@drawable/pict_yellow_activity_background"
     tools:context="ondrej.mejzlik.suntrail.fragments.PlanetTextFragment">
 
     <TextView
@@ -91,7 +91,7 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/yellow_button_background"
                 android:drawableTop="@drawable/ic_menu_map"
-                android:onClick="imageButtonsHandler"
+                android:onClick="mapButtonHandler"
                 android:paddingBottom="16dp"
                 android:text="@string/info_screen_map_button"
                 android:textColor="#000000"

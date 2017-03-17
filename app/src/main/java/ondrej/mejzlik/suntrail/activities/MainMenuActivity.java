@@ -10,15 +10,18 @@ import android.widget.TextView;
 
 import ondrej.mejzlik.suntrail.R;
 
-import static ondrej.mejzlik.suntrail.config.Configuration.INFO_BUTTON_GAME;
-import static ondrej.mejzlik.suntrail.config.Configuration.INFO_BUTTON_GENERAL;
-import static ondrej.mejzlik.suntrail.config.Configuration.INFO_BUTTON_INTENT_KEY;
-
 /**
  * This is the main activity which is launched after after launching the app.
  * Displays main menu.
  */
 public class MainMenuActivity extends Activity {
+    // Used in fragments to save scroll position
+    public static final String SCROLL_POSITION_KEY = "scrollPosition";
+    // Used in main menu in infoButtonsHandler to start either general info or game info fragment
+    // in InfoScreen activity
+    public static final String INFO_BUTTON_INTENT_KEY = "StartFragment";
+    public static final int INFO_BUTTON_GENERAL = 1;
+    public static final int INFO_BUTTON_GAME = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

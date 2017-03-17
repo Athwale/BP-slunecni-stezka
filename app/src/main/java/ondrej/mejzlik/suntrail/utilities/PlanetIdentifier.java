@@ -17,27 +17,30 @@ import static ondrej.mejzlik.suntrail.config.Configuration.NAME_SATURN;
 import static ondrej.mejzlik.suntrail.config.Configuration.NAME_SUN;
 import static ondrej.mejzlik.suntrail.config.Configuration.NAME_URANUS;
 import static ondrej.mejzlik.suntrail.config.Configuration.NAME_VENUS;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_ATHWALE;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_CERES;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_EARTH;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_HALLEY;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_INVALID;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_JUPITER;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_MARS;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_MERCURY;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_MOON;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_NEPTUNE;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_SATURN;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_SUN;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_URANUS;
-import static ondrej.mejzlik.suntrail.config.Configuration.PLANET_ID_VENUS;
 import static ondrej.mejzlik.suntrail.config.Configuration.SUN_TRAIL_NAME;
 
 /**
- * Created by Ondrej Mejzlik on 3/13/17.
+ * This class provides methods to get a unified planet identity integer from buttons in all boards
+ * menu, QR codes and NFC codes.
  */
-
 public class PlanetIdentifier {
+    // Planet identifiers used in PlanetResourceCollector and PlanetIdentifier to identify which
+    // planet data should we load.
+    public static final int PLANET_ID_SUN = 1;
+    public static final int PLANET_ID_MERCURY = 2;
+    public static final int PLANET_ID_VENUS = 3;
+    public static final int PLANET_ID_EARTH = 4;
+    public static final int PLANET_ID_MOON = 5;
+    public static final int PLANET_ID_MARS = 6;
+    public static final int PLANET_ID_CERES = 7;
+    public static final int PLANET_ID_JUPITER = 8;
+    public static final int PLANET_ID_HALLEY = 9;
+    public static final int PLANET_ID_SATURN = 10;
+    public static final int PLANET_ID_URANUS = 11;
+    public static final int PLANET_ID_NEPTUNE = 12;
+    public static final int PLANET_ID_INVALID = 13;
+    // Cheat authors name shows up
+    public static final int PLANET_ID_ATHWALE = 14;
 
     /**
      * Identifies planet based on which button was pressed in all boards fragment.
