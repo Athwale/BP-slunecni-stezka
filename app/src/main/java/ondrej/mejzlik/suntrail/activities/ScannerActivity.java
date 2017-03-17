@@ -15,9 +15,12 @@ import ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment;
 import ondrej.mejzlik.suntrail.fragments.PlanetTextFragment;
 import ondrej.mejzlik.suntrail.fragments.QrScannerFragment;
 import ondrej.mejzlik.suntrail.fragments.ScannerChoiceFragment;
+import ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment;
 import ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector;
 
+import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.MAP_KEY;
 import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.PLANET_RESOURCES_KEY;
+import static ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment.IMAGE_KEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_ATHWALE;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_INVALID;
 
@@ -43,12 +46,15 @@ public class ScannerActivity extends Activity {
 
     private PlanetResourceCollector resourceCollector;
     private Bundle planetResources = null;
+    private Bundle mapArguments = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
 
+        // Initialize variables
+        this.mapArguments = new Bundle();
         this.resourceCollector = new PlanetResourceCollector();
         this.planetResources = new Bundle();
         if (findViewById(R.id.scanner_fragment_container) != null) {
@@ -58,9 +64,12 @@ public class ScannerActivity extends Activity {
             if (savedInstanceState != null) {
                 // Restore planet resources
                 this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
+                this.mapArguments = savedInstanceState.getBundle(MAP_KEY);
                 return;
             }
 
+            // Put the map into mapArguments. We will not change the image any more, we can do it once.
+            this.mapArguments.putInt(IMAGE_KEY, R.drawable.pict_map_planets);
             // If the device only has a camera and no NFC reader, run qr scanner right away.
             // If the device only has NFC run NFC scanner.
             // If the device has both, open a selection screen.
@@ -87,6 +96,8 @@ public class ScannerActivity extends Activity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         // Save the chosen planet resources for use in planet text and audio fragments
         savedInstanceState.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
+        // Save the bundle with sun trail map
+        savedInstanceState.putBundle(MAP_KEY, this.mapArguments);
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -96,6 +107,7 @@ public class ScannerActivity extends Activity {
         // Always call the superclass so it can restore the view hierarchy
         super.onRestoreInstanceState(savedInstanceState);
         this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
+        this.mapArguments = savedInstanceState.getBundle(MAP_KEY);
     }
 
     /**
@@ -216,6 +228,29 @@ public class ScannerActivity extends Activity {
         arguments.putBoolean(USE_FLASH_KEY, useFlash);
         qrScannerFragment.setArguments(arguments);
         transaction.replace(R.id.scanner_fragment_container, qrScannerFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    /**
+     * Handles clicks from display map button.
+     * Opens a new zoomable image fragment with map.
+     *
+     * @param view The button which has been clicked
+     */
+    public void mapButtonHandler(View view) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        // Create fragment and set fragment mapArguments
+        ZoomableImageFragment imageFragment = new ZoomableImageFragment();
+        // Set the argument to contain boards map
+        imageFragment.setArguments(this.mapArguments);
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack so the user can navigate back
+        transaction.replace(R.id.scanner_fragment_container, imageFragment);
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.addToBackStack(null);
         transaction.commit();
     }
