@@ -118,7 +118,18 @@
     <string name="planet_text_ceres_top">
     <![CDATA[
         <p>
-        Translation missing...
+        The belt between Mars and Jupiter contains a lot of objects which are smaller than
+        asteroids. The first discovered one and also the largest of them all - 1000 km in size is
+        Ceres. Next discovered objects were Pallas, Juno and Vesta. Non of them is observable by the
+        bare eyes only. There is about 100 000 astronomical objects larger than 1 km. Their combined
+        mass though is less than the mass of Mercury. Most of these objects have not had gone
+        through the phase of remelting in the past. The temperature and pressure inside these small
+        objects was not high enough. They therefore most probbaly consist of the type of rock from
+        which larger planets formed.
+        </p>
+        <p>
+        <b>The mythological origin of the name:</b> Ceres was an Italian goddess of corn, grain,
+        growth and agriculture.
         </p>
         <p>
         Next stop<br>
@@ -253,7 +264,20 @@
     <string name="planet_text_halley_top">
     <![CDATA[
         <p>
-        Translation missing...
+        Orbits of comets are usually elongated, alliptical and more inclined to the plane of
+        ecliptic than the orbits of planets. When the comet approaches the Sun to the distance of
+        Mars it heats up enough that the ice starts to sublime and a cloud of dust and gasses forms
+        the cometary coma the nebulous envelope around the nucleus of a comet. Interactions with the
+        Solar wind then creates the tail. You can only see the nucleus of the comet at this stop.
+        While the nucleus is usually small - kilometers or tens of kilometers, the coma can be as
+        large as thousands or even millions of kilometers. The tail can be more than 150 million km
+        long (the distance between the Sun and the Earth). That would be hundrets of meters on our
+        path.
+        </p>
+        <p>
+        <b>The mythological origin of the name:</b> comets are usually named by their discoverers.
+        Although Edmund Halley (1656–1742) did not discover the comet, he was the first to predict
+        the comet`s return.
         </p>
         <p>
         Next stop<br>
@@ -387,7 +411,17 @@
     <string name="planet_text_mars_top">
     <![CDATA[
         <p>
-        Translation missing...
+        If you look at Mars you will immediately notice the distinctive red color. This is caused by
+        iron oxides. White polar caps are made of ice CO2 and H2O. In the present liquid water can
+        not exist on Mars because the atmosphere is too thin (atmospheric pressure on Mars is 100
+        times lower than on Earth). Mars has two small moons of irregular shapes: Phobos (27 km x 21
+        km x 19 km) abd Deimos. They are probably astronomical object caught by Marse`s gravity.
+        </p>
+        <p>
+        <b>The mythological origin of the name:</b> Mars was a Roman analogy to the Greek god of war
+        Ares, the son of the highest gods  Jupiter and Juno. Phobos and Deimos were a
+        personification of Fear and Terror. They were Arese`s companions and appeared next to him in
+        battles.
         </p>
         <p>
         Next stop<br>
@@ -517,7 +551,19 @@
     <string name="planet_text_moon_top">
     <![CDATA[
         <p>
-        Translation missing...
+        The Moon orbits around the Earth as a natural satellite. Compared to the Earth, the Moon is
+        four times smaller. Since it`s orbital period around Earth is the same as it`s sidereal
+        rotation period, only one hemisphere of the Moon is always facing the Earth. This phenomenon
+        is called rare rotation and it is caused by Earth`s tidal forces which slowed down original
+        faster Moon`s rotation in the past. According to nowadays knowledge the Moon formed after
+        the "proto-Earth" was hit by an astronomical object about the size of Mars. A large number
+        of debris from the collision then either fell back onto Earth or formed a ring which later
+        through collisions and gravity created the Moon.
+        </p>
+        <b>The mythological origin of the name:</b> the Moon is called "Luna" in poetry. This name
+        comes from Latin. The Roman goddess who had this name was an analogy to the Greek Selene.
+        Later also Artemis became the goddess of the Moon. Hekate was the goddess of the Moon in
+        it`s invisible phase.
         </p>
         <p>
         Next stop<br>
@@ -578,7 +624,18 @@
     <string name="planet_text_neptune_top">
     <![CDATA[
         <p>
-        Translation missing...
+        The Neptune is a planet which was first discovered by a mathematical calculation. Olny after
+        that it was observed on the sky. J. C. Adams and independently U. J. J. Leverrier calculated
+        Neptune`s orbit in the 1845 from Uranus orbit deviations. J. G. Galle found Neptune 1°
+        beyond the predicted location. To see Neptune we definitely need a telescope. Until recently
+        only two of Neptune`s moons were known: large Triton with a circular orbit and s small
+        Nereid which has an elongated elliptical orbit (Nereid can get as far away as 110 diameters
+        of Neptune).
+        </p>
+        <p>
+        <b>The mythological origin of the name:</b> the Neptune was an Italian god of water. Later
+        was equated with Poseidon and became the ruler of the sea. With his trident he could upset
+        the sea and shake the earth.
         </p>
         <p>
         Neptune is <b>the last stop</b> of the Sun path of Křtiny. The beginning of the Sun path is
@@ -842,7 +899,18 @@
     <string name="planet_text_venus_top">
     <![CDATA[
         <p>
-        Translation missing...
+        The Venus is always shrouded into dense clouds. Therefore direct sunlight can not be seen
+        from the surface. High surface temperature (Even higher than on Mercury) is caused by the
+        greenhouse effect - visible sunlight passes through the atmosphere, heats up the surface
+        which then radiates in infrared radiation. This radiation is effectively absorbed by the
+        atmosphere heating it up. Similar process is happening in Earth`s atmosphere but it is less
+        effective. The planet Venus revolves around it`s axis very slowly and to the opposite
+        direction than the direction Venus orbits around the Sun.
+        </p>
+        <p>
+        <b>The mythological origin of the name:</b> the Venus was a Roman analogy to the Greek
+        goddess of love, beauty and fertility - Aphrodite. She was born from the sea foam which came
+        to existence from the penis of castrated Uranus.
         </p>
         <p>
         Next stop<br>
