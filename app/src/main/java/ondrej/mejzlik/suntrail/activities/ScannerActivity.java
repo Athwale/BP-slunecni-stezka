@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import ondrej.mejzlik.suntrail.R;
+import ondrej.mejzlik.suntrail.fragments.AudioPlayerFragment;
 import ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment;
 import ondrej.mejzlik.suntrail.fragments.PlanetTextFragment;
 import ondrej.mejzlik.suntrail.fragments.QrScannerFragment;
@@ -20,6 +21,10 @@ import ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector;
 
 import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.MAP_KEY;
 import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.PLANET_RESOURCES_KEY;
+import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_END;
+import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_KEY_FROM;
+import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_KEY_TO;
+import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_START;
 import static ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment.IMAGE_KEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_ATHWALE;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_INVALID;
@@ -47,6 +52,8 @@ public class ScannerActivity extends Activity {
     private PlanetResourceCollector resourceCollector;
     private Bundle planetResources = null;
     private Bundle mapArguments = null;
+    private float savedRotationFrom = ROTATION_END;
+    private float savedRotationTo = ROTATION_START;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +72,8 @@ public class ScannerActivity extends Activity {
                 // Restore planet resources
                 this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
                 this.mapArguments = savedInstanceState.getBundle(MAP_KEY);
+                this.savedRotationFrom = savedInstanceState.getFloat(ROTATION_KEY_FROM);
+                this.savedRotationTo = savedInstanceState.getFloat(ROTATION_KEY_TO);
                 return;
             }
 
@@ -98,6 +107,9 @@ public class ScannerActivity extends Activity {
         savedInstanceState.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
         // Save the bundle with sun trail map
         savedInstanceState.putBundle(MAP_KEY, this.mapArguments);
+        // Save planet rotation
+        savedInstanceState.putFloat(ROTATION_KEY_FROM, this.savedRotationFrom);
+        savedInstanceState.putFloat(ROTATION_KEY_TO, this.savedRotationTo);
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -108,6 +120,8 @@ public class ScannerActivity extends Activity {
         super.onRestoreInstanceState(savedInstanceState);
         this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
         this.mapArguments = savedInstanceState.getBundle(MAP_KEY);
+        this.savedRotationFrom = savedInstanceState.getFloat(ROTATION_KEY_FROM);
+        this.savedRotationTo = savedInstanceState.getFloat(ROTATION_KEY_TO);
     }
 
     /**
@@ -201,6 +215,9 @@ public class ScannerActivity extends Activity {
             this.planetResources = this.resourceCollector.getPlanetResources(planetId, this);
             // Make the menu fragment show the game mode button
             this.planetResources.putString(SHOW_GAME_BUTTON_KEY, SHOW_GAME_BUTTON);
+            // Send rotation data to continue where we finished
+            this.planetResources.putFloat(ROTATION_KEY_FROM, this.savedRotationFrom);
+            this.planetResources.putFloat(ROTATION_KEY_TO, this.savedRotationTo);
 
             // Open planet menu fragment.
             PlanetMenuFragment planetMenuFragment = new PlanetMenuFragment();
@@ -271,6 +288,36 @@ public class ScannerActivity extends Activity {
         transaction.replace(R.id.scanner_fragment_container, planetTextFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    /**
+     * Handles clicks from play audio button in planet menu.
+     * Launches a new fragment corresponding to selected button.
+     *
+     * @param planetButton The button that has been clicked
+     */
+    public void playAudioButtonHandler(View planetButton) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        // Pass chosen planet resources to fragment
+        AudioPlayerFragment playerFragment = new AudioPlayerFragment();
+        playerFragment.setArguments(this.planetResources);
+        transaction.replace(R.id.scanner_fragment_container, playerFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    /**
+     * Saves planet rotation from fragments into member variables which are saved later
+     * into savedinstancebundle.
+     *
+     * @param from Where the animation ended.
+     * @param to   Where the animation ended.
+     */
+    public void saveRotationValue(float from, float to) {
+        this.savedRotationFrom = from;
+        this.savedRotationTo = to;
     }
 
     /**

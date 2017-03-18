@@ -101,6 +101,7 @@ public class SettingsActivity extends Activity {
         if (checkBoxClear.isChecked()) {
             // Clear game data
 
+            // Toast.makeText(getActivity(), "saved", Toast.LENGTH_SHORT).show();
             Toast.makeText(this, this.getResources().getString(R.string.toast_game_data_clear), Toast.LENGTH_SHORT).show();
             checkBoxClear.setChecked(false);
             view.setEnabled(false);

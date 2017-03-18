@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/yellow_button_background"
                     android:drawableTop="@drawable/ic_menu_play_game"
-                    android:paddingTop="38dp"
+                    android:paddingTop="18dp"
                     android:text="@string/planet_menu_button_game"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -108,6 +108,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/yellow_button_background"
                     android:drawableTop="@drawable/ic_menu_audio"
+                    android:onClick="playAudioButtonHandler"
                     android:text="@string/planet_menu_button_listen"
                     android:textColor="#000000"
                     android:textSize="12sp" />

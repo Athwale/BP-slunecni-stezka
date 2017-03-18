@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import ondrej.mejzlik.suntrail.R;
+import ondrej.mejzlik.suntrail.fragments.AudioPlayerFragment;
 import ondrej.mejzlik.suntrail.fragments.BoardsListFragment;
 import ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment;
 import ondrej.mejzlik.suntrail.fragments.PlanetTextFragment;
@@ -15,6 +16,10 @@ import ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment;
 import ondrej.mejzlik.suntrail.utilities.PlanetIdentifier;
 import ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector;
 
+import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_END;
+import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_KEY_FROM;
+import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_KEY_TO;
+import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_START;
 import static ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment.IMAGE_KEY;
 
 /**
@@ -30,6 +35,8 @@ public class AllBoardsActivity extends Activity {
     // mapArguments hold the sun trail map for zoomable image fragment
     private Bundle mapArguments = null;
     private Bundle planetResources = null;
+    private float savedRotationFrom = ROTATION_END;
+    private float savedRotationTo = ROTATION_START;
     private PlanetIdentifier identifier;
     private PlanetResourceCollector resourceCollector = null;
 
@@ -52,6 +59,8 @@ public class AllBoardsActivity extends Activity {
                 // Restore bundle with planet id and image
                 this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
                 this.mapArguments = savedInstanceState.getBundle(MAP_KEY);
+                this.savedRotationFrom = savedInstanceState.getFloat(ROTATION_KEY_FROM);
+                this.savedRotationTo = savedInstanceState.getFloat(ROTATION_KEY_TO);
                 return;
             }
 
@@ -72,6 +81,9 @@ public class AllBoardsActivity extends Activity {
         savedInstanceState.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
         // Save the bundle with sun trail map
         savedInstanceState.putBundle(MAP_KEY, this.mapArguments);
+        // Save planet rotation
+        savedInstanceState.putFloat(ROTATION_KEY_FROM, this.savedRotationFrom);
+        savedInstanceState.putFloat(ROTATION_KEY_TO, this.savedRotationTo);
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -82,6 +94,8 @@ public class AllBoardsActivity extends Activity {
         super.onRestoreInstanceState(savedInstanceState);
         this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
         this.mapArguments = savedInstanceState.getBundle(MAP_KEY);
+        this.savedRotationFrom = savedInstanceState.getFloat(ROTATION_KEY_FROM);
+        this.savedRotationTo = savedInstanceState.getFloat(ROTATION_KEY_TO);
     }
 
     /**
@@ -99,6 +113,9 @@ public class AllBoardsActivity extends Activity {
         this.planetResources = this.resourceCollector.getPlanetResources(chosenPlanet, this);
 
         PlanetMenuFragment planetMenuFragment = new PlanetMenuFragment();
+        // Send rotation data to continue where we finished
+        this.planetResources.putFloat(ROTATION_KEY_FROM, this.savedRotationFrom);
+        this.planetResources.putFloat(ROTATION_KEY_TO, this.savedRotationTo);
         planetMenuFragment.setArguments(this.planetResources);
         transaction.replace(R.id.all_boards_fragment_container, planetMenuFragment);
         transaction.addToBackStack(null);
@@ -115,7 +132,6 @@ public class AllBoardsActivity extends Activity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        // Pass chosen planet to fragment
         PlanetTextFragment planetTextFragment = new PlanetTextFragment();
         planetTextFragment.setArguments(this.planetResources);
         transaction.replace(R.id.all_boards_fragment_container, planetTextFragment);
@@ -130,9 +146,18 @@ public class AllBoardsActivity extends Activity {
      * @param planetButton The button that has been clicked
      */
     public void playAudioButtonHandler(View planetButton) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        // Pass chosen planet to fragment
-
+        // Pass chosen planet resources to fragment
+        AudioPlayerFragment playerFragment = new AudioPlayerFragment();
+        // Send rotation data to continue where we finished
+        this.planetResources.putFloat(ROTATION_KEY_FROM, this.savedRotationFrom);
+        this.planetResources.putFloat(ROTATION_KEY_TO, this.savedRotationTo);
+        playerFragment.setArguments(this.planetResources);
+        transaction.replace(R.id.all_boards_fragment_container, playerFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     /**
@@ -156,5 +181,17 @@ public class AllBoardsActivity extends Activity {
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    /**
+     * Saves planet rotation from fragments into member variables which are saved later
+     * into savedinstancebundle.
+     *
+     * @param from Where the animation ended.
+     * @param to   Where the animation ended.
+     */
+    public void saveRotationValue(float from, float to) {
+        this.savedRotationFrom = from;
+        this.savedRotationTo = to;
     }
 }
