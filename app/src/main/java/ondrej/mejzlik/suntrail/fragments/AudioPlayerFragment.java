@@ -117,6 +117,14 @@ public class AudioPlayerFragment extends Fragment {
         Bundle resources = getArguments();
         if (resources != null && resources.containsKey(PLANET_AUDIO_KEY)) {
             this.mediaPlayer = MediaPlayer.create(getActivity(), resources.getInt(PLANET_AUDIO_KEY));
+            this.mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    stopPlayback();
+                }
+
+            });
         }
 
         // Enable buttons
