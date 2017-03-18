@@ -32,7 +32,7 @@
     <string name="all_boards_button_name_moon">Moon</string>
     <string name="all_boards_button_name_ceres">Ceres</string>
     <string name="all_boards_button_name_jupiter">Jupiter</string>
-    <string name="all_boards_button_name_saturn">Aturn</string>
+    <string name="all_boards_button_name_saturn">Saturn</string>
     <string name="all_boards_button_name_uranus">Uranus</string>
     <string name="all_boards_button_name_neptune">Neptune</string>
     <string name="all_boards_button_name_halley">Halley comet</string>
@@ -138,7 +138,7 @@
         <p>
         Next stop<br>
         Jupiter, 364 million km
-        (That is 364 m on the path)
+        (That is 364 m on the trail)
         </p>
     ]]>
     </string>
@@ -212,7 +212,7 @@
         <p>
         Next stop<br>
         Moon, 0,38 million km
-        (That is 0,38 m on the path)
+        (That is 0,38 m on the trail)
         </p>
     ]]>
     </string>
@@ -268,15 +268,15 @@
     <string name="planet_text_halley_top">
     <![CDATA[
         <p>
-        Orbits of comets are usually elongated, alliptical and more inclined to the plane of
+        Orbits of comets are usually elongated, elliptical and more inclined to the plane of
         ecliptic than the orbits of planets. When the comet approaches the Sun to the distance of
         Mars it heats up enough that the ice starts to sublime and a cloud of dust and gasses forms
         the cometary coma the nebulous envelope around the nucleus of a comet. Interactions with the
         Solar wind then creates the tail. You can only see the nucleus of the comet at this stop.
         While the nucleus is usually small - kilometers or tens of kilometers, the coma can be as
         large as thousands or even millions of kilometers. The tail can be more than 150 million km
-        long (the distance between the Sun and the Earth). That would be hundrets of meters on our
-        path.
+        long (the distance between the Sun and the Earth). That would be hundreds of meters on our
+        trail.
         </p>
         <p>
         <b>The mythological origin of the name:</b> comets are usually named by their discoverers.
@@ -286,7 +286,7 @@
         <p>
         Next stop<br>
         Saturn, 329 million km
-        (That is 329 m on the path)
+        (That is 329 m on the trail)
         </p>
     ]]>
     </string>
@@ -359,7 +359,7 @@
         <p>
         Next stop<br>
         Halley, 322 million km
-        (That is 322 m on the path)
+        (That is 322 m on the trail)
         </p>
     ]]>
     </string>
@@ -419,7 +419,7 @@
         iron oxides. White polar caps are made of ice CO2 and H2O. In the present liquid water can
         not exist on Mars because the atmosphere is too thin (atmospheric pressure on Mars is 100
         times lower than on Earth). Mars has two small moons of irregular shapes: Phobos (27 km x 21
-        km x 19 km) abd Deimos. They are probably astronomical object caught by Marse`s gravity.
+        km x 19 km) and Deimos. They are probably astronomical object caught by Marse`s gravity.
         </p>
         <p>
         <b>The mythological origin of the name:</b> Mars was a Roman analogy to the Greek god of war
@@ -430,7 +430,7 @@
         <p>
         Next stop<br>
         Ceres, 186 million km
-        (That is 168 m on the path)
+        (That is 186 m on the trail)
         </p>
     ]]>
     </string>
@@ -499,7 +499,7 @@
         <p>
         Next stop<br>
         Venus, 50,3 million km
-        (That is 50,3 m on the path)
+        (That is 50,3 m on the trail)
         </p>
     ]]>
     </string>
@@ -572,7 +572,7 @@
         <p>
         Next stop<br>
         Mars, 78,3 million km
-        (That is 78,3 m on the path)
+        (That is 78,3 m on the trail)
         </p>
     ]]>
     </string>
@@ -637,12 +637,12 @@
         of Neptune).
         </p>
         <p>
-        <b>The mythological origin of the name:</b> the Neptune was an Italian god of water. Later
-        was equated with Poseidon and became the ruler of the sea. With his trident he could upset
+        <b>The mythological origin of the name:</b> the Neptune was an Italian god of water. He was
+        later equated with Poseidon and became the ruler of the sea. With his trident he could upset
         the sea and shake the earth.
         </p>
         <p>
-        Neptune is <b>the last stop</b> of the Sun path of Křtiny. The beginning of the Sun path is
+        Neptune is <b>the last stop</b> of the Sun trail of Křtiny. The beginning of the Sun trail is
         located near Křitny elementary school.
         </p>
     ]]>
@@ -711,7 +711,7 @@
         <p>
         Next stop<br>
         Uranus, 1 446 million km
-        (That is 1 446 m on the path)
+        (That is 1 446 m on the trail)
         </p>
     ]]>
     </string>
@@ -786,7 +786,7 @@
         <p>
         Next stop<br>
         Mercury, 58 million km
-        (That is 58 m on the path)
+        (That is 58 m on the trail)
         </p>
     ]]>
     </string>
@@ -847,7 +847,7 @@
         <p>
         Next stop<br>
         Neptune, 1 629 million km
-        (That is 1 629 m on the path)
+        (That is 1 629 m on the trail)
         </p>
     ]]>
     </string>
@@ -919,7 +919,7 @@
         <p>
         Next stop<br>
         Earth, 41,4 million km
-        (That is 41,4 m on the path)
+        (That is 41,4 m on the trail)
         </p>
     ]]>
     </string>

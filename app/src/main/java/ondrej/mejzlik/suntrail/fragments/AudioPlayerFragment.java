@@ -26,6 +26,7 @@ import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_KEY_
 import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_SPEED;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_HALLEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_JUPITER;
+import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_NEPTUNE;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_SATURN;
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_AUDIO_KEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_ID_KEY;
@@ -89,7 +90,7 @@ public class AudioPlayerFragment extends Fragment {
             animator.setInterpolator(new LinearInterpolator());
             // Do not animate planets which look weird when revolving
             int planetId = resources.getInt(PLANET_ID_KEY);
-            if (planetId == PLANET_ID_JUPITER || planetId == PLANET_ID_HALLEY || planetId == PLANET_ID_SATURN) {
+            if (planetId == PLANET_ID_JUPITER || planetId == PLANET_ID_HALLEY || planetId == PLANET_ID_SATURN || planetId == PLANET_ID_NEPTUNE) {
                 return;
             }
             animator.start();

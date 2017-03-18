@@ -21,6 +21,7 @@ import static ondrej.mejzlik.suntrail.activities.ScannerActivity.SHOW_GAME_BUTTO
 import static ondrej.mejzlik.suntrail.activities.ScannerActivity.SHOW_GAME_BUTTON_KEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_HALLEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_JUPITER;
+import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_NEPTUNE;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_SATURN;
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_ID_KEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_NAME_KEY;
@@ -105,7 +106,7 @@ public class PlanetMenuFragment extends Fragment {
             animator.setInterpolator(new LinearInterpolator());
             // Do not animate planets which look weird when revolving
             int planetId = resources.getInt(PLANET_ID_KEY);
-            if (planetId == PLANET_ID_JUPITER || planetId == PLANET_ID_HALLEY || planetId == PLANET_ID_SATURN) {
+            if (planetId == PLANET_ID_JUPITER || planetId == PLANET_ID_HALLEY || planetId == PLANET_ID_SATURN || planetId == PLANET_ID_NEPTUNE) {
                 return;
             }
             animator.start();
