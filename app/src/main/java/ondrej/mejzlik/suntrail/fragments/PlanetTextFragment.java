@@ -75,7 +75,7 @@ public class PlanetTextFragment extends Fragment {
         if (resources != null && resources.containsKey(PLANET_ID_KEY)) {
             // Set photo and texts
             // Set new title, photo and symbol
-            mainTitle.setText(resources.getString(PLANET_NAME_KEY));
+            mainTitle.setText(getResources().getString(resources.getInt(PLANET_NAME_KEY)));
             planetPhoto.setImageResource(resources.getInt(PLANET_HALF_PHOTO_KEY));
             planetSymbol.setImageResource(resources.getInt(PLANET_SYMBOL_KEY));
             // Load strings into text views

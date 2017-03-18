@@ -3,8 +3,6 @@ package ondrej.mejzlik.suntrail.utilities;
 import android.app.Activity;
 import android.os.Bundle;
 
-import ondrej.mejzlik.suntrail.R;
-
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_CERES;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_EARTH;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_HALLEY;
@@ -33,6 +31,7 @@ public class PlanetResourceCollector {
     public static final String PLANET_PHOTO_AUTHOR_KEY = "planetPhotoAuthorKey";
     // Identifier key for planet id when saved in bundle of arguments for fragment
     public static final String PLANET_ID_KEY = "planetId";
+    public static final String PLANET_AUDIO_KEY = "planetAudioKey";
 
     private static final String CERES_AUTHOR = "NASA/JPL-Caltech";
     private static final String EARTH_AUTHOR = "NASA/Goddard";
@@ -51,13 +50,15 @@ public class PlanetResourceCollector {
     /**
      * Gathers planet resouces and returns them as a Bundle.
      * Resources are:
-     * - String - translated planet name for the screen title
+     * - Resource ID - translated planet name for the screen title
      * - String - main photo author
      * - Resource ID - planet photo for planet menu fragment
      * - Resource ID - planet half photo for planet text fragment
      * - Resource ID - planet symbol for planet text fragment
      * - Resource ID - main planet text for planet text fragment
      * - Resource ID - main planet parameters for planet text fragment
+     * This returns resource ids because they get automatically translated when
+     * the language of the app changes.
      *
      * @param planetId Planet id from configuration
      * @param activity The activity from which we call this method
@@ -66,87 +67,79 @@ public class PlanetResourceCollector {
     public Bundle getPlanetResources(int planetId, Activity activity) {
         // Container for resources
         Bundle resources = new Bundle();
-        // New title for the fragment based on planet ID and which language we use
-        String newTitle;
         // Internal variable used to get the right resource. This name is used in resource names.
         String planetName;
         // This variable holds the name of the author who took the planet photo
         String author;
         switch (planetId) {
             case PLANET_ID_CERES: {
-                newTitle = activity.getResources().getString(R.string.all_boards_button_name_ceres);
                 planetName = "ceres";
                 author = CERES_AUTHOR;
                 break;
             }
             case PLANET_ID_EARTH: {
-                newTitle = activity.getResources().getString(R.string.all_boards_button_name_earth);
                 planetName = "earth";
                 author = EARTH_AUTHOR;
                 break;
             }
             case PLANET_ID_HALLEY: {
-                newTitle = activity.getResources().getString(R.string.all_boards_button_name_halley);
                 planetName = "halley";
                 author = HALLEY_AUTHOR;
                 break;
             }
             case PLANET_ID_JUPITER: {
-                newTitle = activity.getResources().getString(R.string.all_boards_button_name_jupiter);
                 planetName = "jupiter";
                 author = JUPITER_AUTHOR;
                 break;
             }
             case PLANET_ID_MARS: {
-                newTitle = activity.getResources().getString(R.string.all_boards_button_name_mars);
                 planetName = "mars";
                 author = MARS_AUTHOR;
                 break;
             }
             case PLANET_ID_MERCURY: {
-                newTitle = activity.getResources().getString(R.string.all_boards_button_name_mercury);
                 planetName = "mercury";
                 author = MERCURY_AUTHOR;
                 break;
             }
             case PLANET_ID_MOON: {
-                newTitle = activity.getResources().getString(R.string.all_boards_button_name_moon);
                 planetName = "moon";
                 author = MOON_AUTHOR;
                 break;
             }
             case PLANET_ID_NEPTUNE: {
-                newTitle = activity.getResources().getString(R.string.all_boards_button_name_neptune);
                 planetName = "neptune";
                 author = NEPTUNE_AUTHOR;
                 break;
             }
             case PLANET_ID_SATURN: {
-                newTitle = activity.getResources().getString(R.string.all_boards_button_name_saturn);
                 planetName = "saturn";
                 author = SATURN_AUTHOR;
                 break;
             }
             case PLANET_ID_SUN: {
-                newTitle = activity.getResources().getString(R.string.all_boards_button_name_sun);
                 planetName = "sun";
                 author = SUN_AUTHOR;
                 break;
             }
             case PLANET_ID_URANUS: {
-                newTitle = activity.getResources().getString(R.string.all_boards_button_name_uranus);
                 planetName = "uranus";
                 author = URANUS_AUTHOR;
                 break;
             }
             // Only other possible option is venus
             default: {
-                newTitle = activity.getResources().getString(R.string.all_boards_button_name_venus);
                 planetName = "venus";
                 author = VENUS_AUTHOR;
                 break;
             }
         }
+
+        // Get fragment title resource according to which planet we are displaying
+        // Titles are the same as button names in all boards list
+        // The resources for planet halves must have a name "all_boards_button_name_*name*"
+        String titleResourceName = "all_boards_button_name_" + planetName;
+        int titleResourceId = activity.getResources().getIdentifier(titleResourceName, "string", activity.getPackageName());
 
         // Get main planet photo resource according to which planet we are displaying
         // The resources for planet halves must have a name "pict_*planet*"
@@ -163,6 +156,12 @@ public class PlanetResourceCollector {
         String symbolResourceName = "pict_symbol_" + planetName;
         int symbolResourceId = activity.getResources().getIdentifier(symbolResourceName, "drawable", activity.getPackageName());
 
+        // Get planet audio resource
+        // The resources for planet audio files must have a name "planet_audio_*name*"
+        // If resource is not found it throws ResouceNotFoundException
+        String audioResourceName = "planet_audio_" + planetName;
+        int audioResourceId = activity.getResources().getIdentifier(audioResourceName, "raw", activity.getPackageName());
+
         // If the resource is not found, no image is displayed. Anyway resources do not change
         // the photo should always be found.
 
@@ -177,7 +176,7 @@ public class PlanetResourceCollector {
         int textTechId = activity.getResources().getIdentifier(textTechName, "string", activity.getPackageName());
 
         // Add all resources into bundle
-        resources.putString(PLANET_NAME_KEY, newTitle);
+        resources.putInt(PLANET_NAME_KEY, titleResourceId);
         resources.putString(PLANET_PHOTO_AUTHOR_KEY, author);
         resources.putInt(PLANET_ID_KEY, planetId);
         resources.putInt(PLANET_PHOTO_KEY, mainPhotoResourceId);
@@ -185,6 +184,7 @@ public class PlanetResourceCollector {
         resources.putInt(PLANET_SYMBOL_KEY, symbolResourceId);
         resources.putInt(PLANET_TEXT_KEY, textTopId);
         resources.putInt(PLANET_TEXT_TECH_KEY, textTechId);
+        resources.putInt(PLANET_AUDIO_KEY, audioResourceId);
 
         return resources;
     }

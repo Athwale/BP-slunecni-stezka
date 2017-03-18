@@ -3,13 +3,19 @@ package ondrej.mejzlik.suntrail.fragments;
 
 import android.animation.ObjectAnimator;
 import android.app.Fragment;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.IOException;
 
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.activities.AllBoardsActivity;
@@ -21,6 +27,7 @@ import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_SPEE
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_HALLEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_JUPITER;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_SATURN;
+import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_AUDIO_KEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_ID_KEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_NAME_KEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_PHOTO_KEY;
@@ -30,10 +37,10 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_P
  * The playback is saved when the user leaves the fragment or the fragment is stopped by the system.
  */
 public class AudioPlayerFragment extends Fragment {
-    private ObjectAnimator animator;
+    private ObjectAnimator animator = null;
     private float newValueFrom = 0;
     private float newValueTo = 0;
-
+    private MediaPlayer mediaPlayer = null;
 
     public AudioPlayerFragment() {
         // Required empty public constructor
@@ -45,6 +52,8 @@ public class AudioPlayerFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_audio_player, container, false);
         this.setContents(view, savedInstanceState);
+        this.prepareAudio(view);
+        this.setButtonListeners(view);
         return view;
     }
 
@@ -63,7 +72,7 @@ public class AudioPlayerFragment extends Fragment {
         // Resources must contain planet id
         if (resources != null && resources.containsKey(PLANET_ID_KEY)) {
             // Set photo and title
-            mainTitle.setText(resources.getString(PLANET_NAME_KEY));
+            mainTitle.setText(getResources().getString(resources.getInt(PLANET_NAME_KEY)));
             planetPhoto.setImageResource(resources.getInt(PLANET_PHOTO_KEY));
             this.newValueFrom = resources.getFloat(ROTATION_KEY_FROM);
             this.newValueTo = resources.getFloat(ROTATION_KEY_TO);
@@ -87,6 +96,123 @@ public class AudioPlayerFragment extends Fragment {
         }
     }
 
+    /**
+     * Loads planet audio file into media player. The file is localized from
+     * PlanetResourceCollector. Disables play and stop buttons while the file is being loaded.
+     *
+     * @param view View from onCreateView
+     */
+    private void prepareAudio(View view) {
+        // Hide pause while the player is not playing anything
+        LinearLayout pauseLayout = (LinearLayout) (view.findViewById(R.id.audio_player_linear_layout_pause));
+        pauseLayout.setVisibility(View.GONE);
+        // Disable buttons until the media player is initialized
+        Button playButton = (Button) (view.findViewById(R.id.audio_player_button_play));
+        playButton.setClickable(false);
+        Button stopButton = (Button) (view.findViewById(R.id.audio_player_button_stop));
+        stopButton.setClickable(false);
+
+        // Get audio file resource and load player
+        Bundle resources = getArguments();
+        if (resources != null && resources.containsKey(PLANET_AUDIO_KEY)) {
+            this.mediaPlayer = MediaPlayer.create(getActivity(), resources.getInt(PLANET_AUDIO_KEY));
+        }
+
+        // Enable buttons
+        playButton.setClickable(true);
+        stopButton.setClickable(true);
+    }
+
+    /**
+     * Sets up button on click listeners. Because we do not want to handle clicks inside the
+     * parent activity.
+     *
+     * @param view View from onCreateView
+     */
+    private void setButtonListeners(View view) {
+        final Button playButton = (Button) (view.findViewById(R.id.audio_player_button_play));
+        final Button pauseButton = (Button) (view.findViewById(R.id.audio_player_button_pause));
+        final Button stopButton = (Button) (view.findViewById(R.id.audio_player_button_stop));
+
+        playButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playAudio();
+            }
+        });
+
+        pauseButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pausePlayback();
+            }
+        });
+
+        stopButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopPlayback();
+            }
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // Release media player
+        this.mediaPlayer.release();
+        this.mediaPlayer = null;
+    }
+
+    /**
+     * Start playback enable stop button and make pause button visible.
+     */
+    private void playAudio() {
+        final LinearLayout playLayout = (LinearLayout) (getActivity().findViewById(R.id.audio_player_linear_layout_play));
+        final LinearLayout pauseLayout = (LinearLayout) (getActivity().findViewById(R.id.audio_player_linear_layout_pause));
+        final Button stopButton = (Button) (getActivity().findViewById(R.id.audio_player_button_stop));
+
+        // Hide play button, start playback and replace it with pause button
+        playLayout.setVisibility(View.GONE);
+        mediaPlayer.start();
+        pauseLayout.setVisibility(View.VISIBLE);
+        stopButton.setClickable(true);
+    }
+
+    /**
+     * Stop the media player, disable stop button and make play button visible.
+     */
+    private void stopPlayback() {
+        final LinearLayout pauseLayout = (LinearLayout) (getActivity().findViewById(R.id.audio_player_linear_layout_pause));
+        final LinearLayout playLayout = (LinearLayout) (getActivity().findViewById(R.id.audio_player_linear_layout_play));
+        final Button stopButton = (Button) (getActivity().findViewById(R.id.audio_player_button_stop));
+
+        // Hide pause button, stop playback and replace it with play button
+        pauseLayout.setVisibility(View.GONE);
+        stopButton.setClickable(false);
+        mediaPlayer.stop();
+        try {
+            mediaPlayer.prepare();
+        } catch (IOException ex) {
+            Toast.makeText(getActivity(), getResources().getString(R.string.toast_failed_media), Toast.LENGTH_SHORT).show();
+        }
+        playLayout.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Pause playback and make play button visible
+     */
+    private void pausePlayback() {
+        final LinearLayout pauseLayout = (LinearLayout) (getActivity().findViewById(R.id.audio_player_linear_layout_pause));
+        final LinearLayout playLayout = (LinearLayout) (getActivity().findViewById(R.id.audio_player_linear_layout_play));
+        // Hide pause button, stop playback and replace it with play button
+        if (mediaPlayer.isPlaying()) {
+            pauseLayout.setVisibility(View.GONE);
+            mediaPlayer.pause();
+            playLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -95,6 +221,8 @@ public class AudioPlayerFragment extends Fragment {
         Float rotation = (Float) this.animator.getAnimatedValue();
         this.newValueTo = rotation - 360;
         this.newValueFrom = rotation;
+        // Pause audio
+        this.pausePlayback();
 
         // Save current rotation into fragment's arguments, when the fragment resumes operation
         // it reads the rotation position in oncreateview.
@@ -117,5 +245,4 @@ public class AudioPlayerFragment extends Fragment {
         outState.putFloat(ROTATION_KEY_FROM, this.newValueFrom);
         outState.putFloat(ROTATION_KEY_TO, this.newValueTo);
     }
-
 }

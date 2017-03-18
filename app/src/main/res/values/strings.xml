@@ -50,6 +50,7 @@
     <string name="toast_scanning_fail">Incorrect QR code</string>
     <string name="toast_athwale">Athwale</string>
     <string name="toast_author">Author: </string>
+    <string name="toast_failed_media">Failed to load media</string>
     <string name="audio_player_play">Play</string>
     <string name="audio_player_pause">Pause</string>
     <string name="audio_player_stop">Stop</string>

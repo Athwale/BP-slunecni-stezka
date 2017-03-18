@@ -74,7 +74,7 @@ public class PlanetMenuFragment extends Fragment {
         if (resources != null && resources.containsKey(PLANET_ID_KEY)) {
             // Set photo and texts
             // Set new title, photo and author
-            mainTitle.setText(resources.getString(PLANET_NAME_KEY));
+            mainTitle.setText(getResources().getString(resources.getInt(PLANET_NAME_KEY)));
             planetPhoto.setImageResource(resources.getInt(PLANET_PHOTO_KEY));
             author = resources.getString(PLANET_PHOTO_AUTHOR_KEY);
             this.newValueFrom = resources.getFloat(ROTATION_KEY_FROM);
