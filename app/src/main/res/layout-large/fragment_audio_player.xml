@@ -50,6 +50,72 @@
             android:scaleType="fitCenter"
             android:src="@drawable/pict_sun" />
 
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/audio_player_button_play"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/yellow_button_background"
+                    android:drawableTop="@drawable/ic_menu_play_audio"
+                    android:onClick=""
+                    android:text="@string/audio_player_play"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/audio_player_button_pause"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/yellow_button_background"
+                    android:drawableTop="@drawable/ic_menu_pause_audio"
+                    android:onClick=""
+                    android:text="@string/audio_player_pause"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/audio_player_button_stop"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/yellow_button_background"
+                    android:drawableTop="@drawable/ic_menu_stop_audio"
+                    android:onClick=""
+                    android:text="@string/audio_player_stop"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

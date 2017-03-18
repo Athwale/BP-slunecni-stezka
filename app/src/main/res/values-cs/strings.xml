@@ -50,6 +50,9 @@
     <string name="toast_scanning_fail">Špatný QR kód</string>
     <string name="toast_athwale">Athwale</string>
     <string name="toast_author">Autor: </string>
+    <string name="audio_player_play">Play</string>
+    <string name="audio_player_pause">Pause</string>
+    <string name="audio_player_stop">Stop</string>
     <string name="sun_path_info_one">
     <![CDATA[
         <h2>Sluneční stezka</h2>

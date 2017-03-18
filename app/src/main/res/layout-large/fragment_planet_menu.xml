@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="45dp"
             android:adjustViewBounds="true"
+            android:background="@drawable/transparent_button_background"
             android:contentDescription="@string/planet_image_description"
             android:cropToPadding="false"
             android:paddingEnd="80dp"
