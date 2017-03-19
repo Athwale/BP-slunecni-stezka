@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.app.Fragment;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +14,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.IOException;
 
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.activities.AllBoardsActivity;
 import ondrej.mejzlik.suntrail.activities.ScannerActivity;
 
+import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_END;
 import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_KEY_FROM;
 import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_KEY_TO;
 import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_SPEED;
+import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_START;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_HALLEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_JUPITER;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_NEPTUNE;
@@ -39,8 +39,8 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_P
  */
 public class AudioPlayerFragment extends Fragment {
     private ObjectAnimator animator = null;
-    private float newValueFrom = 0;
-    private float newValueTo = 0;
+    private float newValueFrom = ROTATION_START;
+    private float newValueTo = ROTATION_END;
     private MediaPlayer mediaPlayer = null;
 
     public AudioPlayerFragment() {
@@ -125,6 +125,7 @@ public class AudioPlayerFragment extends Fragment {
                 }
 
             });
+            this.mediaPlayer.setWakeMode(getActivity(), PowerManager.PARTIAL_WAKE_LOCK);
         }
 
         // Enable buttons
@@ -197,14 +198,14 @@ public class AudioPlayerFragment extends Fragment {
         final Button stopButton = (Button) (getActivity().findViewById(R.id.audio_player_button_stop));
 
         // Hide pause button, stop playback and replace it with play button
+        // Recreate media player. Normal stop() method does not work on android 4.4.4
         pauseLayout.setVisibility(View.GONE);
         stopButton.setClickable(false);
         mediaPlayer.stop();
-        try {
-            mediaPlayer.prepare();
-        } catch (IOException ex) {
-            Toast.makeText(getActivity(), getResources().getString(R.string.toast_failed_media), Toast.LENGTH_SHORT).show();
-        }
+        mediaPlayer.reset();
+        mediaPlayer.release();
+        mediaPlayer = null;
+        this.mediaPlayer = MediaPlayer.create(getActivity(), getArguments().getInt(PLANET_AUDIO_KEY));
         playLayout.setVisibility(View.VISIBLE);
     }
 

@@ -40,8 +40,10 @@ public class PlanetMenuFragment extends Fragment {
     public static final int ROTATION_START = 0;
     public static final int ROTATION_END = 360;
     private ObjectAnimator animator;
-    private float newValueFrom = 0;
-    private float newValueTo = 0;
+    // Default values are needed because rotation may stop if the user changes language while
+    // inside one of the fragment with revolving planets.
+    private float newValueFrom = ROTATION_START;
+    private float newValueTo = ROTATION_END;
 
     public PlanetMenuFragment() {
         // Required empty public constructor
