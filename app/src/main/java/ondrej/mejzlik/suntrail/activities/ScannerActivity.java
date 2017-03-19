@@ -3,6 +3,7 @@ package ondrej.mejzlik.suntrail.activities;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -327,6 +328,8 @@ public class ScannerActivity extends Activity {
      * @param view The button that has been clicked
      */
     public void nfcScannerButtonHandler(View view) {
+        Intent intent = new Intent(this, NfcScannerActivity.class);
+        startActivity(intent);
         // TODO Pro nfc scanner startovat novou aktivitu abychom ji mohli enable a disable a tím
         // TODO zmemožňovat čtení nfc z jiného místa než scanneru
     }

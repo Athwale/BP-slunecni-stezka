@@ -82,6 +82,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/yellow_button_background"
                 android:drawableTop="@drawable/ic_menu_scan"
+                android:onClick="nfcScannerButtonHandler"
                 android:paddingBottom="16dp"
                 android:text="@string/scanner_choice_nfc"
                 android:textColor="#000000"

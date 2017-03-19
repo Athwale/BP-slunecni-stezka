@@ -23,6 +23,7 @@
     <string name="default_image_description">Picture</string>
     <string name="planet_image_description">Picture of the planet</string>
     <string name="schema_image_description">Solar system diagram</string>
+    <string name="animation_image_description">Scanning animation</string>
     <string name="all_boards_screen_title">View all boards</string>
     <string name="all_boards_button_name_sun">Sun</string>
     <string name="all_boards_button_name_mercury">Mecrury</string>
@@ -50,10 +51,11 @@
     <string name="toast_scanning_fail">Incorrect QR code</string>
     <string name="toast_athwale">Athwale</string>
     <string name="toast_author">Author: </string>
-    <string name="toast_failed_media">Failed to load media</string>
     <string name="audio_player_play">Play</string>
     <string name="audio_player_pause">Pause</string>
     <string name="audio_player_stop">Stop</string>
+    <string name="nfc_scanner_title">Place the device onto a NFC tag</string>
+    <string name="nfc_scanner_scanner_activated">Close range sensors activated</string>
     <string name="sun_path_info_one">
         <![CDATA[
 

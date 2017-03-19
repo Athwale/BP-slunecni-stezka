@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nfc_scanner_view_relative_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@drawable/pict_yellow_activity_background"
+    tools:context="ondrej.mejzlik.suntrail.activities.NfcScannerActivity">
+
+    <TextView
+        android:id="@+id/nfc_scanner_view_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:text="@string/nfc_scanner_title"
+        android:textColor="#ff0099cc"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/nfc_scanner_view_spacer"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="48dp"
+        android:background="#ff0099cc"
+        tools:ignore="UnknownId,UnknownIdInLayout" />
+
+    <TextView
+        android:id="@+id/nfc_scanner_text_view_scanner_activated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nfc_scanner_view_spacer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:text="@string/nfc_scanner_scanner_activated"
+        android:textColor="#ca151e" />
+
+    <ImageView
+        android:id="@+id/nfc_scanner_image_view_animation_ship"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/nfc_scanner_view_title"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/animation_image_description"
+        android:cropToPadding="false"
+        android:paddingBottom="150dp"
+        android:paddingEnd="150dp"
+        android:paddingStart="150dp"
+        android:paddingTop="150dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/pict_scanning_animation_ship" />
+
+    <ImageView
+        android:id="@+id/nfc_scanner_image_view_animation_planet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/animation_image_description"
+        android:cropToPadding="false"
+        android:paddingEnd="160dp"
+        android:paddingStart="160dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/pict_scanning_animation_planet" />
+
+</RelativeLayout>
