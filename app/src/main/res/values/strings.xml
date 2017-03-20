@@ -56,6 +56,7 @@
     <string name="audio_player_stop">Stop</string>
     <string name="nfc_scanner_title">Place the device onto a NFC tag</string>
     <string name="nfc_scanner_scanner_activated">Close range sensors activated</string>
+    <string name="nfc_scanner_scanner_running">Scanning in progress…</string>
     <string name="sun_path_info_one">
         <![CDATA[
 

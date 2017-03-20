@@ -56,6 +56,7 @@
     <string name="audio_player_stop">Stop</string>
     <string name="nfc_scanner_title">Přiložte zařízení na NFC tag</string>
     <string name="nfc_scanner_scanner_activated">Senzory krátkého dosahu aktivovány</string>
+    <string name="nfc_scanner_scanner_running">Probíhá skenování…</string>
     <string name="sun_path_info_one">
     <![CDATA[
         <h2>Sluneční stezka</h2>
