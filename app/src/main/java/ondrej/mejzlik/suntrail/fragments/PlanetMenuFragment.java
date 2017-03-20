@@ -8,12 +8,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -146,15 +144,6 @@ public class PlanetMenuFragment extends Fragment {
     private void slideUpAnimation(View view) {
         // Slide up animation
         ImageView planetPhoto = (ImageView) (view.findViewById(R.id.planet_menu_image_view_photo));
-        // Move the linear layout up a little bit to align the photo with the spacer line
-        LinearLayout linearLayout = (LinearLayout) (view.findViewById(R.id.planet_menu_linear_layout));
-        // Get photo top margin
-        LinearLayout.LayoutParams params = (android.widget.LinearLayout.LayoutParams) planetPhoto.getLayoutParams();
-
-        final ObjectAnimator spacerSlideUp = ObjectAnimator.ofFloat(linearLayout, "translationY", 0, -(params.topMargin));
-        spacerSlideUp.setDuration(100);
-        spacerSlideUp.setInterpolator(new AccelerateInterpolator());
-        spacerSlideUp.start();
 
         int height = planetPhoto.getDrawable().getIntrinsicHeight();
         // Slide up the photo beyond the screen
@@ -176,7 +165,6 @@ public class PlanetMenuFragment extends Fragment {
                         ((ScannerActivity) getActivity()).showTextFragment();
                     }
                 } catch (IllegalStateException ex) {
-                    spacerSlideUp.cancel();
                     photoSlideUp.cancel();
                 }
             }

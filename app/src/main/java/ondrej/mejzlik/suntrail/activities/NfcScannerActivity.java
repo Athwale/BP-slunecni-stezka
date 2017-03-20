@@ -39,7 +39,5 @@ public class NfcScannerActivity extends Activity {
         animatorShip.setRepeatCount(ObjectAnimator.INFINITE);
         animatorShip.setInterpolator(new AccelerateDecelerateInterpolator());
         animatorShip.start();
-
     }
-
 }

@@ -35,8 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/planet_menu_view_spacer"
-        android:orientation="vertical"
-        android:paddingTop="10dp">
+        android:orientation="vertical">
 
         <ImageButton
             android:id="@+id/planet_menu_image_view_photo"
@@ -51,7 +50,7 @@
             android:paddingEnd="16dp"
             android:paddingStart="16dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/pict_sun" />
+            tools:src="@drawable/pict_sun" />
 
         <LinearLayout
             android:id="@+id/linearLayout"

@@ -30,7 +30,7 @@ public class ParametrizedToastOnClickListener implements View.OnClickListener {
      *
      * @param string   Toast string
      * @param activity Toast activity
-     * @param length Toast.LENGTH_SHORT or Toast.LENGTH_LONG
+     * @param length   Toast.LENGTH_SHORT or Toast.LENGTH_LONG
      */
     public void setToast(String string, Activity activity, int length) {
         this.string = string;
