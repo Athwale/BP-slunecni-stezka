@@ -123,12 +123,10 @@ public class AllBoardsActivity extends Activity {
     }
 
     /**
-     * Handles clicks from view text button in planet menu.
-     * Launches a new fragment corresponding to selected button.
-     *
-     * @param planetButton The button that has been clicked
+     * This method replaces the planet menu fragment with a planet text fragment.
+     * This should only be called from planet menu fragment.
      */
-    public void viewTextButtonHandler(View planetButton) {
+    public void showTextFragment() {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 

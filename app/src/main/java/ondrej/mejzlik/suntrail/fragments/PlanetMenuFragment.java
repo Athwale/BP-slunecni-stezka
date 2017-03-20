@@ -1,14 +1,19 @@
 package ondrej.mejzlik.suntrail.fragments;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -96,6 +101,8 @@ public class PlanetMenuFragment extends Fragment {
             ParametrizedToastOnClickListener listener = new ParametrizedToastOnClickListener();
             listener.setToast(author, getActivity(), Toast.LENGTH_SHORT);
             planetPhoto.setOnClickListener(listener);
+            // Set on lick listener to play the slide up animation
+            this.setTextOnClickListener(view);
             // Create animator and set animation on the main photo to spin the planet around slowly
             // Restore rotation angle
             if (savedInstanceState != null && savedInstanceState.containsKey(ROTATION_KEY_FROM)) {
@@ -113,6 +120,68 @@ public class PlanetMenuFragment extends Fragment {
             }
             animator.start();
         }
+    }
+
+    /**
+     * This method sets up onClickListener for text button. This button plays the slide up
+     * animation and then calls parent activity method to replace this fragment.
+     *
+     * @param view View from onCreateView
+     */
+    private void setTextOnClickListener(final View view) {
+        Button textButton = (Button) (view.findViewById(R.id.planet_menu_button_view_text));
+
+        textButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                slideUpAnimation(view);
+            }
+        });
+    }
+
+    /**
+     * This method plays the slide up animation of the planet photo and then calls parent
+     * activity method to replace this fragment with the planet text.
+     */
+    private void slideUpAnimation(View view) {
+        // Slide up animation
+        ImageView planetPhoto = (ImageView) (view.findViewById(R.id.planet_menu_image_view_photo));
+        // Move the linear layout up a little bit to align the photo with the spacer line
+        LinearLayout linearLayout = (LinearLayout) (view.findViewById(R.id.planet_menu_linear_layout));
+        // Get photo top margin
+        LinearLayout.LayoutParams params = (android.widget.LinearLayout.LayoutParams) planetPhoto.getLayoutParams();
+
+        final ObjectAnimator spacerSlideUp = ObjectAnimator.ofFloat(linearLayout, "translationY", 0, -(params.topMargin));
+        spacerSlideUp.setDuration(100);
+        spacerSlideUp.setInterpolator(new AccelerateInterpolator());
+        spacerSlideUp.start();
+
+        int height = planetPhoto.getDrawable().getIntrinsicHeight();
+        // Slide up the photo beyond the screen
+        final ObjectAnimator photoSlideUp = ObjectAnimator.ofFloat(planetPhoto, "translationY", 0, -(height * 2));
+        photoSlideUp.setDuration(450);
+        photoSlideUp.setInterpolator(new DecelerateInterpolator());
+        // Add listener to switch the fragment when the slide up animation finishes
+        photoSlideUp.addListener(new AnimatorListenerAdapter() {
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                // If the aplication is closed while the animation is running we get an error
+                // onAnimationEnd can not run. Cancel the animations.
+                try {
+                    if (getActivity() instanceof AllBoardsActivity) {
+                        ((AllBoardsActivity) getActivity()).showTextFragment();
+                    }
+                    if (getActivity() instanceof ScannerActivity) {
+                        ((ScannerActivity) getActivity()).showTextFragment();
+                    }
+                } catch (IllegalStateException ex) {
+                    spacerSlideUp.cancel();
+                    photoSlideUp.cancel();
+                }
+            }
+        });
+        photoSlideUp.start();
     }
 
     @Override

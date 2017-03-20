@@ -1,10 +1,12 @@
 package ondrej.mejzlik.suntrail.fragments;
 
+import android.animation.ObjectAnimator;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -85,6 +87,13 @@ public class PlanetTextFragment extends Fragment {
             textViewTop.setText(htmlConverter.getHtmlForTextView(getString(textTopId)));
             TextView textViewBottom = (TextView) (view.findViewById(R.id.planet_text_text_view_tech));
             textViewBottom.setText(htmlConverter.getHtmlForTextView(getString(textTechId)));
+
+            // Slide down the photo
+            int height = planetPhoto.getDrawable().getIntrinsicHeight();
+            final ObjectAnimator spacerSlideDown = ObjectAnimator.ofFloat(planetPhoto, "translationY", -(height), 0);
+            spacerSlideDown.setDuration(200);
+            spacerSlideDown.setInterpolator(new DecelerateInterpolator());
+            spacerSlideDown.start();
         }
     }
 }

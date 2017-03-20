@@ -31,6 +31,7 @@
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <LinearLayout
+        android:id="@+id/planet_menu_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/planet_menu_view_spacer"
@@ -72,7 +73,6 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/yellow_button_background"
                     android:drawableTop="@drawable/ic_menu_view_text"
-                    android:onClick="viewTextButtonHandler"
                     android:text="@string/planet_menu_button_read_text"
                     android:textColor="#000000"
                     android:textSize="12sp" />
