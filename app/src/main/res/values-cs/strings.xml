@@ -57,6 +57,8 @@
     <string name="nfc_scanner_title">Přiložte zařízení na NFC tag</string>
     <string name="nfc_scanner_scanner_activated">Senzory krátkého dosahu aktivovány</string>
     <string name="nfc_scanner_scanner_running">Probíhá skenování…</string>
+    <string name="nfc_scanner_nfc_not_supported">toto zařízení nepodporuje NFC</string>
+    <string name="nfc_scanner_nfc_disabled">Povolte NFC v nastavení systému</string>
     <string name="sun_path_info_one">
     <![CDATA[
         <h2>Sluneční stezka</h2>
