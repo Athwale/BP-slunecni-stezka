@@ -45,17 +45,17 @@ public class PlanetIdentifier {
     public static final int PLANET_ID_INVALID = 13;
     // Cheat authors name shows up
     public static final int PLANET_ID_ATHWALE = 14;
+    static final int PLANET_ID_SUN = 1;
+    static final int PLANET_ID_MERCURY = 2;
+    static final int PLANET_ID_EARTH = 4;
+    static final int PLANET_ID_MOON = 5;
+    static final int PLANET_ID_MARS = 6;
+    static final int PLANET_ID_CERES = 7;
+    static final int PLANET_ID_URANUS = 11;
     // Planet identifiers used in PlanetResourceCollector and PlanetIdentifier to identify which
     // planet data should we load.
-    private static final int PLANET_ID_INTRO = 0;
-    private static final int PLANET_ID_SUN = 1;
-    private static final int PLANET_ID_MERCURY = 2;
-    private static final int PLANET_ID_VENUS = 3;
-    private static final int PLANET_ID_EARTH = 4;
-    private static final int PLANET_ID_MOON = 5;
-    private static final int PLANET_ID_MARS = 6;
-    private static final int PLANET_ID_CERES = 7;
-    private static final int PLANET_ID_URANUS = 11;
+    private final int PLANET_ID_INTRO = 0;
+    private final int PLANET_ID_VENUS = 3;
 
     /**
      * Identifies planet based on which button was pressed in all boards fragment.
@@ -122,43 +122,43 @@ public class PlanetIdentifier {
             return PLANET_ID_INVALID;
         }
 
-        if (string.contains(NAME_INTRO) || string.equals(NFC_INTRO)) {
+        if (string.contains(NAME_INTRO)) {
             return PLANET_ID_INTRO;
         }
-        if (string.contains(NAME_CERES) || string.equals(NFC_CERES)) {
+        if (string.contains(NAME_CERES)) {
             return PLANET_ID_CERES;
         }
-        if (string.contains(NAME_EARTH) || string.equals(NFC_EARTH)) {
+        if (string.contains(NAME_EARTH)) {
             return PLANET_ID_EARTH;
         }
-        if (string.contains(NAME_HALLEY) || string.equals(NFC_HALLEY)) {
+        if (string.contains(NAME_HALLEY)) {
             return PLANET_ID_HALLEY;
         }
-        if (string.contains(NAME_JUPITER) || string.equals(NFC_JUPITER)) {
+        if (string.contains(NAME_JUPITER)) {
             return PLANET_ID_JUPITER;
         }
-        if (string.contains(NAME_MARS) || string.equals(NFC_MARS)) {
+        if (string.contains(NAME_MARS)) {
             return PLANET_ID_MARS;
         }
-        if (string.contains(NAME_MERCURY) || string.equals(NFC_MERCURY)) {
+        if (string.contains(NAME_MERCURY)) {
             return PLANET_ID_MERCURY;
         }
-        if (string.contains(NAME_MOON) || string.equals(NFC_MOON)) {
+        if (string.contains(NAME_MOON)) {
             return PLANET_ID_MOON;
         }
-        if (string.contains(NAME_NEPTUNE) || string.equals(NFC_NEPTUNE)) {
+        if (string.contains(NAME_NEPTUNE)) {
             return PLANET_ID_NEPTUNE;
         }
-        if (string.contains(NAME_SATURN) || string.equals(NFC_SATURN)) {
+        if (string.contains(NAME_SATURN)) {
             return PLANET_ID_SATURN;
         }
-        if (string.contains(NAME_SUN) || string.equals(NFC_SUN)) {
+        if (string.contains(NAME_SUN)) {
             return PLANET_ID_SUN;
         }
-        if (string.contains(NAME_URANUS) || string.equals(NFC_URANUS)) {
+        if (string.contains(NAME_URANUS)) {
             return PLANET_ID_URANUS;
         }
-        if (string.contains(NAME_VENUS) || string.equals(NFC_VENUS)) {
+        if (string.contains(NAME_VENUS)) {
             return PLANET_ID_VENUS;
         }
 

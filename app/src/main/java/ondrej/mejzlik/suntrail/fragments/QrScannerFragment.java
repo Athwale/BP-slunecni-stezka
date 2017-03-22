@@ -102,6 +102,6 @@ public class QrScannerFragment extends Fragment implements ZXingScannerView.Resu
 
         // Parse and pass planet id to scanner activity
         int planetId = this.identifier.getPlanetIdFromQr(rawResult.getText());
-        ((ScannerActivity) this.getActivity()).processQrScannerResult(planetId);
+        ((ScannerActivity) this.getActivity()).processScannerResult(planetId);
     }
 }

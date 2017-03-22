@@ -48,9 +48,11 @@
     <string name="toast_permission_qr">Přístup ke kameře povolen</string>
     <string name="toast_no_scanner">Scanning functions unavailable</string>
     <string name="toast_scanning_success">Skenování úspěšné</string>
-    <string name="toast_scanning_fail">Špatný QR kód</string>
+    <string name="toast_scanning_fail">Neznámá planeta</string>
     <string name="toast_athwale">Athwale</string>
     <string name="toast_author">Autor: </string>
+    <string name="toast_developer_mode">Vývojářský mód aktivován. NFC scanner bude vypisovat
+        všechny informace</string>
     <string name="audio_player_play">Play</string>
     <string name="audio_player_pause">Pause</string>
     <string name="audio_player_stop">Stop</string>

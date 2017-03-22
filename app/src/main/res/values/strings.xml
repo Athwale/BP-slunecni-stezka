@@ -48,9 +48,11 @@
     <string name="toast_permission_qr">Camera permission granted</string>
     <string name="toast_no_scanner">Scanning functions unavailable</string>
     <string name="toast_scanning_success">Scanning success</string>
-    <string name="toast_scanning_fail">Incorrect QR code</string>
+    <string name="toast_scanning_fail">Unknown planet</string>
     <string name="toast_athwale">Athwale</string>
     <string name="toast_author">Author: </string>
+    <string name="toast_developer_mode">Developer mode enabled. NFC scanner will now output
+        full info</string>
     <string name="audio_player_play">Play</string>
     <string name="audio_player_pause">Pause</string>
     <string name="audio_player_stop">Stop</string>

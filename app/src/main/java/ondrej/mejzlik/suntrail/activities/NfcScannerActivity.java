@@ -10,6 +10,7 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.NfcA;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
@@ -19,21 +20,29 @@ import android.widget.Toast;
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.utilities.PlanetIdentifier;
 
+import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_ID_KEY;
+
 /**
  * MFC is not a dangerous permission, we do not have to ask for it.
  */
 public class NfcScannerActivity extends Activity {
+    private static final int CLICK_COUNT = 7;
     private PendingIntent pendingIntent = null;
     private NfcAdapter nfcAdapter = null;
     private IntentFilter[] intentFiltersArray = null;
     private String[][] techListsArray = null;
     private PlanetIdentifier identifier = null;
+    // Count clicks on title to enable developer mode
+    private int clickCounter = 0;
+    private boolean developerMode = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc_scanner);
         this.identifier = new PlanetIdentifier();
+        this.clickCounter = 0;
+        this.developerMode = false;
 
         // Animate text to fade out
         TextView sensorsActivated = (TextView) findViewById(R.id.nfc_scanner_text_view_scanner_activated);
@@ -57,6 +66,23 @@ public class NfcScannerActivity extends Activity {
         animatorShip.setRepeatCount(ObjectAnimator.INFINITE);
         animatorShip.setInterpolator(new AccelerateDecelerateInterpolator());
         animatorShip.start();
+
+        // This is used to temporarily turn on developer mode which enables displaying full NFC tag
+        // info after scan.
+        final TextView title = (TextView) findViewById(R.id.nfc_scanner_view_title);
+        // Click the title of the screen 7 times to enable developer mode.
+        title.setOnClickListener(new TextView.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!(clickCounter == CLICK_COUNT)) {
+                    clickCounter++;
+                } else {
+                    developerMode = true;
+                    title.setEnabled(false);
+                    Toast.makeText(getApplicationContext(), getString(R.string.toast_developer_mode), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
         this.setUpNfc();
         // This is necessary if nfc intent filter is set inside AndroidManifest.
@@ -121,8 +147,29 @@ public class NfcScannerActivity extends Activity {
      * @param intent Intent from onCreate or onNewIntent
      */
     private void handleNfc(Intent intent) {
-        String tagId = this.getTagInfo(intent);
-        Toast.makeText(this, tagId, Toast.LENGTH_LONG).show();
+        Bundle resultPlanetId = new Bundle();
+        // Decoded planet ID
+        int planetId;
+        if (this.developerMode) {
+            planetId = this.identifier.getPlanetIdFromNfc(this.getTagInfo(intent));
+        } else {
+            planetId = this.identifier.getPlanetIdFromNfc(this.getTagId(intent));
+        }
+        // Return result
+        resultPlanetId.putInt(PLANET_ID_KEY, planetId);
+        Intent resultIntent = new Intent();
+        resultIntent.putExtras(resultPlanetId);
+        setResult(RESULT_OK, resultIntent);
+        this.finish();
+    }
+
+    private void finishWithResult() {
+        Bundle conData = new Bundle();
+        conData.putString("param_result", "Thanks Thanks");
+        Intent intent = new Intent();
+        intent.putExtras(conData);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     /**

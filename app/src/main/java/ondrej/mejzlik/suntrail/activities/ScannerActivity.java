@@ -17,6 +17,7 @@ import ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment;
 import ondrej.mejzlik.suntrail.fragments.PlanetTextFragment;
 import ondrej.mejzlik.suntrail.fragments.QrScannerFragment;
 import ondrej.mejzlik.suntrail.fragments.ScannerChoiceFragment;
+import ondrej.mejzlik.suntrail.fragments.SunPathInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment;
 import ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector;
 
@@ -29,6 +30,7 @@ import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_STAR
 import static ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment.IMAGE_KEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_ATHWALE;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_INVALID;
+import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_ID_KEY;
 
 /**
  * This activity allows the user to pick which scanner to use. Then starts corresponding feagment
@@ -49,7 +51,7 @@ public class ScannerActivity extends Activity {
     // and want the game mode button to appear.
     public static final String SHOW_GAME_BUTTON_KEY = "gameModeKey";
     public static final String SHOW_GAME_BUTTON = "gameMode";
-
+    private static final int NFC_REQUEST = 1;
     private PlanetResourceCollector resourceCollector;
     private Bundle planetResources = null;
     private Bundle mapArguments = null;
@@ -142,8 +144,10 @@ public class ScannerActivity extends Activity {
                 break;
             }
             case HAS_ONLY_NFC: {
-                // TODO Run NFC scanner activity
-
+                Intent intent = new Intent(this, NfcScannerActivity.class);
+                // Start the NFC scanner to get its result. This result is received in
+                // onActivityResult().
+                startActivityForResult(intent, NFC_REQUEST);
                 break;
             }
             case HAS_ONLY_QR: {
@@ -159,6 +163,19 @@ public class ScannerActivity extends Activity {
         }
         transaction.commit();
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we are responding to
+        if (requestCode == NFC_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                Bundle result = data.getExtras();
+                this.processScannerResult(result.getInt(PLANET_ID_KEY));
+            }
+        }
+    }
+
+
 
     /**
      * Checks what scanning capabilities the device has.
@@ -184,9 +201,9 @@ public class ScannerActivity extends Activity {
      * Takes planet ID from qr scanner and runs the corresponding planet menu fragment.
      * QR scanner fragment is destroyed.
      *
-     * @param planetId Result from QR scanner
+     * @param planetId Scanned decoded planet ID
      */
-    public void processQrScannerResult(int planetId) {
+    public void processScannerResult(int planetId) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
@@ -213,17 +230,25 @@ public class ScannerActivity extends Activity {
             // Code valid we have a planet
             Toast.makeText(this, getResources().getString(R.string.toast_scanning_success), Toast.LENGTH_SHORT).show();
             // Get all planet resources
-            this.planetResources = this.resourceCollector.getPlanetResources(planetId, this);
-            // Make the menu fragment show the game mode button
-            this.planetResources.putString(SHOW_GAME_BUTTON_KEY, SHOW_GAME_BUTTON);
-            // Send rotation data to continue where we finished
-            this.planetResources.putFloat(ROTATION_KEY_FROM, this.savedRotationFrom);
-            this.planetResources.putFloat(ROTATION_KEY_TO, this.savedRotationTo);
+            // If planet ID is 0, it is the first board with general info
+            if (planetId == 0) {
+                // Open general info fragment
+                SunPathInfoFragment infoFragment = new SunPathInfoFragment();
+                transaction.replace(R.id.scanner_fragment_container, infoFragment);
+            } else {
+                // It is a planet, open planet menu
+                this.planetResources = this.resourceCollector.getPlanetResources(planetId, this);
+                // Make the menu fragment show the game mode button
+                this.planetResources.putString(SHOW_GAME_BUTTON_KEY, SHOW_GAME_BUTTON);
+                // Send rotation data to continue where we finished
+                this.planetResources.putFloat(ROTATION_KEY_FROM, this.savedRotationFrom);
+                this.planetResources.putFloat(ROTATION_KEY_TO, this.savedRotationTo);
 
-            // Open planet menu fragment.
-            PlanetMenuFragment planetMenuFragment = new PlanetMenuFragment();
-            planetMenuFragment.setArguments(this.planetResources);
-            transaction.replace(R.id.scanner_fragment_container, planetMenuFragment);
+                // Open planet menu fragment.
+                PlanetMenuFragment planetMenuFragment = new PlanetMenuFragment();
+                planetMenuFragment.setArguments(this.planetResources);
+                transaction.replace(R.id.scanner_fragment_container, planetMenuFragment);
+            }
             transaction.addToBackStack(null);
             transaction.commit();
         }
@@ -326,8 +351,7 @@ public class ScannerActivity extends Activity {
      */
     public void nfcScannerButtonHandler(View view) {
         Intent intent = new Intent(this, NfcScannerActivity.class);
-        startActivity(intent);
-        // TODO Pro nfc scanner startovat novou aktivitu abychom ji mohli enable a disable a tím
-        // TODO zmemožňovat čtení nfc z jiného místa než scanneru
+        // Start the NFC scanner to get its result
+        startActivityForResult(intent, NFC_REQUEST);
     }
 }

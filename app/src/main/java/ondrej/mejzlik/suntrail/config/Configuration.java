@@ -8,7 +8,7 @@ public class Configuration {
 
     // Strings that the QR code must contain in order to verify which planet the user scanned
     public static final String SUN_TRAIL_NAME = "http://slunecnistezka.cz/app/";
-    public static final String NAME_INTRO = "intro";
+    public static final String NAME_INTRO = "start";
     public static final String NAME_SUN = "slunce";
     public static final String NAME_MERCURY = "merkur";
     public static final String NAME_VENUS = "venuse";
