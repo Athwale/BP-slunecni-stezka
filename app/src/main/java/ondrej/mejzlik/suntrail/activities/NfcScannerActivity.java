@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.nfc.NfcAdapter;
@@ -160,16 +161,10 @@ public class NfcScannerActivity extends Activity {
         Intent resultIntent = new Intent();
         resultIntent.putExtras(resultPlanetId);
         setResult(RESULT_OK, resultIntent);
-        this.finish();
-    }
-
-    private void finishWithResult() {
-        Bundle conData = new Bundle();
-        conData.putString("param_result", "Thanks Thanks");
-        Intent intent = new Intent();
-        intent.putExtras(conData);
-        setResult(RESULT_OK, intent);
-        finish();
+        // If developer mode is enabled we finish the dialog
+        if (!developerMode) {
+            this.finish();
+        }
     }
 
     /**
@@ -231,6 +226,12 @@ public class NfcScannerActivity extends Activity {
             // Show a dialog with the info
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(tagInfo);
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialogInterface) {
+                    finish();
+                }
+            });
             AlertDialog dialog = builder.create();
             dialog.show();
         }
