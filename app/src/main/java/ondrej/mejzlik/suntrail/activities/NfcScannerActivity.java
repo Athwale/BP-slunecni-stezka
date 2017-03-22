@@ -2,6 +2,7 @@ package ondrej.mejzlik.suntrail.activities;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -16,20 +17,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import ondrej.mejzlik.suntrail.R;
+import ondrej.mejzlik.suntrail.utilities.PlanetIdentifier;
 
 /**
  * MFC is not a dangerous permission, we do not have to ask for it.
  */
 public class NfcScannerActivity extends Activity {
-    PendingIntent pendingIntent = null;
-    NfcAdapter nfcAdapter = null;
-    IntentFilter[] intentFiltersArray = null;
-    String[][] techListsArray = null;
+    private PendingIntent pendingIntent = null;
+    private NfcAdapter nfcAdapter = null;
+    private IntentFilter[] intentFiltersArray = null;
+    private String[][] techListsArray = null;
+    private PlanetIdentifier identifier = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc_scanner);
+        this.identifier = new PlanetIdentifier();
 
         // Animate text to fade out
         TextView sensorsActivated = (TextView) findViewById(R.id.nfc_scanner_text_view_scanner_activated);
@@ -54,8 +58,9 @@ public class NfcScannerActivity extends Activity {
         animatorShip.setInterpolator(new AccelerateDecelerateInterpolator());
         animatorShip.start();
 
-        this.handleNfc(getIntent());
         this.setUpNfc();
+        // This is necessary if nfc intent filter is set inside AndroidManifest.
+        //this.handleNfc(getIntent());
     }
 
     private void setUpNfc() {
@@ -106,12 +111,17 @@ public class NfcScannerActivity extends Activity {
 
     @Override
     public void onNewIntent(Intent intent) {
-        // We call this method from onCreate too so processing has to be done elswhere.
+        // If we call this method from onCreate too processing has to be done elsewhere.
         this.handleNfc(intent);
     }
 
+    /**
+     * This method handles the NFC tag, and decodes the NFC into a planet ID.
+     *
+     * @param intent Intent from onCreate or onNewIntent
+     */
     private void handleNfc(Intent intent) {
-        String tagId = this.getTagId(intent);
+        String tagId = this.getTagInfo(intent);
         Toast.makeText(this, tagId, Toast.LENGTH_LONG).show();
     }
 
@@ -123,6 +133,7 @@ public class NfcScannerActivity extends Activity {
      */
     private String getTagId(Intent intent) {
         String id = "";
+        // NFCs used on the trail fall to the category of TECH
         if (intent != null && NfcAdapter.ACTION_TECH_DISCOVERED.equals(intent.getAction())) {
             Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
             // Get tag ID
@@ -139,10 +150,11 @@ public class NfcScannerActivity extends Activity {
      * This method gets all tag info from the NFC tag. It is used in hidden developer mode.
      *
      * @param intent Intent from onCreate or onNewIntent
+     * @return Tag ID
      */
 
     private String getTagInfo(Intent intent) {
-        String id = "No ID";
+        String nuid = "No ID";
         if (intent != null && NfcAdapter.ACTION_TECH_DISCOVERED.equals(intent.getAction())) {
             Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
             // Read tag info
@@ -151,22 +163,30 @@ public class NfcScannerActivity extends Activity {
             // ID
             tagInfo += "Tag ID: ";
             byte[] tagId = tag.getId();
-            id = "";
+            nuid = "";
             tagInfo += "Length= " + tagId.length + "\n" + "ID: ";
             for (byte aTagId : tagId) {
                 // Bytes in android are signed, we need unsigned bytes and convert them to string.
-                id += Integer.toHexString(aTagId & 0xFF);
+                nuid += Integer.toHexString(aTagId & 0xFF);
             }
-            tagInfo += id;
+            tagInfo += nuid;
             // Tech contents
             String[] techList = tag.getTechList();
             tagInfo += "\nTech List ";
             tagInfo += "length = " + techList.length + "\n";
             for (String aTechList : techList) {
-                tagInfo += aTechList + "\n ";
+                tagInfo += aTechList + "\n";
             }
-            Toast.makeText(this, tagInfo, Toast.LENGTH_LONG).show();
+            // Decode planet
+            int planetId = this.identifier.getPlanetIdFromNfc(nuid);
+            tagInfo += "Internal planet ID: " + planetId;
+            tagInfo += "\nPlanet name: " + this.identifier.getPlanetName(planetId);
+            // Show a dialog with the info
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(tagInfo);
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
-        return id;
+        return nuid;
     }
 }

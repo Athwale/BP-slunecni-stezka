@@ -109,7 +109,7 @@ public class AllBoardsActivity extends Activity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         // Identify planet and get it's ID and get all planet resources
-        int chosenPlanet = this.identifier.getPlanetId((Button) planetButton);
+        int chosenPlanet = this.identifier.getPlanetIdFromButton((Button) planetButton);
         this.planetResources = this.resourceCollector.getPlanetResources(chosenPlanet, this);
 
         PlanetMenuFragment planetMenuFragment = new PlanetMenuFragment();

@@ -8,6 +8,7 @@ import static ondrej.mejzlik.suntrail.config.Configuration.NAME_ATHWALE;
 import static ondrej.mejzlik.suntrail.config.Configuration.NAME_CERES;
 import static ondrej.mejzlik.suntrail.config.Configuration.NAME_EARTH;
 import static ondrej.mejzlik.suntrail.config.Configuration.NAME_HALLEY;
+import static ondrej.mejzlik.suntrail.config.Configuration.NAME_INTRO;
 import static ondrej.mejzlik.suntrail.config.Configuration.NAME_JUPITER;
 import static ondrej.mejzlik.suntrail.config.Configuration.NAME_MARS;
 import static ondrej.mejzlik.suntrail.config.Configuration.NAME_MERCURY;
@@ -17,6 +18,19 @@ import static ondrej.mejzlik.suntrail.config.Configuration.NAME_SATURN;
 import static ondrej.mejzlik.suntrail.config.Configuration.NAME_SUN;
 import static ondrej.mejzlik.suntrail.config.Configuration.NAME_URANUS;
 import static ondrej.mejzlik.suntrail.config.Configuration.NAME_VENUS;
+import static ondrej.mejzlik.suntrail.config.Configuration.NFC_CERES;
+import static ondrej.mejzlik.suntrail.config.Configuration.NFC_EARTH;
+import static ondrej.mejzlik.suntrail.config.Configuration.NFC_HALLEY;
+import static ondrej.mejzlik.suntrail.config.Configuration.NFC_INTRO;
+import static ondrej.mejzlik.suntrail.config.Configuration.NFC_JUPITER;
+import static ondrej.mejzlik.suntrail.config.Configuration.NFC_MARS;
+import static ondrej.mejzlik.suntrail.config.Configuration.NFC_MERCURY;
+import static ondrej.mejzlik.suntrail.config.Configuration.NFC_MOON;
+import static ondrej.mejzlik.suntrail.config.Configuration.NFC_NEPTUNE;
+import static ondrej.mejzlik.suntrail.config.Configuration.NFC_SATURN;
+import static ondrej.mejzlik.suntrail.config.Configuration.NFC_SUN;
+import static ondrej.mejzlik.suntrail.config.Configuration.NFC_URANUS;
+import static ondrej.mejzlik.suntrail.config.Configuration.NFC_VENUS;
 import static ondrej.mejzlik.suntrail.config.Configuration.SUN_TRAIL_NAME;
 
 /**
@@ -24,23 +38,24 @@ import static ondrej.mejzlik.suntrail.config.Configuration.SUN_TRAIL_NAME;
  * menu, QR codes and NFC codes.
  */
 public class PlanetIdentifier {
-    // Planet identifiers used in PlanetResourceCollector and PlanetIdentifier to identify which
-    // planet data should we load.
-    public static final int PLANET_ID_SUN = 1;
-    public static final int PLANET_ID_MERCURY = 2;
-    public static final int PLANET_ID_VENUS = 3;
-    public static final int PLANET_ID_EARTH = 4;
-    public static final int PLANET_ID_MOON = 5;
-    public static final int PLANET_ID_MARS = 6;
-    public static final int PLANET_ID_CERES = 7;
     public static final int PLANET_ID_JUPITER = 8;
     public static final int PLANET_ID_HALLEY = 9;
     public static final int PLANET_ID_SATURN = 10;
-    public static final int PLANET_ID_URANUS = 11;
     public static final int PLANET_ID_NEPTUNE = 12;
     public static final int PLANET_ID_INVALID = 13;
     // Cheat authors name shows up
     public static final int PLANET_ID_ATHWALE = 14;
+    // Planet identifiers used in PlanetResourceCollector and PlanetIdentifier to identify which
+    // planet data should we load.
+    private static final int PLANET_ID_INTRO = 0;
+    private static final int PLANET_ID_SUN = 1;
+    private static final int PLANET_ID_MERCURY = 2;
+    private static final int PLANET_ID_VENUS = 3;
+    private static final int PLANET_ID_EARTH = 4;
+    private static final int PLANET_ID_MOON = 5;
+    private static final int PLANET_ID_MARS = 6;
+    private static final int PLANET_ID_CERES = 7;
+    private static final int PLANET_ID_URANUS = 11;
 
     /**
      * Identifies planet based on which button was pressed in all boards fragment.
@@ -48,7 +63,7 @@ public class PlanetIdentifier {
      * @param button The button which has been pressed
      * @return PLANET_ID constant from Configuration
      */
-    public int getPlanetId(Button button) {
+    public int getPlanetIdFromButton(Button button) {
         switch (button.getId()) {
             case R.id.all_boards_button_ceres: {
                 return PLANET_ID_CERES;
@@ -91,60 +106,165 @@ public class PlanetIdentifier {
     }
 
     /**
-     * Identifies planet by parsing the name from QR code string.
+     * Identifies planet by comparing the name from QR code contents string.
      *
-     * @param qrCodeContents The string read from QR code
+     * @param string The string read from QR code
      * @return PLANET_ID constant from Configuration
      */
-    public int getPlanetId(String qrCodeContents) {
+    public int getPlanetIdFromQr(String string) {
         // This happens when you scan the code in scanner choice fragment
-        if (qrCodeContents.contains(NAME_ATHWALE)) {
+        if (string.contains(NAME_ATHWALE)) {
             return PLANET_ID_ATHWALE;
         }
 
         // Check if the QR code contains http://slunecnistezka.cz/app/
-        if (!qrCodeContents.contains(SUN_TRAIL_NAME)) {
+        if (!string.contains(SUN_TRAIL_NAME)) {
             return PLANET_ID_INVALID;
         }
 
-        if (qrCodeContents.contains(NAME_CERES)) {
+        if (string.contains(NAME_INTRO) || string.equals(NFC_INTRO)) {
+            return PLANET_ID_INTRO;
+        }
+        if (string.contains(NAME_CERES) || string.equals(NFC_CERES)) {
             return PLANET_ID_CERES;
         }
-        if (qrCodeContents.contains(NAME_EARTH)) {
+        if (string.contains(NAME_EARTH) || string.equals(NFC_EARTH)) {
             return PLANET_ID_EARTH;
         }
-        if (qrCodeContents.contains(NAME_HALLEY)) {
+        if (string.contains(NAME_HALLEY) || string.equals(NFC_HALLEY)) {
             return PLANET_ID_HALLEY;
         }
-        if (qrCodeContents.contains(NAME_JUPITER)) {
+        if (string.contains(NAME_JUPITER) || string.equals(NFC_JUPITER)) {
             return PLANET_ID_JUPITER;
         }
-        if (qrCodeContents.contains(NAME_MARS)) {
+        if (string.contains(NAME_MARS) || string.equals(NFC_MARS)) {
             return PLANET_ID_MARS;
         }
-        if (qrCodeContents.contains(NAME_MERCURY)) {
+        if (string.contains(NAME_MERCURY) || string.equals(NFC_MERCURY)) {
             return PLANET_ID_MERCURY;
         }
-        if (qrCodeContents.contains(NAME_MOON)) {
+        if (string.contains(NAME_MOON) || string.equals(NFC_MOON)) {
             return PLANET_ID_MOON;
         }
-        if (qrCodeContents.contains(NAME_NEPTUNE)) {
+        if (string.contains(NAME_NEPTUNE) || string.equals(NFC_NEPTUNE)) {
             return PLANET_ID_NEPTUNE;
         }
-        if (qrCodeContents.contains(NAME_SATURN)) {
+        if (string.contains(NAME_SATURN) || string.equals(NFC_SATURN)) {
             return PLANET_ID_SATURN;
         }
-        if (qrCodeContents.contains(NAME_SUN)) {
+        if (string.contains(NAME_SUN) || string.equals(NFC_SUN)) {
             return PLANET_ID_SUN;
         }
-        if (qrCodeContents.contains(NAME_URANUS)) {
+        if (string.contains(NAME_URANUS) || string.equals(NFC_URANUS)) {
             return PLANET_ID_URANUS;
         }
-        if (qrCodeContents.contains(NAME_VENUS)) {
+        if (string.contains(NAME_VENUS) || string.equals(NFC_VENUS)) {
             return PLANET_ID_VENUS;
         }
 
         // If none of the ifs above worked, we scanned a wrong code.
         return PLANET_ID_INVALID;
+    }
+
+    /**
+     * Identifies planet by comparing the code from NFC tag string.
+     *
+     * @param string The string read NFC tag
+     * @return PLANET_ID constant from Configuration
+     */
+    public int getPlanetIdFromNfc(String string) {
+        if (string.equals(NFC_INTRO)) {
+            return PLANET_ID_INTRO;
+        }
+        if (string.equals(NFC_CERES)) {
+            return PLANET_ID_CERES;
+        }
+        if (string.equals(NFC_EARTH)) {
+            return PLANET_ID_EARTH;
+        }
+        if (string.equals(NFC_HALLEY)) {
+            return PLANET_ID_HALLEY;
+        }
+        if (string.equals(NFC_JUPITER)) {
+            return PLANET_ID_JUPITER;
+        }
+        if (string.equals(NFC_MARS)) {
+            return PLANET_ID_MARS;
+        }
+        if (string.equals(NFC_MERCURY)) {
+            return PLANET_ID_MERCURY;
+        }
+        if (string.equals(NFC_MOON)) {
+            return PLANET_ID_MOON;
+        }
+        if (string.equals(NFC_NEPTUNE)) {
+            return PLANET_ID_NEPTUNE;
+        }
+        if (string.equals(NFC_SATURN)) {
+            return PLANET_ID_SATURN;
+        }
+        if (string.equals(NFC_SUN)) {
+            return PLANET_ID_SUN;
+        }
+        if (string.equals(NFC_URANUS)) {
+            return PLANET_ID_URANUS;
+        }
+        if (string.equals(NFC_VENUS)) {
+            return PLANET_ID_VENUS;
+        }
+
+        // If none of the ifs above worked, we scanned a wrong code.
+        return PLANET_ID_INVALID;
+    }
+
+    /**
+     * Reverse method to get planet name from id.
+     *
+     * @param planetId Constant planet ID from PlanetIdentifier
+     * @return Planet name from Configuration
+     */
+    public String getPlanetName(int planetId) {
+        switch (planetId) {
+            case PLANET_ID_CERES: {
+                return NAME_CERES;
+            }
+            case PLANET_ID_EARTH: {
+                return NAME_EARTH;
+            }
+            case PLANET_ID_HALLEY: {
+                return NAME_HALLEY;
+            }
+            case PLANET_ID_JUPITER: {
+                return NAME_JUPITER;
+            }
+            case PLANET_ID_MARS: {
+                return NAME_MARS;
+            }
+            case PLANET_ID_MERCURY: {
+                return NAME_MERCURY;
+            }
+            case PLANET_ID_MOON: {
+                return NAME_MOON;
+            }
+            case PLANET_ID_NEPTUNE: {
+                return NAME_NEPTUNE;
+            }
+            case PLANET_ID_SATURN: {
+                return NAME_SATURN;
+            }
+            case PLANET_ID_VENUS: {
+                return NAME_VENUS;
+            }
+            case PLANET_ID_URANUS: {
+                return NAME_URANUS;
+            }
+            case PLANET_ID_SUN: {
+                return NAME_SUN;
+            }
+            case PLANET_ID_INTRO: {
+                return NAME_INTRO;
+            }
+        }
+        return "INVALID_ID";
     }
 }
