@@ -12,7 +12,7 @@ import ondrej.mejzlik.suntrail.R;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
- * Fragment class which can show a zoomable imageview.
+ * Fragment class which can show a zoomable imageView.
  * Accepts a bundle with an argument key "image" which is an id of an image resource.
  */
 public class ZoomableImageFragment extends Fragment {
@@ -42,7 +42,7 @@ public class ZoomableImageFragment extends Fragment {
             ImageView imageView = (ImageView) (view.findViewById(R.id.zoomable_image_view));
             // Set image into image view
             imageView.setImageResource(imageResource);
-            // Resize image view otherwise zooming is clipped at viewbounds
+            // Resize image view otherwise zooming is clipped at view bounds
             imageView.getLayoutParams().height = displaymetrics.heightPixels;
             imageView.getLayoutParams().width = displaymetrics.widthPixels;
             // Attach zooming capabilities

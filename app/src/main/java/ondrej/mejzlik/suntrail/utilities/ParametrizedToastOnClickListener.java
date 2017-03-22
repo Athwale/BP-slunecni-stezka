@@ -21,11 +21,11 @@ public class ParametrizedToastOnClickListener implements View.OnClickListener {
     private String string = "";
     private Activity activity = null;
     private int duration = 2000;
-    private int toastLenght = Toast.LENGTH_SHORT;
+    private int toastLength = Toast.LENGTH_SHORT;
 
     /**
-     * Set the toast string along with which activity does the toast belong to and the lenght.
-     * Lenght can be Toast.LENGTH_SHORT or Toast.LENGTH_LONG. In case of wrong arguments,
+     * Set the toast string along with which activity does the toast belong to and the length.
+     * Length can be Toast.LENGTH_SHORT or Toast.LENGTH_LONG. In case of wrong arguments,
      * Toast.LENGTH_SHORT is used. The view click action will be paused while the toast is visible.
      *
      * @param string   Toast string
@@ -37,10 +37,10 @@ public class ParametrizedToastOnClickListener implements View.OnClickListener {
         this.activity = activity;
         if (length == Toast.LENGTH_LONG) {
             this.duration = 3500;
-            this.toastLenght = length;
+            this.toastLength = length;
         } else if (length == Toast.LENGTH_SHORT) {
             this.duration = 2000;
-            this.toastLenght = length;
+            this.toastLength = length;
         }
     }
 
@@ -55,7 +55,7 @@ public class ParametrizedToastOnClickListener implements View.OnClickListener {
         Timer timer = new Timer();
 
         String toast = activity.getResources().getString(R.string.toast_author) + " " + string;
-        Toast.makeText(activity, toast, this.toastLenght).show();
+        Toast.makeText(activity, toast, this.toastLength).show();
         // Disable showing more than one toast at a time. Enable clicking after the toast has
         // vanished.
         view.setClickable(false);

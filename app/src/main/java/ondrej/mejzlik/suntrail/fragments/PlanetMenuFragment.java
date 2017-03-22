@@ -155,7 +155,7 @@ public class PlanetMenuFragment extends Fragment {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                // If the aplication is closed while the animation is running we get an error
+                // If the application is closed while the animation is running we get an error
                 // onAnimationEnd can not run. Cancel the animations.
                 try {
                     if (getActivity() instanceof AllBoardsActivity) {
@@ -176,13 +176,13 @@ public class PlanetMenuFragment extends Fragment {
     public void onPause() {
         super.onPause();
         // Save planet rotation angle on pause. onSaveInstanceState is called when the
-        // app is replaced. We need to save it inide a running app.
+        // app is replaced. We need to save it inside a running app.
         Float rotation = (Float) this.animator.getAnimatedValue();
         this.newValueTo = rotation - 360;
         this.newValueFrom = rotation;
 
         // Save current rotation into fragment's arguments, when the fragment resumes operation
-        // it reads the rotation position in oncreateview.
+        // it reads the rotation position in onCreateView.
         getArguments().putFloat(ROTATION_KEY_FROM, this.newValueFrom);
         getArguments().putFloat(ROTATION_KEY_TO, this.newValueTo);
 

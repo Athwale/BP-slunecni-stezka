@@ -60,7 +60,7 @@ public class SunPathInfoFragment extends Fragment {
      */
     private void fillText(View view) {
         HtmlConverter htmlConverter = new HtmlConverter();
-        // Load strings into textviews
+        // Load strings into textViews
         TextView textViewOne = (TextView) (view.findViewById(R.id.sun_path_info_text_view_one));
         textViewOne.setText(htmlConverter.getHtmlForTextView(getString(R.string.sun_path_info_one)));
         textViewOne.setMovementMethod(LinkMovementMethod.getInstance());

@@ -33,24 +33,24 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_INVAL
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_ID_KEY;
 
 /**
- * This activity allows the user to pick which scanner to use. Then starts corresponding feagment
+ * This activity allows the user to pick which scanner to use. Then starts corresponding fragment
  * with the selected scanner.
  */
 public class ScannerActivity extends Activity {
     // Used in scanner choice fragment and qr fragment to pass argument whether to use flash
     public static final String USE_FLASH_KEY = "useFlash";
-    // Used to indicate which scanner or scanner options should the app use or offer in
-    // scanner choice fragment and scanner activity
-    public static final int HAS_NOTHING = 0;
-    public static final int HAS_NFC_QR = 1;
-    public static final int HAS_ONLY_QR = 2;
-    public static final int HAS_ONLY_NFC = 3;
     // Used in scanner activity and qr fragment to identify camera permission request
     public static final int PERMISSION_CAMERA = 1;
     // Used in scanner activity and planet menu fragment to indicate that we scanned a planet
     // and want the game mode button to appear.
     public static final String SHOW_GAME_BUTTON_KEY = "gameModeKey";
     public static final String SHOW_GAME_BUTTON = "gameMode";
+    // Used to indicate which scanner or scanner options should the app use or offer in
+    // scanner choice fragment and scanner activity
+    private static final int HAS_NOTHING = 0;
+    private static final int HAS_NFC_QR = 1;
+    private static final int HAS_ONLY_QR = 2;
+    private static final int HAS_ONLY_NFC = 3;
     private static final int NFC_REQUEST = 1;
     private PlanetResourceCollector resourceCollector;
     private Bundle planetResources = null;
@@ -132,7 +132,7 @@ public class ScannerActivity extends Activity {
      * Otherwise opens a selection screen.
      */
     private void selectScanner() {
-        // Fragment we add here is the first one. No add to backstack is needed.
+        // Fragment we add here is the first one. No add to back stack is needed.
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
@@ -333,7 +333,7 @@ public class ScannerActivity extends Activity {
 
     /**
      * Saves planet rotation from fragments into member variables which are saved later
-     * into savedinstancebundle.
+     * into savedInstanceBundle.
      *
      * @param from Where the animation ended.
      * @param to   Where the animation ended.

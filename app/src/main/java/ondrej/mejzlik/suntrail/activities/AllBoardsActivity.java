@@ -183,7 +183,7 @@ public class AllBoardsActivity extends Activity {
 
     /**
      * Saves planet rotation from fragments into member variables which are saved later
-     * into savedinstancebundle.
+     * into savedInstanceBundle.
      *
      * @param from Where the animation ended.
      * @param to   Where the animation ended.

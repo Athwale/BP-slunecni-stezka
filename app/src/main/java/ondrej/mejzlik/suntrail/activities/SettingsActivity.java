@@ -92,7 +92,7 @@ public class SettingsActivity extends Activity {
     /**
      * Handles clicks from clear game data button in settings.
      * If clear game data checkbox is checked, clears game data.
-     * After completion disables itself and uncheckes clear game data checkbox.
+     * After completion disables itself and uncheck clear game data checkbox.
      *
      * @param view The button that has been clicked
      */

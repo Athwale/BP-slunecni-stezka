@@ -227,7 +227,7 @@ public class AudioPlayerFragment extends Fragment {
     public void onPause() {
         super.onPause();
         // Save planet rotation angle on pause. onSaveInstanceState is called when the
-        // app is replaced. We need to save it inide a running app.
+        // app is replaced. We need to save it inside a running app.
         Float rotation = (Float) this.animator.getAnimatedValue();
         this.newValueTo = rotation - 360;
         this.newValueFrom = rotation;
@@ -235,7 +235,7 @@ public class AudioPlayerFragment extends Fragment {
         this.pausePlayback();
 
         // Save current rotation into fragment's arguments, when the fragment resumes operation
-        // it reads the rotation position in oncreateview.
+        // it reads the rotation position in onCreateView.
         getArguments().putFloat(ROTATION_KEY_FROM, this.newValueFrom);
         getArguments().putFloat(ROTATION_KEY_TO, this.newValueTo);
 

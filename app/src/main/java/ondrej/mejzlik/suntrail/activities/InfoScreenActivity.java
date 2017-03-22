@@ -23,7 +23,7 @@ import static ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment.IMAGE_KEY;
  */
 public class InfoScreenActivity extends Activity {
     // Name for the bundle of arguments with a map inside saved instance state bundle
-    public static final String IMAGE_ARGUMENT = "imageArgument";
+    private static final String IMAGE_ARGUMENT = "imageArgument";
     // Zoomable image fragment accepts a bundle with an image id
     private Bundle arguments = null;
 

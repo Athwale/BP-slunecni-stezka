@@ -48,7 +48,7 @@ public class PlanetResourceCollector {
 
 
     /**
-     * Gathers planet resouces and returns them as a Bundle.
+     * Gathers planet resources and returns them as a Bundle.
      * Resources are:
      * - Resource ID - translated planet name for the screen title
      * - String - main photo author
@@ -158,7 +158,7 @@ public class PlanetResourceCollector {
 
         // Get planet audio resource
         // The resources for planet audio files must have a name "planet_audio_*name*"
-        // If resource is not found it throws ResouceNotFoundException
+        // If resource is not found it throws ResourceNotFoundException
         String audioResourceName = "planet_audio_" + planetName;
         int audioResourceId = activity.getResources().getIdentifier(audioResourceName, "raw", activity.getPackageName());
 
@@ -168,7 +168,7 @@ public class PlanetResourceCollector {
         // Get text resources
         // The resources for planet text must have a name "planet_text_*name*_top" and
         // "planet_text_*name*_tech"
-        // If resource is not found it throws ResouceNotFoundException
+        // If resource is not found it throws ResourceNotFoundException
         // But since resources do not change after install, this should not happen.
         String textTopName = "planet_text_" + planetName + "_top";
         String textTechName = "planet_text_" + planetName + "_tech";

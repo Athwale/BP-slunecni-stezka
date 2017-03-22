@@ -26,7 +26,7 @@
     <string name="animation_image_description">Scanning animation</string>
     <string name="all_boards_screen_title">View all boards</string>
     <string name="all_boards_button_name_sun">Sun</string>
-    <string name="all_boards_button_name_mercury">Mecrury</string>
+    <string name="all_boards_button_name_mercury">Mercury</string>
     <string name="all_boards_button_name_venus">Venus</string>
     <string name="all_boards_button_name_earth">Earth</string>
     <string name="all_boards_button_name_mars">Mars</string>
@@ -93,7 +93,7 @@
        Before you finish the game at the last stop, try to earn as much as you can.
        </p>
        <p>
-       In the beginning you will be given a basic space ship. A trusworthy <b>Ikarus M</b>
+       In the beginning you will be given a basic space ship. A trustworthy <b>Ikarus M</b>
        and a small amount of <b>42 space credits</b> Which are used as money.
        </p>
        <p>
@@ -130,7 +130,7 @@
         bare eyes only. There is about 100 000 astronomical objects larger than 1 km. Their combined
         mass though is less than the mass of Mercury. Most of these objects have not had gone
         through the phase of remelting in the past. The temperature and pressure inside these small
-        objects was not high enough. They therefore most probbaly consist of the type of rock from
+        objects was not high enough. They therefore most probably consist of the type of rock from
         which larger planets formed.
         </p>
         <p>
@@ -313,7 +313,7 @@
         <br><b>Albedo</b><br>
         0,04<br>
         <br><b>Chemical composition</b><br>
-        Frozen gass (H2O),<br>
+        Frozen gas (H2O),<br>
         Dust particles,<br>
         (Organic molecules)<br>
         <br><b>Atmosphere composition</b><br>
@@ -630,7 +630,7 @@
     <string name="planet_text_neptune_top">
     <![CDATA[
         <p>
-        The Neptune is a planet which was first discovered by a mathematical calculation. Olny after
+        The Neptune is a planet which was first discovered by a mathematical calculation. Only after
         that it was observed on the sky. J. C. Adams and independently U. J. J. Leverrier calculated
         Neptune`s orbit in the 1845 from Uranus orbit deviations. J. G. Galle found Neptune 1°
         beyond the predicted location. To see Neptune we definitely need a telescope. Until recently
@@ -645,7 +645,7 @@
         </p>
         <p>
         Neptune is <b>the last stop</b> of the Sun trail of Křtiny. The beginning of the Sun trail is
-        located near Křitny elementary school.
+        located near Křtiny elementary school.
         </p>
     ]]>
     </string>
