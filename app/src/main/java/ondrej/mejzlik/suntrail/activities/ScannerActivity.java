@@ -176,7 +176,6 @@ public class ScannerActivity extends Activity {
     }
 
 
-
     /**
      * Checks what scanning capabilities the device has.
      */

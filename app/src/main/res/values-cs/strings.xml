@@ -63,6 +63,7 @@
     <string name="nfc_scanner_nfc_disabled">Povolte NFC v nastavení systému</string>
     <string name="start_new_game_title">Začínáte novou hru</string>
     <string name="start_new_game_confirm">Rozumím</string>
+    <string name="start_new_game_image_description">Obrázek vesmírné lodi</string>
 
     <string name="sun_path_info_one">
     <![CDATA[
@@ -1043,6 +1044,30 @@
         Menší než 2 · 10^-9 T<br>
         <br><b>Průměr modelu</b> (1:1 mld.)<br>
         12,1 mm<br>
+        </p>
+    ]]>
+    </string>
+    <string name="ship_name_icarus">Icarus S</string>
+    <string name="ship_name_lokys">Lokys M</string>
+    <string name="ship_name_daedalus">Daedalus L</string>
+    <string name="start_new_game_text_top">
+    <![CDATA[
+        <p>
+        Začínáte novou hru.
+        </p>
+        <p>
+        Gratulujeme! Mladý pilote, obdržel jste svou první vesmírnou loď.
+        </p>
+    ]]>
+    </string>
+    <string name="start_new_game_text_bottom">
+    <![CDATA[
+        <p>
+        Tato loď vám byla darována Obchodní federací. Společně s ní dostáváte <b>42</b> kreditů.<br>
+        Vaším novým úkolem je převážet zboží a obchodovat s ním na planetách a jiných astronomických objektech v naší Sluneční soustavě.
+        </p>
+        <p>
+        Hodně štěstí.
         </p>
     ]]>
     </string>

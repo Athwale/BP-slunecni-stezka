@@ -63,6 +63,7 @@
     <string name="nfc_scanner_nfc_disabled">Enable NFC in system settings</string>
     <string name="start_new_game_title">You are beginning a new game</string>
     <string name="start_new_game_confirm">Roger that</string>
+    <string name="start_new_game_image_description">An image of a spaceship</string>
 
     <string name="sun_path_info_one">
         <![CDATA[
@@ -976,6 +977,30 @@
         Less than 2 · 10^-9 T<br>
         <br><b>Model diameter</b> (1:1 billion)<br>
         12,1 mm<br>
+        </p>
+    ]]>
+    </string>
+    <string name="ship_name_icarus">Icarus S</string>
+    <string name="ship_name_lokys">Lokys M</string>
+    <string name="ship_name_daedalus">Daedalus L</string>
+    <string name="start_new_game_text_top">
+    <![CDATA[
+        <p>
+        You are beginning a new game.
+        </p>
+        <p>
+        Congratulations young pilot, you were given your first space ship.
+        </p>
+    ]]>
+    </string>
+    <string name="start_new_game_text_bottom">
+    <![CDATA[
+        <p>
+        This ship was given to you by the Trade Federation. You are also receiving <b>42</b> credits.<br>
+        Your new mission is to transport goods and trade it on the planets and other astronomical object in our Solar system.
+        </p>
+        <p>
+        Good luck.
         </p>
     ]]>
     </string>
