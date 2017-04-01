@@ -91,6 +91,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/yellow_button_background"
                     android:drawableTop="@drawable/ic_menu_play_game"
+                    android:onClick="playGameButtonHandler"
                     android:paddingTop="48dp"
                     android:text="@string/planet_menu_button_game"
                     android:textColor="#000000"

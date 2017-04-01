@@ -61,6 +61,9 @@
     <string name="nfc_scanner_scanner_running">Scanning in progress…</string>
     <string name="nfc_scanner_nfc_not_supported">This device does not support NFC</string>
     <string name="nfc_scanner_nfc_disabled">Enable NFC in system settings</string>
+    <string name="start_new_game_title">You are beginning a new game</string>
+    <string name="start_new_game_confirm">Roger that</string>
+
     <string name="sun_path_info_one">
         <![CDATA[
 
