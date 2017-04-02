@@ -61,10 +61,6 @@
     <string name="nfc_scanner_scanner_running">Probíhá skenování…</string>
     <string name="nfc_scanner_nfc_not_supported">toto zařízení nepodporuje NFC</string>
     <string name="nfc_scanner_nfc_disabled">Povolte NFC v nastavení systému</string>
-    <string name="start_new_game_title">Začínáte novou hru</string>
-    <string name="start_new_game_confirm">Rozumím</string>
-    <string name="start_new_game_image_description">Obrázek vesmírné lodi</string>
-
     <string name="sun_path_info_one">
     <![CDATA[
         <h2>Sluneční stezka</h2>
@@ -1047,9 +1043,18 @@
         </p>
     ]]>
     </string>
-    <string name="ship_name_icarus">Icarus S</string>
+    <!-- Texty vztahující se ke hře -->
+    <string name="start_new_game_title">Začínáte novou hru</string>
+    <string name="start_new_game_confirm">Rozumím</string>
+    <string name="start_new_game_image_description">Obrázek vesmírné lodi</string>
+    <string name="ship_name_icarus">Ikaros S</string>
     <string name="ship_name_lokys">Lokys M</string>
-    <string name="ship_name_daedalus">Daedalus L</string>
+    <string name="ship_name_daedalus">Daidalos L</string>
+    <string name="ship_info_title">Informace o lodi</string>
+    <string name="ship_info_cargo">Povolená velikost kontejnerů v nákladovém prostoru:</string>
+    <string name="ship_cargo_size_small">S</string>
+    <string name="ship_cargo_size_medium">S, M</string>
+    <string name="ship_cargo_size_large">S, M, L</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>
@@ -1068,6 +1073,49 @@
         </p>
         <p>
         Hodně štěstí.
+        </p>
+    ]]>
+    </string>
+    <string name="ship_info_icarus">
+    <![CDATA[
+        <p>
+        Ikaros je vesmírné plavidlo třídy S.
+        </p>
+        <p>
+        Je to malá, ale rychlá loď. Byla vám byla přidělena Obchodní federací.<br>
+        Manévrovací trysky by bylo dobré nechat seřídit.<br>
+        </p>
+        <p>
+        Loď je vybavena sofistikovaným chladícím mechanismem, který jí dovoluje létat v blízkosti
+        Slunce. Je proto vhodná k přepravě slunečních produktů. Ostatní typy lodí budou moci ke
+        Slunci létat po zavedení gravitonových štítů.
+        </p>
+    ]]>
+    </string>
+    <string name="ship_info_lokys">
+    <![CDATA[
+        <p>
+        Lokys je loď třídy M, má větší nákladový prostor, než třída S.
+        </p>
+        <p>
+        Je poháněna plasmovým motorem. Plášť lodě je možné polarizovat a v přední části se nachází
+        soustava supravodivých elektromagnetů, které při vysokých rychlostech odklánějí nabité
+        částice prachu.<br>
+        Při maximální rychlosti mohou i tak malé objekty poškodit loď. Strojovna lodi obsahuje fůzní
+        reaktor, který je možné v případě poruchy odhodit.
+        </p>
+    ]]>
+    </string>
+    <string name="ship_info_daedalus">
+    <![CDATA[
+        <p>
+        Daidalos je vesmírné plavidlo třídy L. Má tudíž větší kapacitu nákladního prostoru, než
+        lodě třídy M.
+        </p>
+        <p>
+        Daidalos je jedna z největších lodí, momentálně dostupných na trhu a je chloubou obchodní
+        federace. Disponuje zbrusu novým, čerstvě vyvinutým mikrovlnným motorem, který mu zaručuje
+        velký dolet. Mikrovlnné motory nepoužívají tuhé palivo, fungují jen na elektřinu.
         </p>
     ]]>
     </string>

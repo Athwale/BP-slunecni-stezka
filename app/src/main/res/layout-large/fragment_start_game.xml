@@ -44,8 +44,8 @@
                 android:id="@+id/start_game_text_view_top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingEnd="16dp"
-                android:paddingStart="16dp"
+                android:paddingEnd="50dp"
+                android:paddingStart="50dp"
                 android:textColor="#000000"
                 tools:text="text" />
 
@@ -74,8 +74,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:paddingEnd="16dp"
-                android:paddingStart="16dp"
+                android:paddingEnd="50dp"
+                android:paddingStart="50dp"
                 android:textColor="#000000"
                 tools:text="text" />
 

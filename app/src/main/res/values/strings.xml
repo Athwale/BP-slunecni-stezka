@@ -61,10 +61,6 @@
     <string name="nfc_scanner_scanner_running">Scanning in progress…</string>
     <string name="nfc_scanner_nfc_not_supported">This device does not support NFC</string>
     <string name="nfc_scanner_nfc_disabled">Enable NFC in system settings</string>
-    <string name="start_new_game_title">You are beginning a new game</string>
-    <string name="start_new_game_confirm">Roger that</string>
-    <string name="start_new_game_image_description">An image of a spaceship</string>
-
     <string name="sun_path_info_one">
         <![CDATA[
 
@@ -980,9 +976,18 @@
         </p>
     ]]>
     </string>
+    <!-- Game related strings -->
+    <string name="start_new_game_title">You are beginning a new game</string>
+    <string name="start_new_game_confirm">Roger that</string>
+    <string name="start_new_game_image_description">An image of a spaceship</string>
     <string name="ship_name_icarus">Icarus S</string>
     <string name="ship_name_lokys">Lokys M</string>
     <string name="ship_name_daedalus">Daedalus L</string>
+    <string name="ship_info_title">Spaceship information</string>
+    <string name="ship_info_cargo">Allowed cargo bay container size:</string>
+    <string name="ship_cargo_size_small">S</string>
+    <string name="ship_cargo_size_medium">S, M</string>
+    <string name="ship_cargo_size_large">S, M, L</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>
@@ -1001,6 +1006,20 @@
         </p>
         <p>
         Good luck.
+        </p>
+    ]]>
+    </string>
+    <string name="ship_info_icarus">
+    <![CDATA[
+        <p>
+        Icarus is a size S spaceship.<br>
+        It is a small but fast ship. This ship was given to you by the Trade federation.<br>
+        Maneuvering thrusters probably need some tweaking.<br>
+        </p>
+        <p>
+        Icarus is equipped with a sophisticated cooling mechanism which enables it to fly close to
+        the Sun. Therefore it is suitable for transporting Sun products. Other ships will be able
+        to fly to the Sun once graviton shield technology is put to use.
         </p>
     ]]>
     </string>
