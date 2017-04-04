@@ -1130,6 +1130,9 @@
         </p>
     ]]>
     </string>
+    <string name="item_info_title">Item information</string>
+    <string name="item_image_description">An image of a ware</string>
+    <string name="item_info_sell_at">This item can be sold at:</string>
     <string name="game_item_info_ion_drive_fuel">
     <![CDATA[
         <p>
@@ -1499,37 +1502,37 @@
         </p>
     ]]>
     </string>
-    <string name="game_item_description_ion_drive_fuel">Ion drive fuel</string>
-    <string name="game_item_description_graviton_shield">Graviton shield generator</string>
-    <string name="game_item_description_sky_iron">Sky iron</string>
-    <string name="game_item_description_cubesat_fleet">Cubesat fleet</string>
-    <string name="game_item_description_methane_ice_cubes">Methane ice cubes</string>
-    <string name="game_item_description_solar_power_plant_m_gamma">Solar power plant M Gamma</string>
-    <string name="game_item_description_antimatter_laser">Antimatter laser</string>
-    <string name="game_item_description_quantum_vacuum_module">Quantum vacuum module</string>
-    <string name="game_item_description_protein_muffins">Protein muffins</string>
-    <string name="game_item_description_space_pet">Space pet</string>
-    <string name="game_item_description_repair_bot">Repair bot</string>
-    <string name="game_item_description_food">Food</string>
-    <string name="game_item_description_holo_phones">Holo phones</string>
-    <string name="game_item_description_poreo">Printed P-oreos</string>
-    <string name="game_item_description_ultra_fast_camera">Ultra fast camera</string>
-    <string name="game_item_description_water_purifier">Water purifier</string>
-    <string name="game_item_description_a_pack_of_thermal_foil">A pack of thermal foil</string>
-    <string name="game_item_description_a_crate_of_PMSG">A crate of PMSG</string>
-    <string name="game_item_description_hydroponic_cylinder">Hydroponic cylinder</string>
-    <string name="game_item_description_a_crate_of_communication_devices">A crate of communication devices</string>
-    <string name="game_item_description_space_shoes">Space shoes</string>
-    <string name="game_item_description_unobtainium_rope">Unobtainium rope</string>
-    <string name="game_item_description_a_container_of_antimatter">A container of antimatter</string>
-    <string name="game_item_description_computer_parts">Computer parts</string>
-    <string name="game_item_description_a_crate_of_photons">A crate of photons</string>
-    <string name="game_item_description_space_moths">Space moths</string>
-    <string name="game_item_description_plasma_drive">Plasma drive</string>
-    <string name="game_item_description_plasma_h">Plasma H</string>
-    <string name="game_item_description_star_dust">Star dust</string>
-    <string name="game_item_description_martian_potatoes">Martian potatoes</string>
-    <string name="game_item_description_xen_crystals">Xen crystals</string>
-    <string name="game_item_description_ceresian_tea">Ceresian tea</string>
-    <string name="game_item_description_a_cube_of_soil">A cube of soil</string>
+    <string name="game_item_name_ion_drive_fuel">Ion drive fuel</string>
+    <string name="game_item_name_graviton_shield">Graviton shield generator</string>
+    <string name="game_item_name_sky_iron">Sky iron</string>
+    <string name="game_item_name_cubesat_fleet">Cubesat fleet</string>
+    <string name="game_item_name_methane_ice_cubes">Methane ice cubes</string>
+    <string name="game_item_name_solar_power_plant_m_gamma">Solar power plant M Gamma</string>
+    <string name="game_item_name_antimatter_laser">Antimatter laser</string>
+    <string name="game_item_name_quantum_vacuum_module">Quantum vacuum module</string>
+    <string name="game_item_name_protein_muffins">Protein muffins</string>
+    <string name="game_item_name_space_pet">Space pet</string>
+    <string name="game_item_name_repair_bot">Repair bot</string>
+    <string name="game_item_name_food">Food</string>
+    <string name="game_item_name_holo_phones">Holo phones</string>
+    <string name="game_item_name_poreo">Printed P-oreos</string>
+    <string name="game_item_name_ultra_fast_camera">Ultra fast camera</string>
+    <string name="game_item_name_water_purifier">Water purifier</string>
+    <string name="game_item_name_a_pack_of_thermal_foil">A pack of thermal foil</string>
+    <string name="game_item_name_a_crate_of_PMSG">A crate of PMSG</string>
+    <string name="game_item_name_hydroponic_cylinder">Hydroponic cylinder</string>
+    <string name="game_item_name_a_crate_of_communication_devices">A crate of communication devices</string>
+    <string name="game_item_name_space_shoes">Space shoes</string>
+    <string name="game_item_name_unobtainium_rope">Unobtainium rope</string>
+    <string name="game_item_name_a_container_of_antimatter">A container of antimatter</string>
+    <string name="game_item_name_computer_parts">Computer parts</string>
+    <string name="game_item_name_a_crate_of_photons">A crate of photons</string>
+    <string name="game_item_name_space_moths">Space moths</string>
+    <string name="game_item_name_plasma_drive">Plasma drive</string>
+    <string name="game_item_name_plasma_h">Plasma H</string>
+    <string name="game_item_name_star_dust">Star dust</string>
+    <string name="game_item_name_martian_potatoes">Martian potatoes</string>
+    <string name="game_item_name_xen_crystals">Xen crystals</string>
+    <string name="game_item_name_ceresian_tea">Ceresian tea</string>
+    <string name="game_item_name_a_cube_of_soil">A cube of soil</string>
 </resources>
