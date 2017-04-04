@@ -62,24 +62,104 @@
     <string name="nfc_scanner_nfc_not_supported">This device does not support NFC</string>
     <string name="nfc_scanner_nfc_disabled">Enable NFC in system settings</string>
     <string name="sun_path_info_one">
-        <![CDATA[
-
-        ]]>
+    <![CDATA[
+        <h2>The Sun trail</h2>
+        <p>
+        The Sun trail of Křtiny is a model of our Solar system scaled to 1:1 milliard.
+        All models of planets and the Sun and the distances you have to walk on the trail are also
+        scaled as written above.
+        </p>
+        <p>
+        At each station you will find a sphere representing the given planet. You can read the
+        information about the planet on the nearby board.
+        </p>
+        <p>
+        Our Sun trail was inspired by <a href="http://www.astrohk.cz/planetarni_stezka/">.
+        Planetary trail build by the observatory in Hradec Králové</a>, but it is not just a plain
+        copy. The realization of this trail was originally supposed to be self aided. But thanks to
+        the support of ŠLP Křtiny and the South moravian district it was possible to build a more
+        elaborate version of this trail. The main part was being built in the year 2014 and opened
+        int the year 2015.
+        </p>
+        <p>
+        If you follow this trail you will be able to try on your own how close or far away the planets
+        in our Solar system are. At the same time you will experience the nice landscape of Křtiny.
+        </p>
+    ]]>
     </string>
     <string name="sun_path_info_two">
-        <![CDATA[
-
-        ]]>
+    <![CDATA[
+        <h2>The path</h2>
+        <p>
+        The Sun trail can be walked through from both ends. You can start at the Sun in Křtiny and finish
+        at the Neptune near ŠLP Křtiny arboretum. Then you can continue and follow the yellow marking
+        towards Jedovnice or get on the <a href="http://idsjmk.cz/jrady/201.pdf">IDS JMK number 201 (Křtiny, Hájovna na lukách)</a> bus.<br>
+        Other than that you can approach the Sun from the other end of the trail and begin at Neptune.
+        </p>
+        <p>
+        The trail follows well marked path mostly inside a forrest and has a length of about 4.5 km.
+        For better orientation you can use the provided map. If you are going to return to Křtiny on foot
+        double the distance. You will only need casual footwear for this trail.
+        </p>
+    ]]>
     </string>
     <string name="sun_path_info_four_schema">
-        <![CDATA[
-
-        ]]>
+    <![CDATA[
+        <p>
+        You can also take a shorter variant of the trail which ends at Saturn. After that you will
+        return from Viligrunt. (Saturn is about 1.5km from the beginning of the trail).
+        </p>
+        <p>
+        Translations of the information boards into English and German can be found in this app.<br>
+        <b>You can also play a game during which you will use your phone or tablet.</b>
+        </p>
+        <h2>The Solar system</h2>
+        <p>
+        The following picture shows a scheme of the orbits of planets and other astronomical objects
+        in our Solar system. These are those you will encounter on the Sun trail. The inner part of the
+        Solar system is enlarged 10 times for clarity.<br>
+        The gauge is in astronomical units.<br>(1 AU = 149 597 870,691 km)<br>
+        The guidelines mark the positions of planets, (1) Ceres and comet 1P/Halley on September 1st 2003.
+        </p>
+    ]]>
     </string>
     <string name="sun_path_info_five">
-        <![CDATA[
-
-        ]]>
+    <![CDATA[
+        <h2>News and contact</h2>
+        <p>
+        If you liked the trail, please drop us a line at <b>kontakt@slunecnistezka.cz</b>.
+        And read what <a href="http://slunecnistezka.cz/www/index.php/napsali/">others have said</a>.
+        </p>
+        <p>
+        If you want to know about any news, like us on <a href="https://www.facebook.com/pages/Slune%C4%8Dn%C3%AD-stezka-ve-K%C5%99tin%C3%A1ch/822780534412385">Facebook</a>
+        or <a href="https://twitter.com/SlunecniStezka">Twitter</a>.<br>
+        If you have any ideas or questions, please contact us at the e-mail address mentioned above.<br>
+        A lot of people already helped us, we will be happy to hear from you!
+        </p>
+        <p>
+        The Sun trail is a community project and is run under the management of <a href="http://www.krtiny.cz/">Křtiny.</a><br>
+        More at <a href="http://slunecnistezka.cz/www/">The Sun trail</a>
+        </p>
+        <p>
+        Please also have a look at
+        <a href="http://slunecnistezka.cz/www/index.php/priprava/">photos</a>  from building the trail.
+        </p>
+        <h2>Authors of photos</h2>
+        <p>
+        Sun: NASA/Goddard/SDO<br>
+        Mercury: NASA/Messenger<br>
+        Venus: NASA/JPL/Magellan<br>
+        Earth: NASA/Goddard<br>
+        Moon: Fred Locklear<br>
+        Mars: NASA/Hubble<br>
+        Ceres: NASA/JPL-Caltech<br>
+        Jupiter: NASA/JPL/Voyager 1<br>
+        Halley: Giotto Project, ESA<br>
+        Saturn: NASA/ESA/JPL/Cassini<br>
+        Uranus: NASA/JPL/Voyager 2/Joe Ruhinski<br>
+        Neptune: NASA/JPL/Voyager 2
+        </p>
+    ]]>
     </string>
     <string name="game_info_text_top">
        <![CDATA[
@@ -976,5 +1056,480 @@
         </p>
     ]]>
     </string>
-
+    <!-- Game related strings -->
+    <string name="start_new_game_title">You are beginning a new game</string>
+    <string name="start_new_game_confirm">Roger that</string>
+    <string name="start_new_game_image_description">An image of a spaceship</string>
+    <string name="ship_name_icarus">Icarus S</string>
+    <string name="ship_name_lokys">Lokys M</string>
+    <string name="ship_name_daedalus">Daedalus L</string>
+    <string name="ship_info_title">Spaceship information</string>
+    <string name="ship_info_cargo">Allowed cargo bay container size:</string>
+    <string name="ship_cargo_size_small">S</string>
+    <string name="ship_cargo_size_medium">S, M</string>
+    <string name="ship_cargo_size_large">S, M, L</string>
+    <string name="start_new_game_text_top">
+    <![CDATA[
+        <p>
+        You are beginning a new game.
+        </p>
+        <p>
+        Congratulations young pilot, you were given your first space ship.
+        </p>
+    ]]>
+    </string>
+    <string name="start_new_game_text_bottom">
+    <![CDATA[
+        <p>
+        This ship was given to you by the Trade Federation. You are also receiving <b>42</b> credits.<br>
+        Your new mission is to transport goods and trade it on the planets and other astronomical object in our Solar system.
+        </p>
+        <p>
+        Good luck.
+        </p>
+    ]]>
+    </string>
+    <string name="ship_info_icarus">
+    <![CDATA[
+        <p>
+        Icarus is a size S spaceship.<br>
+        It is a small but fast ship. This ship was given to you by the Trade federation.<br>
+        Maneuvering thrusters probably need some tweaking.<br>
+        </p>
+        <p>
+        Icarus is equipped with a sophisticated cooling mechanism which enables it to fly close to
+        the Sun. Therefore it is suitable for transporting Sun products. Other ships will be able
+        to fly to the Sun once graviton shield technology is put to use.
+        </p>
+    ]]>
+    </string>
+    <string name="ship_info_lokys">
+    <![CDATA[
+        <p>
+        Lokys is an M size spaceship, therefore it has larger cargo bay than S size ships.
+        </p>
+        <p>
+        JLokys is propelled by a plasma drive. The hull can be polarized and the front part of the
+        ship contains a set of super conductive electromagnets. These repel charged dust particles
+        when the ship is flying at high speeds. At maximum speed even objects as small as dust could
+        damage the ship. The engine room contains a fusion generator which can be ejected from the
+        ship in case of a critical failure.
+        </p>
+    ]]>
+    </string>
+    <string name="ship_info_daedalus">
+    <![CDATA[
+        <p>
+        Daedalus is an L size spaceship, therefore it has larger cargo bay than M size ships.
+        </p>
+        <p>
+        Daedalus is one of the largest ships currently available on the market. It is the flagship
+        of the Trade federation. It boasts a completely new recently developed microwave engine
+        which enables the Daedalus to fly longer distances than any other ship. Microwave engines do
+        not use solid, liquid or gaseous fuel, they run solely on electricity.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_ion_drive_fuel">
+    <![CDATA[
+        <p>
+        Ion thrusters use xenon gas. The early models of ion drives used to ionize the gas inside
+        the engine by themselves and then expelled the charged particles out the thruster with very
+        high voltage. Nowadays the technology has advanced, the ions are prepared in advance and are
+        transported in plastic magnetic bottles. The thrusters are then filled with these ready-made
+        ions. A probe called Dawn with an old ion propulsion was used to discover the planet Ceres
+        in the year 2007.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_graviton_shield">
+    <![CDATA[
+        <p>
+        20 years passed from the day the graviton particle was discovered. Gravitons are responsible
+        for gravity. These particles have no electric charge. Graviton generators are complicated
+        devices, the graviton shield generator you are transporting is one of the first prototypes.
+        It is believed that these shields will be used to protect space ships once the research is
+        complete. Currently hull polarization and magnetic field is used as a protection.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_sky_iron" formatted="false">
+    <![CDATA[
+        <p>
+        This metal is obtained by mining Iron meteorites. It is a relatively valuable substance with
+        high nickel content. Exploratory space ships equipped with a mineral scanner revealed that
+        only about 18% of meteorites are iron meteorites. Other ones belong to the category of
+        Chondrites. They are stony and are only used to build boundary stones. The Sky iron is
+        used to manufacture jewelry, armor or it is further processed to obtain pure Fe (iron)
+        and Ni (Nickel).
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_cubesat_fleet">
+    <![CDATA[
+        <p>
+        Cubesats are small devices weighting about 10 kg. They look like cubes covered in solar
+        panels. They are equipped with various sensors, cameras and transmitters. Currently they
+        are being used to build a communication network between Earth and Neptune. One cubesat is
+        released every 100 km. Thanks to miniature thrusters developed by NASA, the satellite is
+        capable of holding it\'s position. The satellites pass messages and function as a sort of
+        space internet.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_methane_ice_cubes">
+    <![CDATA[
+        <p>
+        Cubes of frozen methane are obtained from comets. Since comet catching is still a difficult
+        operation, this raw material is rather rare. Very pure methane can be harvested by
+        dissolving methane ice. Methane is a significant industrial material. In a certain part of
+        our Solar system, methane ice cubes are used as an ingredient for fire cocktails.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_solar_power_plant_m_gamma">
+    <![CDATA[
+        <p>
+        Solar energy is still very important in space. While we are able to produce electric energy
+        in a number of different ways, still solar energy does not require any sort of additional
+        fuel, it is pure and natural. By placing solar power plants near the Sun we can generate
+        petawatts of energy which is then stored inside energy crystals. These are transported to
+        the more dark parts of the Solar system by a fleet of carrier ships.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_antimatter_laser">
+    <![CDATA[
+        <p>
+        This technology uses the annihilation of protons and antiprotons. When they react, charged
+        particles called pions are made. These pions are then accelerated through an electromagnetic
+        thruster. The pion bean can be used as a propulsion for a space craft, a weapon or as an
+        energy based drill. This laser is for example used to mine materials from extremely tough
+        meteorites.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_quantum_vacuum_module">
+    <![CDATA[
+        <p>
+        This device operates with a yet to be understood zero point energy of a quantum mechanical
+        system. In particular scientists suppose that this specimen contains a chamber filled with
+        quantum vacuum. ZPM as this device was named was found on Earth near the South pole. This
+        technology is extraterrestrial! As far as we know only two ZPM modules exist in our Solar
+        system. The device is probably some sort of electric energy generator. Your mission is to
+        transport it elsewhere for further examination.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_protein_muffins">
+    <![CDATA[
+        <p>
+        Spaceships do not usually have much free space on-board. Pilots therefore can not have a
+        kitchen full of various ingredients to make different foods. For this reason the protein
+        muffin was created. It is made of proteins combined with synthetic amino-acids, vitamins
+        and minerals - everything the body needs. Do not be fooled by the nice looks, they taste
+        exactly how it is described above.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_space_pet" formatted="false">
+    <![CDATA[
+        <p>
+        Guinea pigs or even kittens do not amaze anybody nowadays. Today`s internet is filled by
+        space animals. The animal you are transporting came to our Solar system from Proxima
+        Centauri. It became very popular because it changes color based on it`s mood. They are also
+        sold under the name Indicator. There is a manual which you can get that explains their
+        feelings by their color. A mobile app also appeared which translates the color of your pet
+        to it`s mood from a photograph.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_repair_bot">
+    <![CDATA[
+        <p>
+        Torn solar sails can slow down any solar sailing vessel. This is one of the reasons repair
+        bots were made for. But they also take care of space stations and satellites. They can
+        automatically recognize various defects and repair the damage. They carry a set of useful
+        tools with them at all times to repair almost anything. The last repair bot prototype
+        consists of small blocks which can build any shape necessary. Currently the manufacturer is
+        trying to solve a minor problem of them self replicating.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_food" formatted="false">
+    <![CDATA[
+        <p>
+        Not only protein muffins are great for long space journeys. Jupiter mining company makes
+        this heavy-duty food which is available in vacuum bags, cans and even glass bottles. It
+        consists of 40% space moth paste, their nutritional value is very high and they are easy to
+        breed. The company supplies a space moth cookie blueprint for a food printer with the food.
+        You can print the cookie and eat the paste with it.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_holo_phones">
+    <![CDATA[
+        <p>
+        The Trade federation invented this device. Now they equip even space ships with a larger
+        model of the holographic phone. The hologram is made with a patented method of freezing
+        light with laser induced sodium atom cooling to temperatures nearing the absolute zero. In
+        such environment light can be slowed down to draw three dimensional holograms.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_poreo">
+    <![CDATA[
+        <p>
+        Next in the row of space sweets is the P-oreo cookie. The manufactures in fact only sells a
+        blueprint for a food printer, a list of recommended ingredient combinations and ingredient
+        containers. Your job is to print the cookies. The technology of food printing was
+        established by NASA 15 years ago. In the near future food printers will be replaced with
+        molecular food materializers which are being developed by the Starfleet academy.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_ultra_fast_camera">
+    <![CDATA[
+        <p>
+        In the year 2011 a camera which can record a trillion frames per second was invented. This
+        device was later improved and nowadays is available for an ordinary customer. The camera
+        is capable of recording the flight of individual photons. It is mainly used for art but was
+        also used to make a whole movie.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_water_purifier" formatted="false">
+    <![CDATA[
+        <p>
+        Space tourism is very popular, though on foreign planets you can not just drink any water
+        from a spring. Well, you can if you do not mind catching some  "friendly" parasite. This
+        filter boasts 95% efficiency at removing water pollutants and bacteria including the
+        Ripley`s mold from any water.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_a_pack_of_thermal_foil">
+    <![CDATA[
+        <p>
+        If you are going to watch the last surviving individuals of ursus maritimus or you are
+        going to the surface of the frozen Uranus, you will need a warm thermal isolation.
+        The research of polar bear fur along with advanced nanotechnology gave us this thermal foil.
+        Under it you will not lose any body heat. It is also great for food storage.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_a_crate_of_PMSG">
+    <![CDATA[
+        <p>
+        The Pulsed microwave stun gun is a defensive weapon developed after the Black Mesa incident.
+        Using a series of five microwave impulses it creates a ionized conductive channel up to a
+        distance of 34 m. Then the weapon sends a high voltage 25 000 up to 200 000 volts pulse
+        through the channel. Since electricity always flows through the path of least resistance,
+        the impulse goes through the channel and hits the target.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_hydroponic_cylinder">
+    <![CDATA[
+        <p>
+        Planets or stations which can not grow plants in ordinary soil have to use hydroponics -
+        growing plants without soil inside a special nutrient solution. Moreover the plants grow
+        faster and are less prone to diseases. The cylinder contains a filtering mechanism and a
+        manure dispenser system which monitors the growth automatically. Hydroponic cylinders are
+        also used as air purifiers because they produce pure oxygen.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_a_crate_of_communication_devices">
+    <![CDATA[
+        <p>
+        The company Combine came to the market with this device in the year 2089. This phone uses
+        quantum entangled particles. Communication with these devices is very secure and in
+        principle possible at any distance. You can call from Earth to Mars in real time. The same
+        company is also working on a teleport device. If they succeed it would almost completely
+        replace space flights.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_space_shoes">
+    <![CDATA[
+        <p>
+        This spacesuit accessory was designed by the world known engineer Chell. These shoes have a
+        technology that enables the user to sustain falls from very high altitudes. They are used
+        mainly on exploratory missions. They also have an inbuilt magnetic sole which can be used
+        to walk on metal spaceship hulls. The surface of the shoes is coated with a nanomaterial in
+        order to avoid pollutant contamination.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_unobtainium_rope" formatted="false">
+    <![CDATA[
+        <p>
+        This rope made of Unobtaininum is fascinating!. It`s structure becomes the more tough
+        the more tension is applied. This material is very rare and hard to obtain. The name
+        Unobtainium is a label for something that is extremely rare, or physically impossible.
+        The physical limits of this material are currently unknown. Theoretically it may be
+        infinitely strong!
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_a_container_of_antimatter">
+    <![CDATA[
+        <p>
+        This electromagnetic bottle contains 5 grams of antimatter in the form of antiprotons. This
+        is enough to blow up an entire planet. Antimatter is obtained in gigantic particle
+        accelerators built on asteroids. It is used as a fuel for engines, generators and antimatter
+        lasers. The first antimatter was created on Earth in CERN accelerator. The container comes
+        with a warning: In case of damage, eject the container from the ship and fly to a safe
+        distance of 5 million km.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_computer_parts" formatted="false">
+    <![CDATA[
+        <p>
+        Each of these modules has it`s own quantum processor and contains an universal bus. By
+        connecting a large number of these modules into a big computer an extremely powerful
+        quantum machine can be created. A smaller version of such computer helped to solve the
+        problem of large number factorization years ago. It was able to solve it within minutes
+        and therefore crack some ciphers used at that time. The new quantum computer will have a
+        task to verify whether P = NP.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_a_crate_of_photons">
+    <![CDATA[
+        <p>
+        This Felinists (reference to a Czech fairytale) invention allows the transport of light in
+        paper boxes coated with shiny varnish. The Felinists noticed that light does not pass
+        through the wall of a box. From the E = m*c^2 equation we can see that photos have a mass
+        and therefore must not be able to fly through the wall. If we close the lid in the right
+        moment the photons simply must stay inside. Boxes of photons are used mainly in the dark
+        mines on Neptune.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_space_moths">
+    <![CDATA[
+        <p>
+        Space moths are able to survive in the cold vacuum of the space for an extended time period.
+        They are usually found on space stations where they feed on remains or other insects in
+        large warehouses. They can walk on the outer side of the station hull and get inside through
+        waste pipes. The Jupiter mining company owns space moth farms and make protein rich food of
+        them.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_plasma_drive">
+    <![CDATA[
+        <p>
+        This type of propulsion uses hydrogen, helium or carbon dioxide. The gas is ionized using
+        electromagnetic radiation in microwave spectrum into a state of very hot plasma. This plasma
+        has a temperature of several million degrees Celsius. In the last stage of the engine plasma
+        is electromagnetically directed to flow out the thruster. These engines have higher specific
+        impulse than ion drives. The firs functional plasma drive was used to fly to Mars in the
+        year 2035.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_plasma_h">
+    <![CDATA[
+        <p>
+        Plasma H is an ionized gas obtained from the Sun. Hydrogen (H) is the most abundant element
+        on the Sun. Plasma H is caught from eruptions using high energy magnetic collectors. The
+        product labeled Plasma H is a very pure hydrogen plasma with minimal contamination of other
+        heavier elements. It is being transported inside magnetic containers which utilize the
+        technology of helmholtz coils. It is mainly used in EPS system of Federation ships.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_star_dust">
+    <![CDATA[
+        <p>
+        The star dust flies freely through the universe. Almost all colonies on other planets use
+        the star dust as a spice. It consists of miniature pieces of comets, asteroids and other
+        astronomical objects. The dust has a weak stony taste. Nevertheless gourmets consider it
+        the best thing the universe can offer. It comes in various qualities while purely comet
+        based star dust is believed to be the worst but easiest to obtain.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_martian_potatoes">
+    <![CDATA[
+        <p>
+        Years of influence of the Martian soil changed the color of potatoes to turquoise. Though
+        they still taste as good as the good old yellow potatoes from Earth. But they are more rich
+        in magnesium, potassium, sodium and sulfur and chlorine must be extracted from them before
+        use. These elements are the most common on Mars. Martian potatoes are mostly used as a side
+        dish for space moth paste.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_xen_crystals">
+    <![CDATA[
+        <p>
+        They come from the planet Xen where they are mined in surface mines. They are made of
+        Fullerene C104 which also contains a molecule of Rhenium inside. Because of that they
+        extremely easily absorb energy. They are used to transport electric energy from solar
+        power plants. Accumulators are also made of them. Crystals exposed to cosmic radiation on
+        the surface of Xen usually glow, since they have been charged by the radiation to at least
+        70% of their capacity.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_ceresian_tea">
+    <![CDATA[
+        <p>
+        Ceresian tea is made of a special lichen which grows deep under the surface of Ceres. The
+        lichen is frozen to near the absolute zero -273.14°C and then crushed to dust. It is then
+        mixed with star dust and mint. It is considered the best if it is prepared in the heat of
+        the Sun. The station near Venus hosts a well known tearoom where they make the best
+        Ceresian tea.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_a_cube_of_soil">
+    <![CDATA[
+        <p>
+        A device called diamond pickaxe is capable of extracting soil in a form of compact cubes,
+        which are easy to transport. Planets with inhospitable conditions have to import soil from
+        other planets. Once it is confirmed that foreign soil will not damage the ecosystem, it is
+        possible to build a field of soil cubes and grow local food. This technique for example can
+        not be used on Mars.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_description_ion_drive_fuel">Ion drive fuel</string>
+    <string name="game_item_description_graviton_shield">Graviton shield generator</string>
+    <string name="game_item_description_sky_iron">Sky iron</string>
+    <string name="game_item_description_cubesat_fleet">Cubesat fleet</string>
+    <string name="game_item_description_methane_ice_cubes">Methane ice cubes</string>
+    <string name="game_item_description_solar_power_plant_m_gamma">Solar power plant M Gamma</string>
+    <string name="game_item_description_antimatter_laser">Antimatter laser</string>
+    <string name="game_item_description_quantum_vacuum_module">Quantum vacuum module</string>
+    <string name="game_item_description_protein_muffins">Protein muffins</string>
+    <string name="game_item_description_space_pet">Space pet</string>
+    <string name="game_item_description_repair_bot">Repair bot</string>
+    <string name="game_item_description_food">Food</string>
+    <string name="game_item_description_holo_phones">Holo phones</string>
+    <string name="game_item_description_poreo">Printed P-oreos</string>
+    <string name="game_item_description_ultra_fast_camera">Ultra fast camera</string>
+    <string name="game_item_description_water_purifier">Water purifier</string>
+    <string name="game_item_description_a_pack_of_thermal_foil">A pack of thermal foil</string>
+    <string name="game_item_description_a_crate_of_PMSG">A crate of PMSG</string>
+    <string name="game_item_description_hydroponic_cylinder">Hydroponic cylinder</string>
+    <string name="game_item_description_a_crate_of_communication_devices">A crate of communication devices</string>
+    <string name="game_item_description_space_shoes">Space shoes</string>
+    <string name="game_item_description_unobtainium_rope">Unobtainium rope</string>
+    <string name="game_item_description_a_container_of_antimatter">A container of antimatter</string>
+    <string name="game_item_description_computer_parts">Computer parts</string>
+    <string name="game_item_description_a_crate_of_photons">A crate of photons</string>
+    <string name="game_item_description_space_moths">Space moths</string>
+    <string name="game_item_description_plasma_drive">Plasma drive</string>
+    <string name="game_item_description_plasma_h">Plasma H</string>
+    <string name="game_item_description_star_dust">Star dust</string>
+    <string name="game_item_description_martian_potatoes">Martian potatoes</string>
+    <string name="game_item_description_xen_crystals">Xen crystals</string>
+    <string name="game_item_description_ceresian_tea">Ceresian tea</string>
+    <string name="game_item_description_a_cube_of_soil">A cube of soil</string>
 </resources>

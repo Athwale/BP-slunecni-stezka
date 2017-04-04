@@ -1,0 +1,91 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/start_game_relative_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ondrej.mejzlik.suntrail.fragments.StartGameFragment">
+
+    <TextView
+        android:id="@+id/start_game_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:text="@string/start_new_game_title"
+        android:textColor="#ff0099cc"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/start_game_view_spacer"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="48dp"
+        android:background="#ff0099cc"
+        tools:ignore="UnknownId,UnknownIdInLayout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/start_game_view_spacer"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/start_game_text_view_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:textColor="#000000"
+                tools:text="text" />
+
+            <ImageButton
+                android:id="@+id/start_game_image_view_ship"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/transparent_button_background"
+                android:contentDescription="@string/start_new_game_image_description"
+                android:onClick="showIcarusInfoButtonHandler"
+                android:scaleType="fitCenter"
+                android:src="@drawable/pict_icarus_info" />
+
+            <TextView
+                android:id="@+id/start_game_text_view_ship_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ship_name_icarus"
+                android:textAlignment="center"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/start_game_text_view_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:textColor="#000000"
+                tools:text="text" />
+
+            <Button
+                android:id="@+id/start_game_button_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="confirmGameStartButtonHandler"
+                android:text="@string/start_new_game_confirm" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

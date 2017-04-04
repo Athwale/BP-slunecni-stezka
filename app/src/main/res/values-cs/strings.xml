@@ -881,7 +881,7 @@
         <br><b>Geometrické albedo</b><br>
         0<br>
         <br><b>Chemické složení</b><br>
-        plazma H (71%),<br>
+        plasma H (71%),<br>
         He (27%),<br>
         Těžší prvky (2%),<br>
         <br><b>Složení atmosféry</b><br>
@@ -1043,5 +1043,472 @@
         </p>
     ]]>
     </string>
-
+    <!-- Texty vztahující se ke hře -->
+    <string name="start_new_game_title">Začínáte novou hru</string>
+    <string name="start_new_game_confirm">Rozumím</string>
+    <string name="start_new_game_image_description">Obrázek vesmírné lodi</string>
+    <string name="ship_name_icarus">Ikaros S</string>
+    <string name="ship_name_lokys">Lokys M</string>
+    <string name="ship_name_daedalus">Daidalos L</string>
+    <string name="ship_info_title">Informace o lodi</string>
+    <string name="ship_info_cargo">Povolená velikost kontejnerů v nákladovém prostoru:</string>
+    <string name="ship_cargo_size_small">S</string>
+    <string name="ship_cargo_size_medium">S, M</string>
+    <string name="ship_cargo_size_large">S, M, L</string>
+    <string name="start_new_game_text_top">
+    <![CDATA[
+        <p>
+        Začínáte novou hru.
+        </p>
+        <p>
+        Gratulujeme! Mladý pilote, obdržel jste svou první vesmírnou loď.
+        </p>
+    ]]>
+    </string>
+    <string name="start_new_game_text_bottom">
+    <![CDATA[
+        <p>
+        Tato loď vám byla darována Obchodní federací. Společně s ní dostáváte <b>42</b> kreditů.<br>
+        Vaším novým úkolem je převážet zboží a obchodovat s ním na planetách a jiných astronomických objektech v naší Sluneční soustavě.
+        </p>
+        <p>
+        Hodně štěstí.
+        </p>
+    ]]>
+    </string>
+    <string name="ship_info_icarus">
+    <![CDATA[
+        <p>
+        Ikaros je vesmírné plavidlo třídy S.
+        </p>
+        <p>
+        Je to malá, ale rychlá loď. Byla vám byla přidělena Obchodní federací.<br>
+        Manévrovací trysky by bylo dobré nechat seřídit.<br>
+        </p>
+        <p>
+        Loď je vybavena sofistikovaným chladícím mechanismem, který jí dovoluje létat v blízkosti
+        Slunce. Je proto vhodná k přepravě slunečních produktů. Ostatní typy lodí budou moci ke
+        Slunci létat po zavedení gravitonových štítů.
+        </p>
+    ]]>
+    </string>
+    <string name="ship_info_lokys">
+    <![CDATA[
+        <p>
+        Lokys je loď třídy M, má větší nákladový prostor, než třída S.
+        </p>
+        <p>
+        Je poháněna plasmovým motorem. Plášť lodě je možné polarizovat a v přední části se nachází
+        soustava supravodivých elektromagnetů, které při vysokých rychlostech odklánějí nabité
+        částice prachu.<br>
+        Při maximální rychlosti mohou i tak malé objekty poškodit loď. Strojovna lodi obsahuje fůzní
+        reaktor, který je možné v případě poruchy odhodit.
+        </p>
+    ]]>
+    </string>
+    <string name="ship_info_daedalus">
+    <![CDATA[
+        <p>
+        Daidalos je vesmírné plavidlo třídy L. Má tudíž větší kapacitu nákladního prostoru, než
+        lodě třídy M.
+        </p>
+        <p>
+        Daidalos je jedna z největších lodí, momentálně dostupných na trhu a je chloubou obchodní
+        federace. Disponuje zbrusu novým, čerstvě vyvinutým mikrovlnným motorem, který mu zaručuje
+        velký dolet. Mikrovlnné motory nepoužívají tuhé palivo, fungují jen na elektřinu.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_ion_drive_fuel">
+    <![CDATA[
+        <p>
+        Iontové motory využívají plyn xenon. První modely iontových trysek ionizovaly plyn uvnitř
+        motoru samy a poté nabité částice vystřelovaly z motoru pomocí velmi vysokého napětí. V
+        současné době technologie pokročila a ionty jsou připravovány předem a převážejí se v
+        plastových magnetických lahvích. Do trysek se napouštějí hotové. Sonda Dawn se stařičkým
+        iontovým pohonem byla použita k prozkoumání planety Ceres v roce 2007.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_graviton_shield">
+    <![CDATA[
+        <p>
+        Od chvíle, kdy byla objevena částice graviton uběhlo již 20 let. Gravitony jsou zodpovědné
+        za gravitační sílu. Tyto částice nemají elektrický náboj. Generátory gravitonů jsou složitá
+        zařízení, gravitonový štít, který vezete je jedním z prvních prototypů. Předpokládá se, že
+        tyto štíty se budou používat k ochraně kosmických lodí po dokončení výzkumu. Dosud se
+        využívala technologie polarizovaného pláště.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_sky_iron" formatted="false">
+    <![CDATA[
+        <p>
+        Tento kov je získáván těžbou z meteoritů zvaných siderity. Jde o poměrně vzácnou látku s
+        vysokým obsahem niklu. Průzkumné lodě s minerálním skenerem odhalily, že pouze přibližně
+        18% skenovaných meteoritů jsou siderity. Ostatní meteority patří do kategorie chondritů,
+        jsou kamenité, používají se leda na stavbu patníků. Z meteorické oceli se vyrábí šperky,
+        brnění, nebo se zpracovává na prvky Fe (železo) a Ni (nikl).
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_cubesat_fleet">
+    <![CDATA[
+        <p>
+        Cubesaty jsou malá zařízení o váze přibližně 10 kg. Vypadají jako kostky obalené solárními
+        panely. Jsou vybaveny nejrůznějšími senzory, kamerami a vysílači. V současné době se z nich
+        staví komunikační kanál mezi Zemí a oběžnou dráhou Neptunu. Každých 100 km se jeden
+        vypustí. Díky miniaturním tryskám od NASA udržuje satelit svou pozici. Satelity si mezi
+        sebou předávají zprávy a fungují jako jakýsi vesmírný internet.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_methane_ice_cubes">
+    <![CDATA[
+        <p>
+        Kostky zmrzlého metanu jsou získávány z komet. Jelikož chytání komet je stále ještě složitá
+        operace, je tato surovina poměrně vzácná. Rozpouštěním metanového ledu vzniká velmi čistý
+        metan, což je významná průmyslová surovina. V jisté části naší Sluneční soustavy se metanové
+        ledové kostky přidávají do ohnivých koktejlů.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_solar_power_plant_m_gamma">
+    <![CDATA[
+        <p>
+        Solární energie je ve vesmíru stále jednou z nejdůležitějších surovin. Zatímco elektřinu
+        jsme schopni vyrábět i jinými způsoby, solární energie nevyžaduje žádné palivo, je čistá a
+        přírodní. Umístění elektráren poblíž Slunce umožňuje vyprodukovat petawaty energie, která
+        se následně ukládá do energetických krystalů. Ty jsou rozváženy do temnějších částí Sluneční
+        soustavy flotilou přepravních lodí.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_antimatter_laser">
+    <![CDATA[
+        <p>
+        Tato technologie využívá srážek protonů a antiprotonů. Při jejich vzájemné reakci dochází
+        ke vzniku nabitých částic - pionů. Piony jsou následně urychleny elektromagnetickou tryskou.
+        Paprsek pionů lze použít jako pohon vesmírného plavidla, zbraň nebo jako energetický vrták.
+        Tímto způsobem se těží suroviny z extrémně tvrdých meteoritů.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_quantum_vacuum_module">
+    <![CDATA[
+        <p>
+        Zařízení pracuje s doposud nepochopenou energií nulového bodu kvantově mechanického systému,
+        konkrétně se vědci domnívají, že tento exemplář obsahuje komoru s kvantovým vakuem. ZPM jak
+        se tomuto zařízení přezdívá, bylo nalezeno na Zemi poblíž jižního pólu. Tato technologie je
+        mimozemská! V naší Sluneční soustavě, pokud je známo, existují pouze dva ZPM moduly.
+        Zařízení zřejmě slouží k výrobě elektrické energie. Vaším úkolem je dopravit jej na další
+        zkoumání.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_protein_muffins">
+    <![CDATA[
+        <p>
+        Kosmické lodě nemívají na palubě mnoho místa. Vozit s sebou ingredience na výrobu všemožných
+        jídel, je přepych, který si většinou nemůžeme dovolit. Proto byl vyvinut proteinový muffin.
+        Je složen z proteinů kombinovaných se syntetickými aminokyselinami, vitamíny a minerály.
+        Všechno co tělo potřebuje. Nenechte se mýlit vzhledem, chutnají přesně tak, jak je napsáno
+        výše.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_space_pet">
+    <![CDATA[
+        <p>
+        Morčátka dokonce ani koťátka dnes už nikoho neohromí. Dnešní internet je plný vesmírných
+        zvířátek. Ten kterého převážíte se k nám rozšířil ze systému Proxima Centauri. Stal se
+        vyhledávaným, protože mění barvu podle své nálady. Prodávají se i pod názvem Indikátor.
+        Existuje k nim příručka, která vysvětluje, jak se cítí podle barvy. Objevila se i mobilní
+        aplikace, která z fotografie pozná pocity vašeho mazlíka.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_repair_bot">
+    <![CDATA[
+        <p>
+        Potrhané solární plachty můžou zpomalit nejdenu solární plachetnici. K tomu jsou například
+        dobří roboti opraváři. Starají se nicméně i o vesmírné stanice a jsou i na satelitech.
+        Automaticky jsou schopní rozpoznat různé vady a poškození a nosí si s sebou řadu užitečných
+        nástrojů na jejich opravu. Poslední prototyp se skládá z malých bloků, které se umějí
+        přeskupit dle potřeby. V současné době se výrobce snaží vyřešit problém se samovolnou
+        replikací.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_food" formatted="false">
+    <![CDATA[
+        <p>
+        Kromě proteinových muffinů je na dlouhé cesty výborná trvanlivá výživa, kterou vyrábí
+        jupiterská důlní společnost. Je k dostání ve vakuovaných sáčcích, plechovkách a dokonce i
+        skleněných zavařovacích sklenicích. Ze 40 procent se skládá z pasty z vesmírných molů.
+        Jejich výživová hodnota je vysoká a snadno se pěstují. Výrobce k ní dodává schéma sušenky
+        mola, kterou si můžete vytisknout na jídelní tiskárně a namazat pastou.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_holo_phones">
+    <![CDATA[
+        <p>
+        S tímto zařízením přišla na trh Obchodní federace, která montuje větší verze holofonů i do
+        kosmických lodí. Hologram se vytváří pomocí patentované metody mražení světla laserovým
+        ochlazování atomů sodíku na teploty velmi blízké absolutní nule. V tomto prostředí lze
+        zpomalit světlo a kreslit hologramy.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_poreo">
+    <![CDATA[
+        <p>
+        Další z řady vesmírných pochutin je tisknutelná sušenka P-oreo. Výrobce prodává schéma pro
+        jídelní tiskárnu, seznam doporučených kombinací chutí a jednotlivé kontejnery přísad.
+        Technologii tisku potravin prosadila NASA před 15 lety. V blízké době se tiskárny začnou
+        nahrazovat jídelními automaty s molekulárím zhmotňovačem, na kterých pracuje Akademie
+        Hvězdné flotily.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_ultra_fast_camera">
+    <![CDATA[
+        <p>
+        V roce 2011 byla vynalezena kamera schopná snímat trilión snímků za vteřinu. Toto zařízení
+        bylo dovedeno k dokonalosti a dnes je dostupné pro běžného uživatele. Kamera je schopná
+        zachycovat video letu jednotlivých fotonů. Nachází uplatnění především v umělecké tvorbě,
+        byl s ní dokonce natočen i celovečerní film.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_water_purifier" formatted="false">
+    <![CDATA[
+        <p>
+        Vesmírná turistika je velmi oblíbená, ale na cizích planetách nemůžete pít vodu ze
+        studánky, jako by se nic nedělo. Tedy můžete, pokud vám nevadí, že si odnesete nějakého
+        parazitického kamaráda. Tento filtr se honosí 95% účinností v odstraňování vodních nečistot
+        a choroboplodných zárodků z vody včetně plísně Ripleyové.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_a_pack_of_thermal_foil">
+    <![CDATA[
+        <p>
+        Ať už jdete pozorovat poslední přeživší jedince druhu ursus maritimus, nebo se vydáváte na
+        povrch zmrzlého Uranu, bude se vám hodit dobrá telepná izolace. Výzkům srsti ledních
+        medvědů společně s nanotechnologií zajistil, že pod touto fólií nebudete ztrácet žádné
+        teplo. Je také výborná na uchovávání teplého jídla.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_a_crate_of_PMSG">
+    <![CDATA[
+        <p>
+        Pulsed microwave stun gun - pulzní mikrovlnné omračovadlo je obranná zbraň vyvinutá po
+        incidentu v Black Mesa. Pomocí série pěti mikrovlnných zábleků vytváří ionizovaný vodivý
+        kanál do vzdálenosti 34 metrů. Následně je kanálem vyslán výboj vysokého napětí od 25 000
+        do 200 000 V. Protože elektřina teče cestou nejmenšího odporu, proletí výboj kanálem a
+        uzemní se až o cíl.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_hydroponic_cylinder">
+    <![CDATA[
+        <p>
+        Planety nebo stanice, kde není možné pěstovat rostliny v normální hlíně musejí používat
+        hydroponii - pěstování rostlin bez půdy v živném roztoku. Rostliny navíc rostou rychleji a
+        jsou méně náchylné k chorobám. Válec obsahuje filrační mechanismus a automatický dávkovač
+        hnojiv, který kontroluje růst a dynamicky upravuje hnojení. Hydroponické válce se používají
+        i jako čistič vzduchu, protože produkují čistý kyslík.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_a_crate_of_communication_devices">
+    <![CDATA[
+        <p>
+        Firma The Combine přišla v roce 2089 s prvním mobilním telefonem využívajícím kvantově
+        provázané částice. Komunikace těmito zařízeními je velmi bezpečná a v zásadě možná na
+        libovolnou vzdálenost. Můžete volat ze Země na Mars v reálném čase. Stejná firma se v
+        současné době zabývá vývojem teleportu, který by téměř zcela nahradil kosmické lety.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_space_shoes">
+    <![CDATA[
+        <p>
+        Tento doplněk ke skafandru má na svědomí inženýrka Chell. Boty disponují technologií, která
+        umožňuje nositeli přežít pád z velké výšky. Jsou používány především při průzkumných misích.
+        Mají vestavěnou magnetickou podrážku, díky které mohou kosmonauti chodit po pláštích lodí a
+        stanic. Povrch je ošetřen nanomateriálem, aby na něm neulpívaly nečistoty a nedocházelo ke
+        kontaminaci.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_unobtainium_rope">
+    <![CDATA[
+        <p>
+        Lano vyrobené z Unobtainia je přímo fascinující, jeho struktura se stává tím pevnější, čím
+        vyšší tah na ně působí. Tento materiál je velice složité získat. Unobtainium je označení pro
+        extrémně vzácný nebo fyzicky nemožný materiál. Fyzikální limity Unobtainia zatím nejsou známy.
+        Teoreticky může být nekonečně pevné!
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_a_container_of_antimatter">
+    <![CDATA[
+        <p>
+        V této elektromagnetické lahvi se nachází 5 gramů antihmoty ve formě antiprotonů. Antihmota
+        se získává v gigantických částicových urychlovačích postavených na asteroidech. Antihmota
+        se využívá jako palivo do generátorů, antihmotových laserů a motorů. První antihmota byla
+        vyrobena na Zemi v urychlovači CERN. Kontejner obsahuje štítek s varováním: V případě
+        poškození obalu, vyhoďte z lodi a odleťte do bezpečné vzdálenosti 5 milionů km.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_computer_parts">
+    <![CDATA[
+        <p>
+        Každý z těchto modulů obsahuje vlastní kvantový procesor a univerzální sběrnici. Zapojením
+        velkého množství modulů do obrovského sálového počítače vznikne extrémně výkonný kvantovy
+        počítač. Menší verze takového počítače pomohla před mnoha lety řešit faktorizaci velkých
+        čísel v řádu minut a tím prolomit některé do té doby používané šifry. Nový kvantový super
+        počítač bude mít za úkol ověřit, jestli P = NP.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_a_crate_of_photons">
+    <![CDATA[
+        <p>
+        Tento kocourkovský objev umožňuje transport světla v lepenkových krabicích natřených vrstvou
+        lesklého laku. Kocourkovští si všimli, že světlo neprochází stěnou krabice. Z
+        relativistického vztahu ekvivalence energie a hmotnosti, E = m*c^2 vyplývá, že foton má
+        hmotnost a jakožto hmotná částice nemůže proletět stěnou krabice. Zavřeme-li víko ve vhodnou
+        chvíli, fotony jednoduše musejí zůstat uvnitř. Krabicované fotony nalézají uplatnění v
+        tmavých dolech na Saturnu.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_space_moths">
+    <![CDATA[
+        <p>
+        Vesmírní molové umějí dloudobě žít v mrazivém vakuu volného vesmíru. Většinou se nacházejí
+        na vesmírných stanicích, kde se ve skladištích živí jiným hmyzem nebo zbytky. Mohou se ale
+        pohybovat i z vnější strany po plášti stanice a vniknout dovnitř odpadními rourami.
+        Jupiterská důlní společnost vlastní farmy na tento hmyz a vyrábí z něj instantní výživu
+        bohatou na bílkoviny.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_plasma_drive">
+    <![CDATA[
+        <p>
+        Tento druh pohonu využívá vodík, hélium nebo oxid uhličitý. Plyn je ionizován pomocí
+        elektromagnetického záření v mikrovlnném spektru do stavu vysokoteplotního plasmatu.
+        Ohřáté plasma má teplotu několika milionů stupňů. V posledním stupni motoru je plasma
+        elektromagneticky usměrněno ven z trysky. Tyto motory mají vyšší specifický impuls než
+        intový pohon. První funkční plazmový motor byl použit k letu na Mars v roce 2035.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_plasma_h">
+    <![CDATA[
+        <p>
+        Plasma H je ionizovaný plyn získávaný ze Slunce. Vodík (H) je na Slunci nejrozšířenějším
+        prvkem. Plasma H se získává zachycováním slunečních erupcí pomocí vysokoenergetických
+        elektromagnetických kolektorů. Produkt označovaný Plasma H je vysoce čisté vodíkové plasma s
+        minimální příměsí jiných těžších prvků. Převáží se v magnetických kontejnerech využívajících
+        technologii helmholtzových cívek. Nachází využití v EPS systému lodí Federace.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_star_dust">
+    <![CDATA[
+        <p>
+        Hvězdný prach volně poletuje vesmírem. Téměř všechny kolonie na ostatních planetách
+        používají hvězdný prach jako koření. Skládá se z miniaturních úlomků komet, asteroidů a
+        planetek, které vznikly jejich srážkami. Hvězdný prach má kamenitou a ne příliš výraznou
+        chuť. Přesto ho gurmáni považují za to nejlepší, co může vesmír nabídnout. Vyskytuje se v
+        různých kvalitách, přičemž nejhorší je čistě kometný prach, který lze ale snadno sbírat v
+        ohonu komet.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_martian_potatoes">
+    <![CDATA[
+        <p>
+        Léta působení specifického složení půdy na Marsu změnily barvu brambor na tyrkysovou.
+        Chutnají ale pořád stejně dobře, jako staré dobré žluté pozemské brambory, jen jsou bohatší
+        na hořčík, sodík, draslík a musí se z nich odstraňovat chlor a síra. Tyto látky jsou na
+        Marsu v půdě běžné. Marťanské brambory se těší oblibě jako příloha k pastě z vesmírných
+        molů.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_xen_crystals">
+    <![CDATA[
+        <p>
+        Pocházejí s planety Xen, kde se těží v povrchových dolech. Jsou tvořeny fulerenem C104,
+        uvnitř kterého se nachází molekula rhenia. Díky tomu jsou schopny mimořádně dobře uchovávat
+        energii. Používají se pro přepravu elektrické energie ze solárních elektráren a jsou z nich
+        vyráběny akumulátory. Krystaly vystavené kosmickému záření na povrchu Xenu obvykle září,
+        protože byly za dobu své existence nabity na úroveň alespoň 70 % kapacity.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_ceresian_tea">
+    <![CDATA[
+        <p>
+        Je připravován z lišejníku, který roste hluboko pod zemí na planetce Ceres. Lišejník se
+        zmrazí na teplotu blízkou absolutní nule -273,14°C a poté se drtí. Prášek se míchá s
+        hvězdným prachem a mátou. Za největší delikatesu je považován, pokud se uvaří v žáru Slunce
+        poblíž Venuše. Na stanici u Venuše je dokonce vyhlášená čajovna, kde vaří ten nejlepší
+        Ceresský čaj.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_info_a_cube_of_soil">
+    <![CDATA[
+        <p>
+        Zařízení zvané diamantový krumpáč dokáže těžit zeminu ve formě kompaktních krychlí, které
+        se snadno přepravují. Planety s nehostinnými podmínkami musejí hlínu dovážet. Ve chvíli,
+        kdy je potvrzeno, že cizí zemina nenaruší ekosystém dané planety, je možné vytvořit pole z
+        dovezených kostek a začít pěstovat vlastní potraviny. Tento postup například není možné
+        uskutečnit na Mars.
+        </p>
+    ]]>
+    </string>
+    <string name="game_item_description_ion_drive_fuel">Ionty do motorů</string>
+    <string name="game_item_description_graviton_shield">Gravitonový štít</string>
+    <string name="game_item_description_sky_iron">Nebezská ocel</string>
+    <string name="game_item_description_cubesat_fleet">Flotila cubesatů</string>
+    <string name="game_item_description_methane_ice_cubes">Metanové kostky ledu</string>
+    <string name="game_item_description_solar_power_plant_m_gamma">Solární elektrárna M Gamma</string>
+    <string name="game_item_description_antimatter_laser">Antihmotový laser</string>
+    <string name="game_item_description_quantum_vacuum_module">Modul energie vakua</string>
+    <string name="game_item_description_protein_muffins">Proteinové muffiny</string>
+    <string name="game_item_description_space_pet">Vesmírný mazlíček</string>
+    <string name="game_item_description_repair_bot">Opravářský robot</string>
+    <string name="game_item_description_food">Výživa</string>
+    <string name="game_item_description_holo_phones">Holografické telefony</string>
+    <string name="game_item_description_poreo">Natisklé P-oreo</string>
+    <string name="game_item_description_ultra_fast_camera">Ultra rychlá kamera</string>
+    <string name="game_item_description_water_purifier">Filtr na vodu</string>
+    <string name="game_item_description_a_pack_of_thermal_foil">Balík termofólií</string>
+    <string name="game_item_description_a_crate_of_PMSG">Krabice PMSG</string>
+    <string name="game_item_description_hydroponic_cylinder">Hydroponický válec</string>
+    <string name="game_item_description_a_crate_of_communication_devices">Bedna komunikátorů</string>
+    <string name="game_item_description_space_shoes">Vesmírné boty</string>
+    <string name="game_item_description_unobtainium_rope">Unobtainiové lano</string>
+    <string name="game_item_description_a_container_of_antimatter">Kontejner antihmoty</string>
+    <string name="game_item_description_computer_parts">Počítačové komponenty</string>
+    <string name="game_item_description_a_crate_of_photons">Krabice fotonů</string>
+    <string name="game_item_description_space_moths">Vesmírní molové</string>
+    <string name="game_item_description_plasma_drive">Plasmový motor</string>
+    <string name="game_item_description_plasma_h">Plasma H</string>
+    <string name="game_item_description_star_dust">Hvězdný prach</string>
+    <string name="game_item_description_martian_potatoes">Marťanské brambory</string>
+    <string name="game_item_description_xen_crystals">Xenské krystaly</string>
+    <string name="game_item_description_ceresian_tea">Ceresský čaj</string>
+    <string name="game_item_description_a_cube_of_soil">Kostka hlíny</string>
 </resources>

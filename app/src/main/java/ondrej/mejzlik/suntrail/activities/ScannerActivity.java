@@ -176,7 +176,6 @@ public class ScannerActivity extends Activity {
     }
 
 
-
     /**
      * Checks what scanning capabilities the device has.
      */
@@ -353,5 +352,16 @@ public class ScannerActivity extends Activity {
         Intent intent = new Intent(this, NfcScannerActivity.class);
         // Start the NFC scanner to get its result
         startActivityForResult(intent, NFC_REQUEST);
+    }
+
+    /**
+     * Handles clicks from game button in planet menu fragment.
+     * Launches a new activity with game menu.
+     *
+     * @param view The button that has been clicked
+     */
+    public void playGameButtonHandler(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
     }
 }
