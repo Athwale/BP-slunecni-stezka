@@ -23,7 +23,6 @@ public class Configuration {
     public static final String NAME_NEPTUNE = "neptun";
     // Easteregg authors name shows up
     public static final String NAME_ATHWALE = "Athwale";
-
     // Strings that NFC NUID must contain to verify which planet the user scanned
     public static final String NFC_INTRO = "4a3e26";
     public static final String NFC_SUN = "4573726";
@@ -38,5 +37,10 @@ public class Configuration {
     public static final String NFC_SATURN = "e4e43626";
     public static final String NFC_URANUS = "546c3926";
     public static final String NFC_NEPTUNE = "a4973526";
+
+    // To prevent someone from accidentally instantiating the contract class,
+    // make the constructor private.
+    private Configuration() {
+    }
 
 }
