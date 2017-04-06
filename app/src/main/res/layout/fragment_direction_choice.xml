@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_info_fragment_relative_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pict_yellow_activity_background"
+    tools:context="ondrej.mejzlik.suntrail.fragments.DirectionChoiceFragment">
+
+    <TextView
+        android:id="@+id/direction_choice_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:text="@string/direction_choice_title"
+        android:textColor="#ff0099cc"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/direction_choice_view_spacer"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="48dp"
+        android:background="#ff0099cc"
+        tools:ignore="UnknownId,UnknownIdInLayout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/direction_choice_view_spacer"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/direction_choice_linear_layout_sun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/direction_choice_button_to_sun"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/yellow_button_background"
+                android:drawableTop="@drawable/ic_to_sun"
+                android:onClick=""
+                android:paddingBottom="16dp"
+                android:text="@string/direction_choice_to_sun"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/direction_choice_linear_layout_neptune"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/direction_choice_button_to_neptune"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/yellow_button_background"
+                android:drawableTop="@drawable/ic_to_neptune"
+                android:onClick=""
+                android:paddingBottom="16dp"
+                android:text="@string/direction_choice_to_neptune"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

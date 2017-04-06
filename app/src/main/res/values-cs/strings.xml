@@ -1055,6 +1055,9 @@
     <string name="ship_cargo_size_small">S</string>
     <string name="ship_cargo_size_medium">S, M</string>
     <string name="ship_cargo_size_large">S, M, L</string>
+    <string name="direction_choice_title">Vyberte směr</string>
+    <string name="direction_choice_to_sun">Směrem ke Slunci</string>
+    <string name="direction_choice_to_neptune">Směrem k Neptunu</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>
