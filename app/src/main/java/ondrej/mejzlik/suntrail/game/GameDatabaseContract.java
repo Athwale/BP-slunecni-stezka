@@ -6,10 +6,10 @@ import android.provider.BaseColumns;
  * This class is a holder for constants which define the database, tables and columns.
  */
 
-public final class GameDatabaseContract {
+final class GameDatabaseContract {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "GameDatabase.db";
+    static final int DATABASE_VERSION = 1;
+    static final String DATABASE_NAME = "GameDatabase.db";
 
 
     // To prevent someone from accidentally instantiating the contract class,
@@ -38,6 +38,9 @@ public final class GameDatabaseContract {
     public static class SpaceshipTable implements BaseColumns {
         public static final String TABLE_NAME_SPACESHIP = "spaceship";
         public static final String COLUMN_NAME_SHIP_NAME_RES_ID = "shipName";
+        // Description is not a part of the row. ShipInfoFragment decides what to show by the ship
+        // name. Because when we first use ship description before starting a game, we do not have
+        // the database.
         public static final String COLUMN_NAME_SHIP_CONTAINER_SIZE = "shipContainerSize";
         public static final String COLUMN_NAME_SHIP_PRICE = "shipPrice";
     }
@@ -48,8 +51,9 @@ public final class GameDatabaseContract {
     public static class ItemsTable implements BaseColumns {
         public static final String TABLE_NAME_ITEMS = "gameItems";
         public static final String COLUMN_NAME_ITEM_PRICE = "itemPrice";
+        public static final String COLUMN_NAME_ITEM_SIZE = "itemSize";
         public static final String COLUMN_NAME_ITEM_NAME_RES_ID = "itemName";
-        public static final String COLUMN_NAME_ITEM_IMAGE_RES_ID = "itemPrice";
+        public static final String COLUMN_NAME_ITEM_IMAGE_RES_ID = "itemImage";
         public static final String COLUMN_NAME_ITEM_TEXT_RES_ID = "itemDescription";
         public static final String COLUMN_NAME_ITEM_SELL_AT = "sellableAt";
         public static final String COLUMN_NAME_ITEM_IS_BOUGHT = "isBought";

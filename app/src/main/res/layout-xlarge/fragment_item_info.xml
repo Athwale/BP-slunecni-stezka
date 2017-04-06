@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_info_relative_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ondrej.mejzlik.suntrail.fragments.ItemInfoFragment">
+
+    <TextView
+        android:id="@+id/item_info_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:text="@string/item_info_title"
+        android:textColor="#ff0099cc"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/item_info_view_spacer"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="48dp"
+        android:background="#ff0099cc"
+        tools:ignore="UnknownId,UnknownIdInLayout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/item_info_view_spacer"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/item_info_image_view_item"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/item_image_description"
+                android:scaleType="fitCenter"
+                tools:src="@drawable/pict_icarus" />
+
+            <TextView
+                android:id="@+id/item_info_text_view_item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/game_item_name_ion_drive_fuel"
+                android:textAlignment="center"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/item_info_text_view_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingEnd="70dp"
+                android:paddingStart="70dp"
+                android:textColor="#000000"
+                tools:text="Ion thrusters use xenon gas. The early models of ion drives used to ionize the gas inside the engine by themselves and then expelled the charged particles out the thruster with very high voltage. Nowadays the technology has advanced, the ions are prepared in advance and are transported in plastic magnetic bottles. The thrusters are then filled with these ready-made ions. A probe called Dawn with an old ion propulsion was used to discover the planet Ceres in the year 2007." />
+
+            <TextView
+                android:id="@+id/item_info_text_view_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/item_info_sell_at"
+                android:textAlignment="center"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/item_info_text_view_cargo_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="Moon" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

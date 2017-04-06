@@ -1,10 +1,10 @@
-package ondrej.mejzlik.suntrail.config;
+package ondrej.mejzlik.suntrail.configuration;
 
 /**
  * This class holds public static constants used to identify planets from QR codes and NFC tags.
  * You can change values here to modify or repair app behavior.
  */
-public class Configuration {
+public final class Configuration {
 
     // Strings that the QR code must contain in order to verify which planet the user scanned
     public static final String SUN_TRAIL_NAME = "http://slunecnistezka.cz/app/";
@@ -37,6 +37,11 @@ public class Configuration {
     public static final String NFC_SATURN = "e4e43626";
     public static final String NFC_URANUS = "546c3926";
     public static final String NFC_NEPTUNE = "a4973526";
+
+    // Initial game values
+    public static final int ICARUS_DEFAULT_PRICE = 140;
+    public static final int MIN_SELL_PROFIT_PERCENT = 10;
+    public static final int MAX_SELL_PROFIT_PERCENT = 20;
 
     // To prevent someone from accidentally instantiating the contract class,
     // make the constructor private.

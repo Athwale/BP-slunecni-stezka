@@ -9,10 +9,12 @@ import android.view.View;
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.fragments.ShipInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.StartGameFragment;
+import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
 
 public class GameActivity extends Activity {
     public static final String SPACESHIP_NAME_KEY = "spaceshipNameKey";
     private Bundle arguments = null;
+    private GameDatabaseHelper database = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,11 @@ public class GameActivity extends Activity {
         // display Icarus S info, no database exists at this point since game has not
         // been started yet.
         this.arguments = new Bundle();
+
+        // TODO do this in background thread
+        // Create database
+        this.database = new GameDatabaseHelper(this);
+
         // The ship info fragment identifies which spaceship info to display by the spaceship name
         // string id.
         arguments.putInt(SPACESHIP_NAME_KEY, R.string.ship_name_lokys);
