@@ -10,15 +10,13 @@ import android.view.ViewGroup;
 import ondrej.mejzlik.suntrail.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * This fragment allows the user to select whether they will be walking from Sun to Neptune or vice
+ * versa.
  */
 public class DirectionChoiceFragment extends Fragment {
-
-
     public DirectionChoiceFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

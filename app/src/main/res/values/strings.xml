@@ -1071,6 +1071,7 @@
     <string name="direction_choice_title">Choose direction</string>
     <string name="direction_choice_to_sun">Towards the Sun</string>
     <string name="direction_choice_to_neptune">Towards Neptune</string>
+    <string name="toast_pick_direction">Please choose the direction</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>

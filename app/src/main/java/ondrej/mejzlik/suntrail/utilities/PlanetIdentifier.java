@@ -45,13 +45,13 @@ public class PlanetIdentifier {
     public static final int PLANET_ID_INVALID = 13;
     // Cheat authors name shows up
     public static final int PLANET_ID_ATHWALE = 14;
-    static final int PLANET_ID_SUN = 1;
-    static final int PLANET_ID_MERCURY = 2;
+    public static final int PLANET_ID_SUN = 1;
+    public static final int PLANET_ID_MERCURY = 2;
+    public static final int PLANET_ID_URANUS = 11;
     static final int PLANET_ID_EARTH = 4;
     static final int PLANET_ID_MOON = 5;
     static final int PLANET_ID_MARS = 6;
     static final int PLANET_ID_CERES = 7;
-    static final int PLANET_ID_URANUS = 11;
     // Planet identifiers used in PlanetResourceCollector and PlanetIdentifier to identify which
     // planet data should we load.
     private final int PLANET_ID_INTRO = 0;

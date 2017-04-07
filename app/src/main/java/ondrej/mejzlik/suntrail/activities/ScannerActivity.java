@@ -175,7 +175,6 @@ public class ScannerActivity extends Activity {
         }
     }
 
-
     /**
      * Checks what scanning capabilities the device has.
      */
@@ -362,6 +361,10 @@ public class ScannerActivity extends Activity {
      */
     public void playGameButtonHandler(View view) {
         Intent intent = new Intent(this, GameActivity.class);
+        // Pass scanned planet id to the game activity
+        Bundle parameters = new Bundle();
+        parameters.putInt(PLANET_ID_KEY, this.planetResources.getInt(PLANET_ID_KEY));
+        intent.putExtras(parameters);
         startActivity(intent);
     }
 }

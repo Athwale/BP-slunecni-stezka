@@ -1058,6 +1058,7 @@
     <string name="direction_choice_title">Vyberte směr</string>
     <string name="direction_choice_to_sun">Směrem ke Slunci</string>
     <string name="direction_choice_to_neptune">Směrem k Neptunu</string>
+    <string name="toast_pick_direction">Prosím vyberte směr</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>
