@@ -5,7 +5,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import ondrej.mejzlik.suntrail.R;
@@ -127,7 +126,7 @@ public class GameActivity extends Activity {
      * @param view The button that has been pressed.
      */
     public void directionChoiceButtonHandler(View view) {
-        int buttonId = ((Button) view).getId();
+        int buttonId = view.getId();
         switch (buttonId) {
             case R.id.direction_choice_button_to_sun: {
                 this.tripDirection = true;
