@@ -1,5 +1,7 @@
 package ondrej.mejzlik.suntrail.configuration;
 
+import ondrej.mejzlik.suntrail.R;
+
 /**
  * This class holds public static constants used to identify planets from QR codes and NFC tags.
  * You can change values here to modify or repair app behavior.
@@ -39,6 +41,13 @@ public final class Configuration {
     public static final String NFC_NEPTUNE = "a4973526";
 
     // Initial game values
+    public static final int FIRST_SHIP = R.string.ship_name_icarus;
+    public static final int STARTING_CREDITS = 42;
+    // First shop is on the Sun, the first introduction board opens Sun path info fragment and does
+    // not offer game. Last shop is on Uranus. There is no point in buying anything on Neptune
+    // since there is nowhere to sell it.
+    // On Neptune the player is able to sell everything he has including the ship and is rewarded.
+    public static final int SHOPS_COUNT = 11;
     public static final int ICARUS_DEFAULT_PRICE = 140;
     public static final int MIN_SELL_PROFIT_PERCENT = 10;
     public static final int MAX_SELL_PROFIT_PERCENT = 20;
