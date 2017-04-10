@@ -13,6 +13,7 @@ import ondrej.mejzlik.suntrail.R;
 
 import static ondrej.mejzlik.suntrail.configuration.Configuration.FIRST_SHIP;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.ICARUS_DEFAULT_PRICE;
+import static ondrej.mejzlik.suntrail.configuration.Configuration.SHOPS_COUNT;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.STARTING_CREDITS;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_VERSION;
@@ -203,13 +204,14 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      * The cargo size of the items is S until second ship can be bought. Then at least one is
      * randomly S the rest is M. Once the L size ship can be bought, at least one item is S, at
      * least one is M and the rest is L.
-     *
+     * // TODO change algorithm description
      * @param db Open SQLite database.
      */
     private void addItems(SQLiteDatabase db, ArrayList<String> shopItemsNoPrefix) {
         // Get how many items we have
         int itemCount = shopItemsNoPrefix.size();
         // Determine how many items each planet can have
+        int itemsInShop = itemCount / SHOPS_COUNT;
 
     }
 }
