@@ -43,19 +43,21 @@ public class PlanetIdentifier {
     public static final int PLANET_ID_SATURN = 10;
     public static final int PLANET_ID_NEPTUNE = 12;
     public static final int PLANET_ID_INVALID = 13;
-    // Cheat authors name shows up
+    // Easter egg - authors name shows up
     public static final int PLANET_ID_ATHWALE = 14;
+    // Special identifier for the game, allows selling items everywhere
+    public static final int PLANET_ID_ANY = 15;
     public static final int PLANET_ID_SUN = 1;
     public static final int PLANET_ID_MERCURY = 2;
     public static final int PLANET_ID_URANUS = 11;
-    static final int PLANET_ID_EARTH = 4;
-    static final int PLANET_ID_MOON = 5;
-    static final int PLANET_ID_MARS = 6;
-    static final int PLANET_ID_CERES = 7;
+    public static final int PLANET_ID_EARTH = 4;
+    public static final int PLANET_ID_MOON = 5;
+    public static final int PLANET_ID_MARS = 6;
+    public static final int PLANET_ID_CERES = 7;
+    public static final int PLANET_ID_VENUS = 3;
     // Planet identifiers used in PlanetResourceCollector and PlanetIdentifier to identify which
     // planet data should we load.
-    private final int PLANET_ID_INTRO = 0;
-    private final int PLANET_ID_VENUS = 3;
+    private static final int PLANET_ID_INTRO = 0;
 
     /**
      * Identifies planet based on which button was pressed in all boards fragment.

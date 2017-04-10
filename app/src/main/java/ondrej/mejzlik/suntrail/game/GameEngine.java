@@ -13,7 +13,7 @@ public class GameEngine {
 
     public GameEngine() {
         // Initialize random number generator once
-        this.randomNumberGenerator = new Random();
+        this.randomNumberGenerator = new Random(System.nanoTime());
     }
 
     /**

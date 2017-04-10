@@ -1325,7 +1325,7 @@
         </p>
     ]]>
     </string>
-    <string name="game_item_info_a_crate_of_PMSG">
+    <string name="game_item_info_a_crate_of_pmsg">
     <![CDATA[
         <p>
         The Pulsed microwave stun gun is a defensive weapon developed after the Black Mesa incident.
@@ -1523,7 +1523,7 @@
     <string name="game_item_name_ultra_fast_camera">Ultra fast camera</string>
     <string name="game_item_name_water_purifier">Water purifier</string>
     <string name="game_item_name_a_pack_of_thermal_foil">A pack of thermal foil</string>
-    <string name="game_item_name_a_crate_of_PMSG">A crate of PMSG</string>
+    <string name="game_item_name_a_crate_of_pmsg">A crate of PMSG</string>
     <string name="game_item_name_hydroponic_cylinder">Hydroponic cylinder</string>
     <string name="game_item_name_a_crate_of_communication_devices">A crate of communication devices</string>
     <string name="game_item_name_space_shoes">Space shoes</string>

@@ -1309,7 +1309,7 @@
         </p>
     ]]>
     </string>
-    <string name="game_item_info_a_crate_of_PMSG">
+    <string name="game_item_info_a_crate_of_pmsg">
     <![CDATA[
         <p>
         Pulsed microwave stun gun - pulzní mikrovlnné omračovadlo je obranná zbraň vyvinutá po
@@ -1502,7 +1502,7 @@
     <string name="game_item_name_ultra_fast_camera">Ultra rychlá kamera</string>
     <string name="game_item_name_water_purifier">Filtr na vodu</string>
     <string name="game_item_name_a_pack_of_thermal_foil">Balík termofólií</string>
-    <string name="game_item_name_a_crate_of_PMSG">Krabice PMSG</string>
+    <string name="game_item_name_a_crate_of_pmsg">Krabice PMSG</string>
     <string name="game_item_name_hydroponic_cylinder">Hydroponický válec</string>
     <string name="game_item_name_a_crate_of_communication_devices">Bedna komunikátorů</string>
     <string name="game_item_name_space_shoes">Vesmírné boty</string>

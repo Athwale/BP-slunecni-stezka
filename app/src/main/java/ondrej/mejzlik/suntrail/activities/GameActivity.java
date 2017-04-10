@@ -41,6 +41,7 @@ public class GameActivity extends Activity {
         // TODO do this in background thread
         // Create database
         this.database = new GameDatabaseHelper(this);
+        this.database.initializeDatabaseContents(this.tripDirection, this.scannedPlanet, this);
 
         // Get which planet was scannet
         // Game activity is always started from scanner activity and always has a planet argument.
