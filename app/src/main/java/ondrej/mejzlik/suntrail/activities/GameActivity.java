@@ -38,14 +38,14 @@ public class GameActivity extends Activity {
 
         FragmentManager fragmentManager = getFragmentManager();
 
+        // Get which planet was scanned
+        // Game activity is always started from scanner activity and always has a planet argument.
+        this.scannedPlanet = getIntent().getExtras().getInt(PLANET_ID_KEY);
+
         // TODO do this in background thread
         // Create database
         this.database = new GameDatabaseHelper(this);
         this.database.initializeDatabaseContents(this.tripDirection, this.scannedPlanet, this);
-
-        // Get which planet was scannet
-        // Game activity is always started from scanner activity and always has a planet argument.
-        this.scannedPlanet = getIntent().getExtras().getInt(PLANET_ID_KEY);
 
         // Initialize SpaceshipArguments for spaceship info fragment. From here we can only
         // display Icarus S info, no database exists at this point since game has not

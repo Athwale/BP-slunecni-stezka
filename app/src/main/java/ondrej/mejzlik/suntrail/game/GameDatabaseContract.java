@@ -26,6 +26,8 @@ final class GameDatabaseContract {
      */
     public static class PlayerTable implements BaseColumns {
         public static final String TABLE_NAME_PLAYER = "player";
+        // All Integer values
+        // Primary key is _ID
         public static final String COLUMN_NAME_PLAYER_SHIP_NAME_RES_ID = "shipName";
         public static final String COLUMN_NAME_PLAYER_CREDITS = "credits";
         public static final String COLUMN_NAME_PLAYER_CURRENT_PLANET = "currentPlanet";
@@ -37,11 +39,13 @@ final class GameDatabaseContract {
      */
     public static class SpaceshipTable implements BaseColumns {
         public static final String TABLE_NAME_SPACESHIP = "spaceship";
+        // All Integer values
+        // Primary key is _ID
         public static final String COLUMN_NAME_SHIP_NAME_RES_ID = "shipName";
         // Description is not a part of the row. ShipInfoFragment decides what to show by the ship
         // name. Because when we first use ship description before starting a game, we do not have
         // the database.
-        public static final String COLUMN_NAME_SHIP_CONTAINER_SIZE = "shipContainerSize";
+        public static final String COLUMN_NAME_SHIP_CARGO_SIZE = "shipContainerSize";
         public static final String COLUMN_NAME_SHIP_PRICE = "shipPrice";
     }
 
@@ -50,13 +54,15 @@ final class GameDatabaseContract {
      */
     public static class ItemsTable implements BaseColumns {
         public static final String TABLE_NAME_ITEMS = "gameItems";
+        // All Integer values
+        // Primary key is _ID
         public static final String COLUMN_NAME_ITEM_PRICE = "itemPrice";
         public static final String COLUMN_NAME_ITEM_SIZE = "itemSize";
         public static final String COLUMN_NAME_ITEM_NAME_RES_ID = "itemName";
         public static final String COLUMN_NAME_ITEM_IMAGE_RES_ID = "itemImage";
         public static final String COLUMN_NAME_ITEM_TEXT_RES_ID = "itemDescription";
-        public static final String COLUMN_NAME_ITEM_SELL_AT = "saleableAt";
         public static final String COLUMN_NAME_ITEM_IS_BOUGHT = "isBought";
         public static final String COLUMN_NAME_ITEM_AVAILABLE_AT = "availableAt";
+        public static final String COLUMN_NAME_ITEM_PRICE_RISE = "priceRise";
     }
 }

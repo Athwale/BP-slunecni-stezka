@@ -45,8 +45,6 @@ public class PlanetIdentifier {
     public static final int PLANET_ID_INVALID = 13;
     // Easter egg - authors name shows up
     public static final int PLANET_ID_ATHWALE = 14;
-    // Special identifier for the game, allows selling items everywhere
-    public static final int PLANET_ID_ANY = 15;
     public static final int PLANET_ID_SUN = 1;
     public static final int PLANET_ID_MERCURY = 2;
     public static final int PLANET_ID_URANUS = 11;

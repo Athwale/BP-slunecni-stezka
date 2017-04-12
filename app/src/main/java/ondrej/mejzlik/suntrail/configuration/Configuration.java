@@ -21,6 +21,52 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS
 /**
  * This class holds public static constants used to identify planets from QR codes and NFC tags.
  * You can change values here to modify or repair app behavior.
+ *
+ * GAME ALGORITHM EXPLANATION
+ * 1. The player can start the game at any planet. If the game is started on the first or last
+ * two planets the direction is automatically set towards the other end of the Sun trail. Otherwise
+ * the user has to select one direction.
+ *
+ * 2. The player begins the game with a certain amount of credits (can be set in this file).
+ * The player is given a small ship Icarus S.
+ * Other ships are available on the Moon and Jupiter. The player will receive the new ship for free.
+ *
+ * 3. There are 11 shops in the game. The first information board does not have a shop, scanning the
+ * board opens the information fragment. First shop is on the Sun. Neptune does not have a shop
+ * because it is the last planet there is no point in buying anything there.
+ *
+ * 4. There are 33 items in the game. Each shop has 3. The number can be expanded but each shop
+ * must have equal amount of items.
+ *
+ * 5. Items are assigned random prices from a range which can be configured in this file.
+ * The price of each item can either rise or fall before it is sold in another shop. By how much %
+ * the price will change can be set in this file. Whether the price will rise or fall is initially
+ * set when adding the items into the database. If the price is higher than a set value it is more
+ * probable that the price will fall, if the price is lower than a set value it might rise more
+ * probably. Otherwise the probability is equal.
+ * The next movement in price of a given item which is in the player's inventory is set randomly at
+ * each stop.
+ *
+ * 6. In case the user makes many bad choices and the algorithm determines the user will not be
+ * able to buy anything in a shop he arrived to, a price of one item is set low enough for the user
+ * to be able to buy it and the price is set to rise. This takes into account what the user can
+ * sell in that shop. This safety feature can be disabled in a harder mode.
+ *
+ * 7. Different ships have different cargo bay size. This can be set in this file. The size of items
+ * in shops is set randomly but not to be larger than a half of currently available maximum cargo
+ * bay size.
+ *
+ * 8. On the last planet which is either the Neptune on the Sun everything is automatically sold.
+ * Then based on how much credits the player has he is awarded.
+ *
+ * 9 GAMEPLAY MECHANICS
+ * The user might play completely randomly not thinking about anything. In this case because of the
+ * bad choices safety method the user is able to finish the game.
+ * Otherwise the player is supposed to make choices whether to buy an item which will be sold for
+ * more credits but the price might drop a bit, or buy an item where the price will rise. Since
+ * items can be sold at any planet a decision what the user will keep in the cargo bay has to be
+ * made. If he keeps it the price may rise a bit more but it will occupy some space. The player
+ * has to keep an eye on the predicted price movements.
  */
 public final class Configuration {
 
@@ -64,7 +110,7 @@ public final class Configuration {
 
     // Initial game values
     public static final int FIRST_SHIP = R.string.ship_name_icarus;
-    public static final int STARTING_CREDITS = 42;
+    public static final int STARTING_CREDITS = 500;
 
     // First shop is on the Sun because the first intro board opens Sun path info fragment and does
     // not offer the game. Last shop is on Uranus. There is no point in buying anything on Neptune
@@ -85,9 +131,22 @@ public final class Configuration {
                 add(PLANET_ID_URANUS);
             }});
 
-    public static final int ICARUS_DEFAULT_PRICE = 140;
-    public static final int MIN_SELL_PROFIT_PERCENT = 10;
-    public static final int MAX_SELL_PROFIT_PERCENT = 20;
+    public static final int ICARUS_CARGO_SIZE = 15;
+    public static final int LOKYS_CARGO_SIZE = 25;
+    public static final int DAEDALUS_CARGO_SIZE = 35;
+    // These are used to randomly assign the price of an item
+    public static final int MIN_ITEM_PRICE = 50;
+    public static final int MAX_ITEM_PRICE = 500;
+    // In percent how much the price will raise or fall.
+    public static final int MIN_ITEM_PRICE_MOVEMENT = 10;
+    public static final int MAX_ITEM_PRICE_MOVEMENT = 20;
+    // From which price should the probability of price falling be higher and lower
+    public static final int ITEM_PRICE_MIGHT_FALL = 450;
+    public static final int ITEM_PRICE_MIGHT_RISE = 150;
+    // probability in % of price fall or rise if price is above ITEM_PRICE_MIGHT_FALL or below
+    // ITEM_PRICE_MIGHT_RISE
+    public static final int ITEM_PRICE_FALL_RISE_PROBABILITY = 70;
+
 
     // To prevent someone from accidentally instantiating the contract class,
     // make the constructor private.
