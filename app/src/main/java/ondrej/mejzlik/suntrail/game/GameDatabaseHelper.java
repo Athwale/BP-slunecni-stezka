@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -38,6 +37,7 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_SUN;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS;
 
 /**
+ * This class is a singleton.
  * This class provides methods to handle the database. Create it, add tables, remove whole database,
  * add rows and get rows and get various information from the database.
  */
@@ -71,25 +71,32 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private static final String DELETE_PLAYER_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME_PLAYER;
     private static final String DELETE_SPACESHIP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME_SPACESHIP;
     private static final String DELETE_ITEMS_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME_ITEMS;
+    private static GameDatabaseHelper instance;
     private GameUtilities engine = null;
 
     /**
-     * Constructor creates the database helper and if no database existed in the system,
-     * initializes game data.
+     * Constructor creates the database helper.
      *
-     * @param tripDirection Whether we are going from the Sun to Neptune or vice versa
-     * @param scannedPlanet Which planet we scanned
      * @param context       App context
      */
-    public GameDatabaseHelper(boolean tripDirection, int scannedPlanet, Context context) {
+    private GameDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.engine = new GameUtilities();
+    }
 
-        // Only initialize the database if it does not exist from before.
-        File dbFile = context.getDatabasePath(DATABASE_NAME);
-        if (!dbFile.exists()) {
-            this.initializeDatabaseContents(tripDirection, scannedPlanet, context);
+    /**
+     * Factory method to obtain a singleton instance of this database helper.
+     *
+     * @param context Application context.
+     * @return Singleton instance of this object.
+     */
+    public static synchronized GameDatabaseHelper getInstance(Context context) {
+        // Use the application context, which will ensure that we
+        // don't accidentally leak an Activity's context.
+        if (instance == null) {
+            instance = new GameDatabaseHelper(context.getApplicationContext());
         }
+        return instance;
     }
 
     @Override
@@ -114,14 +121,18 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
 
     /**
      * This method fills the database with initial data. Creates a player, ships and items.
+     *
+     * @param direction Whether we are going from the Sun to Neptune or vice versa
+     * @param currentPlanet Which planet we scanned
+     * @param context       App context
      */
-    private void initializeDatabaseContents(boolean direction, int currentPlanet, Context context) {
+    public void initializeDatabaseContents(boolean direction, int currentPlanet, Context context) {
         // Open database.
         SQLiteDatabase db = this.getWritableDatabase();
         // Add rows
         this.addPlayer(db, direction, currentPlanet);
         this.addShips(db);
-        this.addItems(db, context);
+        this.addItems(db, context.getApplicationContext());
         if (db != null && db.isOpen()) {
             db.close();
         }
@@ -134,8 +145,8 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      * Starting ship  = FIRST_SHIP
      * Starting credits = STARTING_CREDITS
      *
-     * @param db Open SQLite database from initializeDatabaseContents
-     * @param direction Trip direction Sun to Neptune or vice versa
+     * @param db            Open SQLite database from initializeDatabaseContents
+     * @param direction     Trip direction Sun to Neptune or vice versa
      * @param currentPlanet Current planet at which the user first opened the game mode
      */
     private void addPlayer(SQLiteDatabase db, boolean direction, int currentPlanet) {
@@ -203,7 +214,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     /**
      * This method adds all shop items into the database as a part of game data initialization.
      *
-     * @param db Open SQLite database.
+     * @param db      Open SQLite database.
      * @param context Context of the app. It is needed to have access to resources.
      */
     private void addItems(SQLiteDatabase db, Context context) {

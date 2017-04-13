@@ -73,6 +73,7 @@ public class SettingsActivity extends Activity {
                     Toast.makeText(this, this.getResources().getString(R.string.toast_game_data_clear), Toast.LENGTH_SHORT).show();
                     checkBoxClear.setChecked(false);
                     view.setEnabled(false);
+                    checkBoxClear.setEnabled(false);
                     databaseExistsText.setText(R.string.settings_data_info_not_exists);
                 } else {
                     Toast.makeText(this, this.getResources().getString(R.string.toast_database_delete_fail), Toast.LENGTH_LONG).show();

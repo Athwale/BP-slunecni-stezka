@@ -1054,7 +1054,7 @@
     <string name="ship_name_lokys">Lokys M</string>
     <string name="ship_name_daedalus">Daidalos L</string>
     <string name="ship_info_title">Informace o lodi</string>
-    <string name="ship_info_cargo">Povolená velikost kontejnerů v nákladovém prostoru:</string>
+    <string name="ship_info_cargo">Velikost nákladního prostoru:</string>
     <string name="ship_cargo_size_small">15</string>
     <string name="ship_cargo_size_medium">25</string>
     <string name="ship_cargo_size_large">35</string>
@@ -1062,6 +1062,7 @@
     <string name="direction_choice_to_sun">Směrem ke Slunci</string>
     <string name="direction_choice_to_neptune">Směrem k Neptunu</string>
     <string name="toast_pick_direction">Prosím vyberte směr</string>
+    <string name="toast_flight_route">Prosím vyčkejte, počítá se dráha letu</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>
