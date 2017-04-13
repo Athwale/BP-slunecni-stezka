@@ -25,11 +25,11 @@ public class GameActivity extends Activity {
     private Bundle SpaceshipArguments = null;
     // This is used to prevent multiple toasts from showing.
     private Toast directionToast = null;
-    private GameDatabaseHelper database = null;
     // This is used in the game to determine which planet is next.
     // true =  from Sun to Neptune, false = from Neptune to Sun.
     private boolean tripDirection = true;
     private int scannedPlanet;
+    private GameDatabaseHelper database = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +44,8 @@ public class GameActivity extends Activity {
 
         // TODO do this in background thread
         // Create database
-        this.database = new GameDatabaseHelper(this);
-        this.database.initializeDatabaseContents(this.tripDirection, this.scannedPlanet, this);
+        this.database = new GameDatabaseHelper(tripDirection, scannedPlanet, getApplicationContext());
+
 
         // Initialize SpaceshipArguments for spaceship info fragment. From here we can only
         // display Icarus S info, no database exists at this point since game has not

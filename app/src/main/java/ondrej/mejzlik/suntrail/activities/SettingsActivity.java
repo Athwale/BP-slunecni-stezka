@@ -1,78 +1,40 @@
 package ondrej.mejzlik.suntrail.activities;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
 
 import ondrej.mejzlik.suntrail.R;
 
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
+
 public class SettingsActivity extends Activity {
-    private SharedPreferences preferences = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        // Get shared preferences for the whole app
-        this.preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        // Preferences has been set to default when the main activity was first started
-        // We can load them.
-        //this.loadPreferences();
-    }
 
-    /*
-    private void loadPreferences() {
-        String scanMethod = preferences.getString(getResources().getString(R.string.preference_scan_method), null);
-        RadioButton radioButtonNfc = (RadioButton) findViewById(R.id.settings_radio_button_nfc);
-        RadioButton radioButtonQr = (RadioButton) findViewById(R.id.settings_radio_button_qr);
-        // Enable buttons
-        PackageManager packageManager = getPackageManager();
-        if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
-            radioButtonQr.setEnabled(true);
-        }
-        // If nfc is available overwrite qr
-        if (packageManager.hasSystemFeature(PackageManager.FEATURE_NFC)) {
-            radioButtonNfc.setEnabled(true);
-        }
-        // Set button as checked according to scan method from preferences
-        if (scanMethod.equals(getResources().getString(R.string.preference_qr))) {
-            radioButtonQr.setChecked(true);
-        } else if (scanMethod.equals(getResources().getString(R.string.preference_nfc))) {
-            radioButtonNfc.setChecked(true);
-        } else if (scanMethod.equals(getResources().getString(R.string.preference_none))) {
-            radioButtonNfc.setChecked(false);
-            radioButtonQr.setChecked(false);
-        }
-    }
+        TextView databaseExistsText = (TextView) findViewById(R.id.settings_text_view_data_info);
+        Button buttonClear = (Button) findViewById(R.id.settings_button_clear_data);
+        CheckBox checkBoxClear = (CheckBox) findViewById(R.id.settings_checkbox_clear_data);
 
-    public void radioButtonClicked(View radioButton) {
-        SharedPreferences.Editor editor = preferences.edit();
-        String scanMethod = getResources().getString(R.string.preference_scan_method);
-        // Is the button in the view checked
-        boolean checked = ((RadioButton) radioButton).isChecked();
-        // Check which radio button was clicked
-        switch (radioButton.getId()) {
-            case R.id.settings_radio_button_nfc:
-                if (checked) {
-                    String nfc = getResources().getString(R.string.preference_nfc);
-                    editor.putString(scanMethod, nfc);
-                    break;
-                }
-            case R.id.settings_radio_button_qr:
-                if (checked) {
-                    String qr = getResources().getString(R.string.preference_qr);
-                    editor.putString(scanMethod, qr);
-                    break;
-                }
+        if (this.checkDatabaseExistence()) {
+            databaseExistsText.setText(R.string.settings_data_info_exists);
+            buttonClear.setEnabled(true);
+            checkBoxClear.setEnabled(true);
+        } else {
+            databaseExistsText.setText(R.string.settings_data_info_not_exists);
+            buttonClear.setEnabled(false);
+            checkBoxClear.setEnabled(false);
         }
-        editor.apply();
     }
-    */
 
     /**
      * Handles clicks from clear game data checkbox in settings.
@@ -98,13 +60,34 @@ public class SettingsActivity extends Activity {
      */
     public void clearButtonHandler(View view) {
         CheckBox checkBoxClear = (CheckBox) findViewById(R.id.settings_checkbox_clear_data);
-        if (checkBoxClear.isChecked()) {
-            // Clear game data
-
-            // Toast.makeText(getActivity(), "saved", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, this.getResources().getString(R.string.toast_game_data_clear), Toast.LENGTH_SHORT).show();
-            checkBoxClear.setChecked(false);
-            view.setEnabled(false);
+        TextView databaseExistsText = (TextView) findViewById(R.id.settings_text_view_data_info);
+        // Clear game data
+        // All database connections must be closed before calling this, but since they
+        // are closed when exiting game activity, it is safe to call.
+        if (checkBoxClear.isEnabled()) {
+            // There is a database to delete
+            if (checkBoxClear.isChecked()) {
+                this.deleteDatabase(DATABASE_NAME);
+                if (!this.checkDatabaseExistence()) {
+                    // The database was really deleted
+                    Toast.makeText(this, this.getResources().getString(R.string.toast_game_data_clear), Toast.LENGTH_SHORT).show();
+                    checkBoxClear.setChecked(false);
+                    view.setEnabled(false);
+                    databaseExistsText.setText(R.string.settings_data_info_not_exists);
+                } else {
+                    Toast.makeText(this, this.getResources().getString(R.string.toast_database_delete_fail), Toast.LENGTH_LONG).show();
+                }
+            }
         }
+    }
+
+    /**
+     * This method returns true if there is a game database file for this app in the system system.
+     *
+     * @return This method returns true if there is a game database file for this app.
+     */
+    private boolean checkDatabaseExistence() {
+        File dbFile = this.getDatabasePath(DATABASE_NAME);
+        return dbFile.exists();
     }
 }

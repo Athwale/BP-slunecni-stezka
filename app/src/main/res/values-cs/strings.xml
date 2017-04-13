@@ -17,6 +17,8 @@
     <string name="schema_image_description">Schéma solárního systému</string>
     <string name="game_info_screen_title">Jak hrát</string>
     <string name="settings_title">Nastavení</string>
+    <string name="settings_data_info_exists">Herní data jsou uložena</string>
+    <string name="settings_data_info_not_exists">Herní data jsou vymazána</string>
     <string name="checkbox_clear_data">Vymazat herní data</string>
     <string name="button_clear_data">Vymazat</string>
     <string name="scanner_screen_title_nfc">Přiložte zařízení k NFC tagu</string>
@@ -53,6 +55,7 @@
     <string name="toast_author">Autor: </string>
     <string name="toast_developer_mode">Vývojářský mód aktivován. NFC scanner bude vypisovat
         všechny informace</string>
+    <string name="toast_database_delete_fail">Data nebyla smazána, restartujte aplikaci a zopakujte smazání</string>
     <string name="audio_player_play">Play</string>
     <string name="audio_player_pause">Pause</string>
     <string name="audio_player_stop">Stop</string>
@@ -1052,9 +1055,9 @@
     <string name="ship_name_daedalus">Daidalos L</string>
     <string name="ship_info_title">Informace o lodi</string>
     <string name="ship_info_cargo">Povolená velikost kontejnerů v nákladovém prostoru:</string>
-    <string name="ship_cargo_size_small">S</string>
-    <string name="ship_cargo_size_medium">S, M</string>
-    <string name="ship_cargo_size_large">S, M, L</string>
+    <string name="ship_cargo_size_small">15</string>
+    <string name="ship_cargo_size_medium">25</string>
+    <string name="ship_cargo_size_large">35</string>
     <string name="direction_choice_title">Vyberte směr</string>
     <string name="direction_choice_to_sun">Směrem ke Slunci</string>
     <string name="direction_choice_to_neptune">Směrem k Neptunu</string>

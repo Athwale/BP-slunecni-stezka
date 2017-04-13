@@ -9,10 +9,10 @@ import static ondrej.mejzlik.suntrail.configuration.Configuration.ITEM_PRICE_MIG
 /**
  * This class contains methods necessary for the game to work.
  */
-public class GameEngine {
+public class GameUtilities {
     private Random randomNumberGenerator = null;
 
-    public GameEngine() {
+    public GameUtilities() {
         // Initialize random number generator once
         this.randomNumberGenerator = new Random(System.nanoTime());
     }

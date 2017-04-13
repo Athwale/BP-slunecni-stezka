@@ -1,6 +1,5 @@
 package ondrej.mejzlik.suntrail.game;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -59,6 +59,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_ITEMS_TABLE = "CREATE TABLE " + TABLE_NAME_ITEMS + " (" +
             GameDatabaseContract.ItemsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE + " INTEGER," +
+            GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SELL_PRICE + " INTEGER," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SIZE + " INTEGER," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_NAME_RES_ID + " INTEGER," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IMAGE_RES_ID + " INTEGER," +
@@ -70,16 +71,31 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private static final String DELETE_PLAYER_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME_PLAYER;
     private static final String DELETE_SPACESHIP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME_SPACESHIP;
     private static final String DELETE_ITEMS_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME_ITEMS;
-    private GameEngine engine = null;
+    private GameUtilities engine = null;
 
-    public GameDatabaseHelper(Context context) {
+    /**
+     * Constructor creates the database helper and if no database existed in the system,
+     * initializes game data.
+     *
+     * @param tripDirection Whether we are going from the Sun to Neptune or vice versa
+     * @param scannedPlanet Which planet we scanned
+     * @param context       App context
+     */
+    public GameDatabaseHelper(boolean tripDirection, int scannedPlanet, Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        this.engine = new GameEngine();
+        this.engine = new GameUtilities();
+
+        // Only initialize the database if it does not exist from before.
+        File dbFile = context.getDatabasePath(DATABASE_NAME);
+        if (!dbFile.exists()) {
+            this.initializeDatabaseContents(tripDirection, scannedPlanet, context);
+        }
     }
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-        // This method is by default called if the database does not exist.
+        // This method is by default called if the database does not exist. It is called when
+        // getWritableDatabase or readable method is called.
         // Create new empty tables for game data.
         database.execSQL(CREATE_PLAYER_TABLE);
         database.execSQL(CREATE_SPACESHIP_TABLE);
@@ -97,28 +113,15 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * This method deletes all tables in the database.
-     *
-     * @param database Opened SQLite database.
-     */
-    private void deleteTables(SQLiteDatabase database) {
-        database.execSQL(DELETE_PLAYER_TABLE);
-        database.execSQL(DELETE_SPACESHIP_TABLE);
-        database.execSQL(DELETE_ITEMS_TABLE);
-    }
-
-    /**
      * This method fills the database with initial data. Creates a player, ships and items.
      */
-    public void initializeDatabaseContents(boolean direction, int currentPlanet, Activity activity) {
-        // Open database, if it existed from before, remove all contents and prepare new empty tables.
+    private void initializeDatabaseContents(boolean direction, int currentPlanet, Context context) {
+        // Open database.
         SQLiteDatabase db = this.getWritableDatabase();
-        this.deleteTables(db);
-        this.onCreate(db);
         // Add rows
         this.addPlayer(db, direction, currentPlanet);
         this.addShips(db);
-        this.addItems(db, activity);
+        this.addItems(db, context);
         if (db != null && db.isOpen()) {
             db.close();
         }
@@ -201,9 +204,9 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      * This method adds all shop items into the database as a part of game data initialization.
      *
      * @param db Open SQLite database.
-     * @param activity Activity that called this method. It is needed to have access to resources.
+     * @param context Context of the app. It is needed to have access to resources.
      */
-    private void addItems(SQLiteDatabase db, Activity activity) {
+    private void addItems(SQLiteDatabase db, Context context) {
         // Get all shop item names the name is a base for getting other resources
         ArrayList<String> itemNames = this.getAllItemStringNames();
         // Make a writable list of all planets where we have shops
@@ -226,13 +229,13 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             // Get the item string resource name
             String itemName = itemNames.get(i);
             // Get resource id for the item name
-            int titleResourceId = activity.getResources().getIdentifier(itemName, "string", activity.getPackageName());
+            int titleResourceId = context.getResources().getIdentifier(itemName, "string", context.getPackageName());
             // Get resource id for the item image
             String itemImage = itemName.replace("game_item_name_", "pict_");
-            int imageResourceId = activity.getResources().getIdentifier(itemImage, "drawable", activity.getPackageName());
+            int imageResourceId = context.getResources().getIdentifier(itemImage, "drawable", context.getPackageName());
             // Get resource id for the item description
             String itemDescription = itemName.replace("game_item_name_", "game_item_info_");
-            int descriptionResourceId = activity.getResources().getIdentifier(itemDescription, "string", activity.getPackageName());
+            int descriptionResourceId = context.getResources().getIdentifier(itemDescription, "string", context.getPackageName());
             int itemBasePrice = engine.calculateBasePrice(MIN_ITEM_PRICE, MAX_ITEM_PRICE);
             int availableAt = shopsWithoutWares.get(i);
 
@@ -244,6 +247,8 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_AVAILABLE_AT, availableAt);
             // Set random item price from a defined range
             shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE, itemBasePrice);
+            // Set the same price as buy price. New sell prices are calculater when entering the shop.
+            shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SELL_PRICE, itemBasePrice);
             // No items are bought in the beginning
             shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_BOUGHT, 0);
             // Determine whether the price will raise or fall if price is high it might fall if low it might rise
@@ -311,7 +316,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         output += this.getDataFromCursor(cursorShips) + "\n\n";
 
         // Add item data
-        output += "Items table: \n\tID\t\t\tPRICE\t\tSIZE\t\tITEM NAME RES ID\tIMAGE RES ID\t\tTEXT RES ID\t\t\tPRICE CHANGE\tIS BOUGH\tAVAILABLE AT\n";
+        output += "Items table: \n\tID\t\t\tPRICE\t\tSELL PRICE\tSIZE\t\tITEM NAME RES ID\tIMAGE RES ID\t\tTEXT RES ID\t\t\tRISE/FALL\tIS BOUGH\tAVAILABLE AT\n";
         Cursor cursorItems = db.rawQuery("select * from " + TABLE_NAME_ITEMS, null);
         output += this.getDataFromCursor(cursorItems) + "\n\n";
 

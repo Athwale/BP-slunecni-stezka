@@ -30,26 +30,60 @@
         android:background="#ff0099cc"
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
-    <Button
-        android:id="@+id/settings_button_clear_data"
+    <TextView
+        android:id="@+id/settings_text_view_data_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/settings_checkbox_clear_data"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:enabled="false"
-        android:onClick="clearButtonHandler"
-        android:text="@string/button_clear_data"
-        android:textColor="#000000" />
 
-    <CheckBox
-        android:id="@+id/settings_checkbox_clear_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout4"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:text="@string/settings_data_info_exists"
+        android:textColor="#ca151e"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:onClick="clearCheckBoxHandler"
-        android:text="@string/checkbox_clear_data"
-        android:textColor="#000000" />
+        android:baselineAligned="false"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <CheckBox
+                android:id="@+id/settings_checkbox_clear_data"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:onClick="clearCheckBoxHandler"
+                android:text="@string/checkbox_clear_data"
+                android:textColor="#000000" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/settings_button_clear_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:onClick="clearButtonHandler"
+                android:text="@string/button_clear_data"
+                android:textColor="#000000" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

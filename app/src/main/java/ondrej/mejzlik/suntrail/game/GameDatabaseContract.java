@@ -6,10 +6,10 @@ import android.provider.BaseColumns;
  * This class is a holder for constants which define the database, tables and columns.
  */
 
-final class GameDatabaseContract {
+public final class GameDatabaseContract {
+    public static final String DATABASE_NAME = "GameDatabase.db";
     // If you change the database schema, you must increment the database version.
     static final int DATABASE_VERSION = 1;
-    static final String DATABASE_NAME = "GameDatabase.db";
 
 
     // To prevent someone from accidentally instantiating the contract class,
@@ -64,5 +64,6 @@ final class GameDatabaseContract {
         public static final String COLUMN_NAME_ITEM_IS_BOUGHT = "isBought";
         public static final String COLUMN_NAME_ITEM_AVAILABLE_AT = "availableAt";
         public static final String COLUMN_NAME_ITEM_PRICE_RISE = "priceRise";
+        public static final String COLUMN_NAME_ITEM_SELL_PRICE = "sellPrice";
     }
 }
