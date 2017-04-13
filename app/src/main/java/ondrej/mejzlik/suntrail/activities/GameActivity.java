@@ -17,6 +17,7 @@ import ondrej.mejzlik.suntrail.fragments.ShipInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.StartGameFragment;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
 
+import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.PLANET_RESOURCES_KEY;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MERCURY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_NEPTUNE;
@@ -28,6 +29,8 @@ public class GameActivity extends Activity {
     public static final String SPACESHIP_NAME_KEY = "spaceshipNameKey";
     private static final String DIRECTION_FRAGMENT_TAG = "directionFragment";
     private Bundle SpaceshipArguments = null;
+    // The resources contain all about the planet
+    private Bundle planetResources = null;
     // This is used to prevent multiple toasts from showing.
     private Toast directionToast = null;
     // This is used in the game to determine which planet is next.
@@ -45,8 +48,11 @@ public class GameActivity extends Activity {
         FragmentManager fragmentManager = getFragmentManager();
 
         // Get which planet was scanned
-        // Game activity is always started from scanner activity and always has a planet argument.
-        this.scannedPlanet = getIntent().getExtras().getInt(PLANET_ID_KEY);
+        // The planet id is inside the planet resources
+        this.planetResources = getIntent().getExtras().getBundle(PLANET_RESOURCES_KEY);
+        if (this.planetResources != null && this.planetResources.containsKey(PLANET_ID_KEY)) {
+            this.scannedPlanet = this.planetResources.getInt(PLANET_ID_KEY);
+        }
 
         this.database = GameDatabaseHelper.getInstance(this);
 
@@ -83,7 +89,6 @@ public class GameActivity extends Activity {
                 // TODO all game buttons show wait toast until database is made
                 AsyncDatabaseInitializer databaseInitializer = new AsyncDatabaseInitializer(this.tripDirection, this.scannedPlanet, this);
                 databaseInitializer.execute();
-                Toast.makeText(this, this.getResources().getString(R.string.toast_flight_route), Toast.LENGTH_LONG).show();
 
                 // Both the fragments are added onto the screen, but if the direction choice fragment
                 // is used, it covers the game start fragment until the player picks a direction.
@@ -114,6 +119,7 @@ public class GameActivity extends Activity {
                     pickDirection.commit();
                 }
             } else {
+                // We already have a database from before.
                 this.databaseCreated = true;
             }
         }

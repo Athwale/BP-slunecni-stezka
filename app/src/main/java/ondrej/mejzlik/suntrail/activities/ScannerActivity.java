@@ -86,6 +86,8 @@ public class ScannerActivity extends Activity {
             // If the device only has NFC run NFC scanner.
             // If the device has both, open a selection screen.
             // If nothing show that scanner functions are disabled.
+            // TODO remove this and uncomment selectScanner this is for testing purposes in emulator
+            //this.processScannerResult(5);
             this.selectScanner();
         }
     }
@@ -166,6 +168,7 @@ public class ScannerActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Process NFC scanner result
         // Check which request we are responding to
         if (requestCode == NFC_REQUEST) {
             if (resultCode == RESULT_OK) {
@@ -363,7 +366,7 @@ public class ScannerActivity extends Activity {
         Intent intent = new Intent(this, GameActivity.class);
         // Pass scanned planet id to the game activity
         Bundle parameters = new Bundle();
-        parameters.putInt(PLANET_ID_KEY, this.planetResources.getInt(PLANET_ID_KEY));
+        parameters.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
         intent.putExtras(parameters);
         startActivity(intent);
     }

@@ -1543,4 +1543,7 @@
     <string name="game_item_name_xen_crystals">Xen crystals</string>
     <string name="game_item_name_ceresian_tea">Ceresian tea</string>
     <string name="game_item_name_a_cube_of_soil">A cube of soil</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -47,7 +47,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/item_image_description"
                 android:scaleType="fitCenter"
-                tools:src="@drawable/pict_icarus" />
+                tools:src="@drawable/pict_ion_drive_fuel" />
 
             <TextView
                 android:id="@+id/item_info_text_view_item_name"
