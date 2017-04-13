@@ -16,9 +16,9 @@
         android:layout_marginTop="16dp"
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
+        android:text="@string/game_menu_title"
         android:textColor="#ff0099cc"
-        android:textStyle="bold"
-        tools:text="Sun" />
+        android:textStyle="bold" />
 
     <View
         android:id="@+id/game_menu_view_spacer"
@@ -30,11 +30,24 @@
         android:background="#ff0099cc"
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
+    <ImageView
+        android:id="@+id/planet_text_image_view_photo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/planet_image_description"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        tools:src="@drawable/pict_sun_quarter" />
+
     <LinearLayout
         android:id="@+id/game_menu_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/game_menu_view_spacer"
+        android:gravity="center_vertical"
         android:orientation="vertical">
 
         <LinearLayout
@@ -56,28 +69,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_menu_view_text"
-                    android:text="@string/game_menu_button_read_text"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal">
-
-                <Button
-                    android:id="@+id/game_menu_button_play_game"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_menu_play_game"
-                    android:onClick="playGameButtonHandler"
-                    android:paddingTop="18dp"
-                    android:text="@string/game_menu_button_game"
+                    android:drawableTop="@drawable/ic_menu_inventory"
+                    android:text="@string/game_menu_button_inventory"
                     android:textColor="#000000"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -94,12 +87,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/yellow_button_background"
-                    android:drawableTop="@drawable/ic_menu_audio"
-                    android:onClick="playAudioButtonHandler"
-                    android:text="@string/game_menu_button_listen"
+                    android:drawableTop="@drawable/ic_game_menu_shop"
+                    android:text="@string/game_menu_button_shop"
                     android:textColor="#000000"
                     android:textSize="12sp" />
             </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/game_menu_button_leave"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/yellow_button_background"
+                android:drawableTop="@drawable/ic_game_menu_exit"
+                android:text="@string/game_menu_button_leave_game"
+                android:textColor="#000000"
+                android:textSize="12sp" />
 
         </LinearLayout>
     </LinearLayout>

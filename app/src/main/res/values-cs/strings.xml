@@ -1063,6 +1063,10 @@
     <string name="direction_choice_to_neptune">Směrem k Neptunu</string>
     <string name="toast_pick_direction">Prosím vyberte směr</string>
     <string name="toast_flight_route">Prosím vyčkejte, počítá se dráha letu</string>
+    <string name="game_menu_title">Herní mód: </string>
+    <string name="game_menu_button_inventory">Inventář</string>
+    <string name="game_menu_button_shop">Obchod</string>
+    <string name="game_menu_button_leave_game">Odletět z planety</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>

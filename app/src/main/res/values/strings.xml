@@ -1076,6 +1076,10 @@
     <string name="direction_choice_to_neptune">Towards Neptune</string>
     <string name="toast_pick_direction">Please choose the direction</string>
     <string name="toast_flight_route">Please wait, Calculating flight route</string>
+    <string name="game_menu_title">Game mode: </string>
+    <string name="game_menu_button_inventory">Inventory</string>
+    <string name="game_menu_button_shop">Shop</string>
+    <string name="game_menu_button_leave_game">Leave planet</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>

@@ -13,6 +13,7 @@ import java.io.File;
 
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.fragments.DirectionChoiceFragment;
+import ondrej.mejzlik.suntrail.fragments.GameMenuFragment;
 import ondrej.mejzlik.suntrail.fragments.ShipInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.StartGameFragment;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
@@ -121,6 +122,7 @@ public class GameActivity extends Activity {
             } else {
                 // We already have a database from before.
                 this.databaseCreated = true;
+                this.openGameMenuFragment();
             }
         }
     }
@@ -167,6 +169,32 @@ public class GameActivity extends Activity {
         // Remove the direction choice fragment now
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.popBackStackImmediate();
+    }
+
+    /**
+     * This method handles clicks to confirm button from start new game fragment.
+     * Opens the game menu fragment.
+     *
+     * @param view The button that has been pressed.
+     */
+    public void confirmGameStartButtonHandler(View view) {
+        this.openGameMenuFragment();
+    }
+
+    /**
+     * This method replaces the current fragment with the GameMenuFragment and passes all
+     * // TODO what?
+     */
+    private void openGameMenuFragment() {
+        // Do not add the fragment onto back stack as this is considered the first fragment
+        // added to the activity. Even if the start new game and direction choice fragments
+        // were shown, we will never return to them and they are not on the stack. So this is still
+        // the first fragment.
+        FragmentManager fragmentManager = getFragmentManager();
+        GameMenuFragment gameMenuFragment = new GameMenuFragment();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.game_activity_fragment_container, gameMenuFragment);
+        transaction.commit();
     }
 
     /**
