@@ -9,10 +9,10 @@ import static ondrej.mejzlik.suntrail.configuration.Configuration.ITEM_PRICE_MIG
 /**
  * This class contains methods necessary for the game to work.
  */
-public class GameUtilities {
+class GameUtilities {
     private Random randomNumberGenerator = null;
 
-    public GameUtilities() {
+    GameUtilities() {
         // Initialize random number generator once
         this.randomNumberGenerator = new Random(System.nanoTime());
     }
@@ -38,7 +38,7 @@ public class GameUtilities {
      * @param max Maximal price.
      * @return Random price from min to max.
      */
-    public int calculateBasePrice(int min, int max) {
+    int calculateBasePrice(int min, int max) {
         return this.randomIntGenerator(min, max);
     }
 
@@ -52,7 +52,7 @@ public class GameUtilities {
      * @param basePrice Item base price
      * @return Whether the price will raise or fall, 1 rise, 0 fall
      */
-    public int calculatePriceMovement(int basePrice) {
+    int calculatePriceMovement(int basePrice) {
         int result = this.randomIntGenerator(1, 10);
         int accept = ITEM_PRICE_FALL_RISE_PROBABILITY / 10;
 
@@ -77,7 +77,7 @@ public class GameUtilities {
      * @param max Maximal possible number.
      * @return Random number between min and max.
      */
-    public int randomIntGenerator(int min, int max) {
+    int randomIntGenerator(int min, int max) {
         return this.randomNumberGenerator.nextInt((max + 1) - min) + min;
     }
 

@@ -1080,6 +1080,10 @@
     <string name="game_menu_button_inventory">Inventory</string>
     <string name="game_menu_button_shop">Shop</string>
     <string name="game_menu_button_leave_game">Leave planet</string>
+    <string name="inventory_title">Inventory</string>
+    <string name="inventory_cargo_bay">Cargo bay</string>
+    <string name="inventory_credits">Credits</string>
+    <string name="inventory_cargo_bay_contents">Cargo bay contents</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>
@@ -1547,7 +1551,4 @@
     <string name="game_item_name_xen_crystals">Xen crystals</string>
     <string name="game_item_name_ceresian_tea">Ceresian tea</string>
     <string name="game_item_name_a_cube_of_soil">A cube of soil</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

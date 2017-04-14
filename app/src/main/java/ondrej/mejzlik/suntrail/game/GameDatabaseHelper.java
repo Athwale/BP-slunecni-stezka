@@ -3,6 +3,7 @@ package ondrej.mejzlik.suntrail.game;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -71,13 +72,14 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private static final String DELETE_PLAYER_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME_PLAYER;
     private static final String DELETE_SPACESHIP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME_SPACESHIP;
     private static final String DELETE_ITEMS_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME_ITEMS;
+    private static final String TAG = "DATABASE";
     private static GameDatabaseHelper instance;
     private GameUtilities engine = null;
 
     /**
      * Constructor creates the database helper.
      *
-     * @param context       App context
+     * @param context App context
      */
     private GameDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -122,7 +124,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     /**
      * This method fills the database with initial data. Creates a player, ships and items.
      *
-     * @param direction Whether we are going from the Sun to Neptune or vice versa
+     * @param direction     Whether we are going from the Sun to Neptune or vice versa
      * @param currentPlanet Which planet we scanned
      * @param context       App context
      */
@@ -150,16 +152,24 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      * @param currentPlanet Current planet at which the user first opened the game mode
      */
     private void addPlayer(SQLiteDatabase db, boolean direction, int currentPlanet) {
-        // Create a new map of values, where column names are the keys
-        ContentValues player = new ContentValues();
+        // This helps with performance and ensures consistency of the database.
+        db.beginTransaction();
+        try {
+            // Create a new map of values, where column names are the keys
+            ContentValues player = new ContentValues();
 
-        player.put(GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_SHIP_NAME_RES_ID, FIRST_SHIP);
-        player.put(GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_CREDITS, STARTING_CREDITS);
-        player.put(GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_CURRENT_PLANET, currentPlanet);
-        player.put(GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_DIRECTION, this.booleanToInt(direction));
+            player.put(GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_SHIP_NAME_RES_ID, FIRST_SHIP);
+            player.put(GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_CREDITS, STARTING_CREDITS);
+            player.put(GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_CURRENT_PLANET, currentPlanet);
+            player.put(GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_DIRECTION, this.booleanToInt(direction));
 
-        db.insert(TABLE_NAME_PLAYER, null, player);
-        player.clear();
+            db.insertOrThrow(TABLE_NAME_PLAYER, null, player);
+            db.setTransactionSuccessful();
+        } catch (SQLException ex) {
+            Log.d(TAG, "Error while trying to add player to database");
+        } finally {
+            db.endTransaction();
+        }
     }
 
     /**
@@ -184,31 +194,54 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private void addShips(SQLiteDatabase db) {
         ContentValues ship = new ContentValues();
 
-        // Add icarus
-        ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_NAME_RES_ID, R.string.ship_name_icarus);
-        ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE, ICARUS_CARGO_SIZE);
-        // Ships may have a price (currently unused)
-        ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE, 0);
-        // Insert the new row, (returning the primary key value of the new row which we do not use)
-        db.insert(TABLE_NAME_SPACESHIP, null, ship);
-        ship.clear();
+        db.beginTransaction();
+        try {
+            // Add icarus
+            ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_NAME_RES_ID, R.string.ship_name_icarus);
+            ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE, ICARUS_CARGO_SIZE);
+            // Ships may have a price (currently unused)
+            ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE, 0);
+            // Insert the new row, (returning the primary key value of the new row which we do not use)
+            db.insertOrThrow(TABLE_NAME_SPACESHIP, null, ship);
+            db.setTransactionSuccessful();
+        } catch (SQLException ex) {
+            Log.d(TAG, "Error while trying to add icarus to database");
+        } finally {
+            db.endTransaction();
+            ship.clear();
+        }
 
-        // Add lokys
-        ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_NAME_RES_ID, R.string.ship_name_lokys);
-        ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE, LOKYS_CARGO_SIZE);
-        ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE, 0);
-        // Insert the new row, (returning the primary key value of the new row which we do not use)
-        db.insert(TABLE_NAME_SPACESHIP, null, ship);
-        ship.clear();
+        db.beginTransaction();
+        try {
+            // Add lokys
+            ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_NAME_RES_ID, R.string.ship_name_lokys);
+            ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE, LOKYS_CARGO_SIZE);
+            ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE, 0);
+            // Insert the new row, (returning the primary key value of the new row which we do not use)
+            db.insertOrThrow(TABLE_NAME_SPACESHIP, null, ship);
+            db.setTransactionSuccessful();
+        } catch (SQLException ex) {
+            Log.d(TAG, "Error while trying to add lokys to database");
+        } finally {
+            db.endTransaction();
+            ship.clear();
+        }
 
-        // Add daedalus
-        ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_NAME_RES_ID, R.string.ship_name_daedalus);
-        ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE, DAEDALUS_CARGO_SIZE);
-        ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE, 0);
-
-        // Insert the new row, (returning the primary key value of the new row which we do not use)
-        db.insert(TABLE_NAME_SPACESHIP, null, ship);
-        ship.clear();
+        db.beginTransaction();
+        try {
+            // Add daedalus
+            ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_NAME_RES_ID, R.string.ship_name_daedalus);
+            ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE, DAEDALUS_CARGO_SIZE);
+            ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE, 0);
+            // Insert the new row, (returning the primary key value of the new row which we do not use)
+            db.insertOrThrow(TABLE_NAME_SPACESHIP, null, ship);
+            db.setTransactionSuccessful();
+        } catch (SQLException ex) {
+            Log.d(TAG, "Error while trying to add daedalus to database");
+        } finally {
+            db.endTransaction();
+            ship.clear();
+        }
     }
 
     /**
@@ -250,36 +283,45 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             int itemBasePrice = engine.calculateBasePrice(MIN_ITEM_PRICE, MAX_ITEM_PRICE);
             int availableAt = shopsWithoutWares.get(i);
 
-            shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_NAME_RES_ID, titleResourceId);
-            shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IMAGE_RES_ID, imageResourceId);
-            shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_TEXT_RES_ID, descriptionResourceId);
-            // Assign a planet where this item will be available. We randomized the shopsWithoutWares
-            // list so we can simply pick a planet at the index where we are in this loop.
-            shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_AVAILABLE_AT, availableAt);
-            // Set random item price from a defined range
-            shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE, itemBasePrice);
-            // Set the same price as buy price. New sell prices are calculater when entering the shop.
-            shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SELL_PRICE, itemBasePrice);
-            // No items are bought in the beginning
-            shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_BOUGHT, 0);
-            // Determine whether the price will raise or fall if price is high it might fall if low it might rise
-            shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE_RISE, engine.calculatePriceMovement(itemBasePrice));
-            // Determine item size. The size of the item can not be larger than a half of the available cargo bay size.
-            int itemSize;
-            if (availableAt == PLANET_ID_SUN || availableAt == PLANET_ID_MERCURY || availableAt == PLANET_ID_VENUS || availableAt == PLANET_ID_EARTH) {
-                // We have Icarus S
-                itemSize = engine.randomIntGenerator(1, ICARUS_CARGO_SIZE / 2);
-            } else if (availableAt == PLANET_ID_MOON || availableAt == PLANET_ID_MARS || availableAt == PLANET_ID_CERES) {
-                // We have Lokys M
-                itemSize = engine.randomIntGenerator(1, LOKYS_CARGO_SIZE / 2);
-            } else {
-                // We have Daedalus L
-                itemSize = engine.randomIntGenerator(1, DAEDALUS_CARGO_SIZE / 2);
-            }
-            shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SIZE, itemSize);
+            // Add item to database
+            db.beginTransaction();
+            try {
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_NAME_RES_ID, titleResourceId);
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IMAGE_RES_ID, imageResourceId);
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_TEXT_RES_ID, descriptionResourceId);
+                // Assign a planet where this item will be available. We randomized the shopsWithoutWares
+                // list so we can simply pick a planet at the index where we are in this loop.
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_AVAILABLE_AT, availableAt);
+                // Set random item price from a defined range
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE, itemBasePrice);
+                // Set the same price as buy price. New sell prices are calculater when entering the shop.
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SELL_PRICE, itemBasePrice);
+                // No items are bought in the beginning
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_BOUGHT, 0);
+                // Determine whether the price will raise or fall if price is high it might fall if low it might rise
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE_RISE, engine.calculatePriceMovement(itemBasePrice));
+                // Determine item size. The size of the item can not be larger than a half of the available cargo bay size.
+                int itemSize;
+                if (availableAt == PLANET_ID_SUN || availableAt == PLANET_ID_MERCURY || availableAt == PLANET_ID_VENUS || availableAt == PLANET_ID_EARTH) {
+                    // We have Icarus S
+                    itemSize = engine.randomIntGenerator(1, ICARUS_CARGO_SIZE / 2);
+                } else if (availableAt == PLANET_ID_MOON || availableAt == PLANET_ID_MARS || availableAt == PLANET_ID_CERES) {
+                    // We have Lokys M
+                    itemSize = engine.randomIntGenerator(1, LOKYS_CARGO_SIZE / 2);
+                } else {
+                    // We have Daedalus L
+                    itemSize = engine.randomIntGenerator(1, DAEDALUS_CARGO_SIZE / 2);
+                }
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SIZE, itemSize);
 
-            db.insert(TABLE_NAME_ITEMS, null, shopItem);
-            shopItem.clear();
+                db.insertOrThrow(TABLE_NAME_ITEMS, null, shopItem);
+                db.setTransactionSuccessful();
+            } catch (SQLException ex) {
+                Log.d(TAG, "Error while trying to add item " + itemImage + " to database");
+            } finally {
+                db.endTransaction();
+                shopItem.clear();
+            }
         }
     }
 
@@ -336,7 +378,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         cursorItems.close();
         db.close();
 
-        Log.d("GAME DATABASE CONTENTS", output);
+        Log.d(TAG, output);
         return output;
     }
 

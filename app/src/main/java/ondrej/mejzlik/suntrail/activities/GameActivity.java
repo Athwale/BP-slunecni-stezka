@@ -14,6 +14,7 @@ import java.io.File;
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.fragments.DirectionChoiceFragment;
 import ondrej.mejzlik.suntrail.fragments.GameMenuFragment;
+import ondrej.mejzlik.suntrail.fragments.InventoryFragment;
 import ondrej.mejzlik.suntrail.fragments.ShipInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.StartGameFragment;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
@@ -224,7 +225,12 @@ public class GameActivity extends Activity {
      */
     public void InventoryButtonHandler(View view) {
         if (this.checkDatabaseCreated()) {
-
+            FragmentManager fragmentManager = getFragmentManager();
+            InventoryFragment inventoryFragment = new InventoryFragment();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.game_activity_fragment_container, inventoryFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
     }
 

@@ -1067,6 +1067,10 @@
     <string name="game_menu_button_inventory">Inventář</string>
     <string name="game_menu_button_shop">Obchod</string>
     <string name="game_menu_button_leave_game">Odletět z planety</string>
+    <string name="inventory_title">Inventář</string>
+    <string name="inventory_cargo_bay">Nákladní prostor</string>
+    <string name="inventory_credits">Kredity</string>
+    <string name="inventory_cargo_bay_contents">Obsah nákladního prostoru</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>
