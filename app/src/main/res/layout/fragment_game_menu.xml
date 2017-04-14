@@ -31,7 +31,7 @@
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <ImageView
-        android:id="@+id/planet_text_image_view_photo"
+        android:id="@+id/game_menu_image_view_photo"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_alignParentEnd="true"

@@ -24,6 +24,7 @@ public class PlanetResourceCollector {
     // Used in planet menu fragment and planet text fragment
     public static final String PLANET_PHOTO_KEY = "planetPhotoKey";
     public static final String PLANET_HALF_PHOTO_KEY = "planetHalfPhotoKey";
+    public static final String PLANET_QUARTER_PHOTO_KEY = "planetQuarterPhotoKey";
     public static final String PLANET_SYMBOL_KEY = "planetSymbolKey";
     public static final String PLANET_NAME_KEY = "planetNameKey";
     public static final String PLANET_TEXT_KEY = "planetTextKey";
@@ -54,6 +55,7 @@ public class PlanetResourceCollector {
      * - String - main photo author
      * - Resource ID - planet photo for planet menu fragment
      * - Resource ID - planet half photo for planet text fragment
+     * - Resource ID - planet quarter photo for game fragments
      * - Resource ID - planet symbol for planet text fragment
      * - Resource ID - main planet text for planet text fragment
      * - Resource ID - main planet parameters for planet text fragment
@@ -151,6 +153,11 @@ public class PlanetResourceCollector {
         String halfPhotoResourceName = "pict_" + planetName + "_half";
         int halfPhotoResourceId = activity.getResources().getIdentifier(halfPhotoResourceName, "drawable", activity.getPackageName());
 
+        // Get quarter planet photo resource
+        // The resources for planet halves must have a name "pict_*planet*_half"
+        String quarterPhotoResourceName = "pict_" + planetName + "_quarter";
+        int quarterPhotoResourceId = activity.getResources().getIdentifier(quarterPhotoResourceName, "drawable", activity.getPackageName());
+
         // Get symbol image resource
         // The resources for planet symbols must have a name "pict_symbol_*name*"
         String symbolResourceName = "pict_symbol_" + planetName;
@@ -181,6 +188,7 @@ public class PlanetResourceCollector {
         resources.putInt(PLANET_ID_KEY, planetId);
         resources.putInt(PLANET_PHOTO_KEY, mainPhotoResourceId);
         resources.putInt(PLANET_HALF_PHOTO_KEY, halfPhotoResourceId);
+        resources.putInt(PLANET_QUARTER_PHOTO_KEY, quarterPhotoResourceId);
         resources.putInt(PLANET_SYMBOL_KEY, symbolResourceId);
         resources.putInt(PLANET_TEXT_KEY, textTopId);
         resources.putInt(PLANET_TEXT_TECH_KEY, textTechId);

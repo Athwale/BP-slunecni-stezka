@@ -192,6 +192,7 @@ public class GameActivity extends Activity {
         // the first fragment.
         FragmentManager fragmentManager = getFragmentManager();
         GameMenuFragment gameMenuFragment = new GameMenuFragment();
+        gameMenuFragment.setArguments(this.planetResources);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.game_activity_fragment_container, gameMenuFragment);
         transaction.commit();
