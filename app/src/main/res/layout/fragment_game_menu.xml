@@ -70,6 +70,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/yellow_button_background"
                     android:drawableTop="@drawable/ic_menu_inventory"
+                    android:onClick="InventoryButtonHandler"
                     android:text="@string/game_menu_button_inventory"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -88,6 +89,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/yellow_button_background"
                     android:drawableTop="@drawable/ic_game_menu_shop"
+                    android:onClick="ShopButtonHandler"
                     android:text="@string/game_menu_button_shop"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -107,6 +109,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/yellow_button_background"
                 android:drawableTop="@drawable/ic_game_menu_exit"
+                android:onClick="LeavePlanetButtonHandler"
                 android:text="@string/game_menu_button_leave_game"
                 android:textColor="#000000"
                 android:textSize="12sp" />

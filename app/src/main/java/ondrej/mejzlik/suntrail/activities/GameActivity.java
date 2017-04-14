@@ -218,6 +218,55 @@ public class GameActivity extends Activity {
     }
 
     /**
+     * Handles clicks from Inventory button in game menu fragment.
+     *
+     * @param view The button that has been clicked
+     */
+    public void InventoryButtonHandler(View view) {
+        if (this.checkDatabaseCreated()) {
+
+        }
+    }
+
+    /**
+     * Handles clicks from Shop button in game menu fragment.
+     *
+     * @param view The button that has been clicked
+     */
+    public void ShopButtonHandler(View view) {
+        if (this.checkDatabaseCreated()) {
+
+        }
+    }
+
+    /**
+     * Handles clicks from Leave planet button in game menu fragment.
+     *
+     * @param view The button that has been clicked
+     */
+    public void LeavePlanetButtonHandler(View view) {
+        if (this.checkDatabaseCreated()) {
+
+        }
+    }
+
+    /**
+     * This method checks if the database was successfully created and returns true.
+     * If not, returns false and displays a toast message to wait. Buttons from game menu
+     * call this method to ensure that the player will not open any fragment that uses the database
+     * before the database is created. This will rarely happen.
+     *
+     * @return True if databse was created else false and displays a toast.
+     */
+    private boolean checkDatabaseCreated() {
+        if (!this.databaseCreated) {
+            Toast.makeText(this, this.getResources().getString(R.string.toast_flight_route), Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * This small class has access to the activity's variables and can set the databaseCreated
      * to true once the database initialization is completed in the background thread.
      */

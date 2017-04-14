@@ -27,7 +27,6 @@ public class SettingsActivity extends Activity {
 
         if (this.checkDatabaseExistence()) {
             databaseExistsText.setText(R.string.settings_data_info_exists);
-            buttonClear.setEnabled(true);
             checkBoxClear.setEnabled(true);
         } else {
             databaseExistsText.setText(R.string.settings_data_info_not_exists);
