@@ -43,7 +43,7 @@ class GameUtilities {
     }
 
     /**
-     * This method returns wtehther the item price will fall or raise. If the price is higher than
+     * This method returns weather the item price will fall or raise. If the price is higher than
      * a preset price the probability that the price will fall may be higher depending on a preset
      * value. Same goes for price lower than some price.
      * If the price is between the preset fall and raise values the probability of either rise

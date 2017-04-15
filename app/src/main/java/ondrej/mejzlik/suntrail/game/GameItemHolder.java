@@ -21,7 +21,7 @@ public class GameItemHolder {
      * @param id                   item database row id
      * @param price                item price from database
      * @param itemNameResId        item name string resource id from database
-     * @param itemImageResId       irem image resource id from database
+     * @param itemImageResId       item image resource id from database
      * @param itemDescriptionResId item description string resource id from database
      * @param sellableAtPlanetId   planet id (from PlanetIdentifier) where this item can be sold
      * @param availableAtPlanet    planet id (from PlanetIdentifier) where this item is available

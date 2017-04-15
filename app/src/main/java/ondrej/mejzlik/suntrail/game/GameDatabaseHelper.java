@@ -202,7 +202,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE, ICARUS_CARGO_SIZE);
             // Ships may have a price (currently unused)
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE, 0);
-            // Insert the new row, (returning the primary key value of the new row which we do not use)
+            // Insert the new row (return the primary key value of the new row which we do not use)
             db.insertOrThrow(TABLE_NAME_SPACESHIP, null, ship);
             db.setTransactionSuccessful();
         } catch (SQLException ex) {
@@ -218,7 +218,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_NAME_RES_ID, R.string.ship_name_lokys);
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE, LOKYS_CARGO_SIZE);
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE, 0);
-            // Insert the new row, (returning the primary key value of the new row which we do not use)
+            // Insert the new row (return the primary key value of the new row which we do not use)
             db.insertOrThrow(TABLE_NAME_SPACESHIP, null, ship);
             db.setTransactionSuccessful();
         } catch (SQLException ex) {
@@ -234,7 +234,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_NAME_RES_ID, R.string.ship_name_daedalus);
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE, DAEDALUS_CARGO_SIZE);
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE, 0);
-            // Insert the new row, (returning the primary key value of the new row which we do not use)
+            // Insert the new row (return the primary key value of the new row which we do not use)
             db.insertOrThrow(TABLE_NAME_SPACESHIP, null, ship);
             db.setTransactionSuccessful();
         } catch (SQLException ex) {
@@ -256,7 +256,8 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         ArrayList<String> itemNames = this.getAllItemStringNames();
         // Make a writable list of all planets where we have shops
         ArrayList<Integer> shopsWithoutWares = new ArrayList<>();
-        // This must be an integer number regardless variable type, each planet must have equal amount of wares
+        // This must be an integer number regardless variable type, each planet must have equal
+        // amount of wares
         int howManyItemsToShop = itemNames.size() / PLANETS_WITH_SHOPS.size();
         // Prepare the array list for random planet choosing. We add each planet to the list
         // the number of times the number of items we want to have on each planet.
@@ -294,18 +295,23 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IMAGE_RES_ID, imageResourceId);
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IMAGE_ICON_RES_ID, imageIconResourceId);
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_TEXT_RES_ID, descriptionResourceId);
-                // Assign a planet where this item will be available. We randomized the shopsWithoutWares
-                // list so we can simply pick a planet at the index where we are in this loop.
+                // Assign a planet where this item will be available. We randomized the
+                // shopsWithoutWares list so we can simply pick a planet at the index where we are
+                // in this loop.
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_AVAILABLE_AT, availableAt);
                 // Set random item price from a defined range
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE, itemBasePrice);
-                // Set the same price as buy price. New sell prices are calculater when entering the shop.
+                // Set the same price as buy price. New sell prices are calculated when starting the
+                // game activity. Recalculation is prevented with a lock boolean variable set to
+                // true until you leave the planet.
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SELL_PRICE, itemBasePrice);
                 // No items are bought in the beginning
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_BOUGHT, 0);
-                // Determine whether the price will raise or fall if price is high it might fall if low it might rise
+                // Determine whether the price will raise or fall if price is high it might fall if
+                // low it might rise
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE_RISE, engine.calculatePriceMovement(itemBasePrice));
-                // Determine item size. The size of the item can not be larger than a half of the available cargo bay size.
+                // Determine item size. The size of the item can not be larger than a half of the
+                // available cargo bay size.
                 int itemSize;
                 if (availableAt == PLANET_ID_SUN || availableAt == PLANET_ID_MERCURY || availableAt == PLANET_ID_VENUS || availableAt == PLANET_ID_EARTH) {
                     // We have Icarus S

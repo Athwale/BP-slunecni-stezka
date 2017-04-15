@@ -1072,6 +1072,7 @@
     <string name="inventory_credits">Kredity</string>
     <string name="inventory_cargo_bay_contents">Obsah nákladního prostoru</string>
     <string name="inventory_coin_description">Obrázek mince</string>
+    <string name="list_selling_price">Prodejní cena:</string>
     <string name="list_price">Cena:</string>
     <string name="list_size">Velikost:</string>
     <string name="list_cr">cr</string>

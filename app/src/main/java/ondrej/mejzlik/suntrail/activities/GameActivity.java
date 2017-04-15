@@ -262,7 +262,7 @@ public class GameActivity extends Activity {
      * call this method to ensure that the player will not open any fragment that uses the database
      * before the database is created. This will rarely happen.
      *
-     * @return True if databse was created else false and displays a toast.
+     * @return True if database was created else false and displays a toast.
      */
     private boolean checkDatabaseCreated() {
         if (!this.databaseCreated) {
@@ -290,7 +290,7 @@ public class GameActivity extends Activity {
 
         protected Void doInBackground(Void... params) {
             // The database helper is a singleton we always get the same instance it will not
-            // cause any concurent troubles.
+            // cause any concurrent troubles.
             GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(context);
             databaseHelper.initializeDatabaseContents(direction, startPlanet, context);
             return null;
