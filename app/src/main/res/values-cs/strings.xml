@@ -1071,6 +1071,10 @@
     <string name="inventory_cargo_bay">Nákladní prostor</string>
     <string name="inventory_credits">Kredity</string>
     <string name="inventory_cargo_bay_contents">Obsah nákladního prostoru</string>
+    <string name="inventory_coin_description">Obrázek mince</string>
+    <string name="list_price">Cena:</string>
+    <string name="list_size">Velikost:</string>
+    <string name="list_cr">cr</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>

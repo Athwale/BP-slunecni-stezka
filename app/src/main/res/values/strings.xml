@@ -1084,6 +1084,10 @@
     <string name="inventory_cargo_bay">Cargo bay</string>
     <string name="inventory_credits">Credits</string>
     <string name="inventory_cargo_bay_contents">Cargo bay contents</string>
+    <string name="inventory_coin_description">Coin image</string>
+    <string name="list_selling_price">Sale price:</string>
+    <string name="list_size">Size:</string>
+    <string name="list_cr">cr</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>
@@ -1537,7 +1541,7 @@
     <string name="game_item_name_a_pack_of_thermal_foil">A pack of thermal foil</string>
     <string name="game_item_name_a_crate_of_pmsg">A crate of PMSG</string>
     <string name="game_item_name_hydroponic_cylinder">Hydroponic cylinder</string>
-    <string name="game_item_name_a_crate_of_communication_devices">A crate of communication devices</string>
+    <string name="game_item_name_a_crate_of_communication_devices">Communication devices</string>
     <string name="game_item_name_space_shoes">Space shoes</string>
     <string name="game_item_name_unobtainium_rope">Unobtainium rope</string>
     <string name="game_item_name_a_container_of_antimatter">A container of antimatter</string>

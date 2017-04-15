@@ -60,6 +60,7 @@ public final class GameDatabaseContract {
         public static final String COLUMN_NAME_ITEM_SIZE = "itemSize";
         public static final String COLUMN_NAME_ITEM_NAME_RES_ID = "itemName";
         public static final String COLUMN_NAME_ITEM_IMAGE_RES_ID = "itemImage";
+        public static final String COLUMN_NAME_ITEM_IMAGE_ICON_RES_ID = "itemImageIcon";
         public static final String COLUMN_NAME_ITEM_TEXT_RES_ID = "itemDescription";
         public static final String COLUMN_NAME_ITEM_IS_BOUGHT = "isBought";
         public static final String COLUMN_NAME_ITEM_AVAILABLE_AT = "availableAt";

@@ -64,6 +64,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SIZE + " INTEGER," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_NAME_RES_ID + " INTEGER," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IMAGE_RES_ID + " INTEGER," +
+            GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IMAGE_ICON_RES_ID + " INTEGER," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_TEXT_RES_ID + " INTEGER," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE_RISE + " INTEGER," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_BOUGHT + " INTEGER," +
@@ -280,6 +281,9 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             // Get resource id for the item description
             String itemDescription = itemName.replace("game_item_name_", "game_item_info_");
             int descriptionResourceId = context.getResources().getIdentifier(itemDescription, "string", context.getPackageName());
+            // Get resource id for item icon
+            String itemIcon = itemName.replace("game_item_name_", "pict_") + "_small";
+            int imageIconResourceId = context.getResources().getIdentifier(itemIcon, "drawable", context.getPackageName());
             int itemBasePrice = engine.calculateBasePrice(MIN_ITEM_PRICE, MAX_ITEM_PRICE);
             int availableAt = shopsWithoutWares.get(i);
 
@@ -288,6 +292,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             try {
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_NAME_RES_ID, titleResourceId);
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IMAGE_RES_ID, imageResourceId);
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IMAGE_ICON_RES_ID, imageIconResourceId);
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_TEXT_RES_ID, descriptionResourceId);
                 // Assign a planet where this item will be available. We randomized the shopsWithoutWares
                 // list so we can simply pick a planet at the index where we are in this loop.
@@ -369,7 +374,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         output += this.getDataFromCursor(cursorShips) + "\n\n";
 
         // Add item data
-        output += "Items table: \n\tID\t\t\tPRICE\t\tSELL PRICE\tSIZE\t\tITEM NAME RES ID\tIMAGE RES ID\t\tTEXT RES ID\t\t\tRISE/FALL\tIS BOUGH\tAVAILABLE AT\n";
+        output += "Items table: \n\tID\t\t\tPRICE\t\tSELL PRICE\tSIZE\t\tITEM NAME RES ID\tIMAGE RES ID\t\tICON RES ID\t\t\tTEXT RES ID\t\t\tRISE/FALL\tIS BOUGH\tAVAILABLE AT\n";
         Cursor cursorItems = db.rawQuery("select * from " + TABLE_NAME_ITEMS, null);
         output += this.getDataFromCursor(cursorItems) + "\n\n";
 
@@ -387,7 +392,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      * toString method.
      *
      * @param cursor Input cursor from a database
-     * @return Everyting in the cursor as a String
+     * @return Everything in the cursor as a String
      */
     private String getDataFromCursor(Cursor cursor) {
         String output = "";
