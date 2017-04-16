@@ -4,40 +4,53 @@ package ondrej.mejzlik.suntrail.game;
  * This class holds all information about a given game item and it is used to pass this information
  * between various methods and classes.
  */
-public class GameItemHolder {
+public class ItemModel {
     private int id;
     private int price;
+    private int sellPrice;
     private int itemNameResId;
     private int itemImageResId;
+    private int itemImageIconResId;
     private int itemDescriptionResId;
-    private int sellableAtPlanetId;
     private int availableAtPlanet;
     private boolean isBought;
-    private String size;
+    private boolean priceMovement;
+    private int size;
 
     /**
      * Create a new game item information holder.
      *
      * @param id                   item database row id
      * @param price                item price from database
+     * @param sellPrice            item selling price from database
      * @param itemNameResId        item name string resource id from database
      * @param itemImageResId       item image resource id from database
      * @param itemDescriptionResId item description string resource id from database
-     * @param sellableAtPlanetId   planet id (from PlanetIdentifier) where this item can be sold
+     * @param priceMovement        true if the price will rise, false otherwise
      * @param availableAtPlanet    planet id (from PlanetIdentifier) where this item is available
      * @param isBought             is the item in player's inventory?
      * @param size                 item size in cargo bay (S, M, L)
      */
-    public GameItemHolder(int id, int price, int itemNameResId, int itemImageResId, int itemDescriptionResId, int sellableAtPlanetId, int availableAtPlanet, boolean isBought, String size) {
+    public ItemModel(int id, int price, int sellPrice, int itemNameResId, int itemImageResId, int itemImageIconResId, int itemDescriptionResId, int availableAtPlanet, boolean isBought, boolean priceMovement, int size) {
         this.id = id;
         this.price = price;
+        this.sellPrice = sellPrice;
         this.itemNameResId = itemNameResId;
         this.itemImageResId = itemImageResId;
+        this.itemImageIconResId = itemImageIconResId;
         this.itemDescriptionResId = itemDescriptionResId;
-        this.sellableAtPlanetId = sellableAtPlanetId;
         this.availableAtPlanet = availableAtPlanet;
         this.isBought = isBought;
+        this.priceMovement = priceMovement;
         this.size = size;
+    }
+
+    public int getSellPrice() {
+        return sellPrice;
+    }
+
+    public void setSellPrice(int sellPrice) {
+        this.sellPrice = sellPrice;
     }
 
     /**
@@ -77,6 +90,15 @@ public class GameItemHolder {
     }
 
     /**
+     * Returns item image icon resource id.
+     *
+     * @return Returns item image icon resource id.
+     */
+    public int getItemImageIconResId() {
+        return itemImageIconResId;
+    }
+
+    /**
      * Returns item image resource id.
      *
      * @return Returns item image resource id.
@@ -92,15 +114,6 @@ public class GameItemHolder {
      */
     public int getItemDescriptionResId() {
         return itemDescriptionResId;
-    }
-
-    /**
-     * Returns planet id (from PlanetIdentifier) where this item can be sold.
-     *
-     * @return Returns planet id (from PlanetIdentifier) where this item can be sold.
-     */
-    public int getSellableAtPlanetId() {
-        return sellableAtPlanetId;
     }
 
     /**
@@ -135,7 +148,15 @@ public class GameItemHolder {
      *
      * @return Returns item size as set in database (S, M, L)
      */
-    public String getSize() {
+    public int getSize() {
         return size;
+    }
+
+    public boolean getPriceMovement() {
+        return priceMovement;
+    }
+
+    public void setPriceMovement(boolean priceMovement) {
+        this.priceMovement = priceMovement;
     }
 }

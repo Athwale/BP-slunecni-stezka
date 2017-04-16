@@ -18,7 +18,7 @@ public final class GameDatabaseContract {
     }
 
     /**
-     * This class defines the names for Player table. It holds basic player information.
+     * This class defines the names for PlayerModel table. It holds basic player information.
      * This table has only one row, because we have only one player.
      * The ID column is present by default.
      * By implementing the BaseColumns interface, the inner class can inherit a primary key

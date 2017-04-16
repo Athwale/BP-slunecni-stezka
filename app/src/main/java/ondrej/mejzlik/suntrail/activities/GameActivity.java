@@ -49,6 +49,8 @@ public class GameActivity extends Activity {
         setContentView(R.layout.activity_game);
         FragmentManager fragmentManager = getFragmentManager();
 
+        // TODO update the current planet here, once done allow buttons
+
         // Get which planet was scanned
         // The planet id is inside the planet resources
         this.planetResources = getIntent().getExtras().getBundle(PLANET_RESOURCES_KEY);
@@ -56,6 +58,7 @@ public class GameActivity extends Activity {
             this.scannedPlanet = this.planetResources.getInt(PLANET_ID_KEY);
         }
 
+        // Used to update sale prices when entering the game fragment on a new planet
         this.database = GameDatabaseHelper.getInstance(this);
 
         // Initialize SpaceshipArguments for spaceship info fragment. From here we can only
@@ -88,7 +91,6 @@ public class GameActivity extends Activity {
                 // activity. Other activities use the created database through the singleton helper.
                 // Only the creation of the database is expensive once it is done here other calls
                 // for writable or readable database are quick.
-                // TODO all game buttons show wait toast until database is made
                 AsyncDatabaseInitializer databaseInitializer = new AsyncDatabaseInitializer(this.tripDirection, this.scannedPlanet, this);
                 databaseInitializer.execute();
 
@@ -183,8 +185,8 @@ public class GameActivity extends Activity {
     }
 
     /**
-     * This method replaces the current fragment with the GameMenuFragment and passes all
-     * // TODO what?
+     * This method replaces the current fragment with the GameMenuFragment and passes planet
+     * resources as an argument which contain the planet id, name and quarter photo.
      */
     private void openGameMenuFragment() {
         // Do not add the fragment onto back stack as this is considered the first fragment
@@ -291,8 +293,8 @@ public class GameActivity extends Activity {
         protected Void doInBackground(Void... params) {
             // The database helper is a singleton we always get the same instance it will not
             // cause any concurrent troubles.
-            GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(context);
-            databaseHelper.initializeDatabaseContents(direction, startPlanet, context);
+            GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.context);
+            databaseHelper.initializeDatabaseContents(this.direction, this.startPlanet, this.context);
             return null;
         }
 

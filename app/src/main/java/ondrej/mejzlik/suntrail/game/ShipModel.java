@@ -4,11 +4,11 @@ package ondrej.mejzlik.suntrail.game;
  * This class holds all information about a given spaceship and it is used to pass this information
  * between various methods and classes.
  */
-public class GameShipHolder {
+public class ShipModel {
     private int id;
     private int shipNameResId;
     private int price;
-    private String containerSize;
+    private int containerSize;
 
     /**
      * Create a new ship information holder.
@@ -18,7 +18,7 @@ public class GameShipHolder {
      * @param price         ship price from database
      * @param containerSize ship cargo bay container size from database
      */
-    public GameShipHolder(int id, int shipNameResId, int price, String containerSize) {
+    public ShipModel(int id, int shipNameResId, int price, int containerSize) {
         this.id = id;
         this.shipNameResId = shipNameResId;
         this.price = price;
@@ -66,7 +66,7 @@ public class GameShipHolder {
      *
      * @return Returns ship cargo bay container size.
      */
-    public String getContainerSize() {
+    public int getContainerSize() {
         return containerSize;
     }
 }

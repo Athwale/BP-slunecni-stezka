@@ -16,6 +16,7 @@ import java.util.Random;
 
 import ondrej.mejzlik.suntrail.R;
 
+import static android.provider.BaseColumns._ID;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.DAEDALUS_CARGO_SIZE;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.FIRST_SHIP;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.ICARUS_CARGO_SIZE;
@@ -26,8 +27,25 @@ import static ondrej.mejzlik.suntrail.configuration.Configuration.PLANETS_WITH_S
 import static ondrej.mejzlik.suntrail.configuration.Configuration.STARTING_CREDITS;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_VERSION;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_AVAILABLE_AT;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IMAGE_ICON_RES_ID;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IMAGE_RES_ID;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_BOUGHT;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_NAME_RES_ID;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE_RISE;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SELL_PRICE;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SIZE;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_TEXT_RES_ID;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.TABLE_NAME_ITEMS;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_CREDITS;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_CURRENT_PLANET;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_DIRECTION;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_SHIP_NAME_RES_ID;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.PlayerTable.TABLE_NAME_PLAYER;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_NAME_RES_ID;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.SpaceshipTable.TABLE_NAME_SPACESHIP;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_CERES;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_EARTH;
@@ -185,6 +203,16 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             return 1;
         }
         return 0;
+    }
+
+    /**
+     * Converts int to boolean. Everything larger than 0 i true.
+     *
+     * @param input Input int value.
+     * @return True if input > 0.
+     */
+    private boolean intToBoolean(int input) {
+        return input > 0;
     }
 
     /**
@@ -363,6 +391,119 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * This method returns all items which the player bought and thus have isBought set to 1 in
+     * the database.
+     *
+     * @return All bought items.
+     */
+    public ArrayList<ItemModel> getBoughtItems() {
+        // "getReadableDatabase()" and "getWriteableDatabase()" return the same object
+        // (except under low disk space scenarios)
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<ItemModel> boughtItems = new ArrayList<>();
+
+        String QUERY = "SELECT * FROM " + TABLE_NAME_ITEMS + "WHERE " + COLUMN_NAME_ITEM_IS_BOUGHT + " = 1";
+        Cursor cursor = db.rawQuery(QUERY, null);
+
+        // Get the data from the cursor, make new game item object and fill it, then add it to the
+        // list.
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(cursor.getColumnIndex(_ID));
+                    int itemPrice = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_PRICE));
+                    int itemSize = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_SIZE));
+                    int itemName = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_NAME_RES_ID));
+                    int itemImage = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_IMAGE_RES_ID));
+                    int itemImageIcon = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_IMAGE_ICON_RES_ID));
+                    int itemDescription = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_TEXT_RES_ID));
+                    int isBought = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_IS_BOUGHT));
+                    int availableAt = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_AVAILABLE_AT));
+                    int priceMovement = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_PRICE_RISE));
+                    int sellPrice = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_SELL_PRICE));
+                    ItemModel item = new ItemModel(id, itemPrice, sellPrice, itemName, itemImage,
+                            itemImageIcon, itemDescription, availableAt, this.intToBoolean(isBought), this.intToBoolean(priceMovement), itemSize);
+                    boughtItems.add(item);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Getting items from database failed");
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+        return boughtItems;
+    }
+
+    /**
+     * Returns a PlayerModel object filled with current player data from the database.
+     *
+     * @return Returns a PlayerModel object filled with current player data from the database.
+     */
+    public PlayerModel getPlayerData() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String QUERY = "SELECT * FROM " + TABLE_NAME_PLAYER;
+        Cursor cursor = db.rawQuery(QUERY, null);
+        PlayerModel playerModel = null;
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(cursor.getColumnIndex(_ID));
+                    int shipName = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_PLAYER_SHIP_NAME_RES_ID));
+                    int credits = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_PLAYER_CREDITS));
+                    int currentPlanet = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_PLAYER_CURRENT_PLANET));
+                    int direction = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_PLAYER_DIRECTION));
+                    playerModel = new PlayerModel(id, shipName, credits, currentPlanet, this.intToBoolean(direction));
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Getting player from database failed");
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+        return playerModel;
+    }
+
+    /**
+     * Returns ShipModel object containing the ship data corresponding to which ship the player
+     * currently has.
+     *
+     * @return Returns ShipModel object containing the ship data corresponding to which ship the
+     * player currently has.
+     */
+    public ShipModel getShipData() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String QUERY = "SELECT * FROM " + TABLE_NAME_SPACESHIP + "AS S JOIN " + TABLE_NAME_PLAYER + " AS P ON S." + COLUMN_NAME_SHIP_NAME_RES_ID + "= R." + COLUMN_NAME_PLAYER_SHIP_NAME_RES_ID;
+        Cursor cursor = db.rawQuery(QUERY, null);
+        ShipModel shipModel = null;
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(cursor.getColumnIndex(_ID));
+                    int shipName = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_SHIP_NAME_RES_ID));
+                    int cargoSize = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_SHIP_CARGO_SIZE));
+                    int shipPrice = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_SHIP_PRICE));
+                    shipModel = new ShipModel(id, shipName, cargoSize, shipPrice);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Getting ship from database failed");
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+        return shipModel;
+    }
+
+    /**
      * Returns all database tables and rows in a string.
      *
      * @return Returns all database tables and rows in a string.
@@ -370,7 +511,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     public String toString() {
         SQLiteDatabase db = this.getReadableDatabase();
         // Add player table data
-        String output = "Player table: \n\tID\t\t\tSHIP NAME RES ID\tCREDITS\t\tCUR PLANET\t\tDIRECTION\n";
+        String output = "PlayerModel table: \n\tID\t\t\tSHIP NAME RES ID\tCREDITS\t\tCUR PLANET\t\tDIRECTION\n";
         Cursor cursorPlayer = db.rawQuery("select * from " + TABLE_NAME_PLAYER, null);
         output += this.getDataFromCursor(cursorPlayer) + "\n\n";
 
@@ -384,9 +525,16 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         Cursor cursorItems = db.rawQuery("select * from " + TABLE_NAME_ITEMS, null);
         output += this.getDataFromCursor(cursorItems) + "\n\n";
 
-        cursorPlayer.close();
-        cursorShips.close();
-        cursorItems.close();
+
+        if (cursorPlayer != null && !cursorPlayer.isClosed()) {
+            cursorPlayer.close();
+        }
+        if (cursorShips != null && !cursorShips.isClosed()) {
+            cursorShips.close();
+        }
+        if (cursorItems != null && !cursorItems.isClosed()) {
+            cursorItems.close();
+        }
         db.close();
 
         Log.d(TAG, output);
