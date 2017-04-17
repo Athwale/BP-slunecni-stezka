@@ -15,11 +15,11 @@ public class ShipModel {
     /**
      * Create a new ship information holder.
      *
-     * @param id                ship database row id
-     * @param imageResId        ship image resource id
-     * @param shipNameResId     ship name string resource from database
-     * @param price             ship price from database
-     * @param cargoBaySize      ship cargo bay container size from database
+     * @param id                  ship database row id
+     * @param imageResId          ship image resource id
+     * @param shipNameResId       ship name string resource from database
+     * @param price               ship price from database
+     * @param cargoBaySize        ship cargo bay container size from database
      * @param remainingCargoSpace ship cargo bay container size from database
      */
     public ShipModel(int id, int imageResId, int shipNameResId, int price, int cargoBaySize, int remainingCargoSpace) {

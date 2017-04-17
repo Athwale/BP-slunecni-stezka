@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import ondrej.mejzlik.suntrail.R;
@@ -30,6 +31,11 @@ public class StartGameFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_start_game, container, false);
         this.fillText(view);
+        // Set a tag to the ship image button containing the ship name string resource id for the
+        // ship info fragment.
+        ImageButton shipButton = (ImageButton) (view.findViewById(R.id.start_game_image_button_ship));
+        shipButton.setTag(R.string.ship_name_icarus);
+
         return view;
     }
 

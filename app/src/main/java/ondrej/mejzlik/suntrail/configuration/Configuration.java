@@ -21,23 +21,23 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS
 /**
  * This class holds public static constants used to identify planets from QR codes and NFC tags.
  * You can change values here to modify or repair app behavior.
- *
+ * <p>
  * GAME ALGORITHM EXPLANATION
  * 1. The player can start the game at any planet. If the game is started on the first or last
  * two planets the direction is automatically set towards the other end of the Sun trail. Otherwise
  * the user has to select one direction.
- *
+ * <p>
  * 2. The player begins the game with a certain amount of credits (can be set in this file).
  * The player is given a small ship Icarus S.
  * Other ships are available on the Moon and Jupiter. The player will receive the new ship for free.
- *
+ * <p>
  * 3. There are 11 shops in the game. The first information board does not have a shop, scanning the
  * board opens the information fragment. First shop is on the Sun. Neptune does not have a shop
  * because it is the last planet there is no point in buying anything there.
- *
+ * <p>
  * 4. There are 33 items in the game. Each shop has 3. The number can be expanded but each shop
  * must have equal amount of items.
- *
+ * <p>
  * 5. Items are assigned random prices from a range which can be configured in this file.
  * The price of each item can either rise or fall before it is sold in another shop. By how much %
  * the price will change can be set in this file. Whether the price will rise or fall is initially
@@ -46,19 +46,19 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS
  * probably. Otherwise the probability is equal.
  * The next movement in price of a given item which is in the player's inventory is set randomly at
  * each stop.
- *
+ * <p>
  * 6. In case the user makes many bad choices and the algorithm determines the user will not be
  * able to buy anything in a shop he arrived to, a price of one item is set low enough for the user
  * to be able to buy it and the price is set to rise. This takes into account what the user can
  * sell in that shop. This safety feature can be disabled in a harder mode.
- *
+ * <p>
  * 7. Different ships have different cargo bay size. This can be set in this file. The size of items
  * in shops is set randomly but not to be larger than a half of currently available maximum cargo
  * bay size.
- *
+ * <p>
  * 8. On the last planet which is either the Neptune on the Sun everything is automatically sold.
  * Then based on how much credits the player has he is awarded.
- *
+ * <p>
  * 9 GAMEPLAY MECHANICS
  * The user might play completely randomly not thinking about anything. In this case because of the
  * bad choices safety method the user is able to finish the game.

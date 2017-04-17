@@ -20,6 +20,16 @@
         android:textColor="#ff0099cc"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/inventory_text_view_loading_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/inventory_loading"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
     <View
         android:id="@+id/inventory_view_spacer"
         android:layout_width="match_parent"
@@ -31,142 +41,144 @@
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <LinearLayout
-        android:id="@+id/inventory_linear_layout_top"
+        android:id="@+id/inventory_linear_layout_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/inventory_view_spacer"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/inventory_linear_layout_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/inventory_image_view_ship"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/transparent_button_background"
+                    android:contentDescription="@string/start_new_game_image_description"
+                    android:onClick="showShipInfoButtonHandler"
+                    android:scaleType="fitCenter"
+                    tools:src="@drawable/pict_icarus_info" />
+
+                <TextView
+                    android:id="@+id/inventory_text_view_ship_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ship_name_icarus"
+                    android:textAlignment="center"
+                    android:textColor="#000000" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/inventory_cargo_bay_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inventory_cargo_bay"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/inventory_cargo_bay_contents"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        tools:text="5/15" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/inventory_credits_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inventory_credits"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/inventory_credits_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        tools:text="256" />
+
+                    <ImageView
+                        android:id="@+id/inventory_image_view_coin"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:contentDescription="@string/inventory_coin_description"
+                        android:src="@drawable/pict_coin" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/inventory_cargo_bay_contents_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_marginTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:text="@string/inventory_cargo_bay_contents"
+            android:textColor="#ff0099cc"
+            android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/inventory_image_view_ship"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:adjustViewBounds="true"
-                android:background="@drawable/transparent_button_background"
-                android:contentDescription="@string/start_new_game_image_description"
-                android:onClick="showIcarusInfoButtonHandler"
-                android:scaleType="fitCenter"
-                tools:src="@drawable/pict_icarus_info" />
+        <View
+            android:id="@+id/inventory_view_spacer_items"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="#ff0099cc"
+            tools:ignore="UnknownId,UnknownIdInLayout" />
 
-            <TextView
-                android:id="@+id/inventory_text_view_ship_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ship_name_icarus"
-                android:textAlignment="center"
-                android:textColor="#000000" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <ListView
+            android:id="@+id/inventory_list_view_items"
+            android:layout_width="370dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="15dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/inventory_cargo_bay_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/inventory_cargo_bay"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/inventory_cargo_bay_contents"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    tools:text="5/15" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/inventory_credits_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/inventory_credits"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/inventory_credits_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    tools:text="256" />
-
-                <ImageView
-                    android:id="@+id/inventory_image_view_coin"
-                    android:layout_width="52dp"
-                    android:layout_height="52dp"
-                    android:contentDescription="@string/inventory_coin_description"
-                    android:src="@drawable/pict_coin" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+            android:layout_gravity="center"
+            tools:listitem="@layout/list_view_inventory_row" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/inventory_cargo_bay_contents_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/inventory_linear_layout_top"
-        android:layout_marginTop="16dp"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:text="@string/inventory_cargo_bay_contents"
-        android:textColor="#ff0099cc"
-        android:textStyle="bold" />
-
-    <View
-        android:id="@+id/inventory_view_spacer_items"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/inventory_cargo_bay_contents_title"
-        android:layout_marginTop="16dp"
-        android:background="#ff0099cc"
-        tools:ignore="UnknownId,UnknownIdInLayout" />
-
-    <ListView
-        android:id="@+id/inventory_list_view_items"
-        android:layout_width="500dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/inventory_view_spacer_items"
-        android:layout_centerHorizontal="true"
-        tools:listitem="@layout/list_view_inventory_row" />
 
 </RelativeLayout>

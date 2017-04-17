@@ -7,6 +7,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.io.File;
@@ -15,11 +16,14 @@ import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.fragments.DirectionChoiceFragment;
 import ondrej.mejzlik.suntrail.fragments.GameMenuFragment;
 import ondrej.mejzlik.suntrail.fragments.InventoryFragment;
+import ondrej.mejzlik.suntrail.fragments.ItemInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.ShipInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.StartGameFragment;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
+import ondrej.mejzlik.suntrail.game.ItemModel;
 
 import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.PLANET_RESOURCES_KEY;
+import static ondrej.mejzlik.suntrail.fragments.ItemInfoFragment.ITEM_KEY;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MERCURY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_NEPTUNE;
@@ -30,7 +34,6 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_I
 public class GameActivity extends Activity {
     public static final String SPACESHIP_NAME_KEY = "spaceshipNameKey";
     private static final String DIRECTION_FRAGMENT_TAG = "directionFragment";
-    private Bundle SpaceshipArguments = null;
     // The resources contain all about the planet
     private Bundle planetResources = null;
     // This is used to prevent multiple toasts from showing.
@@ -60,14 +63,6 @@ public class GameActivity extends Activity {
 
         // Used to update sale prices when entering the game fragment on a new planet
         this.database = GameDatabaseHelper.getInstance(this);
-
-        // Initialize SpaceshipArguments for spaceship info fragment. From here we can only
-        // display Icarus S info, no database exists at this point since game has not
-        // been started yet.
-        this.SpaceshipArguments = new Bundle();
-        // The ship info fragment identifies which spaceship info to display by the spaceship name
-        // string id.
-        SpaceshipArguments.putInt(SPACESHIP_NAME_KEY, R.string.ship_name_icarus);
 
         // Check that the activity is using the layout version with
         // the fragment_container FrameLayout
@@ -195,9 +190,28 @@ public class GameActivity extends Activity {
         // the first fragment.
         FragmentManager fragmentManager = getFragmentManager();
         GameMenuFragment gameMenuFragment = new GameMenuFragment();
+
         gameMenuFragment.setArguments(this.planetResources);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.game_activity_fragment_container, gameMenuFragment);
+        transaction.commit();
+    }
+
+    /**
+     * This method opens an ItemInfoFragment and passes the item data into it.
+     *
+     * @param item The game item for which we want to see the info.
+     */
+    public void openItemInfoFragment(ItemModel item) {
+        FragmentManager fragmentManager = getFragmentManager();
+        ItemInfoFragment itemInfoFragment = new ItemInfoFragment();
+
+        Bundle arguments = new Bundle();
+        arguments.putParcelable(ITEM_KEY, item);
+        itemInfoFragment.setArguments(arguments);
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.game_activity_fragment_container, itemInfoFragment);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 
@@ -208,13 +222,21 @@ public class GameActivity extends Activity {
      *
      * @param view The button that has been clicked
      */
-    public void showIcarusInfoButtonHandler(View view) {
+    public void showShipInfoButtonHandler(View view) {
+        // The button contains a tag which holds the name of the ship which is then passed to the
+        // ship info fragment. The ship info fragment identifies which spaceship info to display by
+        // the spaceship name string id.
+        ImageButton shipButton = (ImageButton) view;
+
+        Bundle spaceshipArguments = new Bundle();
+        spaceshipArguments.putInt(SPACESHIP_NAME_KEY, (int) shipButton.getTag());
+
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         // Pass chosen planet resources to fragment
         ShipInfoFragment shipInfoFragment = new ShipInfoFragment();
-        shipInfoFragment.setArguments(this.SpaceshipArguments);
+        shipInfoFragment.setArguments(spaceshipArguments);
         transaction.replace(R.id.game_activity_fragment_container, shipInfoFragment);
         transaction.addToBackStack(null);
         transaction.commit();

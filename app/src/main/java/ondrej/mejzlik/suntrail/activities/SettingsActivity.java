@@ -11,6 +11,7 @@ import android.widget.Toast;
 import java.io.File;
 
 import ondrej.mejzlik.suntrail.R;
+import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
 
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 
@@ -61,11 +62,13 @@ public class SettingsActivity extends Activity {
         CheckBox checkBoxClear = (CheckBox) findViewById(R.id.settings_checkbox_clear_data);
         TextView databaseExistsText = (TextView) findViewById(R.id.settings_text_view_data_info);
         // Clear game data
-        // All database connections must be closed before calling this, but since they
-        // are closed when exiting game activity, it is safe to call.
+        // All database connections must be closed before calling this.
         if (checkBoxClear.isEnabled()) {
             // There is a database to delete
             if (checkBoxClear.isChecked()) {
+                // Get the helper singleton to close the database connections
+                GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.getApplicationContext());
+                databaseHelper.close();
                 this.deleteDatabase(DATABASE_NAME);
                 if (!this.checkDatabaseExistence()) {
                     // The database was really deleted

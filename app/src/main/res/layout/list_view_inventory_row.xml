@@ -60,6 +60,7 @@
         android:id="@+id/row_image_view_price_movement"
         android:layout_width="0dp"
         android:layout_height="52dp"
+        android:layout_marginEnd="5dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:contentDescription="@string/item_image_description"

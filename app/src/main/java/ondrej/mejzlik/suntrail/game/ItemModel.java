@@ -1,10 +1,26 @@
 package ondrej.mejzlik.suntrail.game;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * This class holds all information about a given game item and it is used to pass this information
- * between various methods and classes.
+ * between various methods and classes. This class implements parcelable interface which makes it
+ * suitable to be passed to a fragment or activity as a parcel. Then we can reconstruct the object
+ * and use the getters and setters as usual.
  */
-public class ItemModel {
+public class ItemModel implements Parcelable {
+    public static final Parcelable.Creator<ItemModel> CREATOR = new Parcelable.Creator<ItemModel>() {
+        @Override
+        public ItemModel createFromParcel(Parcel source) {
+            return new ItemModel(source);
+        }
+
+        @Override
+        public ItemModel[] newArray(int size) {
+            return new ItemModel[size];
+        }
+    };
     private int id;
     private int price;
     private int sellPrice;
@@ -43,6 +59,20 @@ public class ItemModel {
         this.isBought = isBought;
         this.priceMovement = priceMovement;
         this.size = size;
+    }
+
+    private ItemModel(Parcel in) {
+        this.id = in.readInt();
+        this.price = in.readInt();
+        this.sellPrice = in.readInt();
+        this.itemNameResId = in.readInt();
+        this.itemImageResId = in.readInt();
+        this.itemImageIconResId = in.readInt();
+        this.itemDescriptionResId = in.readInt();
+        this.availableAtPlanet = in.readInt();
+        this.isBought = in.readByte() != 0;
+        this.priceMovement = in.readByte() != 0;
+        this.size = in.readInt();
     }
 
     public int getSellPrice() {
@@ -158,5 +188,26 @@ public class ItemModel {
 
     public void setPriceMovement(boolean priceMovement) {
         this.priceMovement = priceMovement;
+    }
+
+    @Override
+    public int describeContents() {
+        // Unique descriptor. Resource ids are unique, we can use that.
+        return this.hashCode() + this.getItemNameResId();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeInt(this.price);
+        dest.writeInt(this.sellPrice);
+        dest.writeInt(this.itemNameResId);
+        dest.writeInt(this.itemImageResId);
+        dest.writeInt(this.itemImageIconResId);
+        dest.writeInt(this.itemDescriptionResId);
+        dest.writeInt(this.availableAtPlanet);
+        dest.writeByte(this.isBought ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.priceMovement ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.size);
     }
 }

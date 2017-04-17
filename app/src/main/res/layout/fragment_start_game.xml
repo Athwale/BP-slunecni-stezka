@@ -50,14 +50,14 @@
                 tools:text="text" />
 
             <ImageButton
-                android:id="@+id/start_game_image_view_ship"
+                android:id="@+id/start_game_image_button_ship"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/transparent_button_background"
                 android:contentDescription="@string/start_new_game_image_description"
-                android:onClick="showIcarusInfoButtonHandler"
+                android:onClick="showShipInfoButtonHandler"
                 android:scaleType="fitCenter"
                 android:src="@drawable/pict_icarus_info" />
 
