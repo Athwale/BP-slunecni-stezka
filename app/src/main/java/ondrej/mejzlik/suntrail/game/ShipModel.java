@@ -6,23 +6,47 @@ package ondrej.mejzlik.suntrail.game;
  */
 public class ShipModel {
     private int id;
+    private int imageResId;
     private int shipNameResId;
     private int price;
-    private int containerSize;
+    private int cargoBaySize;
+    private int remainingCargoSpace;
 
     /**
      * Create a new ship information holder.
      *
-     * @param id            ship database row id
-     * @param shipNameResId ship name string resource from database
-     * @param price         ship price from database
-     * @param containerSize ship cargo bay container size from database
+     * @param id                ship database row id
+     * @param imageResId        ship image resource id
+     * @param shipNameResId     ship name string resource from database
+     * @param price             ship price from database
+     * @param cargoBaySize      ship cargo bay container size from database
+     * @param remainingCargoSpace ship cargo bay container size from database
      */
-    public ShipModel(int id, int shipNameResId, int price, int containerSize) {
+    public ShipModel(int id, int imageResId, int shipNameResId, int price, int cargoBaySize, int remainingCargoSpace) {
         this.id = id;
+        this.imageResId = imageResId;
         this.shipNameResId = shipNameResId;
         this.price = price;
-        this.containerSize = containerSize;
+        this.cargoBaySize = cargoBaySize;
+        this.remainingCargoSpace = remainingCargoSpace;
+    }
+
+    /**
+     * Returns remaining cargo bay space.
+     *
+     * @return Returns ship database row ID.
+     */
+    public int getRemainingCargoSpace() {
+        return remainingCargoSpace;
+    }
+
+    /**
+     * Sets remaining cargo bay space.
+     *
+     * @param remainingCargoSpace New remaining cargo bay space.
+     */
+    public void setRemainingCargoSpace(int remainingCargoSpace) {
+        this.remainingCargoSpace = remainingCargoSpace;
     }
 
     /**
@@ -41,6 +65,15 @@ public class ShipModel {
      */
     public int getShipNameResId() {
         return shipNameResId;
+    }
+
+    /**
+     * Returns ship image resource id.
+     *
+     * @return Returns ship name string resource id.
+     */
+    public int getShipImageResId() {
+        return imageResId;
     }
 
     /**
@@ -66,7 +99,7 @@ public class ShipModel {
      *
      * @return Returns ship cargo bay container size.
      */
-    public int getContainerSize() {
-        return containerSize;
+    public int getCargoBaySize() {
+        return cargoBaySize;
     }
 }

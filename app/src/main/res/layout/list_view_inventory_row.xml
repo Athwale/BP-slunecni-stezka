@@ -41,8 +41,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textColor="#000000"
-                tools:text="@string/list_size" />
+                android:text="@string/list_size"
+                android:textColor="#000000" />
 
             <TextView
                 android:id="@+id/row_item_size"
@@ -65,7 +65,7 @@
         android:contentDescription="@string/item_image_description"
         android:paddingBottom="3dp"
         android:paddingTop="3dp"
-        android:scaleType="fitCenter"
+        android:scaleType="fitEnd"
         tools:src="@drawable/pict_arrow_green" />
 
 </LinearLayout>

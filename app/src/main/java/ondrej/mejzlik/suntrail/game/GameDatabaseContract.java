@@ -28,7 +28,7 @@ public final class GameDatabaseContract {
         public static final String TABLE_NAME_PLAYER = "player";
         // All Integer values
         // Primary key is _ID
-        public static final String COLUMN_NAME_PLAYER_SHIP_NAME_RES_ID = "shipName";
+        public static final String COLUMN_NAME_PLAYER_SHIP_NAME_RES_ID = "playerShipName";
         public static final String COLUMN_NAME_PLAYER_CREDITS = "credits";
         public static final String COLUMN_NAME_PLAYER_CURRENT_PLANET = "currentPlanet";
         public static final String COLUMN_NAME_PLAYER_DIRECTION = "direction";
@@ -42,10 +42,11 @@ public final class GameDatabaseContract {
         // All Integer values
         // Primary key is _ID
         public static final String COLUMN_NAME_SHIP_NAME_RES_ID = "shipName";
+        public static final String COLUMN_NAME_SHIP_IMAGE_RES_ID = "shipImage";
         // Description is not a part of the row. ShipInfoFragment decides what to show by the ship
         // name. Because when we first use ship description before starting a game, we do not have
         // the database.
-        public static final String COLUMN_NAME_SHIP_CARGO_SIZE = "shipContainerSize";
+        public static final String COLUMN_NAME_SHIP_CARGO_SIZE = "shipCargoBaySize";
         public static final String COLUMN_NAME_SHIP_PRICE = "shipPrice";
     }
 

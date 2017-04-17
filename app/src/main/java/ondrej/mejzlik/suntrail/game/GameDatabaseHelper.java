@@ -44,6 +44,7 @@ import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.PlayerTable.COLU
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_SHIP_NAME_RES_ID;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.PlayerTable.TABLE_NAME_PLAYER;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_IMAGE_RES_ID;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_NAME_RES_ID;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.SpaceshipTable.TABLE_NAME_SPACESHIP;
@@ -72,6 +73,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_SPACESHIP_TABLE = "CREATE TABLE " + TABLE_NAME_SPACESHIP + " (" +
             GameDatabaseContract.SpaceshipTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_NAME_RES_ID + " INTEGER," +
+            GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_IMAGE_RES_ID + " INTEGER," +
             GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE + " INTEGER," +
             GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE + " INTEGER)";
 
@@ -227,6 +229,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         try {
             // Add icarus
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_NAME_RES_ID, R.string.ship_name_icarus);
+            ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_IMAGE_RES_ID, R.drawable.pict_icarus_info);
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE, ICARUS_CARGO_SIZE);
             // Ships may have a price (currently unused)
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE, 0);
@@ -244,6 +247,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         try {
             // Add lokys
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_NAME_RES_ID, R.string.ship_name_lokys);
+            ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_IMAGE_RES_ID, R.drawable.pict_lokys_info);
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE, LOKYS_CARGO_SIZE);
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE, 0);
             // Insert the new row (return the primary key value of the new row which we do not use)
@@ -260,6 +264,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         try {
             // Add daedalus
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_NAME_RES_ID, R.string.ship_name_daedalus);
+            ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_IMAGE_RES_ID, R.drawable.pict_daedalus_info);
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE, DAEDALUS_CARGO_SIZE);
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE, 0);
             // Insert the new row (return the primary key value of the new row which we do not use)
@@ -334,7 +339,8 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 // true until you leave the planet.
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SELL_PRICE, itemBasePrice);
                 // No items are bought in the beginning
-                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_BOUGHT, 0);
+                // TODO set 0
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_BOUGHT, 1);
                 // Determine whether the price will raise or fall if price is high it might fall if
                 // low it might rise
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE_RISE, engine.calculatePriceMovement(itemBasePrice));
@@ -402,7 +408,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<ItemModel> boughtItems = new ArrayList<>();
 
-        String QUERY = "SELECT * FROM " + TABLE_NAME_ITEMS + "WHERE " + COLUMN_NAME_ITEM_IS_BOUGHT + " = 1";
+        final String QUERY = "SELECT * FROM " + TABLE_NAME_ITEMS + " WHERE " + COLUMN_NAME_ITEM_IS_BOUGHT + " = 1";
         Cursor cursor = db.rawQuery(QUERY, null);
 
         // Get the data from the cursor, make new game item object and fill it, then add it to the
@@ -444,7 +450,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     public PlayerModel getPlayerData() {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String QUERY = "SELECT * FROM " + TABLE_NAME_PLAYER;
+        final String QUERY = "SELECT * FROM " + TABLE_NAME_PLAYER;
         Cursor cursor = db.rawQuery(QUERY, null);
         PlayerModel playerModel = null;
 
@@ -479,25 +485,43 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     public ShipModel getShipData() {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String QUERY = "SELECT * FROM " + TABLE_NAME_SPACESHIP + "AS S JOIN " + TABLE_NAME_PLAYER + " AS P ON S." + COLUMN_NAME_SHIP_NAME_RES_ID + "= R." + COLUMN_NAME_PLAYER_SHIP_NAME_RES_ID;
-        Cursor cursor = db.rawQuery(QUERY, null);
+        final String QUERY_SHIP = "SELECT * FROM " + TABLE_NAME_PLAYER + " JOIN " + TABLE_NAME_SPACESHIP + " ON " + TABLE_NAME_PLAYER + "." + COLUMN_NAME_PLAYER_SHIP_NAME_RES_ID + " = " + TABLE_NAME_SPACESHIP + "." + COLUMN_NAME_SHIP_NAME_RES_ID;
+        Cursor cursorShip = db.rawQuery(QUERY_SHIP, null);
         ShipModel shipModel = null;
 
+        // Calculate the combined size of bought items in cargo bay.
+        final String QUERY_ITEMS = "SELECT sum(" + COLUMN_NAME_ITEM_SIZE + ") AS totalSize FROM " + TABLE_NAME_ITEMS + " WHERE " + COLUMN_NAME_ITEM_IS_BOUGHT + " = 1";
+        Cursor cursorItems = db.rawQuery(QUERY_ITEMS, null);
+        int itemSizeSum = 0;
+
         try {
-            if (cursor.moveToFirst()) {
+            if (cursorItems.moveToFirst()) {
+                itemSizeSum = cursorItems.getInt(cursorItems.getColumnIndex("totalSize"));
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Getting total items size from database failed");
+        } finally {
+            if (cursorItems != null && !cursorItems.isClosed()) {
+                cursorItems.close();
+            }
+        }
+
+        try {
+            if (cursorShip.moveToFirst()) {
                 do {
-                    int id = cursor.getInt(cursor.getColumnIndex(_ID));
-                    int shipName = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_SHIP_NAME_RES_ID));
-                    int cargoSize = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_SHIP_CARGO_SIZE));
-                    int shipPrice = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_SHIP_PRICE));
-                    shipModel = new ShipModel(id, shipName, cargoSize, shipPrice);
-                } while (cursor.moveToNext());
+                    int id = cursorShip.getInt(cursorShip.getColumnIndex(_ID));
+                    int image = cursorShip.getInt(cursorShip.getColumnIndex(COLUMN_NAME_SHIP_IMAGE_RES_ID));
+                    int shipName = cursorShip.getInt(cursorShip.getColumnIndex(COLUMN_NAME_SHIP_NAME_RES_ID));
+                    int cargoSize = cursorShip.getInt(cursorShip.getColumnIndex(COLUMN_NAME_SHIP_CARGO_SIZE));
+                    int shipPrice = cursorShip.getInt(cursorShip.getColumnIndex(COLUMN_NAME_SHIP_PRICE));
+                    shipModel = new ShipModel(id, image, shipName, shipPrice, cargoSize, (cargoSize - itemSizeSum));
+                } while (cursorShip.moveToNext());
             }
         } catch (Exception e) {
             Log.d(TAG, "Getting ship from database failed");
         } finally {
-            if (cursor != null && !cursor.isClosed()) {
-                cursor.close();
+            if (cursorShip != null && !cursorShip.isClosed()) {
+                cursorShip.close();
             }
         }
         return shipModel;
@@ -516,7 +540,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         output += this.getDataFromCursor(cursorPlayer) + "\n\n";
 
         // Add spaceship table data
-        output += "Spaceships table: \n\tID\t\t\tSHIP NAME RES ID\tCARGO SPACE\tSHIP PRICE\n";
+        output += "Spaceships table: \n\tID\t\t\tSHIP NAME RES ID\tIMAGE RES ID\t\tCARGO SPACE\tSHIP PRICE\n";
         Cursor cursorShips = db.rawQuery("select * from " + TABLE_NAME_SPACESHIP, null);
         output += this.getDataFromCursor(cursorShips) + "\n\n";
 
