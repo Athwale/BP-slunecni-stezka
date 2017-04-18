@@ -52,7 +52,6 @@ public class GameInfoFragment extends Fragment {
         scrollView.post(new Runnable() {
             public void run() {
                 scrollView.scrollTo(0, scrollPosition);
-                ;
             }
         });
     }

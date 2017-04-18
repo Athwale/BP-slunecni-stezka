@@ -4,11 +4,12 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -38,22 +39,24 @@ import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
  */
 public class InventoryFragment extends Fragment {
     private View mainView = null;
-    private Bundle savedInstance = null;
+    private Parcelable listViewState = null;
 
     public InventoryFragment() {
         // Required empty public constructor
     }
 
-    // TODO CHANGE FRAGMENT AFTER ANIMATION
-    // TODO MAKE LARGE VERSION OF INFO LAYOUT
+    // TODO open inventory from main menu display no game started if no database
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         this.mainView = inflater.inflate(R.layout.fragment_inventory, container, false);
-        this.savedInstance = savedInstanceState;
         TextView message = (TextView) this.mainView.findViewById(R.id.inventory_text_view_loading_message);
+        // If we're being restored from a previous state, restore last known scroll position.
+        if (savedInstanceState != null) {
+            this.listViewState = savedInstanceState.getParcelable(SCROLL_POSITION_KEY);
+        }
         // Get data from database only if the database exists. Otherwise show a message, that
         // game has not been started yet.
         File dbFile = this.getActivity().getDatabasePath(DATABASE_NAME);
@@ -96,13 +99,28 @@ public class InventoryFragment extends Fragment {
         }
     }
 
+    /**
+     * Save scroll position here, onSaveInstanceState is only called when the activity may be
+     * killed by the system. onPause is called every time the fragment is replaced with another.
+     */
+    @Override
+    public void onPause() {
+        ListView listView = (ListView) getActivity().findViewById(R.id.inventory_list_view_items);
+        // scrollView can be null if the system tries to save position when the user presses home
+        // from a fragment opened from this fragment.
+        if (listView != null) {
+            this.listViewState = listView.onSaveInstanceState();
+        }
+        super.onPause();
+    }
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         // Saves the instance when home button is pressed
         ListView listView = (ListView) getActivity().findViewById(R.id.inventory_list_view_items);
         if (listView != null) {
-            outState.putInt(SCROLL_POSITION_KEY, listView.getSelectedItemPosition());
+            outState.putParcelable(SCROLL_POSITION_KEY, this.listViewState);
         }
     }
 
@@ -133,7 +151,7 @@ public class InventoryFragment extends Fragment {
         protected void onPostExecute(GameDataHolder result) {
             // This method is called in main thread automatically after finishing the work.
             // Load all the data into the fragment
-            ImageButton shipImage = (ImageButton) mainView.findViewById(R.id.inventory_image_view_ship);
+            final ImageButton shipImage = (ImageButton) mainView.findViewById(R.id.inventory_image_view_ship);
             TextView cargoBay = (TextView) mainView.findViewById(R.id.inventory_cargo_bay_contents);
             TextView credits = (TextView) mainView.findViewById(R.id.inventory_credits_amount);
             TextView shipName = (TextView) mainView.findViewById(R.id.inventory_text_view_ship_name);
@@ -150,27 +168,40 @@ public class InventoryFragment extends Fragment {
             wares.setAdapter(new InventoryListAdapter(getActivity().getApplicationContext(), result.getItems()));
             wares.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
                     // Start an alpha animation for clicked item
-                    Animation fadeOutAnimation = new AlphaAnimation(0.3f, 1.0f);
-                    fadeOutAnimation.setDuration(400);
-                    view.startAnimation(fadeOutAnimation);
+                    Animation rowAnimation = new TranslateAnimation(0, (view.getWidth() / 8), 0, 0);
+                    rowAnimation.setDuration(200);
+                    view.startAnimation(rowAnimation);
+                    rowAnimation.setAnimationListener(new Animation.AnimationListener() {
 
-                    // Get the clicked item
-                    Adapter adapter = wares.getAdapter();
-                    ItemModel item = (ItemModel) adapter.getItem(i);
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            // Make the Game activity open item info fragment for the selected item.
+                            // When the animation has finished.
+                            if (getActivity() instanceof GameActivity) {
+                                // Get the clicked item
+                                Adapter adapter = wares.getAdapter();
+                                ItemModel item = (ItemModel) adapter.getItem(i);
+                                ((GameActivity) getActivity()).openItemInfoFragment(item);
+                            }
+                        }
 
-                    // Make the Game activity open item info fragment for the selected item.
-                    if (getActivity() instanceof GameActivity) {
-                        ((GameActivity) getActivity()).openItemInfoFragment(item);
-                    }
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            // Do nothing
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                            // Do nothing
+                        }
+                    });
                 }
             });
             // Once the list is filled, move to the last known position
-            if (savedInstance != null) {
-                int scrollPosition = savedInstance.getInt(SCROLL_POSITION_KEY);
-                ListView listView = (ListView) getActivity().findViewById(R.id.inventory_list_view_items);
-                listView.smoothScrollToPosition(scrollPosition);
+            if (listViewState != null) {
+                wares.onRestoreInstanceState(listViewState);
             }
             // Show the data
             displayMessage(mainView, false);

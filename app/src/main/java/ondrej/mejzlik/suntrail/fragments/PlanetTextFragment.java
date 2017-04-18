@@ -60,9 +60,15 @@ public class PlanetTextFragment extends Fragment {
         scrollView.post(new Runnable() {
             public void run() {
                 scrollView.scrollTo(0, scrollPosition);
-                ;
             }
         });
+        // Slide down the photo. We play the animation here after all other contents are set.
+        ImageView planetPhoto = (ImageView) (getActivity().findViewById(R.id.planet_text_image_view_photo));
+        int height = planetPhoto.getDrawable().getIntrinsicHeight();
+        final ObjectAnimator spacerSlideDown = ObjectAnimator.ofFloat(planetPhoto, "translationY", -(height), 0);
+        spacerSlideDown.setDuration(200);
+        spacerSlideDown.setInterpolator(new DecelerateInterpolator());
+        spacerSlideDown.start();
     }
 
     /**
@@ -115,13 +121,6 @@ public class PlanetTextFragment extends Fragment {
             textViewTop.setText(htmlConverter.getHtmlForTextView(getString(textTopId)));
             TextView textViewBottom = (TextView) (view.findViewById(R.id.planet_text_text_view_tech));
             textViewBottom.setText(htmlConverter.getHtmlForTextView(getString(textTechId)));
-
-            // Slide down the photo
-            int height = planetPhoto.getDrawable().getIntrinsicHeight();
-            final ObjectAnimator spacerSlideDown = ObjectAnimator.ofFloat(planetPhoto, "translationY", -(height), 0);
-            spacerSlideDown.setDuration(200);
-            spacerSlideDown.setInterpolator(new DecelerateInterpolator());
-            spacerSlideDown.start();
         }
     }
 }
