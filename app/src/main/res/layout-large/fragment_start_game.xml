@@ -29,6 +29,7 @@
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <ScrollView
+        android:id="@+id/start_game_scroll_view_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/start_game_view_spacer"

@@ -19,11 +19,13 @@ import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.SCROLL_POSITIO
  * Shows general information about the Sun Path.
  */
 public class SunPathInfoFragment extends Fragment {
+    private int scrollPosition = 0;
 
     public SunPathInfoFragment() {
         // Required empty public constructor
     }
 
+    // onCreateView runs every time this fragment is opened or returned to.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,25 +33,51 @@ public class SunPathInfoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_sun_path_info, container, false);
         this.fillText(view);
 
-        // If we're being restored from a previous state,
-        // Move to last known position
+        // If we're being restored from a previous state, restore last known scroll position.
         if (savedInstanceState != null) {
-            int scrollPosition = savedInstanceState.getInt(SCROLL_POSITION_KEY);
-            ScrollView scrollView = (ScrollView) view.findViewById(R.id.sun_path_info_scroll_view);
-            scrollView.scrollTo(0, scrollPosition);
+            this.scrollPosition = savedInstanceState.getInt(SCROLL_POSITION_KEY);
         }
         return view;
+    }
+
+    /**
+     * Restore scroll position here, because in onCreateView the scroll view height is still 0.
+     * This method is called every time the fragment is starting and after onCreateView.
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        final ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.sun_path_info_scroll_view);
+        // For some reason scrollTo does not work in main thread.
+        scrollView.post(new Runnable() {
+            public void run() {
+                scrollView.scrollTo(0, scrollPosition);
+                ;
+            }
+        });
+    }
+
+    /**
+     * Save scroll position here, onSaveInstanceState is only called when the activity may be
+     * killed by the system. onPause is called every time the fragment is replaced with another.
+     */
+    @Override
+    public void onPause() {
+        super.onPause();
+        ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.sun_path_info_scroll_view);
+        // scrollView can be null if the system tries to save position when the user presses home
+        // from a fragment opened from this fragment.
+        if (scrollView != null) {
+            this.scrollPosition = scrollView.getScrollY();
+        }
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.sun_path_info_scroll_view);
-        // scrollView can be null if the system tries to save position when the user presses home
-        // from a fragment opened from this fragment.
-        if (scrollView != null) {
-            outState.putInt(SCROLL_POSITION_KEY, scrollView.getScrollY());
-        }
+        // Saves the instance state when home button is pressed or when the system decides that it
+        // may kill the activity with this fragment. Back up last known scroll position.
+        outState.putInt(SCROLL_POSITION_KEY, this.scrollPosition);
     }
 
     /**

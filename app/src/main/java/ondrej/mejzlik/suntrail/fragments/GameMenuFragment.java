@@ -16,7 +16,9 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_N
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_QUARTER_PHOTO_KEY;
 
 /**
- * A simple {@link Fragment} subclass.
+ * This fragment shows the game menu - Inventory, Shop and Leave buttons.
+ * It displays a planet quarter photo in the top right corner and planet name. These are obtained
+ * from planet resources bundle which is passed into the fragment in arguments.
  */
 public class GameMenuFragment extends Fragment {
 

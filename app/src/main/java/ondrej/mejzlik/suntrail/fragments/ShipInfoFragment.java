@@ -7,12 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.utilities.HtmlConverter;
 
 import static ondrej.mejzlik.suntrail.activities.GameActivity.SPACESHIP_NAME_KEY;
+import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.SCROLL_POSITION_KEY;
 
 /**
  * This fragment displays space ship information. It decides which info to display based on the
@@ -21,6 +23,7 @@ import static ondrej.mejzlik.suntrail.activities.GameActivity.SPACESHIP_NAME_KEY
  * is limited.
  */
 public class ShipInfoFragment extends Fragment {
+    private int scrollPosition = 0;
 
     public ShipInfoFragment() {
         // Required empty public constructor
@@ -32,7 +35,52 @@ public class ShipInfoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ship_info, container, false);
         this.setContents(view);
+
+        // If we're being restored from a previous state, restore last known scroll position.
+        if (savedInstanceState != null) {
+            this.scrollPosition = savedInstanceState.getInt(SCROLL_POSITION_KEY);
+        }
         return view;
+    }
+
+    /**
+     * Restore scroll position here, because in onCreateView the scroll view height is still 0.
+     * This method is called every time the fragment is starting and after onCreateView.
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        final ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.ship_info_scroll_view_main);
+        // For some reason scrollTo does not work in main thread.
+        scrollView.post(new Runnable() {
+            public void run() {
+                scrollView.scrollTo(0, scrollPosition);
+                ;
+            }
+        });
+    }
+
+    /**
+     * Save scroll position here, onSaveInstanceState is only called when the activity may be
+     * killed by the system. onPause is called every time the fragment is replaced with another.
+     */
+    @Override
+    public void onPause() {
+        super.onPause();
+        ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.ship_info_scroll_view_main);
+        // scrollView can be null if the system tries to save position when the user presses home
+        // from a fragment opened from this fragment.
+        if (scrollView != null) {
+            this.scrollPosition = scrollView.getScrollY();
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Saves the instance state when home button is pressed or when the system decides that it
+        // may kill the activity with this fragment. Back up last known scroll position.
+        outState.putInt(SCROLL_POSITION_KEY, this.scrollPosition);
     }
 
     /**

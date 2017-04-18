@@ -126,6 +126,12 @@ public class GameActivity extends Activity {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Needed for saving state in fragments
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
     public void onBackPressed() {
         // Do not allow the user to go back from direction choice fragment until a decision is made.
         DirectionChoiceFragment fragment = (DirectionChoiceFragment) getFragmentManager().findFragmentByTag(DIRECTION_FRAGMENT_TAG);

@@ -29,6 +29,7 @@
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <ScrollView
+        android:id="@+id/item_info_scroll_view_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/item_info_view_spacer"

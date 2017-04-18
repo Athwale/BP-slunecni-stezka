@@ -28,6 +28,7 @@ import ondrej.mejzlik.suntrail.game.ItemModel;
 import ondrej.mejzlik.suntrail.game.PlayerModel;
 import ondrej.mejzlik.suntrail.game.ShipModel;
 
+import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.SCROLL_POSITION_KEY;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 
 /**
@@ -37,17 +38,21 @@ import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
  */
 public class InventoryFragment extends Fragment {
     private View mainView = null;
+    private Bundle savedInstance = null;
 
     public InventoryFragment() {
         // Required empty public constructor
     }
 
+    // TODO CHANGE FRAGMENT AFTER ANIMATION
+    // TODO MAKE LARGE VERSION OF INFO LAYOUT
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         this.mainView = inflater.inflate(R.layout.fragment_inventory, container, false);
+        this.savedInstance = savedInstanceState;
         TextView message = (TextView) this.mainView.findViewById(R.id.inventory_text_view_loading_message);
         // Get data from database only if the database exists. Otherwise show a message, that
         // game has not been started yet.
@@ -88,6 +93,16 @@ public class InventoryFragment extends Fragment {
                 element.setVisibility(View.VISIBLE);
             }
 
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Saves the instance when home button is pressed
+        ListView listView = (ListView) getActivity().findViewById(R.id.inventory_list_view_items);
+        if (listView != null) {
+            outState.putInt(SCROLL_POSITION_KEY, listView.getSelectedItemPosition());
         }
     }
 
@@ -151,6 +166,12 @@ public class InventoryFragment extends Fragment {
                     }
                 }
             });
+            // Once the list is filled, move to the last known position
+            if (savedInstance != null) {
+                int scrollPosition = savedInstance.getInt(SCROLL_POSITION_KEY);
+                ListView listView = (ListView) getActivity().findViewById(R.id.inventory_list_view_items);
+                listView.smoothScrollToPosition(scrollPosition);
+            }
             // Show the data
             displayMessage(mainView, false);
         }
