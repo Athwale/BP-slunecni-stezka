@@ -167,8 +167,9 @@
     <string name="game_info_text_top">
        <![CDATA[
        <p>
-       You can launch the game by scanning a NFC tag or QR code from an information board on the Sun
-       trail with the scanner in this app.
+       You can start the game by scanning an NFC tag or a QR code off a board on the Sun trail with
+       a scanner from this app. The game can be started at any board except the first general
+       information board.
        </p>
        <p>
        In the game mode you can buy and sell items at each stop along the trail.

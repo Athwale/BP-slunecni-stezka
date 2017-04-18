@@ -1,14 +1,22 @@
 package ondrej.mejzlik.suntrail.activities;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageButton;
 
 import ondrej.mejzlik.suntrail.R;
+import ondrej.mejzlik.suntrail.fragments.InventoryFragment;
+import ondrej.mejzlik.suntrail.fragments.ItemInfoFragment;
+import ondrej.mejzlik.suntrail.fragments.MainMenuFragment;
+import ondrej.mejzlik.suntrail.fragments.ShipInfoFragment;
+import ondrej.mejzlik.suntrail.game.ItemModel;
+
+import static ondrej.mejzlik.suntrail.activities.GameActivity.SPACESHIP_NAME_KEY;
+import static ondrej.mejzlik.suntrail.fragments.ItemInfoFragment.ITEM_KEY;
 
 /**
  * This is the main activity which is launched after after launching the app.
@@ -26,37 +34,25 @@ public class MainMenuActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
+        setContentView(R.layout.activity_main);
 
-        // Remove scan button if the device does not have both a camera and a nfc reader
-        this.disableScanButton();
-    }
+        // Check that the activity is using the layout version with
+        // the fragment_container FrameLayout
+        if (findViewById(R.id.main_menu_fragment_container) != null) {
 
-    /**
-     * Disables game related buttons in main menu if the device does not have both a camera
-     * and a NFC reader.
-     */
-    private void disableScanButton() {
-        PackageManager packageManager = this.getPackageManager();
-        boolean camera = packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA);
-        boolean nfc = packageManager.hasSystemFeature(PackageManager.FEATURE_NFC);
-        Button scanButton = (Button) findViewById(R.id.main_menu_button_scan);
-        Button inventoryButton = (Button) findViewById(R.id.main_menu_button_inventory);
-        Button settingsButton = (Button) findViewById(R.id.main_menu_button_settings);
-        Button howToPlayButton = (Button) findViewById(R.id.main_menu_button_how_to_play);
-        TextView warningNoScanner = (TextView) findViewById(R.id.main_menu_text_view_no_scanner);
-        if (!camera && !nfc) {
-            scanButton.setVisibility(View.GONE);
-            inventoryButton.setVisibility(View.GONE);
-            settingsButton.setVisibility(View.GONE);
-            howToPlayButton.setVisibility(View.GONE);
-            warningNoScanner.setVisibility(View.VISIBLE);
-        } else {
-            warningNoScanner.setVisibility(View.GONE);
-            scanButton.setVisibility(View.VISIBLE);
-            inventoryButton.setVisibility(View.VISIBLE);
-            settingsButton.setVisibility(View.VISIBLE);
-            howToPlayButton.setVisibility(View.VISIBLE);
+            // If we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                return;
+            }
+
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            MainMenuFragment mainMenuFragment = new MainMenuFragment();
+            // Add the fragment to the fragment_container in FrameLayout
+            transaction.add(R.id.main_menu_fragment_container, mainMenuFragment);
+            transaction.commit();
         }
     }
 
@@ -94,7 +90,7 @@ public class MainMenuActivity extends Activity {
     }
 
     /**
-     * Handles clicks from info button and game info button in main menu.
+     * Handles clicks from info button and game info button in main menu and inventory fragments.
      * Launches a new activity with info screen.
      *
      * @param button The button that has been clicked
@@ -112,6 +108,68 @@ public class MainMenuActivity extends Activity {
             }
         }
         startActivity(intent);
+    }
+
+    /**
+     * Handles clicks from Inventory button in main menu fragment. The fragment it self checks
+     * the existence of a game database and in case there is no database, a message saying that
+     * game has to be started first is displayed.
+     *
+     * @param view The button that has been clicked
+     */
+    public void InventoryButtonHandlerManiMenu(View view) {
+        FragmentManager fragmentManager = getFragmentManager();
+        InventoryFragment inventoryFragment = new InventoryFragment();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.main_menu_fragment_container, inventoryFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    /**
+     * Handles clicks from ship info button in inventory fragment.
+     * Launches a new fragment with information about the ship.
+     * Which ship info is displayed is based on the ship name string resource id.
+     *
+     * @param view The button that has been clicked
+     */
+    public void showShipInfoButtonHandler(View view) {
+        // The button contains a tag which holds the name of the ship which is then passed to the
+        // ship info fragment. The ship info fragment identifies which spaceship info to display by
+        // the spaceship name string resource id.
+        ImageButton shipButton = (ImageButton) view;
+
+        Bundle spaceshipArguments = new Bundle();
+        spaceshipArguments.putInt(SPACESHIP_NAME_KEY, (int) shipButton.getTag());
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        // Pass space ship name string resource id to fragment
+        ShipInfoFragment shipInfoFragment = new ShipInfoFragment();
+        shipInfoFragment.setArguments(spaceshipArguments);
+        transaction.replace(R.id.main_menu_fragment_container, shipInfoFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    /**
+     * This method opens an ItemInfoFragment and passes the item data into it.
+     * It is used from the inventory or shop.
+     *
+     * @param item The game item for which we want to see the info.
+     */
+    public void openItemInfoFragment(ItemModel item) {
+        FragmentManager fragmentManager = getFragmentManager();
+        ItemInfoFragment itemInfoFragment = new ItemInfoFragment();
+
+        Bundle arguments = new Bundle();
+        arguments.putParcelable(ITEM_KEY, item);
+        itemInfoFragment.setArguments(arguments);
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.main_menu_fragment_container, itemInfoFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 }

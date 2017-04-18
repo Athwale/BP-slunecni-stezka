@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.activities.GameActivity;
+import ondrej.mejzlik.suntrail.activities.MainMenuActivity;
 import ondrej.mejzlik.suntrail.game.GameDataHolder;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
 import ondrej.mejzlik.suntrail.game.InventoryListAdapter;
@@ -78,7 +79,7 @@ public class InventoryFragment extends Fragment {
      * This method hides all views inside the main linear layout in the inventory and shows
      * a message that data is being retrieved.
      *
-     * @param view main view from onCreateView
+     * @param view  main view from onCreateView
      * @param state if true, message is shown if else contents are shown.
      */
     private void displayMessage(View view, boolean state) {
@@ -177,13 +178,15 @@ public class InventoryFragment extends Fragment {
 
                         @Override
                         public void onAnimationEnd(Animation animation) {
-                            // Make the Game activity open item info fragment for the selected item.
-                            // When the animation has finished.
+                            // Make the Game or Main menu activity open item info fragment for the
+                            // selected item when the animation has finished.
+                            // Get the clicked item
+                            Adapter adapter = wares.getAdapter();
+                            ItemModel item = (ItemModel) adapter.getItem(i);
                             if (getActivity() instanceof GameActivity) {
-                                // Get the clicked item
-                                Adapter adapter = wares.getAdapter();
-                                ItemModel item = (ItemModel) adapter.getItem(i);
                                 ((GameActivity) getActivity()).openItemInfoFragment(item);
+                            } else if (getActivity() instanceof MainMenuActivity) {
+                                ((MainMenuActivity) getActivity()).openItemInfoFragment(item);
                             }
                         }
 

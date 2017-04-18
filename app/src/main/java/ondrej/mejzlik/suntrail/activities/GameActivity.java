@@ -205,6 +205,7 @@ public class GameActivity extends Activity {
 
     /**
      * This method opens an ItemInfoFragment and passes the item data into it.
+     * It is used from the inventory or shop.
      *
      * @param item The game item for which we want to see the info.
      */
@@ -222,8 +223,8 @@ public class GameActivity extends Activity {
     }
 
     /**
-     * Handles clicks from Icarus info button in start new game fragment.
-     * Launches a new fragment with information about Icarus S.
+     * Handles clicks from ship info button in start new game fragment and inventory.
+     * Launches a new fragment with information about the ship.
      * Which ship info is displayed is based on the ship name string resource id.
      *
      * @param view The button that has been clicked
@@ -231,7 +232,7 @@ public class GameActivity extends Activity {
     public void showShipInfoButtonHandler(View view) {
         // The button contains a tag which holds the name of the ship which is then passed to the
         // ship info fragment. The ship info fragment identifies which spaceship info to display by
-        // the spaceship name string id.
+        // the spaceship name string resource id.
         ImageButton shipButton = (ImageButton) view;
 
         Bundle spaceshipArguments = new Bundle();
@@ -240,7 +241,7 @@ public class GameActivity extends Activity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        // Pass chosen planet resources to fragment
+        // Pass space ship name string resource id to fragment
         ShipInfoFragment shipInfoFragment = new ShipInfoFragment();
         shipInfoFragment.setArguments(spaceshipArguments);
         transaction.replace(R.id.game_activity_fragment_container, shipInfoFragment);
@@ -253,7 +254,7 @@ public class GameActivity extends Activity {
      *
      * @param view The button that has been clicked
      */
-    public void InventoryButtonHandler(View view) {
+    public void InventoryButtonHandlerGameMenu(View view) {
         if (this.checkDatabaseCreated()) {
             FragmentManager fragmentManager = getFragmentManager();
             InventoryFragment inventoryFragment = new InventoryFragment();
