@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import ondrej.mejzlik.suntrail.R;
@@ -43,21 +44,27 @@ public class MainMenuFragment extends Fragment {
         boolean nfc = packageManager.hasSystemFeature(PackageManager.FEATURE_NFC);
         Button scanButton = (Button) view.findViewById(R.id.main_menu_button_scan);
         Button inventoryButton = (Button) view.findViewById(R.id.main_menu_button_inventory);
+        Button allBoardsButton = (Button) view.findViewById(R.id.main_menu_button_all_boards);
         Button settingsButton = (Button) view.findViewById(R.id.main_menu_button_settings);
-        Button howToPlayButton = (Button) view.findViewById(R.id.main_menu_button_how_to_play);
+        LinearLayout howToPlayLayout = (LinearLayout) view.findViewById(R.id.main_menu_linear_layout_how_to_play);
         TextView warningNoScanner = (TextView) view.findViewById(R.id.main_menu_text_view_no_scanner);
         if (!camera && !nfc) {
             scanButton.setVisibility(View.GONE);
             inventoryButton.setVisibility(View.GONE);
             settingsButton.setVisibility(View.GONE);
-            howToPlayButton.setVisibility(View.GONE);
+            howToPlayLayout.setVisibility(View.GONE);
             warningNoScanner.setVisibility(View.VISIBLE);
+            // In normal state, the all boards button has some top margin, it would look weird
+            // when all the other buttons are gone, so we set it to 0.
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) allBoardsButton.getLayoutParams();
+            params.setMargins(0, 0, 0, 0);
+            allBoardsButton.setLayoutParams(params);
         } else {
             warningNoScanner.setVisibility(View.GONE);
             scanButton.setVisibility(View.VISIBLE);
             inventoryButton.setVisibility(View.VISIBLE);
             settingsButton.setVisibility(View.VISIBLE);
-            howToPlayButton.setVisibility(View.VISIBLE);
+            howToPlayLayout.setVisibility(View.VISIBLE);
         }
     }
 
