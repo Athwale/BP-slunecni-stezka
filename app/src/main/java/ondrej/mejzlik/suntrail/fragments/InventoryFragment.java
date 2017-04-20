@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import ondrej.mejzlik.suntrail.R;
@@ -25,13 +24,13 @@ import ondrej.mejzlik.suntrail.activities.GameActivity;
 import ondrej.mejzlik.suntrail.activities.MainMenuActivity;
 import ondrej.mejzlik.suntrail.game.GameDataHolder;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
+import ondrej.mejzlik.suntrail.game.GameUtilities;
 import ondrej.mejzlik.suntrail.game.InventoryListAdapter;
 import ondrej.mejzlik.suntrail.game.ItemModel;
 import ondrej.mejzlik.suntrail.game.PlayerModel;
 import ondrej.mejzlik.suntrail.game.ShipModel;
 
 import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.SCROLL_POSITION_KEY;
-import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 
 /**
  * This fragment displays the inventory. It sends a query to the database in another thread and
@@ -41,6 +40,7 @@ import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 public class InventoryFragment extends Fragment {
     private View mainView = null;
     private Parcelable listViewState = null;
+    private GameUtilities gameUtilities = null;
 
     public InventoryFragment() {
         // Required empty public constructor
@@ -54,14 +54,14 @@ public class InventoryFragment extends Fragment {
         // Inflate the layout for this fragment
         this.mainView = inflater.inflate(R.layout.fragment_inventory, container, false);
         TextView message = (TextView) this.mainView.findViewById(R.id.inventory_text_view_loading_message);
+        this.gameUtilities = new GameUtilities();
         // If we're being restored from a previous state, restore last known scroll position.
         if (savedInstanceState != null) {
             this.listViewState = savedInstanceState.getParcelable(SCROLL_POSITION_KEY);
         }
         // Get data from database only if the database exists. Otherwise show a message, that
         // game has not been started yet.
-        File dbFile = this.getActivity().getDatabasePath(DATABASE_NAME);
-        if (dbFile.exists()) {
+        if (this.gameUtilities.isDatabaseCreated(getActivity())) {
             // Hide all views until the query is finished
             message.setText(R.string.inventory_loading);
             AsyncGetData databaseQuery = new AsyncGetData(getActivity().getApplicationContext());

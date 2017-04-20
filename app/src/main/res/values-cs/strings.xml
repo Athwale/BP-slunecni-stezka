@@ -1059,11 +1059,13 @@
     <string name="ship_cargo_size_small">15</string>
     <string name="ship_cargo_size_medium">25</string>
     <string name="ship_cargo_size_large">35</string>
-    <string name="direction_choice_title">Vyberte směr</string>
-    <string name="direction_choice_to_sun">Směrem ke Slunci</string>
-    <string name="direction_choice_to_neptune">Směrem k Neptunu</string>
+    <string name="direction_choice_title">Vyberte kde budete končit</string>
+    <string name="direction_choice_to_sun">Slunce</string>
+    <string name="direction_choice_to_neptune">Neptun</string>
     <string name="toast_pick_direction">Prosím vyberte směr</string>
     <string name="toast_flight_route">Prosím vyčkejte, počítá se dráha letu</string>
+    <string name="toast_planet_already_visited">V tomto obchodě jste už byl</string>
+    <string name="toast_querying_database">Probíhá kontrola trasy letu, vyčkejte</string>
     <string name="game_menu_title">Herní mód: </string>
     <string name="game_menu_button_inventory">Inventář</string>
     <string name="game_menu_button_shop">Obchod</string>

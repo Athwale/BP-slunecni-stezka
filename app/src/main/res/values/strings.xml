@@ -1072,11 +1072,13 @@
     <string name="ship_cargo_size_small">15</string>
     <string name="ship_cargo_size_medium">25</string>
     <string name="ship_cargo_size_large">35</string>
-    <string name="direction_choice_title">Choose direction</string>
-    <string name="direction_choice_to_sun">Towards the Sun</string>
-    <string name="direction_choice_to_neptune">Towards Neptune</string>
-    <string name="toast_pick_direction">Please choose the direction</string>
+    <string name="direction_choice_title">Choose where you want to finish</string>
+    <string name="direction_choice_to_sun">The Sun</string>
+    <string name="direction_choice_to_neptune">The Neptune</string>
+    <string name="toast_pick_direction">Choose direction</string>
     <string name="toast_flight_route">Please wait, Calculating flight route</string>
+    <string name="toast_planet_already_visited">You have already visited this shop</string>
+    <string name="toast_querying_database">Checking flight pattern, please wait</string>
     <string name="game_menu_title">Game mode: </string>
     <string name="game_menu_button_inventory">Inventory</string>
     <string name="game_menu_button_shop">Shop</string>

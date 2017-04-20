@@ -38,6 +38,8 @@ import static ondrej.mejzlik.suntrail.configuration.Configuration.SUN_TRAIL_NAME
  * menu, QR codes and NFC codes.
  */
 public class PlanetIdentifier {
+    // The order of the planets is important. It is used to check if we have already been
+    // on the planet or not in ScannerActivity.
     public static final int PLANET_ID_JUPITER = 8;
     public static final int PLANET_ID_HALLEY = 9;
     public static final int PLANET_ID_SATURN = 10;

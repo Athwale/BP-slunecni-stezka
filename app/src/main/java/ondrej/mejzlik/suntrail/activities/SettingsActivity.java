@@ -8,25 +8,26 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
-
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
+import ondrej.mejzlik.suntrail.game.GameUtilities;
 
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 
 public class SettingsActivity extends Activity {
+    private GameUtilities gameUtilities = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.gameUtilities = new GameUtilities();
         setContentView(R.layout.activity_settings);
 
         TextView databaseExistsText = (TextView) findViewById(R.id.settings_text_view_data_info);
         Button buttonClear = (Button) findViewById(R.id.settings_button_clear_data);
         CheckBox checkBoxClear = (CheckBox) findViewById(R.id.settings_checkbox_clear_data);
 
-        if (this.checkDatabaseExistence()) {
+        if (this.gameUtilities.isDatabaseCreated(this)) {
             databaseExistsText.setText(R.string.settings_data_info_exists);
             checkBoxClear.setEnabled(true);
         } else {
@@ -70,7 +71,7 @@ public class SettingsActivity extends Activity {
                 GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.getApplicationContext());
                 databaseHelper.close();
                 this.deleteDatabase(DATABASE_NAME);
-                if (!this.checkDatabaseExistence()) {
+                if (!this.gameUtilities.isDatabaseCreated(this)) {
                     // The database was really deleted
                     Toast.makeText(this, this.getResources().getString(R.string.toast_game_data_clear), Toast.LENGTH_SHORT).show();
                     checkBoxClear.setChecked(false);
@@ -82,15 +83,5 @@ public class SettingsActivity extends Activity {
                 }
             }
         }
-    }
-
-    /**
-     * This method returns true if there is a game database file for this app in the system system.
-     *
-     * @return This method returns true if there is a game database file for this app.
-     */
-    private boolean checkDatabaseExistence() {
-        File dbFile = this.getDatabasePath(DATABASE_NAME);
-        return dbFile.exists();
     }
 }

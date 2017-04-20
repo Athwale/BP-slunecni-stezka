@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import java.io.File;
-
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.fragments.DirectionChoiceFragment;
 import ondrej.mejzlik.suntrail.fragments.GameMenuFragment;
@@ -20,11 +18,11 @@ import ondrej.mejzlik.suntrail.fragments.ItemInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.ShipInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.StartGameFragment;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
+import ondrej.mejzlik.suntrail.game.GameUtilities;
 import ondrej.mejzlik.suntrail.game.ItemModel;
 
 import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.PLANET_RESOURCES_KEY;
 import static ondrej.mejzlik.suntrail.fragments.ItemInfoFragment.ITEM_KEY;
-import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MERCURY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_NEPTUNE;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_SUN;
@@ -34,13 +32,12 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_I
 public class GameActivity extends Activity {
     public static final String SPACESHIP_NAME_KEY = "spaceshipNameKey";
     private static final String DIRECTION_FRAGMENT_TAG = "directionFragment";
+    private AsyncDatabaseInitializer databaseInitializer = null;
     // The resources contain all about the planet
     private Bundle planetResources = null;
+    private GameUtilities gameUtilities = null;
     // This is used to prevent multiple toasts from showing.
     private Toast directionToast = null;
-    // This is used in the game to determine which planet is next.
-    // true =  from Sun to Neptune, false = from Neptune to Sun.
-    private boolean tripDirection = true;
     private int scannedPlanet;
     private GameDatabaseHelper database = null;
     // This variable is set to true once we have a functional, initialized database.
@@ -63,6 +60,8 @@ public class GameActivity extends Activity {
 
         // Used to update sale prices when entering the game fragment on a new planet
         this.database = GameDatabaseHelper.getInstance(this);
+        // Game utilities contain a method to check database existence.
+        this.gameUtilities = new GameUtilities();
 
         // Check that the activity is using the layout version with
         // the fragment_container FrameLayout
@@ -77,8 +76,7 @@ public class GameActivity extends Activity {
 
             // If there is no database, we start a new game and initialize the database to default
             // contents.
-            File dbFile = this.getDatabasePath(DATABASE_NAME);
-            if (!dbFile.exists()) {
+            if (!this.gameUtilities.isDatabaseCreated(this)) {
                 // The database is created when we call getWritable or getReadable database the first
                 // time, which happens here and may take longer time to finish. Therefore we run
                 // it in a background thread. Once the initialization is done game buttons are
@@ -86,8 +84,7 @@ public class GameActivity extends Activity {
                 // activity. Other activities use the created database through the singleton helper.
                 // Only the creation of the database is expensive once it is done here other calls
                 // for writable or readable database are quick.
-                AsyncDatabaseInitializer databaseInitializer = new AsyncDatabaseInitializer(this.tripDirection, this.scannedPlanet, this);
-                databaseInitializer.execute();
+                this.databaseInitializer = new AsyncDatabaseInitializer(this.scannedPlanet, this);
 
                 // Both the fragments are added onto the screen, but if the direction choice fragment
                 // is used, it covers the game start fragment until the player picks a direction.
@@ -102,11 +99,12 @@ public class GameActivity extends Activity {
                 // Playing the game on two planets is useless.
                 // Otherwise we let the user select the direction.
                 if (this.scannedPlanet == PLANET_ID_SUN || this.scannedPlanet == PLANET_ID_MERCURY) {
-                    // We go from Sun to Neptune
-                    this.tripDirection = true;
+                    // We go from Sun to Neptune = true
+                    // Initialize database with the now known direction
+                    databaseInitializer.execute(true);
                 } else if (this.scannedPlanet == PLANET_ID_NEPTUNE || this.scannedPlanet == PLANET_ID_URANUS) {
-                    // We go from Neptune to Sun
-                    this.tripDirection = false;
+                    // We go from Neptune to Sun = false
+                    databaseInitializer.execute(false);
                 } else {
                     // Let the player choose
                     // No need to add to back stack, this is the first fragment and we do not want
@@ -160,16 +158,23 @@ public class GameActivity extends Activity {
      */
     public void directionChoiceButtonHandler(View view) {
         int buttonId = view.getId();
+        boolean direction;
         switch (buttonId) {
-            case R.id.direction_choice_button_to_sun: {
-                this.tripDirection = true;
+            // Going from Neptune -> Sun
+            case R.id.direction_choice_button_sun: {
+                direction = false;
                 break;
             }
-            case R.id.direction_choice_button_to_neptune: {
-                this.tripDirection = false;
+            // Going from Sun -> Neptune. Only other option is direction_choice_button_neptune.
+            // Back button is disabled until a direction is chosen.
+            default: {
+                direction = true;
                 break;
             }
         }
+        // Initialize database with the now known direction. Initialization did not happen in
+        // onCreate.
+        this.databaseInitializer.execute(direction);
         // Remove the direction choice fragment now
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.popBackStackImmediate();
@@ -307,23 +312,21 @@ public class GameActivity extends Activity {
      * This small class has access to the activity's variables and can set the databaseCreated
      * to true once the database initialization is completed in the background thread.
      */
-    private class AsyncDatabaseInitializer extends AsyncTask<Void, Void, Void> {
-        private boolean direction;
+    private class AsyncDatabaseInitializer extends AsyncTask<Boolean, Void, Void> {
         private int startPlanet;
         private Context context;
 
-        AsyncDatabaseInitializer(boolean direction, int startPlanet, Context context) {
+        AsyncDatabaseInitializer(int startPlanet, Context context) {
             super();
-            this.direction = direction;
             this.startPlanet = startPlanet;
             this.context = context;
         }
 
-        protected Void doInBackground(Void... params) {
+        protected Void doInBackground(Boolean... params) {
             // The database helper is a singleton we always get the same instance it will not
             // cause any concurrent troubles.
             GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.context);
-            databaseHelper.initializeDatabaseContents(this.direction, this.startPlanet, this.context);
+            databaseHelper.initializeDatabaseContents(params[0], this.startPlanet, this.context);
             return null;
         }
 

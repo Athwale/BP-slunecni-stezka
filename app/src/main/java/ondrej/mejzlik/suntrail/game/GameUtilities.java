@@ -1,18 +1,22 @@
 package ondrej.mejzlik.suntrail.game;
 
+import android.app.Activity;
+
+import java.io.File;
 import java.util.Random;
 
 import static ondrej.mejzlik.suntrail.configuration.Configuration.ITEM_PRICE_FALL_RISE_PROBABILITY;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.ITEM_PRICE_MIGHT_FALL;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.ITEM_PRICE_MIGHT_RISE;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 
 /**
  * This class contains methods necessary for the game to work.
  */
-class GameUtilities {
+public class GameUtilities {
     private Random randomNumberGenerator = null;
 
-    GameUtilities() {
+    public GameUtilities() {
         // Initialize random number generator once
         this.randomNumberGenerator = new Random(System.nanoTime());
     }
@@ -79,6 +83,16 @@ class GameUtilities {
      */
     int randomIntGenerator(int min, int max) {
         return this.randomNumberGenerator.nextInt((max + 1) - min) + min;
+    }
+
+    /**
+     * Returns true if there is a game database in the system. Else false.
+     *
+     * @return Returns true if there is a game database in the system. Else false.
+     */
+    public boolean isDatabaseCreated(Activity activity) {
+        File dbFile = activity.getApplicationContext().getDatabasePath(DATABASE_NAME);
+        return dbFile.exists();
     }
 
 }

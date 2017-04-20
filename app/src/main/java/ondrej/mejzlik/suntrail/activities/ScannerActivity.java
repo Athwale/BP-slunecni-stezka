@@ -3,8 +3,10 @@ package ondrej.mejzlik.suntrail.activities;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -19,6 +21,9 @@ import ondrej.mejzlik.suntrail.fragments.QrScannerFragment;
 import ondrej.mejzlik.suntrail.fragments.ScannerChoiceFragment;
 import ondrej.mejzlik.suntrail.fragments.SunPathInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment;
+import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
+import ondrej.mejzlik.suntrail.game.GameUtilities;
+import ondrej.mejzlik.suntrail.game.PlayerModel;
 import ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector;
 
 import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.MAP_KEY;
@@ -57,6 +62,12 @@ public class ScannerActivity extends Activity {
     private Bundle mapArguments = null;
     private float savedRotationFrom = ROTATION_END;
     private float savedRotationTo = ROTATION_START;
+    // Used to disable the game button if the user already visited this planet
+    private boolean isShopLocked = true;
+    private boolean isDatabaseBeingAccessed = true;
+    private Toast shopLockedToast = null;
+    private Toast databaseBeingAccessedToast = null;
+    private GameUtilities gameUtilities = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +75,7 @@ public class ScannerActivity extends Activity {
         setContentView(R.layout.activity_scanner);
 
         // Initialize variables
+        this.gameUtilities = new GameUtilities();
         this.mapArguments = new Bundle();
         this.resourceCollector = new PlanetResourceCollector();
         this.planetResources = new Bundle();
@@ -205,6 +217,16 @@ public class ScannerActivity extends Activity {
      * @param planetId Scanned decoded planet ID
      */
     public void processScannerResult(int planetId) {
+        // Check if this planet has already been visited, if yes disable game mode. If there is no
+        // database, we have not started the game yet, enable game mode.
+        if (this.gameUtilities.isDatabaseCreated(this)) {
+            AsyncDatabaseAccess checkPlanet = new AsyncDatabaseAccess(planetId, this);
+            checkPlanet.execute();
+        } else {
+            this.isShopLocked = false;
+            this.isDatabaseBeingAccessed = false;
+        }
+
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
@@ -228,9 +250,7 @@ public class ScannerActivity extends Activity {
                 this.finish();
             }
         } else {
-            // Code valid we have a planet
-            Toast.makeText(this, getResources().getString(R.string.toast_scanning_success), Toast.LENGTH_SHORT).show();
-            // Get all planet resources
+            // Code valid we have a planet. Get all planet resources
             // If planet ID is 0, it is the first board with general info
             if (planetId == 0) {
                 // Open general info fragment
@@ -358,16 +378,85 @@ public class ScannerActivity extends Activity {
 
     /**
      * Handles clicks from game button in planet menu fragment.
-     * Launches a new activity with game menu.
+     * Launches a new activity with game menu. If the variable isShopLocked is true
+     * shows a message that the user already visited this planet.
      *
      * @param view The button that has been clicked
      */
     public void playGameButtonHandler(View view) {
-        Intent intent = new Intent(this, GameActivity.class);
-        // Pass scanned planet id to the game activity
-        Bundle parameters = new Bundle();
-        parameters.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
-        intent.putExtras(parameters);
-        startActivity(intent);
+        // The query to check whether we should enable game mode has not yet finished.
+        if (this.isDatabaseBeingAccessed) {
+            // Show a message camouflaging that we are querying the database.
+            try {
+                this.databaseBeingAccessedToast.getView().isShown();
+                this.databaseBeingAccessedToast.setText(this.getResources().getString(R.string.toast_querying_database));
+            } catch (Exception e) {
+                // No toast visible, make toast
+                this.databaseBeingAccessedToast = Toast.makeText(this, this.getResources().getString(R.string.toast_querying_database), Toast.LENGTH_LONG);
+            }
+            this.databaseBeingAccessedToast.show();
+        } else if (this.isShopLocked) {
+            // This planet has been visited already
+            try {
+                this.shopLockedToast.getView().isShown();
+                this.shopLockedToast.setText(this.getResources().getString(R.string.toast_planet_already_visited));
+            } catch (Exception e) {
+                // No toast visible, make toast
+                this.shopLockedToast = Toast.makeText(this, this.getResources().getString(R.string.toast_planet_already_visited), Toast.LENGTH_LONG);
+            }
+            this.shopLockedToast.show();
+        } else {
+            Intent intent = new Intent(this, GameActivity.class);
+            // Pass scanned planet id to the game activity
+            Bundle parameters = new Bundle();
+            parameters.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
+            intent.putExtras(parameters);
+            startActivity(intent);
+        }
+    }
+
+    /**
+     * This small class has access to the activity's variables and can set the isShopLocked and
+     * isDatabaseBeingAccessed to true or false. Here we check if the player has already visited
+     * the planet we currently scanned. If yes the game button will display a toast and
+     * the game mode will be inaccessible.
+     */
+    private class AsyncDatabaseAccess extends AsyncTask<Void, Void, Boolean> {
+        private int scannedPlanet;
+        private Context context;
+
+        AsyncDatabaseAccess(int scannedPlanet, Context context) {
+            super();
+            this.scannedPlanet = scannedPlanet;
+            this.context = context;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            // The database helper is a singleton we always get the same instance it will not
+            // cause any concurrent troubles.
+            GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.context);
+            PlayerModel playerData = databaseHelper.getPlayerData();
+            int lastPlanet = playerData.getCurrentPlanet();
+            boolean tripDirection = playerData.getDirection();
+            // We returned to a shop we have already been to. Last planet is updated
+            // when the user enters the Game Activity.
+            if (tripDirection) {
+                // true = Sun -> Neptune
+                // Planet numbers increase as the user advances
+                return this.scannedPlanet <= lastPlanet;
+            } else {
+                // false = Neptune -> Sun
+                // Planet numbers decrease as the user advances
+                return this.scannedPlanet >= lastPlanet;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            // This method is called in main thread automatically after finishing the work.
+            isShopLocked = result;
+            isDatabaseBeingAccessed = false;
+        }
     }
 }

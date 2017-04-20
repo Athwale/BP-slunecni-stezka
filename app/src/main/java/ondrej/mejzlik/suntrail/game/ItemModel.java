@@ -31,6 +31,7 @@ public class ItemModel implements Parcelable {
     private int availableAtPlanet;
     private boolean isBought;
     private boolean priceMovement;
+    private boolean isInShop;
     private int size;
 
     /**
@@ -72,7 +73,26 @@ public class ItemModel implements Parcelable {
         this.availableAtPlanet = in.readInt();
         this.isBought = in.readByte() != 0;
         this.priceMovement = in.readByte() != 0;
+        this.isInShop = in.readByte() != 0;
         this.size = in.readInt();
+    }
+
+    /**
+     * Returns if the item is supposed to be displayed in shop.
+     *
+     * @return Returns if the item is supposed to be displayed in shop.
+     */
+    public boolean isInShop() {
+        return isInShop;
+    }
+
+    /**
+     * Sets if the item is supposed to be displayed in shop.
+     *
+     * @param inShop True if the item is supposed to be displayed in shop.
+     */
+    public void setInShop(boolean inShop) {
+        isInShop = inShop;
     }
 
     public int getSellPrice() {
@@ -182,10 +202,22 @@ public class ItemModel implements Parcelable {
         return size;
     }
 
+    /**
+     * Returns the price movement for this item. True - price will rise, false - price will fall.
+     *
+     * @return Returns the price movement for this item. True - price will rise, false - price will
+     * fall.
+     */
     public boolean getPriceMovement() {
         return priceMovement;
     }
 
+    /**
+     * Sets the price movement for this item. True - price will rise, false - price will fall.
+     *
+     * @param priceMovement Sets the price movement for this item. True - price will rise, false -
+     *                      price will fall.
+     */
     public void setPriceMovement(boolean priceMovement) {
         this.priceMovement = priceMovement;
     }
@@ -208,6 +240,7 @@ public class ItemModel implements Parcelable {
         dest.writeInt(this.availableAtPlanet);
         dest.writeByte(this.isBought ? (byte) 1 : (byte) 0);
         dest.writeByte(this.priceMovement ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.isInShop ? (byte) 1 : (byte) 0);
         dest.writeInt(this.size);
     }
 }
