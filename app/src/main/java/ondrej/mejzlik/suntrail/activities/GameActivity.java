@@ -35,13 +35,12 @@ public class GameActivity extends Activity {
     private AsyncDatabaseInitializer databaseInitializer = null;
     // The resources contain all about the planet
     private Bundle planetResources = null;
-    private GameUtilities gameUtilities = null;
     // This is used to prevent multiple toasts from showing.
     private Toast directionToast = null;
     private int scannedPlanet;
-    private GameDatabaseHelper database = null;
-    // This variable is set to true once we have a functional, initialized database.
-    private boolean databaseCreated = false;
+    // These variables are set to true once we have a functional, initialized and updated database.
+    private boolean isDatabaseCreated = false;
+    private boolean isCurrentPlanetUpdated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +49,7 @@ public class GameActivity extends Activity {
         FragmentManager fragmentManager = getFragmentManager();
 
         // TODO update the current planet here, once done allow buttons
+        // TODO update sale prices here
 
         // Get which planet was scanned
         // The planet id is inside the planet resources
@@ -58,10 +58,8 @@ public class GameActivity extends Activity {
             this.scannedPlanet = this.planetResources.getInt(PLANET_ID_KEY);
         }
 
-        // Used to update sale prices when entering the game fragment on a new planet
-        this.database = GameDatabaseHelper.getInstance(this);
         // Game utilities contain a method to check database existence.
-        this.gameUtilities = new GameUtilities();
+        GameUtilities gameUtilities = new GameUtilities();
 
         // Check that the activity is using the layout version with
         // the fragment_container FrameLayout
@@ -76,11 +74,11 @@ public class GameActivity extends Activity {
 
             // If there is no database, we start a new game and initialize the database to default
             // contents.
-            if (!this.gameUtilities.isDatabaseCreated(this)) {
+            if (!gameUtilities.isDatabaseCreated(this)) {
                 // The database is created when we call getWritable or getReadable database the first
                 // time, which happens here and may take longer time to finish. Therefore we run
                 // it in a background thread. Once the initialization is done game buttons are
-                // enabled by checking databaseCreated. Database initialization only happens in this
+                // enabled by checking isDatabaseCreated. Database initialization only happens in this
                 // activity. Other activities use the created database through the singleton helper.
                 // Only the creation of the database is expensive once it is done here other calls
                 // for writable or readable database are quick.
@@ -116,8 +114,12 @@ public class GameActivity extends Activity {
                     pickDirection.commit();
                 }
             } else {
+                // Update current planet in database. No need to do this above as current planet is
+                // set to scanned planet when a new database is initialized.
+                AsyncCurrentPlanetUpdater planetUpdater = new AsyncCurrentPlanetUpdater(this.scannedPlanet, this);
+                planetUpdater.execute();
                 // We already have a database from before.
-                this.databaseCreated = true;
+                this.isDatabaseCreated = true;
                 this.openGameMenuFragment();
             }
         }
@@ -260,7 +262,7 @@ public class GameActivity extends Activity {
      * @param view The button that has been clicked
      */
     public void InventoryButtonHandlerGameMenu(View view) {
-        if (this.checkDatabaseCreated()) {
+        if (this.checkisDatabaseCreated()) {
             FragmentManager fragmentManager = getFragmentManager();
             InventoryFragment inventoryFragment = new InventoryFragment();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -276,7 +278,7 @@ public class GameActivity extends Activity {
      * @param view The button that has been clicked
      */
     public void ShopButtonHandler(View view) {
-        if (this.checkDatabaseCreated()) {
+        if (this.checkisDatabaseCreated()) {
 
         }
     }
@@ -287,29 +289,30 @@ public class GameActivity extends Activity {
      * @param view The button that has been clicked
      */
     public void LeavePlanetButtonHandler(View view) {
-        if (this.checkDatabaseCreated()) {
+        if (this.checkisDatabaseCreated()) {
 
         }
     }
 
     /**
-     * This method checks if the database was successfully created and returns true.
-     * If not, returns false and displays a toast message to wait. Buttons from game menu
-     * call this method to ensure that the player will not open any fragment that uses the database
-     * before the database is created. This will rarely happen.
+     * This method checks if the database was successfully created and if current planet was updated
+     * and returns true. If not, returns false and displays a toast message to wait.
+     * Buttons from game menu call this method to ensure that the player will not open any fragment
+     * that uses the database before the database is prepared. This will rarely happen as it is
+     * usually fast.
      *
-     * @return True if database was created else false and displays a toast.
+     * @return True if database was created and updated else false and displays a toast.
      */
-    private boolean checkDatabaseCreated() {
-        if (!this.databaseCreated) {
-            Toast.makeText(this, this.getResources().getString(R.string.toast_flight_route), Toast.LENGTH_LONG).show();
-            return false;
+    private boolean checkisDatabaseCreated() {
+        if (this.isDatabaseCreated && this.isCurrentPlanetUpdated) {
+            return true;
         }
-        return true;
+        Toast.makeText(this, this.getResources().getString(R.string.toast_flight_route), Toast.LENGTH_LONG).show();
+        return false;
     }
 
     /**
-     * This small class has access to the activity's variables and can set the databaseCreated
+     * This small class has access to the activity's variables and can set the isDatabaseCreated
      * to true once the database initialization is completed in the background thread.
      */
     private class AsyncDatabaseInitializer extends AsyncTask<Boolean, Void, Void> {
@@ -322,6 +325,7 @@ public class GameActivity extends Activity {
             this.context = context;
         }
 
+        @Override
         protected Void doInBackground(Boolean... params) {
             // The database helper is a singleton we always get the same instance it will not
             // cause any concurrent troubles.
@@ -333,7 +337,41 @@ public class GameActivity extends Activity {
         @Override
         protected void onPostExecute(Void result) {
             // This method is called in main thread automatically after finishing the work.
-            databaseCreated = true;
+            // Once both isDatabaseCreated and isCurrentPlanetUpdated are true, the player can
+            // enter inventory and shop.
+            isDatabaseCreated = true;
+            isCurrentPlanetUpdated = true;
+        }
+    }
+
+    /**
+     * This asynchronous class runs a new thread to update the current planet in the database.
+     * When the user opens the game activity the new current planet is written into the database.
+     * It is the planet that was last scanned and is passed into the activity in an intent.
+     */
+    private class AsyncCurrentPlanetUpdater extends AsyncTask<Void, Void, Void> {
+        private int currentPlanet;
+        private Context context;
+
+        AsyncCurrentPlanetUpdater(int currentPlanet, Context context) {
+            super();
+            this.currentPlanet = currentPlanet;
+            this.context = context;
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            // The database helper is a singleton we always get the same instance it will not
+            // cause any concurrent troubles.
+            GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.context);
+            databaseHelper.updateCurrentPlanet(this.currentPlanet);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            // isDatabaseCreated is set to true in onCreate.
+            isCurrentPlanetUpdated = true;
         }
     }
 

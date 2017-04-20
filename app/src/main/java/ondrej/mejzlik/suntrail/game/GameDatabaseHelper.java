@@ -528,6 +528,21 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * Updates the current planet value in the player table.
+     *
+     * @param currentlyScannedPlanetId The planet id the user scanned.
+     * @return Row id of the updated row.
+     */
+    public int updateCurrentPlanet(int currentlyScannedPlanetId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues player = new ContentValues();
+        player.put(GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_CURRENT_PLANET, currentlyScannedPlanetId);
+        // The table has only one row with automatic id 1.
+        return db.update(TABLE_NAME_PLAYER, player, "_id=1", null);
+    }
+
+    /**
      * Returns all database tables and rows in a string.
      *
      * @return Returns all database tables and rows in a string.
