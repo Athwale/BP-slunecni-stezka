@@ -82,6 +82,7 @@ public class QrScannerFragment extends Fragment implements ZXingScannerView.Resu
     @Override
     public void onPause() {
         super.onPause();
+        scannerView.stopCameraPreview();
         scannerView.stopCamera();
     }
 

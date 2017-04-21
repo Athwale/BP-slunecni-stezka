@@ -1096,6 +1096,12 @@
     <string name="list_price">Price:</string>
     <string name="list_size">Size:</string>
     <string name="list_cr">cr</string>
+    <string name="leaving_planet_title">You are leaving the planet</string>
+    <string name="leaving_planet_button_name_stay">Stay</string>
+    <string name="leaving_planet_button_name_leave">Leave</string>
+    <string name="leaving_planet_warning">Attention</string>
+    <string name="leaving_planet_warning_text">You are leaving the planet. It will not
+    be possible to return to this shop once you leave.</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>
@@ -1563,4 +1569,5 @@
     <string name="game_item_name_xen_crystals">Xen crystals</string>
     <string name="game_item_name_ceresian_tea">Ceresian tea</string>
     <string name="game_item_name_a_cube_of_soil">A cube of soil</string>
+
 </resources>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import ondrej.mejzlik.suntrail.fragments.DirectionChoiceFragment;
 import ondrej.mejzlik.suntrail.fragments.GameMenuFragment;
 import ondrej.mejzlik.suntrail.fragments.InventoryFragment;
 import ondrej.mejzlik.suntrail.fragments.ItemInfoFragment;
+import ondrej.mejzlik.suntrail.fragments.LeavingPlanetFragment;
 import ondrej.mejzlik.suntrail.fragments.ShipInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.StartGameFragment;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
@@ -48,7 +50,6 @@ public class GameActivity extends Activity {
         setContentView(R.layout.activity_game);
         FragmentManager fragmentManager = getFragmentManager();
 
-        // TODO update the current planet here, once done allow buttons
         // TODO update sale prices here
 
         // Get which planet was scanned
@@ -262,7 +263,7 @@ public class GameActivity extends Activity {
      * @param view The button that has been clicked
      */
     public void InventoryButtonHandlerGameMenu(View view) {
-        if (this.checkisDatabaseCreated()) {
+        if (this.checkIsDatabaseCreated()) {
             FragmentManager fragmentManager = getFragmentManager();
             InventoryFragment inventoryFragment = new InventoryFragment();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -278,8 +279,8 @@ public class GameActivity extends Activity {
      * @param view The button that has been clicked
      */
     public void ShopButtonHandler(View view) {
-        if (this.checkisDatabaseCreated()) {
-
+        if (this.checkIsDatabaseCreated()) {
+            // TODO enter shop
         }
     }
 
@@ -289,9 +290,38 @@ public class GameActivity extends Activity {
      * @param view The button that has been clicked
      */
     public void LeavePlanetButtonHandler(View view) {
-        if (this.checkisDatabaseCreated()) {
-
+        if (this.checkIsDatabaseCreated()) {
+            FragmentManager fragmentManager = getFragmentManager();
+            LeavingPlanetFragment leavingPlanetFragment = new LeavingPlanetFragment();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.game_activity_fragment_container, leavingPlanetFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
+    }
+
+    /**
+     * Handles clicks from Stay button in leaving planet fragment. Removes the fragment from
+     * the back stack and returns to game menu.
+     *
+     * @param view The button that has been clicked
+     */
+    public void LeaveFragmentStayButtonHandler(View view) {
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.popBackStackImmediate();
+    }
+
+    /**
+     * Handles clicks from Leave button in leaving planet fragment. It removes all activities
+     * up to MainMenuActivity from the back stack returning the user to main menu.
+     *
+     * @param view The button that has been clicked
+     */
+    public void LeaveFragmentLeaveButtonHandler(View view) {
+        Intent intent = new Intent(this, MainMenuActivity.class);
+        // This flag removes all activities in the back stack up to MainMenuActivity.
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     /**
@@ -303,7 +333,7 @@ public class GameActivity extends Activity {
      *
      * @return True if database was created and updated else false and displays a toast.
      */
-    private boolean checkisDatabaseCreated() {
+    private boolean checkIsDatabaseCreated() {
         if (this.isDatabaseCreated && this.isCurrentPlanetUpdated) {
             return true;
         }

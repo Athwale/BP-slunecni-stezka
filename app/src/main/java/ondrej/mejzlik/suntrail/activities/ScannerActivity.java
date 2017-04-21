@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.fragments.AudioPlayerFragment;
+import ondrej.mejzlik.suntrail.fragments.LeavingPlanetFragment;
 import ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment;
 import ondrej.mejzlik.suntrail.fragments.PlanetTextFragment;
 import ondrej.mejzlik.suntrail.fragments.QrScannerFragment;
@@ -50,6 +51,10 @@ public class ScannerActivity extends Activity {
     // and want the game mode button to appear.
     public static final String SHOW_GAME_BUTTON_KEY = "gameModeKey";
     public static final String SHOW_GAME_BUTTON = "gameMode";
+    // Used to save and restore lock variables
+    public static final String IS_DATABASE_ACCESSED_KEY = "isDatabaseAccessedKey";
+    public static final String IS_SHOP_LOCKED_KEY = "isShopLockedKey";
+    public static final String WAS_GAME_RUN_KEY = "wasGameRun";
     // Used to indicate which scanner or scanner options should the app use or offer in
     // scanner choice fragment and scanner activity
     private static final int HAS_NOTHING = 0;
@@ -65,6 +70,7 @@ public class ScannerActivity extends Activity {
     // Used to disable the game button if the user already visited this planet
     private boolean isShopLocked = true;
     private boolean isDatabaseBeingAccessed = true;
+    private boolean wasGameRun = false;
     private Toast shopLockedToast = null;
     private Toast databaseBeingAccessedToast = null;
     private GameUtilities gameUtilities = null;
@@ -89,6 +95,9 @@ public class ScannerActivity extends Activity {
                 this.mapArguments = savedInstanceState.getBundle(MAP_KEY);
                 this.savedRotationFrom = savedInstanceState.getFloat(ROTATION_KEY_FROM);
                 this.savedRotationTo = savedInstanceState.getFloat(ROTATION_KEY_TO);
+                this.isShopLocked = savedInstanceState.getBoolean(IS_SHOP_LOCKED_KEY);
+                this.isDatabaseBeingAccessed = savedInstanceState.getBoolean(IS_DATABASE_ACCESSED_KEY);
+                this.wasGameRun = savedInstanceState.getBoolean(WAS_GAME_RUN_KEY);
                 return;
             }
 
@@ -127,6 +136,10 @@ public class ScannerActivity extends Activity {
         // Save planet rotation
         savedInstanceState.putFloat(ROTATION_KEY_FROM, this.savedRotationFrom);
         savedInstanceState.putFloat(ROTATION_KEY_TO, this.savedRotationTo);
+        // Save lock variables
+        savedInstanceState.putBoolean(IS_SHOP_LOCKED_KEY, this.isShopLocked);
+        savedInstanceState.putBoolean(IS_DATABASE_ACCESSED_KEY, this.isDatabaseBeingAccessed);
+        savedInstanceState.putBoolean(WAS_GAME_RUN_KEY, this.wasGameRun);
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -188,6 +201,45 @@ public class ScannerActivity extends Activity {
                 this.processScannerResult(result.getInt(PLANET_ID_KEY));
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Warn the user that the shop will be inaccessible once the planet is left if the
+        // game mode was run.
+        if (wasGameRun) {
+            FragmentManager fragmentManager = getFragmentManager();
+            LeavingPlanetFragment leavingPlanetFragment = new LeavingPlanetFragment();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.scanner_fragment_container, leavingPlanetFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        } else {
+            // Else do normal back action
+            super.onBackPressed();
+        }
+    }
+
+    /**
+     * Handles clicks from Stay button in leaving planet fragment. Removes the fragment from
+     * the back stack and returns to game menu.
+     *
+     * @param view The button that has been clicked
+     */
+    public void LeaveFragmentStayButtonHandler(View view) {
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.popBackStackImmediate();
+    }
+
+    /**
+     * Handles clicks from Leave button in leaving planet fragment. It removes all activities
+     * up to MainMenuActivity from the back stack returning the user to main menu.
+     *
+     * @param view The button that has been clicked
+     */
+    public void LeaveFragmentLeaveButtonHandler(View view) {
+        // Close this activity. The only activity under scanner activity is main menu activity.
+        this.finish();
     }
 
     /**
@@ -406,6 +458,9 @@ public class ScannerActivity extends Activity {
             }
             this.shopLockedToast.show();
         } else {
+            // Indicate that the game mode was run. If the user now tries to go back from game menu
+            // he/she will be warned that there is no return.
+            this.wasGameRun = true;
             Intent intent = new Intent(this, GameActivity.class);
             // Pass scanned planet id to the game activity
             Bundle parameters = new Bundle();
