@@ -55,6 +55,9 @@ public class ScannerActivity extends Activity {
     private static final String IS_DATABASE_ACCESSED_KEY = "isDatabaseAccessedKey";
     private static final String IS_SHOP_LOCKED_KEY = "isShopLockedKey";
     private static final String WAS_GAME_RUN_KEY = "wasGameRun";
+    // Used to identify planet menu fragment when pressing back. In that case we do not display
+    // leaving planet fragment
+    private static final String PLANET_MENU_FRAGMENT_KEY = "planetMenuFragmentKey";
     // Used to indicate which scanner or scanner options should the app use or offer in
     // scanner choice fragment and scanner activity
     private static final int HAS_NOTHING = 0;
@@ -205,17 +208,26 @@ public class ScannerActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        // Warn the user that the shop will be inaccessible once the planet is left if the
-        // game mode was run.
-        if (wasGameRun) {
-            FragmentManager fragmentManager = getFragmentManager();
-            LeavingPlanetFragment leavingPlanetFragment = new LeavingPlanetFragment();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.scanner_fragment_container, leavingPlanetFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+        // Only display the leaving planet warning when pressing back from game menu fragment, and
+        // the game activity did run. Without this check the leaving planet fragment would be
+        // displayed even when back is pressed in planet text and audio player fragments.
+        PlanetMenuFragment fragment = (PlanetMenuFragment) getFragmentManager().findFragmentByTag(PLANET_MENU_FRAGMENT_KEY);
+        if (fragment != null && fragment.isVisible()) {
+            // Warn the user that the shop will be inaccessible once the planet is left if the
+            // game mode was run.
+            if (wasGameRun) {
+                FragmentManager fragmentManager = getFragmentManager();
+                LeavingPlanetFragment leavingPlanetFragment = new LeavingPlanetFragment();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.scanner_fragment_container, leavingPlanetFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            } else {
+                // Else do normal back action if game was not played
+                super.onBackPressed();
+            }
         } else {
-            // Else do normal back action
+            // Else do normal back action inside planet text and audio player fragment
             super.onBackPressed();
         }
     }
@@ -320,7 +332,8 @@ public class ScannerActivity extends Activity {
                 // Open planet menu fragment.
                 PlanetMenuFragment planetMenuFragment = new PlanetMenuFragment();
                 planetMenuFragment.setArguments(this.planetResources);
-                transaction.replace(R.id.scanner_fragment_container, planetMenuFragment);
+                // Set tag to the fragment in odrder to recognize it in onBackPressed.
+                transaction.replace(R.id.scanner_fragment_container, planetMenuFragment, PLANET_MENU_FRAGMENT_KEY);
             }
             transaction.addToBackStack(null);
             transaction.commit();
