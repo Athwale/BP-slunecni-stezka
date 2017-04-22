@@ -7,9 +7,9 @@ import java.util.ArrayList;
  * It is used to transport the game data.
  */
 public class GameDataHolder {
-    private ArrayList<ItemModel> items;
-    private ShipModel ship;
-    private PlayerModel player;
+    private final ArrayList<ItemModel> items;
+    private final ShipModel ship;
+    private final PlayerModel player;
 
     /**
      * Creates a new data holder.

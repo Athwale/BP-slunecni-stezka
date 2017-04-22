@@ -3,6 +3,7 @@
     android:id="@+id/leaving_planet_linear_layout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pict_yellow_activity_background"
     tools:context="ondrej.mejzlik.suntrail.fragments.LeavingPlanetFragment">
 
     <TextView

@@ -21,18 +21,18 @@ public class ItemModel implements Parcelable {
             return new ItemModel[size];
         }
     };
-    private int id;
+    private final int id;
+    private final int itemNameResId;
+    private final int itemImageResId;
+    private final int itemImageIconResId;
+    private final int itemDescriptionResId;
+    private final int availableAtPlanet;
+    private final int size;
     private int price;
     private int sellPrice;
-    private int itemNameResId;
-    private int itemImageResId;
-    private int itemImageIconResId;
-    private int itemDescriptionResId;
-    private int availableAtPlanet;
     private boolean isBought;
     private boolean priceMovement;
     private boolean isInShop;
-    private int size;
 
     /**
      * Create a new game item information holder.

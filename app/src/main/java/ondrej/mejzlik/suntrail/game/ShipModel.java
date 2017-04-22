@@ -5,11 +5,11 @@ package ondrej.mejzlik.suntrail.game;
  * between various methods and classes.
  */
 public class ShipModel {
-    private int id;
-    private int imageResId;
-    private int shipNameResId;
+    private final int id;
+    private final int imageResId;
+    private final int shipNameResId;
+    private final int cargoBaySize;
     private int price;
-    private int cargoBaySize;
     private int remainingCargoSpace;
 
     /**

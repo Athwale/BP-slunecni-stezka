@@ -67,12 +67,11 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS
  * items can be sold at any planet a decision what the user will keep in the cargo bay has to be
  * made. If he keeps it the price may rise a bit more but it will occupy some space. The player
  * has to keep an eye on the predicted price movements.
- *
+ * <p>
  * Game method call sequence:
  * OPENING GAME MODE ON A PLANET (It is impossible to open game mode on already visited planets)
  * updateCurrentPlanet(New scanned planet id)
  * ENTERING SHOP
- *
  */
 public final class Configuration {
 

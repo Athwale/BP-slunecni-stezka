@@ -403,7 +403,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      * @return All bought items.
      */
     public ArrayList<ItemModel> getBoughtItems() {
-        // "getReadableDatabase()" and "getWriteableDatabase()" return the same object
+        // "getReadableDatabase()" and "getWritableDatabase()" return the same object
         // (except under low disk space scenarios)
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<ItemModel> boughtItems = new ArrayList<>();
@@ -531,15 +531,14 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      * Updates the current planet value in the player table.
      *
      * @param currentlyScannedPlanetId The planet id the user scanned.
-     * @return Row id of the updated row.
      */
-    public int updateCurrentPlanet(int currentlyScannedPlanetId) {
+    public void updateCurrentPlanet(int currentlyScannedPlanetId) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues player = new ContentValues();
         player.put(GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_CURRENT_PLANET, currentlyScannedPlanetId);
         // The table has only one row with automatic id 1.
-        return db.update(TABLE_NAME_PLAYER, player, "_id=1", null);
+        db.update(TABLE_NAME_PLAYER, player, "_id=1", null);
     }
 
     /**

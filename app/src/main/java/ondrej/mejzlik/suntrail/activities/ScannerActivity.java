@@ -52,9 +52,9 @@ public class ScannerActivity extends Activity {
     public static final String SHOW_GAME_BUTTON_KEY = "gameModeKey";
     public static final String SHOW_GAME_BUTTON = "gameMode";
     // Used to save and restore lock variables
-    public static final String IS_DATABASE_ACCESSED_KEY = "isDatabaseAccessedKey";
-    public static final String IS_SHOP_LOCKED_KEY = "isShopLockedKey";
-    public static final String WAS_GAME_RUN_KEY = "wasGameRun";
+    private static final String IS_DATABASE_ACCESSED_KEY = "isDatabaseAccessedKey";
+    private static final String IS_SHOP_LOCKED_KEY = "isShopLockedKey";
+    private static final String WAS_GAME_RUN_KEY = "wasGameRun";
     // Used to indicate which scanner or scanner options should the app use or offer in
     // scanner choice fragment and scanner activity
     private static final int HAS_NOTHING = 0;
@@ -477,8 +477,8 @@ public class ScannerActivity extends Activity {
      * the game mode will be inaccessible.
      */
     private class AsyncDatabaseAccess extends AsyncTask<Void, Void, Boolean> {
-        private int scannedPlanet;
-        private Context context;
+        private final int scannedPlanet;
+        private final Context context;
 
         AsyncDatabaseAccess(int scannedPlanet, Context context) {
             super();

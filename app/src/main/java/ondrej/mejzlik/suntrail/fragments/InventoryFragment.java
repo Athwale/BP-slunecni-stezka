@@ -40,13 +40,10 @@ import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.SCROLL_POSITIO
 public class InventoryFragment extends Fragment {
     private View mainView = null;
     private Parcelable listViewState = null;
-    private GameUtilities gameUtilities = null;
 
     public InventoryFragment() {
         // Required empty public constructor
     }
-
-    // TODO open inventory from main menu display no game started if no database
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,14 +51,14 @@ public class InventoryFragment extends Fragment {
         // Inflate the layout for this fragment
         this.mainView = inflater.inflate(R.layout.fragment_inventory, container, false);
         TextView message = (TextView) this.mainView.findViewById(R.id.inventory_text_view_loading_message);
-        this.gameUtilities = new GameUtilities();
+        GameUtilities gameUtilities = new GameUtilities();
         // If we're being restored from a previous state, restore last known scroll position.
         if (savedInstanceState != null) {
             this.listViewState = savedInstanceState.getParcelable(SCROLL_POSITION_KEY);
         }
         // Get data from database only if the database exists. Otherwise show a message, that
         // game has not been started yet.
-        if (this.gameUtilities.isDatabaseCreated(getActivity())) {
+        if (gameUtilities.isDatabaseCreated(getActivity())) {
             // Hide all views until the query is finished
             message.setText(R.string.inventory_loading);
             AsyncGetData databaseQuery = new AsyncGetData(getActivity().getApplicationContext());
@@ -130,7 +127,7 @@ public class InventoryFragment extends Fragment {
      * it is retrieved from database.
      */
     private class AsyncGetData extends AsyncTask<Void, Void, GameDataHolder> {
-        private Context context;
+        private final Context context;
 
         AsyncGetData(Context context) {
             super();

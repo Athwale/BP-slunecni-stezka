@@ -48,16 +48,8 @@ public class GameActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        FragmentManager fragmentManager = getFragmentManager();
 
         // TODO update sale prices here
-
-        // Get which planet was scanned
-        // The planet id is inside the planet resources
-        this.planetResources = getIntent().getExtras().getBundle(PLANET_RESOURCES_KEY);
-        if (this.planetResources != null && this.planetResources.containsKey(PLANET_ID_KEY)) {
-            this.scannedPlanet = this.planetResources.getInt(PLANET_ID_KEY);
-        }
 
         // Game utilities contain a method to check database existence.
         GameUtilities gameUtilities = new GameUtilities();
@@ -70,7 +62,17 @@ public class GameActivity extends Activity {
             // then we don't need to do anything and should return or else
             // we could end up with overlapping fragments.
             if (savedInstanceState != null) {
+                this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
                 return;
+            }
+
+            // If savedInstance == null initialize all variables that were not retrieved
+            FragmentManager fragmentManager = getFragmentManager();
+            // Get which planet was scanned
+            // The planet id is inside the planet resources
+            this.planetResources = getIntent().getExtras().getBundle(PLANET_RESOURCES_KEY);
+            if (this.planetResources != null && this.planetResources.containsKey(PLANET_ID_KEY)) {
+                this.scannedPlanet = this.planetResources.getInt(PLANET_ID_KEY);
             }
 
             // If there is no database, we start a new game and initialize the database to default
@@ -128,6 +130,7 @@ public class GameActivity extends Activity {
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
         // Needed for saving state in fragments
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -346,8 +349,8 @@ public class GameActivity extends Activity {
      * to true once the database initialization is completed in the background thread.
      */
     private class AsyncDatabaseInitializer extends AsyncTask<Boolean, Void, Void> {
-        private int startPlanet;
-        private Context context;
+        private final int startPlanet;
+        private final Context context;
 
         AsyncDatabaseInitializer(int startPlanet, Context context) {
             super();
@@ -380,8 +383,8 @@ public class GameActivity extends Activity {
      * It is the planet that was last scanned and is passed into the activity in an intent.
      */
     private class AsyncCurrentPlanetUpdater extends AsyncTask<Void, Void, Void> {
-        private int currentPlanet;
-        private Context context;
+        private final int currentPlanet;
+        private final Context context;
 
         AsyncCurrentPlanetUpdater(int currentPlanet, Context context) {
             super();

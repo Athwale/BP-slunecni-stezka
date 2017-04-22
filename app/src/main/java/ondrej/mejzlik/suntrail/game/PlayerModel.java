@@ -5,11 +5,11 @@ package ondrej.mejzlik.suntrail.game;
  * between various methods and classes.
  */
 public class PlayerModel {
-    private int id;
+    private final int id;
+    private final boolean direction;
     private int shipResId;
     private int credits;
     private int currentPlanet;
-    private boolean direction;
 
     /**
      * Creates a new player and sets all attributes.

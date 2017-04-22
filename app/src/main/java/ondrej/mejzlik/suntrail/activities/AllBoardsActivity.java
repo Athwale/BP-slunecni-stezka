@@ -37,7 +37,7 @@ public class AllBoardsActivity extends Activity {
     private Bundle planetResources = null;
     private float savedRotationFrom = ROTATION_END;
     private float savedRotationTo = ROTATION_START;
-    private PlanetIdentifier identifier;
+    private PlanetIdentifier identifier = null;
     private PlanetResourceCollector resourceCollector = null;
 
     @Override
@@ -45,9 +45,7 @@ public class AllBoardsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_boards);
 
-        // Initialize variables
-        this.mapArguments = new Bundle();
-        this.planetResources = new Bundle();
+        // There variables are not saved in savedInstance and must be initialized here
         this.identifier = new PlanetIdentifier();
         this.resourceCollector = new PlanetResourceCollector();
 
@@ -63,6 +61,10 @@ public class AllBoardsActivity extends Activity {
                 this.savedRotationTo = savedInstanceState.getFloat(ROTATION_KEY_TO);
                 return;
             }
+
+            // Initialize variables is savedInstance == null and they were not retrieved
+            this.mapArguments = new Bundle();
+            this.planetResources = new Bundle();
 
             // Put the map into mapArguments. We will not change the image any more, we can do it once.
             this.mapArguments.putInt(IMAGE_KEY, R.drawable.pict_map_planets);

@@ -46,6 +46,7 @@ public class ZoomableImageFragment extends Fragment {
             imageView.getLayoutParams().height = displaymetrics.heightPixels;
             imageView.getLayoutParams().width = displaymetrics.widthPixels;
             // Attach zooming capabilities
+            //noinspection UnusedAssignment
             PhotoViewAttacher zoomer = new PhotoViewAttacher(imageView);
         }
         return view;
