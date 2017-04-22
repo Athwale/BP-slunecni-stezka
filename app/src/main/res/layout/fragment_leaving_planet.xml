@@ -14,7 +14,7 @@
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
         android:text="@string/leaving_planet_title"
-        android:textColor="#ff0099cc"
+        android:textColor="@color/spacerBlue"
         android:textStyle="bold" />
 
     <View
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="48dp"
-        android:background="#ff0099cc"
+        android:background="@color/spacerBlue"
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <LinearLayout
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:text="@string/leaving_planet_warning"
             android:textAlignment="center"
-            android:textColor="#ca151e"
+            android:textColor="@color/textRed"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -60,7 +60,7 @@
             android:paddingStart="16dp"
             android:text="@string/leaving_planet_warning_text"
             android:textAlignment="center"
-            android:textColor="#000000" />
+            android:textColor="@color/textBlack" />
 
         <LinearLayout
             android:id="@+id/leaving_planet_linear_layout_buttons"
@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:onClick="LeaveFragmentStayButtonHandler"
                     android:text="@string/leaving_planet_button_name_stay"
-                    android:textColor="#000000" />
+                    android:textColor="@color/textBlack" />
 
             </LinearLayout>
 
@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:onClick="LeaveFragmentLeaveButtonHandler"
                     android:text="@string/leaving_planet_button_name_leave"
-                    android:textColor="#000000" />
+                    android:textColor="@color/textBlack" />
 
             </LinearLayout>
 

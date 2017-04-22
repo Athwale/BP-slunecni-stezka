@@ -17,7 +17,7 @@
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
         android:text="@string/nfc_scanner_title"
-        android:textColor="#ff0099cc"
+        android:textColor="@color/spacerBlue"
         android:textStyle="bold" />
 
     <View
@@ -27,7 +27,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
         android:layout_marginTop="48dp"
-        android:background="#ff0099cc"
+        android:background="@color/spacerBlue"
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <TextView
@@ -40,7 +40,7 @@
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
         android:text="@string/nfc_scanner_scanner_activated"
-        android:textColor="#ca151e" />
+        android:textColor="@color/textRed" />
 
     <ImageView
         android:id="@+id/nfc_scanner_image_view_animation_ship"
@@ -82,6 +82,6 @@
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
         android:text="@string/nfc_scanner_scanner_running"
-        android:textColor="#000000" />
+        android:textColor="@color/textBlack" />
 
 </RelativeLayout>

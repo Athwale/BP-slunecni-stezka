@@ -17,7 +17,7 @@
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
         android:text="@string/scanner_choice_title"
-        android:textColor="#ff0099cc"
+        android:textColor="@color/spacerBlue"
         android:textStyle="bold" />
 
     <View
@@ -27,7 +27,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
         android:layout_marginTop="48dp"
-        android:background="#ff0099cc"
+        android:background="@color/spacerBlue"
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <LinearLayout
@@ -56,7 +56,7 @@
                 android:onClick="qrScannerButtonHandler"
                 android:paddingBottom="16dp"
                 android:text="@string/scanner_choice_qr"
-                android:textColor="#000000"
+                android:textColor="@color/textBlack"
                 android:textSize="12sp" />
 
             <CheckBox
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/scanner_choice_use_flash"
-                android:textColor="#000000" />
+                android:textColor="@color/textBlack" />
         </LinearLayout>
 
         <LinearLayout
@@ -85,7 +85,7 @@
                 android:onClick="nfcScannerButtonHandler"
                 android:paddingBottom="16dp"
                 android:text="@string/scanner_choice_nfc"
-                android:textColor="#000000"
+                android:textColor="@color/textBlack"
                 android:textSize="12sp" />
         </LinearLayout>
 

@@ -1102,6 +1102,8 @@
     <string name="leaving_planet_warning">Attention</string>
     <string name="leaving_planet_warning_text">You are leaving the planet. It will not
     be possible to return to this shop once you leave.</string>
+    <string name="shop_title">Shop</string>
+    <string name="shop_item_list_title">Buy or sell</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>

@@ -17,7 +17,7 @@
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
         android:text="@string/game_menu_title"
-        android:textColor="#ff0099cc"
+        android:textColor="@color/spacerBlue"
         android:textStyle="bold" />
 
     <View
@@ -27,7 +27,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
         android:layout_marginTop="48dp"
-        android:background="#ff0099cc"
+        android:background="@color/spacerBlue"
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <ImageView
@@ -72,7 +72,7 @@
                     android:drawableTop="@drawable/ic_menu_inventory"
                     android:onClick="InventoryButtonHandlerGameMenu"
                     android:text="@string/game_menu_button_inventory"
-                    android:textColor="#000000"
+                    android:textColor="@color/textBlack"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -91,7 +91,7 @@
                     android:drawableTop="@drawable/ic_game_menu_shop"
                     android:onClick="ShopButtonHandler"
                     android:text="@string/game_menu_button_shop"
-                    android:textColor="#000000"
+                    android:textColor="@color/textBlack"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
@@ -111,7 +111,7 @@
                 android:drawableTop="@drawable/ic_game_menu_exit"
                 android:onClick="LeavePlanetButtonHandler"
                 android:text="@string/game_menu_button_leave_game"
-                android:textColor="#000000"
+                android:textColor="@color/textBlack"
                 android:textSize="12sp" />
 
         </LinearLayout>

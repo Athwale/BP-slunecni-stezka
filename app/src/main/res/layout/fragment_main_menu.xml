@@ -17,7 +17,7 @@
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
         android:text="@string/main_menu_title"
-        android:textColor="#ff0099cc"
+        android:textColor="@color/spacerBlue"
         android:textStyle="bold" />
 
     <View
@@ -27,7 +27,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
         android:layout_marginTop="48dp"
-        android:background="#ff0099cc"
+        android:background="@color/spacerBlue"
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <LinearLayout
@@ -55,7 +55,7 @@
                 android:drawableTop="@drawable/ic_menu_how_to_play"
                 android:onClick="infoButtonsHandler"
                 android:text="@string/how_to_play_button_description"
-                android:textColor="#000000"
+                android:textColor="@color/textBlack"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -75,7 +75,7 @@
                 android:drawableTop="@drawable/ic_menu_all_boards"
                 android:onClick="allBoardsButtonHandler"
                 android:text="@string/main_menu_all_boards_icon_text"
-                android:textColor="#000000"
+                android:textColor="@color/textBlack"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -94,7 +94,7 @@
                 android:drawableTop="@drawable/ic_menu_info"
                 android:onClick="infoButtonsHandler"
                 android:text="@string/main_menu_info_icon_text"
-                android:textColor="#000000"
+                android:textColor="@color/textBlack"
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
@@ -111,7 +111,7 @@
         android:drawableTop="@drawable/ic_menu_settings"
         android:onClick="settingsButtonHandler"
         android:text="@string/main_menu_settings_icon_text"
-        android:textColor="#000000"
+        android:textColor="@color/textBlack"
         android:textSize="12sp" />
 
     <LinearLayout
@@ -132,7 +132,7 @@
             android:drawableTop="@drawable/ic_menu_inventory"
             android:onClick="InventoryButtonHandlerManiMenu"
             android:text="@string/main_menu_inventory_icon_text"
-            android:textColor="#000000"
+            android:textColor="@color/textBlack"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -153,7 +153,7 @@
             android:drawableTop="@drawable/ic_menu_scan"
             android:onClick="scannerButtonHandler"
             android:text="@string/main_menu_scan_icon_text"
-            android:textColor="#000000"
+            android:textColor="@color/textBlack"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -166,6 +166,6 @@
         android:layout_marginTop="12dp"
         android:text="@string/main_menu_no_scanner"
         android:textAlignment="center"
-        android:textColor="#ca151e" />
+        android:textColor="@color/textRed" />
 
 </RelativeLayout>

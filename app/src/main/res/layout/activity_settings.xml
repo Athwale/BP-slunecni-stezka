@@ -17,7 +17,7 @@
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
         android:text="@string/settings_title"
-        android:textColor="#ff0099cc"
+        android:textColor="@color/spacerBlue"
         android:textStyle="bold" />
 
     <View
@@ -27,7 +27,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
         android:layout_marginTop="48dp"
-        android:background="#ff0099cc"
+        android:background="@color/spacerBlue"
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <TextView
@@ -39,7 +39,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
         android:text="@string/settings_data_info_exists"
-        android:textColor="#ca151e"
+        android:textColor="@color/textRed"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -63,7 +63,7 @@
                 android:layout_height="match_parent"
                 android:onClick="clearCheckBoxHandler"
                 android:text="@string/checkbox_clear_data"
-                android:textColor="#000000" />
+                android:textColor="@color/textBlack" />
 
         </LinearLayout>
 
@@ -80,7 +80,7 @@
                 android:enabled="false"
                 android:onClick="clearButtonHandler"
                 android:text="@string/button_clear_data"
-                android:textColor="#000000" />
+                android:textColor="@color/textBlack" />
 
         </LinearLayout>
 

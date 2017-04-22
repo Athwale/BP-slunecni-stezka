@@ -15,7 +15,7 @@
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
         android:text="@string/item_info_title"
-        android:textColor="#ff0099cc"
+        android:textColor="@color/spacerBlue"
         android:textStyle="bold" />
 
     <View
@@ -25,7 +25,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
         android:layout_marginTop="48dp"
-        android:background="#ff0099cc"
+        android:background="@color/spacerBlue"
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <ScrollView
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/game_item_name_ion_drive_fuel"
                 android:textAlignment="center"
-                android:textColor="#000000"
+                android:textColor="@color/textBlack"
                 android:textStyle="bold" />
 
             <TextView
@@ -66,7 +66,7 @@
                 android:layout_marginTop="10dp"
                 android:paddingEnd="70dp"
                 android:paddingStart="70dp"
-                android:textColor="#000000"
+                android:textColor="@color/textBlack"
                 tools:text="Ion thrusters use xenon gas. The early models of ion drives used to ionize the gas inside the engine by themselves and then expelled the charged particles out the thruster with very high voltage. Nowadays the technology has advanced, the ions are prepared in advance and are transported in plastic magnetic bottles. The thrusters are then filled with these ready-made ions. A probe called Dawn with an old ion propulsion was used to discover the planet Ceres in the year 2007." />
 
             <View
@@ -74,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="10dp"
-                android:background="#ff0099cc"
+                android:background="@color/spacerBlue"
                 tools:ignore="UnknownId,UnknownIdInLayout" />
 
             <LinearLayout
@@ -91,14 +91,14 @@
                     android:paddingStart="70dp"
                     android:text="@string/list_size"
                     android:textAlignment="textStart"
-                    android:textColor="#000000"
+                    android:textColor="@color/textBlack"
                     android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/item_info_text_view_cargo_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:textColor="@color/textBlack"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     tools:text=" 17" />
@@ -118,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="@string/item_info_price_rise"
-                    android:textColor="#000000"
+                    android:textColor="@color/textBlack"
                     android:textSize="14sp"
                     android:textStyle="italic" />
 

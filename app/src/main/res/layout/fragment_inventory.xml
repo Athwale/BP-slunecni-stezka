@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="@string/inventory_loading"
-        android:textColor="#000000"
+        android:textColor="@color/textBlack"
         android:textStyle="bold" />
 
     <TextView
@@ -27,7 +27,7 @@
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
         android:text="@string/inventory_title"
-        android:textColor="#ff0099cc"
+        android:textColor="@color/spacerBlue"
         android:textStyle="bold" />
 
     <View
@@ -37,7 +37,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
         android:layout_marginTop="48dp"
-        android:background="#ff0099cc"
+        android:background="@color/spacerBlue"
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <LinearLayout
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/ship_name_icarus"
                     android:textAlignment="center"
-                    android:textColor="#000000" />
+                    android:textColor="@color/textBlack" />
 
             </LinearLayout>
 
@@ -103,13 +103,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/inventory_cargo_bay"
-                        android:textColor="#000000" />
+                        android:textColor="@color/textBlack" />
 
                     <TextView
                         android:id="@+id/inventory_cargo_bay_contents"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000000"
+                        android:textColor="@color/textBlack"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         tools:text="5/15" />
@@ -129,13 +129,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/inventory_credits"
-                        android:textColor="#000000" />
+                        android:textColor="@color/textBlack" />
 
                     <TextView
                         android:id="@+id/inventory_credits_amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000000"
+                        android:textColor="@color/textBlack"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         tools:text="256" />
@@ -161,7 +161,7 @@
             android:paddingEnd="16dp"
             android:paddingStart="16dp"
             android:text="@string/inventory_cargo_bay_contents"
-            android:textColor="#ff0099cc"
+            android:textColor="@color/spacerBlue"
             android:textStyle="bold" />
 
         <View
@@ -169,7 +169,7 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginTop="16dp"
-            android:background="#ff0099cc"
+            android:background="@color/spacerBlue"
             tools:ignore="UnknownId,UnknownIdInLayout" />
 
         <ListView

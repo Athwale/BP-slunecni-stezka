@@ -16,7 +16,7 @@
         android:layout_marginTop="16dp"
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
-        android:textColor="#ff0099cc"
+        android:textColor="@color/spacerBlue"
         android:textStyle="bold"
         tools:text="Sun" />
 
@@ -27,7 +27,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
         android:layout_marginTop="48dp"
-        android:background="#ff0099cc"
+        android:background="@color/spacerBlue"
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <ImageView
@@ -79,7 +79,7 @@
                 android:paddingEnd="50dp"
                 android:paddingStart="50dp"
                 android:paddingTop="5dp"
-                android:textColor="#000000"
+                android:textColor="@color/textBlack"
                 tools:text="Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text" />
 
             <Button
@@ -95,7 +95,7 @@
                 android:onClick="mapButtonHandler"
                 android:paddingBottom="16dp"
                 android:text="@string/info_screen_map_button"
-                android:textColor="#000000"
+                android:textColor="@color/textBlack"
                 android:textSize="12sp" />
 
             <TextView
@@ -108,7 +108,7 @@
                 android:lineSpacingExtra="3dp"
                 android:paddingEnd="50dp"
                 android:paddingStart="50dp"
-                android:textColor="#000000"
+                android:textColor="@color/textBlack"
                 tools:text="Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text Sample text" />
         </RelativeLayout>
     </ScrollView>

@@ -16,7 +16,7 @@
         android:layout_marginTop="16dp"
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
-        android:textColor="#ff0099cc"
+        android:textColor="@color/spacerBlue"
         android:textStyle="bold"
         tools:text="Sun" />
 
@@ -27,7 +27,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
         android:layout_marginTop="48dp"
-        android:background="#ff0099cc"
+        android:background="@color/spacerBlue"
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <LinearLayout
@@ -71,7 +71,7 @@
                     android:background="@drawable/yellow_button_background"
                     android:drawableTop="@drawable/ic_menu_play_audio"
                     android:text="@string/audio_player_play"
-                    android:textColor="#000000"
+                    android:textColor="@color/textBlack"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -90,7 +90,7 @@
                     android:background="@drawable/yellow_button_background"
                     android:drawableTop="@drawable/ic_menu_pause_audio"
                     android:text="@string/audio_player_pause"
-                    android:textColor="#000000"
+                    android:textColor="@color/textBlack"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -109,7 +109,7 @@
                     android:background="@drawable/yellow_button_background"
                     android:drawableTop="@drawable/ic_menu_stop_audio"
                     android:text="@string/audio_player_stop"
-                    android:textColor="#000000"
+                    android:textColor="@color/textBlack"
                     android:textSize="12sp" />
             </LinearLayout>
 
