@@ -34,6 +34,9 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_I
 public class GameActivity extends Activity {
     public static final String SPACESHIP_NAME_KEY = "spaceshipNameKey";
     private static final String DIRECTION_FRAGMENT_TAG = "directionFragment";
+    // Used to back up lock variables
+    private static final String DATABASE_CREATED_KEY = "isDatabaseCreatedKey";
+    private static final String CURRENT_PLANET_UPDATED_KEY = "isPlanetUpdatedKey";
     private AsyncDatabaseInitializer databaseInitializer = null;
     // The resources contain all about the planet
     private Bundle planetResources = null;
@@ -50,6 +53,7 @@ public class GameActivity extends Activity {
         setContentView(R.layout.activity_game);
 
         // TODO update sale prices here
+        // TODO do not start game until Confirm button is hit.
 
         // Game utilities contain a method to check database existence.
         GameUtilities gameUtilities = new GameUtilities();
@@ -63,6 +67,8 @@ public class GameActivity extends Activity {
             // we could end up with overlapping fragments.
             if (savedInstanceState != null) {
                 this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
+                this.isDatabaseCreated = savedInstanceState.getBoolean(DATABASE_CREATED_KEY);
+                this.isCurrentPlanetUpdated = savedInstanceState.getBoolean(CURRENT_PLANET_UPDATED_KEY);
                 return;
             }
 
@@ -131,6 +137,8 @@ public class GameActivity extends Activity {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
+        savedInstanceState.putBoolean(DATABASE_CREATED_KEY, this.isDatabaseCreated);
+        savedInstanceState.putBoolean(CURRENT_PLANET_UPDATED_KEY, this.isCurrentPlanetUpdated);
         // Needed for saving state in fragments
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -179,7 +187,11 @@ public class GameActivity extends Activity {
             }
         }
         // Initialize database with the now known direction. Initialization did not happen in
-        // onCreate.
+        // onCreate. The initializer might be null if the activity was killed and the
+        // instance from onCreate did not survive.
+        if (this.databaseInitializer == null) {
+            this.databaseInitializer = new AsyncDatabaseInitializer(this.scannedPlanet, this);
+        }
         this.databaseInitializer.execute(direction);
         // Remove the direction choice fragment now
         FragmentManager fragmentManager = getFragmentManager();

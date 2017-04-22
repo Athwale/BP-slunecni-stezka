@@ -27,7 +27,7 @@ public class ScannerChoiceFragment extends Fragment {
         // Restore if we want to use flash
         if (savedInstanceState != null) {
             boolean useFlash = savedInstanceState.getBoolean(USE_FLASH_KEY);
-            CheckBox checkBoxFlash = (CheckBox) getActivity().findViewById(R.id.scanner_choice_checkBox_flash);
+            CheckBox checkBoxFlash = (CheckBox) view.findViewById(R.id.scanner_choice_checkBox_flash);
             checkBoxFlash.setChecked(useFlash);
         }
         return view;
