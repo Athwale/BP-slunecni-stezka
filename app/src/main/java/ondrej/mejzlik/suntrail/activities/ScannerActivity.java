@@ -238,7 +238,7 @@ public class ScannerActivity extends Activity {
      *
      * @param view The button that has been clicked
      */
-    public void LeaveFragmentStayButtonHandler(View view) {
+    public void leaveFragmentStayButtonHandler(View view) {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.popBackStackImmediate();
     }
@@ -249,7 +249,7 @@ public class ScannerActivity extends Activity {
      *
      * @param view The button that has been clicked
      */
-    public void LeaveFragmentLeaveButtonHandler(View view) {
+    public void leaveFragmentLeaveButtonHandler(View view) {
         // Close this activity. The only activity under scanner activity is main menu activity.
         this.finish();
     }

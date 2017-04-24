@@ -81,6 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
                 <TextView
@@ -102,6 +103,35 @@
                     android:textSize="14sp"
                     android:textStyle="bold"
                     tools:text=" 17" />
+
+                <TextView
+                    android:id="@+id/item_info_text_view_price_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="16dp"
+                    android:text="@string/list_price"
+                    android:textColor="@color/textBlack"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/item_info_text_view_item_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/textBlue"
+                    android:textStyle="bold"
+                    tools:text=" 156" />
+
+                <TextView
+                    android:id="@+id/item_info_text_view_item_price_cr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="2dp"
+                    android:text="@string/list_cr"
+                    android:textColor="@color/textBlack" />
 
             </LinearLayout>
 
@@ -136,6 +166,66 @@
                     tools:src="@drawable/pict_arrow_green" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:gravity="center_horizontal"
+                android:paddingBottom="16dp">
+
+                <LinearLayout
+                    android:id="@+id/item_info_linear_layout_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal">
+
+                    <Button
+                        android:id="@+id/item_info_button_buy"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_menu_shop_buy"
+                        android:text="@string/shop_button_buy"
+                        android:textColor="@color/textBlack"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/item_info_text_view_cant_be_bought"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:text="@string/shop_can_not_be_bought"
+                    android:textAlignment="center"
+                    android:textColor="@color/textRed" />
+
+                <LinearLayout
+                    android:id="@+id/item_info_linear_layout_sell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal">
+
+                    <Button
+                        android:id="@+id/item_info_button_sell"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/yellow_button_background"
+                        android:drawableTop="@drawable/ic_menu_shop_sell"
+                        android:text="@string/shop_button_sell"
+                        android:textColor="@color/textBlack"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

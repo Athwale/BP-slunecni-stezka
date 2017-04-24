@@ -8,6 +8,8 @@ import java.util.Random;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.ITEM_PRICE_FALL_RISE_PROBABILITY;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.ITEM_PRICE_MIGHT_FALL;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.ITEM_PRICE_MIGHT_RISE;
+import static ondrej.mejzlik.suntrail.configuration.Configuration.MAX_ITEM_PRICE_MOVEMENT;
+import static ondrej.mejzlik.suntrail.configuration.Configuration.MIN_ITEM_PRICE_MOVEMENT;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 
 /**
@@ -28,9 +30,9 @@ public class GameUtilities {
      * @param basePrice Item price from database, this is the price we bought it for.
      * @return Selling price.
      */
-    public int calculateSellingPrice(int basePrice, int min, int max) {
+    int calculateSellingPrice(int basePrice) {
         // Calculate how much we add to the item base price. By default 10 - 20%.
-        int profit = this.randomIntGenerator(min, max);
+        int profit = this.randomIntGenerator(MIN_ITEM_PRICE_MOVEMENT, MAX_ITEM_PRICE_MOVEMENT);
         // Calculate new price use profit as percentage
         return basePrice + ((basePrice / 100) * profit);
     }
@@ -53,20 +55,20 @@ public class GameUtilities {
      * If the price is between the preset fall and raise values the probability of either rise
      * or fall is 1/2.
      *
-     * @param basePrice Item base price
+     * @param price Item base price
      * @return Whether the price will raise or fall, 1 rise, 0 fall
      */
-    int calculatePriceMovement(int basePrice) {
+    int calculatePriceMovement(int price) {
         int result = this.randomIntGenerator(1, 10);
         int accept = ITEM_PRICE_FALL_RISE_PROBABILITY / 10;
 
-        if (basePrice > ITEM_PRICE_MIGHT_FALL && result <= accept) {
+        if (price > ITEM_PRICE_MIGHT_FALL && result <= accept) {
             // price will fall
             return 0;
-        } else if (basePrice < ITEM_PRICE_MIGHT_RISE && result <= accept) {
+        } else if (price < ITEM_PRICE_MIGHT_RISE && result <= accept) {
             // price will raise
             return 1;
-        } else if (basePrice < ITEM_PRICE_MIGHT_FALL && basePrice > ITEM_PRICE_MIGHT_RISE) {
+        } else if (price < ITEM_PRICE_MIGHT_FALL && price > ITEM_PRICE_MIGHT_RISE) {
             if (result <= 5) {
                 return 1;
             }

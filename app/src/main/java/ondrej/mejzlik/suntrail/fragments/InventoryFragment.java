@@ -25,7 +25,7 @@ import ondrej.mejzlik.suntrail.activities.MainMenuActivity;
 import ondrej.mejzlik.suntrail.game.GameDataHolder;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
 import ondrej.mejzlik.suntrail.game.GameUtilities;
-import ondrej.mejzlik.suntrail.game.InventoryListAdapter;
+import ondrej.mejzlik.suntrail.game.ItemListAdapter;
 import ondrej.mejzlik.suntrail.game.ItemModel;
 import ondrej.mejzlik.suntrail.game.PlayerModel;
 import ondrej.mejzlik.suntrail.game.ShipModel;
@@ -34,7 +34,7 @@ import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.SCROLL_POSITIO
 
 /**
  * This fragment displays the inventory. It sends a query to the database in another thread and
- * once the data is retrieved displays is on the screen. While the data is being retrieved all views
+ * once the data is retrieved displays them on the screen. While the data is being retrieved all views
  * are hidden and the display shows a message.
  */
 public class InventoryFragment extends Fragment {
@@ -163,7 +163,7 @@ public class InventoryFragment extends Fragment {
             // The amount of credits is an int but not a resource id.
             credits.setText(String.valueOf(result.getPlayer().getCredits()));
             shipName.setText(result.getShip().getShipNameResId());
-            wares.setAdapter(new InventoryListAdapter(getActivity().getApplicationContext(), result.getItems()));
+            wares.setAdapter(new ItemListAdapter(getActivity().getApplicationContext(), result.getItems()));
             wares.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {

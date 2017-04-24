@@ -14,7 +14,6 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MARS;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MERCURY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MOON;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_SATURN;
-import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_SUN;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_URANUS;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS;
 
@@ -68,10 +67,16 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS
  * made. If he keeps it the price may rise a bit more but it will occupy some space. The player
  * has to keep an eye on the predicted price movements.
  * <p>
+ *
  * Game method call sequence:
+ *
  * OPENING GAME MODE ON A PLANET (It is impossible to open game mode on already visited planets)
+ * initializeDatabase
  * updateCurrentPlanet(New scanned planet id)
+ * updatePricesAndMovementOfBoughtItems()
+ *
  * ENTERING SHOP
+ * getItemsForShop()
  */
 public final class Configuration {
 
@@ -113,17 +118,12 @@ public final class Configuration {
     public static final String NFC_URANUS = "546c3926";
     public static final String NFC_NEPTUNE = "a4973526";
 
-    // Initial game values
-    public static final int FIRST_SHIP = R.string.ship_name_icarus;
-    public static final int STARTING_CREDITS = 500;
-
-    // First shop is on the Sun because the first intro board opens Sun path info fragment and does
-    // not offer the game. Last shop is on Uranus. There is no point in buying anything on Neptune
-    // since there is nowhere to sell it.
-    // On Neptune the player is able to sell everything he has including the ship and is rewarded.
+    // Contains planet Ids where shops are located. The Sun or Neptune is added to the list inside
+    // GameDatabaseHelper depending on which trip direction is chosen.
+    // If the player goes Sun -> Neptune, there is no shop on Neptune, since the game ends there and
+    // vice versa.
     public static final List<Integer> PLANETS_WITH_SHOPS = Collections.unmodifiableList(
             new ArrayList<Integer>() {{
-                add(PLANET_ID_SUN);
                 add(PLANET_ID_MERCURY);
                 add(PLANET_ID_VENUS);
                 add(PLANET_ID_EARTH);
@@ -135,6 +135,10 @@ public final class Configuration {
                 add(PLANET_ID_SATURN);
                 add(PLANET_ID_URANUS);
             }});
+
+    // Initial game values
+    public static final int FIRST_SHIP = R.string.ship_name_icarus;
+    public static final int STARTING_CREDITS = 350;
 
     public static final int ICARUS_CARGO_SIZE = 15;
     public static final int LOKYS_CARGO_SIZE = 25;

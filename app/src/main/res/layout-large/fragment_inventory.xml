@@ -8,6 +8,16 @@
     tools:context="ondrej.mejzlik.suntrail.fragments.InventoryFragment">
 
     <TextView
+        android:id="@+id/inventory_text_view_loading_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/inventory_loading"
+        android:textColor="@color/textBlack"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/inventory_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,16 +28,6 @@
         android:paddingStart="16dp"
         android:text="@string/inventory_title"
         android:textColor="@color/spacerBlue"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/inventory_text_view_loading_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/inventory_loading"
-        android:textColor="@color/textBlack"
         android:textStyle="bold" />
 
     <View
@@ -174,10 +174,10 @@
 
         <ListView
             android:id="@+id/inventory_list_view_items"
-            android:layout_width="370dp"
+            android:layout_width="350dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            tools:listitem="@layout/list_view_inventory_row" />
+            tools:listitem="@layout/list_view_item_row" />
 
     </LinearLayout>
 

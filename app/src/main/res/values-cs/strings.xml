@@ -1089,6 +1089,12 @@
     <string name="leaving_planet_warning">Upozornění</string>
     <string name="leaving_planet_warning_text">Opouštíte planetu. Když odletíte, nebude už možné
     vrátit se do obchodu na této planetě.</string>
+    <string name="shop_title">Obchod</string>
+    <string name="shop_item_list_title">Prodat nebo koupit</string>
+    <string name="shop_button_buy">Koupit</string>
+    <string name="shop_button_sell">Prodat</string>
+    <string name="shop_can_not_be_bought">Nemáte dostatek kreditů nebo volného prostoru. Nelze
+    koupit.</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>
@@ -1406,7 +1412,7 @@
     <string name="game_item_info_computer_parts">
     <![CDATA[
         <p>
-        Každý z těchto modulů obsahuje vlastní kvantový procesor a univerzální sběrnici. Zapojením
+        Každý z těchto 42 modulů obsahuje vlastní kvantový procesor a univerzální sběrnici. Zapojením
         velkého množství modulů do obrovského sálového počítače vznikne extrémně výkonný kvantovy
         počítač. Menší verze takového počítače pomohla před mnoha lety řešit faktorizaci velkých
         čísel v řádu minut a tím prolomit některé do té doby používané šifry. Nový kvantový super

@@ -66,6 +66,5 @@ public final class GameDatabaseContract {
         public static final String COLUMN_NAME_ITEM_IS_BOUGHT = "isBought";
         public static final String COLUMN_NAME_ITEM_AVAILABLE_AT = "availableAt";
         public static final String COLUMN_NAME_ITEM_PRICE_RISE = "priceRise";
-        public static final String COLUMN_NAME_ITEM_SELL_PRICE = "sellPrice";
     }
 }

@@ -34,7 +34,6 @@ import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUM
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_NAME_RES_ID;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE_RISE;
-import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SELL_PRICE;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SIZE;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_TEXT_RES_ID;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.TABLE_NAME_ITEMS;
@@ -53,6 +52,7 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_EARTH
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MARS;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MERCURY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MOON;
+import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_NEPTUNE;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_SUN;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS;
 
@@ -80,7 +80,6 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_ITEMS_TABLE = "CREATE TABLE " + TABLE_NAME_ITEMS + " (" +
             GameDatabaseContract.ItemsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE + " INTEGER," +
-            GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SELL_PRICE + " INTEGER," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SIZE + " INTEGER," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_NAME_RES_ID + " INTEGER," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IMAGE_RES_ID + " INTEGER," +
@@ -95,7 +94,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private static final String DELETE_ITEMS_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME_ITEMS;
     private static final String TAG = "DATABASE";
     private static GameDatabaseHelper instance;
-    private GameUtilities engine = null;
+    private GameUtilities gameUtilities = null;
 
     /**
      * Constructor creates the database helper.
@@ -104,7 +103,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      */
     private GameDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        this.engine = new GameUtilities();
+        this.gameUtilities = new GameUtilities();
     }
 
     /**
@@ -155,7 +154,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         // Add rows
         this.addPlayer(db, direction, currentPlanet);
         this.addShips(db);
-        this.addItems(db, context.getApplicationContext());
+        this.addItems(db, context.getApplicationContext(), direction);
         if (db != null && db.isOpen()) {
             db.close();
         }
@@ -283,8 +282,9 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      *
      * @param db      Open SQLite database.
      * @param context Context of the app. It is needed to have access to resources.
+     * @param direction Trip direction
      */
-    private void addItems(SQLiteDatabase db, Context context) {
+    private void addItems(SQLiteDatabase db, Context context, boolean direction) {
         // Get all shop item names the name is a base for getting other resources
         ArrayList<String> itemNames = this.getAllItemStringNames();
         // Make a writable list of all planets where we have shops
@@ -297,6 +297,14 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         // This list must have the same size as the itemNames
         for (int i = 0; i < howManyItemsToShop; i++) {
             shopsWithoutWares.addAll(PLANETS_WITH_SHOPS);
+            // If we end on Neptune put items onto the Sun, and vice versa.
+            if (direction) {
+                // Sun -> Neptune
+                shopsWithoutWares.add(PLANET_ID_SUN);
+            } else {
+                // Neptune -> Sun
+                shopsWithoutWares.add(PLANET_ID_NEPTUNE);
+            }
         }
         // Randomize the shopsWithoutWares list
         Collections.shuffle(shopsWithoutWares, new Random(System.nanoTime()));
@@ -318,7 +326,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             // Get resource id for item icon
             String itemIcon = itemName.replace("game_item_name_", "pict_") + "_small";
             int imageIconResourceId = context.getResources().getIdentifier(itemIcon, "drawable", context.getPackageName());
-            int itemBasePrice = engine.calculateBasePrice(MIN_ITEM_PRICE, MAX_ITEM_PRICE);
+            int itemBasePrice = gameUtilities.calculateBasePrice(MIN_ITEM_PRICE, MAX_ITEM_PRICE);
             int availableAt = shopsWithoutWares.get(i);
 
             // Add item to database
@@ -334,28 +342,23 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_AVAILABLE_AT, availableAt);
                 // Set random item price from a defined range
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE, itemBasePrice);
-                // Set the same price as buy price. New sell prices are calculated when starting the
-                // game activity. Recalculation is prevented with a lock boolean variable set to
-                // true until you leave the planet.
-                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SELL_PRICE, itemBasePrice);
                 // No items are bought in the beginning
-                // TODO set 0
-                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_BOUGHT, 1);
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_BOUGHT, 0);
                 // Determine whether the price will raise or fall if price is high it might fall if
                 // low it might rise
-                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE_RISE, engine.calculatePriceMovement(itemBasePrice));
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE_RISE, gameUtilities.calculatePriceMovement(itemBasePrice));
                 // Determine item size. The size of the item can not be larger than a half of the
                 // available cargo bay size.
                 int itemSize;
                 if (availableAt == PLANET_ID_SUN || availableAt == PLANET_ID_MERCURY || availableAt == PLANET_ID_VENUS || availableAt == PLANET_ID_EARTH) {
                     // We have Icarus S
-                    itemSize = engine.randomIntGenerator(1, ICARUS_CARGO_SIZE / 2);
+                    itemSize = gameUtilities.randomIntGenerator(1, ICARUS_CARGO_SIZE / 2);
                 } else if (availableAt == PLANET_ID_MOON || availableAt == PLANET_ID_MARS || availableAt == PLANET_ID_CERES) {
                     // We have Lokys M
-                    itemSize = engine.randomIntGenerator(1, LOKYS_CARGO_SIZE / 2);
+                    itemSize = gameUtilities.randomIntGenerator(1, LOKYS_CARGO_SIZE / 2);
                 } else {
                     // We have Daedalus L
-                    itemSize = engine.randomIntGenerator(1, DAEDALUS_CARGO_SIZE / 2);
+                    itemSize = gameUtilities.randomIntGenerator(1, DAEDALUS_CARGO_SIZE / 2);
                 }
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SIZE, itemSize);
 
@@ -426,8 +429,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                     int isBought = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_IS_BOUGHT));
                     int availableAt = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_AVAILABLE_AT));
                     int priceMovement = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_PRICE_RISE));
-                    int sellPrice = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_SELL_PRICE));
-                    ItemModel item = new ItemModel(id, itemPrice, sellPrice, itemName, itemImage,
+                    ItemModel item = new ItemModel(id, itemPrice, itemName, itemImage,
                             itemImageIcon, itemDescription, availableAt, this.intToBoolean(isBought), this.intToBoolean(priceMovement), itemSize);
                     boughtItems.add(item);
                 } while (cursor.moveToNext());
@@ -528,6 +530,71 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * Returns items for shop fragment. Each item has isInShop set to true. If the item can not
+     * be bought because cargo bay is too small or the playe has not enough credits canBeBought is
+     * se to false. The returned list contains both already bough items which can be sold and
+     * items available in the shop on the current planet.
+     *
+     * @return List of items in the shop on the current planet + bought items.
+     */
+    public ArrayList<ItemModel> getItemsForShop() {
+        ArrayList<ItemModel> shopItems = new ArrayList<>();
+
+        // Get all bought items from database and set that they are now displayed in shop.
+        shopItems.addAll(this.getBoughtItems());
+        for (ItemModel item : shopItems) {
+            item.setInShop(true);
+        }
+
+        // Get current planet
+        PlayerModel player = this.getPlayerData();
+        int currentPlanet = player.getCurrentPlanet();
+
+        // Get remaining cargo space
+        int remainingCargoSpace = this.getShipData().getRemainingCargoSpace();
+
+        // Get items available on current planet and set they are in shop and whether they can be
+        // bought. Current planet is updated when we call this method.
+        final String QUERY = "SELECT * FROM " + TABLE_NAME_ITEMS + " WHERE " + COLUMN_NAME_ITEM_AVAILABLE_AT + " = " + String.valueOf(currentPlanet);
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(QUERY, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(cursor.getColumnIndex(_ID));
+                    int itemPrice = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_PRICE));
+                    int itemSize = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_SIZE));
+                    int itemName = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_NAME_RES_ID));
+                    int itemImage = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_IMAGE_RES_ID));
+                    int itemImageIcon = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_IMAGE_ICON_RES_ID));
+                    int itemDescription = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_TEXT_RES_ID));
+                    int isBought = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_IS_BOUGHT));
+                    int availableAt = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_AVAILABLE_AT));
+                    int priceMovement = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_PRICE_RISE));
+                    ItemModel item = new ItemModel(id, itemPrice, itemName, itemImage,
+                            itemImageIcon, itemDescription, availableAt, this.intToBoolean(isBought), this.intToBoolean(priceMovement), itemSize);
+                    // Set items are in shop and set if can be bought.
+                    if (remainingCargoSpace < itemSize || player.getCredits() < itemPrice) {
+                        item.setCanBeBought(false);
+                    } else {
+                        item.setCanBeBought(true);
+                    }
+                    shopItems.add(item);
+                    item.setInShop(true);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Getting shop items from database failed");
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+        return shopItems;
+    }
+
+    /**
      * Updates the current planet value in the player table.
      *
      * @param currentlyScannedPlanetId The planet id the user scanned.
@@ -536,9 +603,43 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues player = new ContentValues();
-        player.put(GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_CURRENT_PLANET, currentlyScannedPlanetId);
+        player.put(COLUMN_NAME_PLAYER_CURRENT_PLANET, currentlyScannedPlanetId);
         // The table has only one row with automatic id 1.
         db.update(TABLE_NAME_PLAYER, player, "_id=1", null);
+    }
+
+    /**
+     * Updates the price of bought items for whihc they can be sold. How the price is updated
+     * depends on whether it should rise or fall. The percentage of new price difference is set
+     * in Configuration.
+     */
+    public void updatePricesAndMovementOfBoughtItems() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues updatedItem = new ContentValues();
+
+        final String QUERY = "SELECT * FROM " + TABLE_NAME_ITEMS + " WHERE " + COLUMN_NAME_ITEM_IS_BOUGHT + " = 1";
+        Cursor cursor = db.rawQuery(QUERY, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(cursor.getColumnIndex(_ID));
+                    int itemPrice = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_PRICE));
+                    int priceMovement = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_PRICE_RISE));
+                    // Update the item price and price movement and return it into the database
+                    int newPrice = this.gameUtilities.calculateSellingPrice(itemPrice);
+                    updatedItem.put(COLUMN_NAME_ITEM_PRICE, newPrice);
+                    updatedItem.put(COLUMN_NAME_ITEM_PRICE_RISE, this.gameUtilities.calculatePriceMovement(newPrice));
+                    db.update(TABLE_NAME_PLAYER, updatedItem, "_id=" + String.valueOf(id), null);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Updating prices in database failed");
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
     }
 
     /**
@@ -559,7 +660,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         output += this.getDataFromCursor(cursorShips) + "\n\n";
 
         // Add item data
-        output += "Items table: \n\tID\t\t\tPRICE\t\tSELL PRICE\tSIZE\t\tITEM NAME RES ID\tIMAGE RES ID\t\tICON RES ID\t\t\tTEXT RES ID\t\t\tRISE/FALL\tIS BOUGH\tAVAILABLE AT\n";
+        output += "Items table: \n\tID\t\t\tPRICE\t\tSIZE\t\tITEM NAME RES ID\tIMAGE RES ID\t\tICON RES ID\t\t\tTEXT RES ID\t\t\tRISE/FALL\tIS BOUGH\tAVAILABLE AT\n";
         Cursor cursorItems = db.rawQuery("select * from " + TABLE_NAME_ITEMS, null);
         output += this.getDataFromCursor(cursorItems) + "\n\n";
 
@@ -573,7 +674,6 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         if (cursorItems != null && !cursorItems.isClosed()) {
             cursorItems.close();
         }
-        db.close();
 
         Log.d(TAG, output);
         return output;

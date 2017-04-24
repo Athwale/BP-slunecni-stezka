@@ -80,7 +80,7 @@
                     android:id="@+id/leaving_planet_button_stay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="LeaveFragmentStayButtonHandler"
+                    android:onClick="leaveFragmentStayButtonHandler"
                     android:text="@string/leaving_planet_button_name_stay"
                     android:textColor="@color/textBlack" />
 
@@ -96,7 +96,7 @@
                     android:id="@+id/leaving_planet_button_leave"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="LeaveFragmentLeaveButtonHandler"
+                    android:onClick="leaveFragmentLeaveButtonHandler"
                     android:text="@string/leaving_planet_button_name_leave"
                     android:textColor="@color/textBlack" />
 

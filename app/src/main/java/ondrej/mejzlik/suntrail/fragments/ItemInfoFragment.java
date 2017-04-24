@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -90,12 +91,20 @@ public class ItemInfoFragment extends Fragment {
             // Get the item model filled with data
             ItemModel item = arguments.getParcelable(ITEM_KEY);
 
+            // TODO add button listeners and make database changes here
+
             ImageView itemImage = (ImageView) view.findViewById(R.id.item_info_image_view_item);
             TextView itemName = (TextView) view.findViewById(R.id.item_info_text_view_item_name);
             TextView itemDescription = (TextView) view.findViewById(R.id.item_info_text_view_top);
             ImageView imagePriceMovement = (ImageView) view.findViewById(R.id.item_info_image_view_price_movement);
             TextView itemSize = (TextView) view.findViewById(R.id.item_info_text_view_cargo_size);
             TextView itemPriceMovementText = (TextView) view.findViewById(R.id.item_info_text_view_price_movement);
+            TextView itemPriceTitle = (TextView) view.findViewById(R.id.item_info_text_view_price_title);
+            TextView itemPrice = (TextView) view.findViewById(R.id.item_info_text_view_item_price);
+            TextView itemPriceCr = (TextView) view.findViewById(R.id.item_info_text_view_item_price_cr);
+            TextView message = (TextView) view.findViewById(R.id.item_info_text_view_cant_be_bought);
+            LinearLayout itemBuy = (LinearLayout) view.findViewById(R.id.item_info_linear_layout_buy);
+            LinearLayout itemSell = (LinearLayout) view.findViewById(R.id.item_info_linear_layout_sell);
 
             if (item != null) {
                 itemImage.setImageResource(item.getItemImageResId());
@@ -109,6 +118,38 @@ public class ItemInfoFragment extends Fragment {
                     itemPriceMovementText.setText(R.string.item_info_price_decrease);
                 }
                 itemSize.setText(" " + String.valueOf(item.getSize()));
+                if (item.isInShop()) {
+                    // Set price and enable sell/buy.
+                    itemPriceTitle.setVisibility(View.VISIBLE);
+                    itemPriceCr.setVisibility(View.VISIBLE);
+                    if (item.canBeBought()) {
+                        // Display normal buying price and show buy button.
+                        itemPrice.setText(" " + String.valueOf(item.getPrice()));
+                        itemBuy.setVisibility(View.VISIBLE);
+                        itemSell.setVisibility(View.GONE);
+                        message.setVisibility(View.GONE);
+                    } else if (item.isBought()) {
+                        // Display sell price and sell button.
+                        itemPrice.setText(" " + String.valueOf(item.getPrice()));
+                        itemBuy.setVisibility(View.GONE);
+                        itemSell.setVisibility(View.VISIBLE);
+                        message.setVisibility(View.GONE);
+                    } else {
+                        // Item can not be bought
+                        itemPrice.setText(" " + String.valueOf(item.getPrice()));
+                        itemBuy.setVisibility(View.GONE);
+                        itemSell.setVisibility(View.GONE);
+                        message.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    // We are in inventory, hide all shop related stuff
+                    itemPriceTitle.setVisibility(View.GONE);
+                    itemPrice.setVisibility(View.GONE);
+                    itemPriceCr.setVisibility(View.GONE);
+                    itemSell.setVisibility(View.GONE);
+                    itemSell.setVisibility(View.GONE);
+                    message.setVisibility(View.GONE);
+                }
             }
         }
     }

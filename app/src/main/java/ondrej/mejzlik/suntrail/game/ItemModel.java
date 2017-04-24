@@ -29,11 +29,11 @@ public class ItemModel implements Parcelable {
     private final int availableAtPlanet;
     private final int size;
     private int price;
-    private int sellPrice;
-    private boolean isBought;
     private boolean priceMovement;
     private boolean isInShop;
-
+    private boolean isBought;
+    private boolean canBeBought;
+    
     /**
      * Create a new game item information holder.
      *
@@ -48,10 +48,9 @@ public class ItemModel implements Parcelable {
      * @param isBought             is the item in player's inventory?
      * @param size                 item size in cargo bay (S, M, L)
      */
-    public ItemModel(int id, int price, int sellPrice, int itemNameResId, int itemImageResId, int itemImageIconResId, int itemDescriptionResId, int availableAtPlanet, boolean isBought, boolean priceMovement, int size) {
+    public ItemModel(int id, int price, int itemNameResId, int itemImageResId, int itemImageIconResId, int itemDescriptionResId, int availableAtPlanet, boolean isBought, boolean priceMovement, int size) {
         this.id = id;
         this.price = price;
-        this.sellPrice = sellPrice;
         this.itemNameResId = itemNameResId;
         this.itemImageResId = itemImageResId;
         this.itemImageIconResId = itemImageIconResId;
@@ -62,19 +61,37 @@ public class ItemModel implements Parcelable {
         this.size = size;
     }
 
-    private ItemModel(Parcel in) {
+    protected ItemModel(Parcel in) {
         this.id = in.readInt();
-        this.price = in.readInt();
-        this.sellPrice = in.readInt();
         this.itemNameResId = in.readInt();
         this.itemImageResId = in.readInt();
         this.itemImageIconResId = in.readInt();
         this.itemDescriptionResId = in.readInt();
         this.availableAtPlanet = in.readInt();
-        this.isBought = in.readByte() != 0;
+        this.size = in.readInt();
+        this.price = in.readInt();
         this.priceMovement = in.readByte() != 0;
         this.isInShop = in.readByte() != 0;
-        this.size = in.readInt();
+        this.isBought = in.readByte() != 0;
+        this.canBeBought = in.readByte() != 0;
+    }
+
+    /**
+     * Returns true if this item can be sold.
+     *
+     * @return Returns true if this item can be sold.
+     */
+    public boolean canBeBought() {
+        return canBeBought;
+    }
+
+    /**
+     * Sets if this item can be sold. True - can be sold.
+     *
+     * @param canBeBought True - can be sold, false otherwise.
+     */
+    public void setCanBeBought(boolean canBeBought) {
+        this.canBeBought = canBeBought;
     }
 
     /**
@@ -93,14 +110,6 @@ public class ItemModel implements Parcelable {
      */
     public void setInShop(boolean inShop) {
         isInShop = inShop;
-    }
-
-    public int getSellPrice() {
-        return sellPrice;
-    }
-
-    public void setSellPrice(int sellPrice) {
-        this.sellPrice = sellPrice;
     }
 
     /**
@@ -224,23 +233,22 @@ public class ItemModel implements Parcelable {
 
     @Override
     public int describeContents() {
-        // Unique descriptor. Resource ids are unique, we can use that.
-        return this.hashCode() + this.getItemNameResId();
+        return 0;
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
-        dest.writeInt(this.price);
-        dest.writeInt(this.sellPrice);
         dest.writeInt(this.itemNameResId);
         dest.writeInt(this.itemImageResId);
         dest.writeInt(this.itemImageIconResId);
         dest.writeInt(this.itemDescriptionResId);
         dest.writeInt(this.availableAtPlanet);
-        dest.writeByte(this.isBought ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.size);
+        dest.writeInt(this.price);
         dest.writeByte(this.priceMovement ? (byte) 1 : (byte) 0);
         dest.writeByte(this.isInShop ? (byte) 1 : (byte) 0);
-        dest.writeInt(this.size);
+        dest.writeByte(this.isBought ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.canBeBought ? (byte) 1 : (byte) 0);
     }
 }

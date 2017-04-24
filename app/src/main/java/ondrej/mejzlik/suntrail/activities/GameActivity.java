@@ -18,6 +18,7 @@ import ondrej.mejzlik.suntrail.fragments.InventoryFragment;
 import ondrej.mejzlik.suntrail.fragments.ItemInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.LeavingPlanetFragment;
 import ondrej.mejzlik.suntrail.fragments.ShipInfoFragment;
+import ondrej.mejzlik.suntrail.fragments.ShopFragment;
 import ondrej.mejzlik.suntrail.fragments.StartGameFragment;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
 import ondrej.mejzlik.suntrail.game.GameUtilities;
@@ -45,15 +46,12 @@ public class GameActivity extends Activity {
     private int scannedPlanet;
     // These variables are set to true once we have a functional, initialized and updated database.
     private boolean isDatabaseCreated = false;
-    private boolean isCurrentPlanetUpdated = false;
+    private boolean isCurrentDatabaseUpdated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
-        // TODO update sale prices here
-        // TODO do not start game until Confirm button is hit.
 
         // Game utilities contain a method to check database existence.
         GameUtilities gameUtilities = new GameUtilities();
@@ -68,7 +66,7 @@ public class GameActivity extends Activity {
             if (savedInstanceState != null) {
                 this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
                 this.isDatabaseCreated = savedInstanceState.getBoolean(DATABASE_CREATED_KEY);
-                this.isCurrentPlanetUpdated = savedInstanceState.getBoolean(CURRENT_PLANET_UPDATED_KEY);
+                this.isCurrentDatabaseUpdated = savedInstanceState.getBoolean(CURRENT_PLANET_UPDATED_KEY);
                 return;
             }
 
@@ -125,7 +123,7 @@ public class GameActivity extends Activity {
             } else {
                 // Update current planet in database. No need to do this above as current planet is
                 // set to scanned planet when a new database is initialized.
-                AsyncCurrentPlanetUpdater planetUpdater = new AsyncCurrentPlanetUpdater(this.scannedPlanet, this);
+                AsyncUpdater planetUpdater = new AsyncUpdater(this.scannedPlanet, this);
                 planetUpdater.execute();
                 // We already have a database from before.
                 this.isDatabaseCreated = true;
@@ -138,7 +136,7 @@ public class GameActivity extends Activity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
         savedInstanceState.putBoolean(DATABASE_CREATED_KEY, this.isDatabaseCreated);
-        savedInstanceState.putBoolean(CURRENT_PLANET_UPDATED_KEY, this.isCurrentPlanetUpdated);
+        savedInstanceState.putBoolean(CURRENT_PLANET_UPDATED_KEY, this.isCurrentDatabaseUpdated);
         // Needed for saving state in fragments
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -277,7 +275,7 @@ public class GameActivity extends Activity {
      *
      * @param view The button that has been clicked
      */
-    public void InventoryButtonHandlerGameMenu(View view) {
+    public void inventoryButtonHandlerGameMenu(View view) {
         if (this.checkIsDatabaseCreated()) {
             FragmentManager fragmentManager = getFragmentManager();
             InventoryFragment inventoryFragment = new InventoryFragment();
@@ -293,9 +291,14 @@ public class GameActivity extends Activity {
      *
      * @param view The button that has been clicked
      */
-    public void ShopButtonHandler(View view) {
+    public void shopButtonHandler(View view) {
         if (this.checkIsDatabaseCreated()) {
-            // TODO enter shop
+            FragmentManager fragmentManager = getFragmentManager();
+            ShopFragment shopFragment = new ShopFragment();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.game_activity_fragment_container, shopFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
     }
 
@@ -304,7 +307,7 @@ public class GameActivity extends Activity {
      *
      * @param view The button that has been clicked
      */
-    public void LeavePlanetButtonHandler(View view) {
+    public void leavePlanetButtonHandler(View view) {
         if (this.checkIsDatabaseCreated()) {
             FragmentManager fragmentManager = getFragmentManager();
             LeavingPlanetFragment leavingPlanetFragment = new LeavingPlanetFragment();
@@ -321,7 +324,7 @@ public class GameActivity extends Activity {
      *
      * @param view The button that has been clicked
      */
-    public void LeaveFragmentStayButtonHandler(View view) {
+    public void leaveFragmentStayButtonHandler(View view) {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.popBackStackImmediate();
     }
@@ -332,7 +335,7 @@ public class GameActivity extends Activity {
      *
      * @param view The button that has been clicked
      */
-    public void LeaveFragmentLeaveButtonHandler(View view) {
+    public void leaveFragmentLeaveButtonHandler(View view) {
         Intent intent = new Intent(this, MainMenuActivity.class);
         // This flag removes all activities in the back stack up to MainMenuActivity.
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -349,7 +352,7 @@ public class GameActivity extends Activity {
      * @return True if database was created and updated else false and displays a toast.
      */
     private boolean checkIsDatabaseCreated() {
-        if (this.isDatabaseCreated && this.isCurrentPlanetUpdated) {
+        if (this.isDatabaseCreated && this.isCurrentDatabaseUpdated) {
             return true;
         }
         Toast.makeText(this, this.getResources().getString(R.string.toast_flight_route), Toast.LENGTH_LONG).show();
@@ -382,23 +385,24 @@ public class GameActivity extends Activity {
         @Override
         protected void onPostExecute(Void result) {
             // This method is called in main thread automatically after finishing the work.
-            // Once both isDatabaseCreated and isCurrentPlanetUpdated are true, the player can
+            // Once both isDatabaseCreated and isCurrentDatabaseUpdated are true, the player can
             // enter inventory and shop.
             isDatabaseCreated = true;
-            isCurrentPlanetUpdated = true;
+            isCurrentDatabaseUpdated = true;
         }
     }
 
     /**
-     * This asynchronous class runs a new thread to update the current planet in the database.
-     * When the user opens the game activity the new current planet is written into the database.
-     * It is the planet that was last scanned and is passed into the activity in an intent.
+     * This asynchronous class runs a new thread to update the current planet and prices and price
+     * movement of bought items in the database. When the user opens the game activity the new 
+     * current planet is written into the database. It is the planet that was last scanned and is 
+     * passed into the activity in an intent.
      */
-    private class AsyncCurrentPlanetUpdater extends AsyncTask<Void, Void, Void> {
+    private class AsyncUpdater extends AsyncTask<Void, Void, Void> {
         private final int currentPlanet;
         private final Context context;
 
-        AsyncCurrentPlanetUpdater(int currentPlanet, Context context) {
+        AsyncUpdater(int currentPlanet, Context context) {
             super();
             this.currentPlanet = currentPlanet;
             this.context = context;
@@ -410,13 +414,14 @@ public class GameActivity extends Activity {
             // cause any concurrent troubles.
             GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.context);
             databaseHelper.updateCurrentPlanet(this.currentPlanet);
+            databaseHelper.updatePricesAndMovementOfBoughtItems();
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
             // isDatabaseCreated is set to true in onCreate.
-            isCurrentPlanetUpdated = true;
+            isCurrentDatabaseUpdated = true;
         }
     }
 

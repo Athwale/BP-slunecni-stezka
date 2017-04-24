@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list_view_shop_row_linear_layout"
+    android:id="@+id/list_view_row_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/rowGreen"
     android:gravity="start"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    tools:background="@color/rowGreen">
 
     <ImageView
-        android:id="@+id/shop_row_image_view_item"
+        android:id="@+id/row_image_view_item"
         android:layout_width="wrap_content"
         android:layout_height="52dp"
         android:layout_gravity="center_vertical"
@@ -25,7 +25,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/shop_row_item_name"
+            android:id="@+id/row_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/shop_row_item_size_title"
+                android:id="@+id/row_item_size_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -46,7 +46,7 @@
                 android:textColor="@color/textBlack" />
 
             <TextView
-                android:id="@+id/shop_row_item_size"
+                android:id="@+id/row_item_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -55,7 +55,7 @@
                 tools:text=" 11" />
 
             <TextView
-                android:id="@+id/shop_row_item_price_title"
+                android:id="@+id/row_item_price_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -65,7 +65,7 @@
                 android:textColor="@color/textBlack" />
 
             <TextView
-                android:id="@+id/shop_row_price"
+                android:id="@+id/row_item_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -74,7 +74,7 @@
                 tools:text=" 156" />
 
             <TextView
-                android:id="@+id/shop_row_item_price_cr"
+                android:id="@+id/row_item_price_cr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -87,7 +87,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/shop_row_image_view_price_movement"
+        android:id="@+id/row_image_view_price_movement"
         android:layout_width="0dp"
         android:layout_height="52dp"
         android:layout_marginEnd="5dp"
