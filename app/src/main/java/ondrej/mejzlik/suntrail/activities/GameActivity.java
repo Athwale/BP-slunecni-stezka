@@ -394,8 +394,8 @@ public class GameActivity extends Activity {
 
     /**
      * This asynchronous class runs a new thread to update the current planet and prices and price
-     * movement of bought items in the database. When the user opens the game activity the new 
-     * current planet is written into the database. It is the planet that was last scanned and is 
+     * movement of bought items in the database. When the user opens the game activity the new
+     * current planet is written into the database. It is the planet that was last scanned and is
      * passed into the activity in an intent.
      */
     private class AsyncUpdater extends AsyncTask<Void, Void, Void> {
@@ -414,7 +414,7 @@ public class GameActivity extends Activity {
             // cause any concurrent troubles.
             GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.context);
             databaseHelper.updateCurrentPlanet(this.currentPlanet);
-            databaseHelper.updatePricesAndMovementOfBoughtItems();
+            databaseHelper.updateItems();
             return null;
         }
 

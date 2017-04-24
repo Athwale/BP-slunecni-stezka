@@ -332,7 +332,7 @@ public class ScannerActivity extends Activity {
                 // Open planet menu fragment.
                 PlanetMenuFragment planetMenuFragment = new PlanetMenuFragment();
                 planetMenuFragment.setArguments(this.planetResources);
-                // Set tag to the fragment in odrder to recognize it in onBackPressed.
+                // Set tag to the fragment in order to recognize it in onBackPressed.
                 transaction.replace(R.id.scanner_fragment_container, planetMenuFragment, PLANET_MENU_FRAGMENT_KEY);
             }
             transaction.addToBackStack(null);

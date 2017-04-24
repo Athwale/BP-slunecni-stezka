@@ -19,30 +19,12 @@ public class PlayerModel {
      * @param currentPlanet Current planet
      * @param direction     Trip direction
      */
-    public PlayerModel(int id, int shipResId, int credits, int currentPlanet, boolean direction) {
+    PlayerModel(int id, int shipResId, int credits, int currentPlanet, boolean direction) {
         this.id = id;
         this.shipResId = shipResId;
         this.credits = credits;
         this.currentPlanet = currentPlanet;
         this.direction = direction;
-    }
-
-    /**
-     * Returns the ship name resource id.
-     *
-     * @return Returns the ship name resource id.
-     */
-    public int getShipResId() {
-        return shipResId;
-    }
-
-    /**
-     * Sets the the ship name resource id.
-     *
-     * @param shipResId Ship name resource id.
-     */
-    public void setShipResId(int shipResId) {
-        this.shipResId = shipResId;
     }
 
     /**
@@ -55,30 +37,12 @@ public class PlayerModel {
     }
 
     /**
-     * Sets a new credit value.
-     *
-     * @param credits New credit value.
-     */
-    public void setCredits(int credits) {
-        this.credits = credits;
-    }
-
-    /**
      * Returns current planet.
      *
      * @return Current planet.
      */
     public int getCurrentPlanet() {
         return currentPlanet;
-    }
-
-    /**
-     * Sets current planet.
-     *
-     * @param currentPlanet New current planet.
-     */
-    public void setCurrentPlanet(int currentPlanet) {
-        this.currentPlanet = currentPlanet;
     }
 
     /**
@@ -90,12 +54,4 @@ public class PlayerModel {
         return direction;
     }
 
-    /**
-     * Returns player row id.
-     *
-     * @return Returns player row id.
-     */
-    public int getId() {
-        return id;
-    }
 }

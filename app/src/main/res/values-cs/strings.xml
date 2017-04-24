@@ -1095,6 +1095,9 @@
     <string name="shop_button_sell">Prodat</string>
     <string name="shop_can_not_be_bought">Nemáte dostatek kreditů nebo volného prostoru. Nelze
     koupit.</string>
+    <string name="shop_buying_item">Probíhá nákup</string>
+    <string name="shop_selling_item">Probíhá prodej</string>
+    <string name="shop_can_not_sell">Nelze prodat v tomto obchodě.</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>
@@ -1108,7 +1111,7 @@
     <string name="start_new_game_text_bottom">
     <![CDATA[
         <p>
-        Tato loď vám byla darována Obchodní federací. Společně s ní dostáváte <b>42</b> kreditů.<br>
+        Tato loď vám byla darována Obchodní federací. Společně s ní dostáváte <b>jistý obnos kreditů</b>.<br>
         Vaším novým úkolem je převážet zboží a obchodovat s ním na planetách a jiných astronomických objektech v naší Sluneční soustavě.
         </p>
         <p>

@@ -21,7 +21,7 @@ import ondrej.mejzlik.suntrail.R;
  */
 public class ItemListAdapter extends ArrayAdapter<ItemModel> {
     // Needed for getting colors from resources
-    private Context context;
+    private final Context context;
 
     public ItemListAdapter(Context context, ArrayList<ItemModel> items) {
         super(context, 0, items);
@@ -100,7 +100,6 @@ public class ItemListAdapter extends ArrayAdapter<ItemModel> {
                 viewHolder.itemPriceCr.setVisibility(View.GONE);
             }
         }
-
         // Return the completed view
         return convertView;
     }

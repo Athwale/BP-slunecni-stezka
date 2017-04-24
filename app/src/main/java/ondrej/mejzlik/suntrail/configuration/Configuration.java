@@ -67,14 +67,14 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS
  * made. If he keeps it the price may rise a bit more but it will occupy some space. The player
  * has to keep an eye on the predicted price movements.
  * <p>
- *
+ * <p>
  * Game method call sequence:
- *
+ * <p>
  * OPENING GAME MODE ON A PLANET (It is impossible to open game mode on already visited planets)
  * initializeDatabase
  * updateCurrentPlanet(New scanned planet id)
- * updatePricesAndMovementOfBoughtItems()
- *
+ * updateItems()
+ * <p>
  * ENTERING SHOP
  * getItemsForShop()
  */
@@ -138,20 +138,20 @@ public final class Configuration {
 
     // Initial game values
     public static final int FIRST_SHIP = R.string.ship_name_icarus;
-    public static final int STARTING_CREDITS = 350;
+    public static final int STARTING_CREDITS = 500;
 
     public static final int ICARUS_CARGO_SIZE = 15;
     public static final int LOKYS_CARGO_SIZE = 25;
     public static final int DAEDALUS_CARGO_SIZE = 35;
     // These are used to randomly assign the price of an item
-    public static final int MIN_ITEM_PRICE = 50;
-    public static final int MAX_ITEM_PRICE = 500;
+    public static final int MIN_ITEM_PRICE = 40;
+    public static final int MAX_ITEM_PRICE = 300;
     // In percent how much the price will raise or fall.
     public static final int MIN_ITEM_PRICE_MOVEMENT = 10;
-    public static final int MAX_ITEM_PRICE_MOVEMENT = 20;
+    public static final int MAX_ITEM_PRICE_MOVEMENT = 30;
     // From which price should the probability of price falling be higher and lower
-    public static final int ITEM_PRICE_MIGHT_FALL = 450;
-    public static final int ITEM_PRICE_MIGHT_RISE = 150;
+    public static final int ITEM_PRICE_MIGHT_FALL = 250;
+    public static final int ITEM_PRICE_MIGHT_RISE = 100;
     // probability in % of price fall or rise if price is above ITEM_PRICE_MIGHT_FALL or below
     // ITEM_PRICE_MIGHT_RISE
     public static final int ITEM_PRICE_FALL_RISE_PROBABILITY = 70;

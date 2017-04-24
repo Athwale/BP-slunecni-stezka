@@ -3,15 +3,19 @@ package ondrej.mejzlik.suntrail.fragments;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import ondrej.mejzlik.suntrail.R;
+import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
 import ondrej.mejzlik.suntrail.game.ItemModel;
 import ondrej.mejzlik.suntrail.utilities.HtmlConverter;
 
@@ -86,6 +90,15 @@ public class ItemInfoFragment extends Fragment {
     @SuppressLint("SetTextI18n")
     private void setContents(View view) {
         HtmlConverter converter = new HtmlConverter();
+
+        // Set onKeyListener to be able to handle back click from the fragment it self.
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                return keyCode == KeyEvent.KEYCODE_BACK;
+            }
+        });
+
         Bundle arguments = this.getArguments();
         if (arguments != null) {
             // Get the item model filled with data
@@ -105,6 +118,22 @@ public class ItemInfoFragment extends Fragment {
             TextView message = (TextView) view.findViewById(R.id.item_info_text_view_cant_be_bought);
             LinearLayout itemBuy = (LinearLayout) view.findViewById(R.id.item_info_linear_layout_buy);
             LinearLayout itemSell = (LinearLayout) view.findViewById(R.id.item_info_linear_layout_sell);
+            final Button buyButton = (Button) view.findViewById(R.id.item_info_button_buy);
+            Button sellButton = (Button) view.findViewById(R.id.item_info_button_sell);
+
+            buyButton.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    buyOrSell(v);
+                }
+            });
+
+            sellButton.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    buyOrSell(v);
+                }
+            });
 
             if (item != null) {
                 itemImage.setImageResource(item.getItemImageResId());
@@ -123,22 +152,30 @@ public class ItemInfoFragment extends Fragment {
                     itemPriceTitle.setVisibility(View.VISIBLE);
                     itemPriceCr.setVisibility(View.VISIBLE);
                     if (item.canBeBought()) {
-                        // Display normal buying price and show buy button.
+                        // Display price and show buy button.
                         itemPrice.setText(" " + String.valueOf(item.getPrice()));
                         itemBuy.setVisibility(View.VISIBLE);
                         itemSell.setVisibility(View.GONE);
                         message.setVisibility(View.GONE);
-                    } else if (item.isBought()) {
-                        // Display sell price and sell button.
+                    } else if (item.isBought() && item.isDisplayable()) {
+                        // Display price and sell button.
                         itemPrice.setText(" " + String.valueOf(item.getPrice()));
                         itemBuy.setVisibility(View.GONE);
                         itemSell.setVisibility(View.VISIBLE);
                         message.setVisibility(View.GONE);
-                    } else {
-                        // Item can not be bought
+                    } else if (!item.isDisplayable()) {
+                        // We bough the item in this shop and must not be able to sell it back
                         itemPrice.setText(" " + String.valueOf(item.getPrice()));
                         itemBuy.setVisibility(View.GONE);
                         itemSell.setVisibility(View.GONE);
+                        message.setText(R.string.shop_can_not_sell);
+                        message.setVisibility(View.VISIBLE);
+                    } else {
+                        // Item can not be bought, not enough credits or cargo space
+                        itemPrice.setText(" " + String.valueOf(item.getPrice()));
+                        itemBuy.setVisibility(View.GONE);
+                        itemSell.setVisibility(View.GONE);
+                        message.setText(R.string.shop_can_not_be_bought);
                         message.setVisibility(View.VISIBLE);
                     }
                 } else {
@@ -152,5 +189,34 @@ public class ItemInfoFragment extends Fragment {
                 }
             }
         }
+    }
+
+    /**
+     * This method handles buy and sell buttons.
+     *
+     * @param view The button that was clicked.
+     */
+    private void buyOrSell(View view) {
+        Button button = (Button) view;
+        GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(getActivity());
+        // Get the item row id in database
+        Bundle arguments = this.getArguments();
+        ItemModel item = arguments.getParcelable(ITEM_KEY);
+        if (item != null) {
+            switch (button.getId()) {
+                case R.id.item_info_button_buy: {
+                    Toast.makeText(getActivity(), getResources().getString(R.string.shop_buying_item), Toast.LENGTH_SHORT).show();
+                    databaseHelper.buySellItem(item, true);
+                    break;
+                }
+                case R.id.item_info_button_sell: {
+                    Toast.makeText(getActivity(), getResources().getString(R.string.shop_selling_item), Toast.LENGTH_SHORT).show();
+                    databaseHelper.buySellItem(item, false);
+                    break;
+                }
+            }
+        }
+        // Close this fragment as soon as the item is bought.
+        getFragmentManager().popBackStackImmediate();
     }
 }

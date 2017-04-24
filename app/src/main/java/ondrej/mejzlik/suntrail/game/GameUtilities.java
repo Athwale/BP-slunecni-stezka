@@ -24,20 +24,6 @@ public class GameUtilities {
     }
 
     /**
-     * This method returns the selling price for a given item. By default we sell items for
-     * 10 - 20% higher price than what we bought it for.
-     *
-     * @param basePrice Item price from database, this is the price we bought it for.
-     * @return Selling price.
-     */
-    int calculateSellingPrice(int basePrice) {
-        // Calculate how much we add to the item base price. By default 10 - 20%.
-        int profit = this.randomIntGenerator(MIN_ITEM_PRICE_MOVEMENT, MAX_ITEM_PRICE_MOVEMENT);
-        // Calculate new price use profit as percentage
-        return basePrice + ((basePrice / 100) * profit);
-    }
-
-    /**
      * This method returns a random price in the range given by the parameters.
      *
      * @param min Minimal price.
@@ -46,6 +32,27 @@ public class GameUtilities {
      */
     int calculateBasePrice(int min, int max) {
         return this.randomIntGenerator(min, max);
+    }
+
+    /**
+     * This method returns the selling price for a given item. By default we sell items for
+     * 10 - 20% higher price than what we bought it for.
+     *
+     * @param basePrice Item price from database, this is the price we bought it for.
+     * @return Selling price.
+     */
+    int calculateSellingPrice(int basePrice, boolean movement) {
+        // Calculate how much we add or take from to the item base price.
+        int profit = this.randomIntGenerator(MIN_ITEM_PRICE_MOVEMENT, MAX_ITEM_PRICE_MOVEMENT);
+        double priceStep = (basePrice / 100.0) * profit;
+        // Calculate new price use profit as percentage
+        if (movement) {
+            // Price will rise
+            return (int) Math.round(basePrice + priceStep);
+        } else {
+            // Price will fall
+            return (int) Math.round(basePrice - priceStep);
+        }
     }
 
     /**

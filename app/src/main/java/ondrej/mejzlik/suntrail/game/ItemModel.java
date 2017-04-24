@@ -28,40 +28,43 @@ public class ItemModel implements Parcelable {
     private final int itemDescriptionResId;
     private final int availableAtPlanet;
     private final int size;
+    private final boolean isDisplayable;
     private int price;
     private boolean priceMovement;
     private boolean isInShop;
     private boolean isBought;
     private boolean canBeBought;
-    
+
     /**
      * Create a new game item information holder.
      *
      * @param id                   item database row id
      * @param price                item price from database
-     * @param sellPrice            item selling price from database
      * @param itemNameResId        item name string resource id from database
      * @param itemImageResId       item image resource id from database
      * @param itemDescriptionResId item description string resource id from database
      * @param priceMovement        true if the price will rise, false otherwise
      * @param availableAtPlanet    planet id (from PlanetIdentifier) where this item is available
+     * @param isDisplayable        true if the item can be displayed in shop or inventory
      * @param isBought             is the item in player's inventory?
      * @param size                 item size in cargo bay (S, M, L)
      */
-    public ItemModel(int id, int price, int itemNameResId, int itemImageResId, int itemImageIconResId, int itemDescriptionResId, int availableAtPlanet, boolean isBought, boolean priceMovement, int size) {
+    ItemModel(int id, int price, int itemNameResId, int itemImageResId, int itemImageIconResId, int itemDescriptionResId, int availableAtPlanet, boolean isDisplayable,
+              boolean isBought, boolean priceMovement, int size) {
         this.id = id;
         this.price = price;
         this.itemNameResId = itemNameResId;
         this.itemImageResId = itemImageResId;
         this.itemImageIconResId = itemImageIconResId;
         this.itemDescriptionResId = itemDescriptionResId;
+        this.isDisplayable = isDisplayable;
         this.availableAtPlanet = availableAtPlanet;
         this.isBought = isBought;
         this.priceMovement = priceMovement;
         this.size = size;
     }
 
-    protected ItemModel(Parcel in) {
+    private ItemModel(Parcel in) {
         this.id = in.readInt();
         this.itemNameResId = in.readInt();
         this.itemImageResId = in.readInt();
@@ -74,6 +77,16 @@ public class ItemModel implements Parcelable {
         this.isInShop = in.readByte() != 0;
         this.isBought = in.readByte() != 0;
         this.canBeBought = in.readByte() != 0;
+        this.isDisplayable = in.readByte() != 0;
+    }
+
+    /**
+     * Returns true if this item can be shown in a list.
+     *
+     * @return Returns true if this item can be shown in a list.
+     */
+    public boolean isDisplayable() {
+        return isDisplayable;
     }
 
     /**
@@ -90,7 +103,7 @@ public class ItemModel implements Parcelable {
      *
      * @param canBeBought True - can be sold, false otherwise.
      */
-    public void setCanBeBought(boolean canBeBought) {
+    void setCanBeBought(boolean canBeBought) {
         this.canBeBought = canBeBought;
     }
 
@@ -108,7 +121,7 @@ public class ItemModel implements Parcelable {
      *
      * @param inShop True if the item is supposed to be displayed in shop.
      */
-    public void setInShop(boolean inShop) {
+    void setInShop(boolean inShop) {
         isInShop = inShop;
     }
 
@@ -131,30 +144,12 @@ public class ItemModel implements Parcelable {
     }
 
     /**
-     * Sets item price.
-     *
-     * @param price New item price.
-     */
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    /**
      * Returns item name string resource id.
      *
      * @return Returns item name string resource id.
      */
     public int getItemNameResId() {
         return itemNameResId;
-    }
-
-    /**
-     * Returns item image icon resource id.
-     *
-     * @return Returns item image icon resource id.
-     */
-    public int getItemImageIconResId() {
-        return itemImageIconResId;
     }
 
     /**
@@ -176,30 +171,12 @@ public class ItemModel implements Parcelable {
     }
 
     /**
-     * Returns planet id (from PlanetIdentifier) where this item can be bought.
-     *
-     * @return Returns planet id (from PlanetIdentifier) where this item can be bought.
-     */
-    public int getAvailableAtPlanet() {
-        return availableAtPlanet;
-    }
-
-    /**
      * Returns true if the player has bought this item and it is in his inventory.
      *
      * @return Returns true if the player has bought this item and it is in his inventory.
      */
     public boolean isBought() {
         return isBought;
-    }
-
-    /**
-     * Pass true to indicate that this item is in the player's inventory.
-     *
-     * @param bought Pass true to indicate that this item is in the player's inventory.
-     */
-    public void setBought(boolean bought) {
-        isBought = bought;
     }
 
     /**
@@ -221,16 +198,6 @@ public class ItemModel implements Parcelable {
         return priceMovement;
     }
 
-    /**
-     * Sets the price movement for this item. True - price will rise, false - price will fall.
-     *
-     * @param priceMovement Sets the price movement for this item. True - price will rise, false -
-     *                      price will fall.
-     */
-    public void setPriceMovement(boolean priceMovement) {
-        this.priceMovement = priceMovement;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -250,5 +217,6 @@ public class ItemModel implements Parcelable {
         dest.writeByte(this.isInShop ? (byte) 1 : (byte) 0);
         dest.writeByte(this.isBought ? (byte) 1 : (byte) 0);
         dest.writeByte(this.canBeBought ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.isDisplayable ? (byte) 1 : (byte) 0);
     }
 }
