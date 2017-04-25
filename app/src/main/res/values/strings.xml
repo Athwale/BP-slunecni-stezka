@@ -1092,7 +1092,7 @@
     <string name="inventory_empty">The game has not been started yet.</string>
     <string name="item_info_price_rise">The price of this item will rise:</string>
     <string name="item_info_price_decrease">The price of this item will decrease:</string>
-    <string name="list_selling_price">Sale price:</string>
+    <string name="list_selling_price">Selling price:</string>
     <string name="list_price">Price:</string>
     <string name="list_size">Size:</string>
     <string name="list_cr">cr</string>
