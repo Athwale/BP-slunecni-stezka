@@ -1087,8 +1087,8 @@
     <string name="inventory_coin_description">Coin image</string>
     <string name="inventory_loading">Retrieving cargo list</string>
     <string name="inventory_empty">The game has not been started yet.</string>
-    <string name="item_info_price_rise">The price of this item will rise:</string>
-    <string name="item_info_price_decrease">The price of this item will decrease:</string>
+    <string name="item_info_price_rise">The price of this item will rise on the next planet:</string>
+    <string name="item_info_price_decrease">Price of this item will decrease on the next planet:</string>
     <string name="list_selling_price">Selling price:</string>
     <string name="list_price">Price:</string>
     <string name="list_size">Size:</string>

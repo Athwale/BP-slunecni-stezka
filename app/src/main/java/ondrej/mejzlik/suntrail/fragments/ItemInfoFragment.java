@@ -104,8 +104,6 @@ public class ItemInfoFragment extends Fragment {
             // Get the item model filled with data
             ItemModel item = arguments.getParcelable(ITEM_KEY);
 
-            // TODO add button listeners and make database changes here
-
             ImageView itemImage = (ImageView) view.findViewById(R.id.item_info_image_view_item);
             TextView itemName = (TextView) view.findViewById(R.id.item_info_text_view_item_name);
             TextView itemDescription = (TextView) view.findViewById(R.id.item_info_text_view_top);
@@ -147,6 +145,7 @@ public class ItemInfoFragment extends Fragment {
                     itemPriceMovementText.setText(R.string.item_info_price_decrease);
                 }
                 itemSize.setText(" " + String.valueOf(item.getSize()));
+                itemPrice.setText(" " + String.valueOf(item.getPrice()));
                 if (item.isInShop()) {
                     // Set price and enable sell/buy.
                     itemPriceTitle.setVisibility(View.VISIBLE);
@@ -180,11 +179,8 @@ public class ItemInfoFragment extends Fragment {
                     }
                 } else {
                     // We are in inventory, hide all shop related stuff
-                    itemPriceTitle.setVisibility(View.GONE);
-                    itemPrice.setVisibility(View.GONE);
-                    itemPriceCr.setVisibility(View.GONE);
                     itemSell.setVisibility(View.GONE);
-                    itemSell.setVisibility(View.GONE);
+                    itemBuy.setVisibility(View.GONE);
                     message.setVisibility(View.GONE);
                 }
             }

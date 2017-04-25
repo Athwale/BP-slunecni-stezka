@@ -48,8 +48,6 @@ public class GameActivity extends Activity {
     private boolean isDatabaseCreated = false;
     private boolean isCurrentDatabaseUpdated = false;
 
-    // todo safety function price decrease
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
