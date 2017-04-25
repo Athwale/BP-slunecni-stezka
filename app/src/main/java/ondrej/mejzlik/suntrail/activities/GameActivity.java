@@ -16,13 +16,13 @@ import ondrej.mejzlik.suntrail.fragments.DirectionChoiceFragment;
 import ondrej.mejzlik.suntrail.fragments.GameMenuFragment;
 import ondrej.mejzlik.suntrail.fragments.InventoryFragment;
 import ondrej.mejzlik.suntrail.fragments.ItemInfoFragment;
-import ondrej.mejzlik.suntrail.fragments.LeavingPlanetFragment;
 import ondrej.mejzlik.suntrail.fragments.ShipInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.ShopFragment;
 import ondrej.mejzlik.suntrail.fragments.StartGameFragment;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
 import ondrej.mejzlik.suntrail.game.GameUtilities;
 import ondrej.mejzlik.suntrail.game.ItemModel;
+import ondrej.mejzlik.suntrail.game.PlayerModel;
 
 import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.PLANET_RESOURCES_KEY;
 import static ondrej.mejzlik.suntrail.fragments.ItemInfoFragment.ITEM_KEY;
@@ -311,37 +311,11 @@ public class GameActivity extends Activity {
      */
     public void leavePlanetButtonHandler(View view) {
         if (this.checkIsDatabaseCreated()) {
-            FragmentManager fragmentManager = getFragmentManager();
-            LeavingPlanetFragment leavingPlanetFragment = new LeavingPlanetFragment();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.game_activity_fragment_container, leavingPlanetFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+            Intent intent = new Intent(this, MainMenuActivity.class);
+            // Closes all activities up to Main Menu.
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         }
-    }
-
-    /**
-     * Handles clicks from Stay button in leaving planet fragment. Removes the fragment from
-     * the back stack and returns to game menu.
-     *
-     * @param view The button that has been clicked
-     */
-    public void leaveFragmentStayButtonHandler(View view) {
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.popBackStackImmediate();
-    }
-
-    /**
-     * Handles clicks from Leave button in leaving planet fragment. It removes all activities
-     * up to MainMenuActivity from the back stack returning the user to main menu.
-     *
-     * @param view The button that has been clicked
-     */
-    public void leaveFragmentLeaveButtonHandler(View view) {
-        Intent intent = new Intent(this, MainMenuActivity.class);
-        // This flag removes all activities in the back stack up to MainMenuActivity.
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
     }
 
     /**
@@ -415,6 +389,12 @@ public class GameActivity extends Activity {
             // The database helper is a singleton we always get the same instance it will not
             // cause any concurrent troubles.
             GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.context);
+            // Only update the database if we open the game activity on a not yet visited planet.
+            PlayerModel player = databaseHelper.getPlayerData();
+            if (this.currentPlanet == player.getCurrentPlanet()) {
+                return null;
+            }
+            // Else update the database
             databaseHelper.updateCurrentPlanet(this.currentPlanet);
             databaseHelper.updateItems();
             return null;

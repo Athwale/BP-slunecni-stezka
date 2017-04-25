@@ -1080,12 +1080,6 @@
     <string name="list_price">Cena:</string>
     <string name="list_size">Velikost:</string>
     <string name="list_cr">cr</string>
-    <string name="leaving_planet_title">Opouštíte planetu</string>
-    <string name="leaving_planet_button_name_stay">Zůstat</string>
-    <string name="leaving_planet_button_name_leave">Odletět</string>
-    <string name="leaving_planet_warning">Upozornění</string>
-    <string name="leaving_planet_warning_text">Opouštíte planetu. Když odletíte, nebude už možné
-    vrátit se do obchodu na této planetě.</string>
     <string name="shop_title">Obchod</string>
     <string name="shop_item_list_title">Prodat nebo koupit</string>
     <string name="shop_button_buy">Koupit</string>

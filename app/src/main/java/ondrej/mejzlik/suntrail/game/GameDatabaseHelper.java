@@ -98,6 +98,8 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private static GameDatabaseHelper instance;
     private GameUtilities gameUtilities = null;
 
+    // TODO safety function
+
     /**
      * Constructor creates the database helper.
      *

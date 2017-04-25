@@ -3,10 +3,8 @@ package ondrej.mejzlik.suntrail.activities;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -15,16 +13,12 @@ import android.widget.Toast;
 
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.fragments.AudioPlayerFragment;
-import ondrej.mejzlik.suntrail.fragments.LeavingPlanetFragment;
 import ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment;
 import ondrej.mejzlik.suntrail.fragments.PlanetTextFragment;
 import ondrej.mejzlik.suntrail.fragments.QrScannerFragment;
 import ondrej.mejzlik.suntrail.fragments.ScannerChoiceFragment;
 import ondrej.mejzlik.suntrail.fragments.SunPathInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment;
-import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
-import ondrej.mejzlik.suntrail.game.GameUtilities;
-import ondrej.mejzlik.suntrail.game.PlayerModel;
 import ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector;
 
 import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.MAP_KEY;
@@ -51,13 +45,6 @@ public class ScannerActivity extends Activity {
     // and want the game mode button to appear.
     public static final String SHOW_GAME_BUTTON_KEY = "gameModeKey";
     public static final String SHOW_GAME_BUTTON = "gameMode";
-    // Used to save and restore lock variables
-    private static final String IS_DATABASE_ACCESSED_KEY = "isDatabaseAccessedKey";
-    private static final String IS_SHOP_LOCKED_KEY = "isShopLockedKey";
-    private static final String WAS_GAME_RUN_KEY = "wasGameRun";
-    // Used to identify planet menu fragment when pressing back. In that case we do not display
-    // leaving planet fragment
-    private static final String PLANET_MENU_FRAGMENT_KEY = "planetMenuFragmentKey";
     // Used to indicate which scanner or scanner options should the app use or offer in
     // scanner choice fragment and scanner activity
     private static final int HAS_NOTHING = 0;
@@ -70,13 +57,6 @@ public class ScannerActivity extends Activity {
     private Bundle mapArguments = null;
     private float savedRotationFrom = ROTATION_END;
     private float savedRotationTo = ROTATION_START;
-    // Used to disable the game button if the user already visited this planet
-    private boolean isShopLocked = true;
-    private boolean isDatabaseBeingAccessed = true;
-    private boolean wasGameRun = false;
-    private Toast shopLockedToast = null;
-    private Toast databaseBeingAccessedToast = null;
-    private GameUtilities gameUtilities = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +64,6 @@ public class ScannerActivity extends Activity {
         setContentView(R.layout.activity_scanner);
 
         // Initialize variables
-        this.gameUtilities = new GameUtilities();
         this.mapArguments = new Bundle();
         this.resourceCollector = new PlanetResourceCollector();
         this.planetResources = new Bundle();
@@ -98,9 +77,6 @@ public class ScannerActivity extends Activity {
                 this.mapArguments = savedInstanceState.getBundle(MAP_KEY);
                 this.savedRotationFrom = savedInstanceState.getFloat(ROTATION_KEY_FROM);
                 this.savedRotationTo = savedInstanceState.getFloat(ROTATION_KEY_TO);
-                this.isShopLocked = savedInstanceState.getBoolean(IS_SHOP_LOCKED_KEY);
-                this.isDatabaseBeingAccessed = savedInstanceState.getBoolean(IS_DATABASE_ACCESSED_KEY);
-                this.wasGameRun = savedInstanceState.getBoolean(WAS_GAME_RUN_KEY);
                 return;
             }
 
@@ -139,10 +115,6 @@ public class ScannerActivity extends Activity {
         // Save planet rotation
         savedInstanceState.putFloat(ROTATION_KEY_FROM, this.savedRotationFrom);
         savedInstanceState.putFloat(ROTATION_KEY_TO, this.savedRotationTo);
-        // Save lock variables
-        savedInstanceState.putBoolean(IS_SHOP_LOCKED_KEY, this.isShopLocked);
-        savedInstanceState.putBoolean(IS_DATABASE_ACCESSED_KEY, this.isDatabaseBeingAccessed);
-        savedInstanceState.putBoolean(WAS_GAME_RUN_KEY, this.wasGameRun);
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -206,54 +178,6 @@ public class ScannerActivity extends Activity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        // Only display the leaving planet warning when pressing back from game menu fragment, and
-        // the game activity did run. Without this check the leaving planet fragment would be
-        // displayed even when back is pressed in planet text and audio player fragments.
-        PlanetMenuFragment fragment = (PlanetMenuFragment) getFragmentManager().findFragmentByTag(PLANET_MENU_FRAGMENT_KEY);
-        if (fragment != null && fragment.isVisible()) {
-            // Warn the user that the shop will be inaccessible once the planet is left if the
-            // game mode was run.
-            if (wasGameRun) {
-                FragmentManager fragmentManager = getFragmentManager();
-                LeavingPlanetFragment leavingPlanetFragment = new LeavingPlanetFragment();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.scanner_fragment_container, leavingPlanetFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            } else {
-                // Else do normal back action if game was not played
-                super.onBackPressed();
-            }
-        } else {
-            // Else do normal back action inside planet text and audio player fragment
-            super.onBackPressed();
-        }
-    }
-
-    /**
-     * Handles clicks from Stay button in leaving planet fragment. Removes the fragment from
-     * the back stack and returns to game menu.
-     *
-     * @param view The button that has been clicked
-     */
-    public void leaveFragmentStayButtonHandler(View view) {
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.popBackStackImmediate();
-    }
-
-    /**
-     * Handles clicks from Leave button in leaving planet fragment. It removes all activities
-     * up to MainMenuActivity from the back stack returning the user to main menu.
-     *
-     * @param view The button that has been clicked
-     */
-    public void leaveFragmentLeaveButtonHandler(View view) {
-        // Close this activity. The only activity under scanner activity is main menu activity.
-        this.finish();
-    }
-
     /**
      * Checks what scanning capabilities the device has.
      */
@@ -281,16 +205,6 @@ public class ScannerActivity extends Activity {
      * @param planetId Scanned decoded planet ID
      */
     public void processScannerResult(int planetId) {
-        // Check if this planet has already been visited, if yes disable game mode. If there is no
-        // database, we have not started the game yet, enable game mode.
-        if (this.gameUtilities.isDatabaseCreated(this)) {
-            AsyncDatabaseAccess checkPlanet = new AsyncDatabaseAccess(planetId, this);
-            checkPlanet.execute();
-        } else {
-            this.isShopLocked = false;
-            this.isDatabaseBeingAccessed = false;
-        }
-
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
@@ -333,7 +247,7 @@ public class ScannerActivity extends Activity {
                 PlanetMenuFragment planetMenuFragment = new PlanetMenuFragment();
                 planetMenuFragment.setArguments(this.planetResources);
                 // Set tag to the fragment in order to recognize it in onBackPressed.
-                transaction.replace(R.id.scanner_fragment_container, planetMenuFragment, PLANET_MENU_FRAGMENT_KEY);
+                transaction.replace(R.id.scanner_fragment_container, planetMenuFragment);
             }
             transaction.addToBackStack(null);
             transaction.commit();
@@ -449,82 +363,12 @@ public class ScannerActivity extends Activity {
      * @param view The button that has been clicked
      */
     public void playGameButtonHandler(View view) {
-        // The query to check whether we should enable game mode has not yet finished.
-        if (this.isDatabaseBeingAccessed) {
-            // Show a message camouflaging that we are querying the database.
-            try {
-                this.databaseBeingAccessedToast.getView().isShown();
-                this.databaseBeingAccessedToast.setText(this.getResources().getString(R.string.toast_querying_database));
-            } catch (Exception e) {
-                // No toast visible, make toast
-                this.databaseBeingAccessedToast = Toast.makeText(this, this.getResources().getString(R.string.toast_querying_database), Toast.LENGTH_LONG);
-            }
-            this.databaseBeingAccessedToast.show();
-        } else if (this.isShopLocked) {
-            // This planet has been visited already
-            try {
-                this.shopLockedToast.getView().isShown();
-                this.shopLockedToast.setText(this.getResources().getString(R.string.toast_planet_already_visited));
-            } catch (Exception e) {
-                // No toast visible, make toast
-                this.shopLockedToast = Toast.makeText(this, this.getResources().getString(R.string.toast_planet_already_visited), Toast.LENGTH_LONG);
-            }
-            this.shopLockedToast.show();
-        } else {
-            // Indicate that the game mode was run. If the user now tries to go back from game menu
-            // he/she will be warned that there is no return.
-            this.wasGameRun = true;
-            Intent intent = new Intent(this, GameActivity.class);
-            // Pass scanned planet id to the game activity
-            Bundle parameters = new Bundle();
-            parameters.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
-            intent.putExtras(parameters);
-            startActivity(intent);
-        }
+        Intent intent = new Intent(this, GameActivity.class);
+        // Pass scanned planet id to the game activity
+        Bundle parameters = new Bundle();
+        parameters.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
+        intent.putExtras(parameters);
+        startActivity(intent);
     }
 
-    /**
-     * This small class has access to the activity's variables and can set the isShopLocked and
-     * isDatabaseBeingAccessed to true or false. Here we check if the player has already visited
-     * the planet we currently scanned. If yes the game button will display a toast and
-     * the game mode will be inaccessible.
-     */
-    private class AsyncDatabaseAccess extends AsyncTask<Void, Void, Boolean> {
-        private final int scannedPlanet;
-        private final Context context;
-
-        AsyncDatabaseAccess(int scannedPlanet, Context context) {
-            super();
-            this.scannedPlanet = scannedPlanet;
-            this.context = context;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // The database helper is a singleton we always get the same instance it will not
-            // cause any concurrent troubles.
-            GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.context);
-            PlayerModel playerData = databaseHelper.getPlayerData();
-            int lastPlanet = playerData.getCurrentPlanet();
-            boolean tripDirection = playerData.getDirection();
-            // We returned to a shop we have already been to. Last planet is updated
-            // when the user enters the Game Activity.
-            if (tripDirection) {
-                // true = Sun -> Neptune
-                // Planet numbers increase as the user advances
-                return this.scannedPlanet <= lastPlanet;
-            } else {
-                // false = Neptune -> Sun
-                // Planet numbers decrease as the user advances
-                return this.scannedPlanet >= lastPlanet;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(Boolean result) {
-            // This method is called in main thread automatically after finishing the work.
-            isShopLocked = result;
-            isDatabaseBeingAccessed = false;
-        }
-    }
 }
