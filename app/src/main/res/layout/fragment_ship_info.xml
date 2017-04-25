@@ -44,7 +44,7 @@
             <ImageView
                 android:id="@+id/ship_info_image_view_ship"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/start_new_game_image_description"
                 android:scaleType="fitCenter"
