@@ -140,9 +140,9 @@ public final class Configuration {
     public static final int FIRST_SHIP = R.string.ship_name_icarus;
     public static final int STARTING_CREDITS = 500;
 
-    public static final int ICARUS_CARGO_SIZE = 15;
-    public static final int LOKYS_CARGO_SIZE = 25;
-    public static final int DAEDALUS_CARGO_SIZE = 35;
+    public static final int ICARUS_CARGO_SIZE = 10;
+    public static final int LOKYS_CARGO_SIZE = 15;
+    public static final int DAEDALUS_CARGO_SIZE = 20;
     // These are used to randomly assign the price of an item
     public static final int MIN_ITEM_PRICE = 40;
     public static final int MAX_ITEM_PRICE = 300;

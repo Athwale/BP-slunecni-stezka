@@ -15,6 +15,9 @@ import ondrej.mejzlik.suntrail.utilities.HtmlConverter;
 
 import static ondrej.mejzlik.suntrail.activities.GameActivity.SPACESHIP_NAME_KEY;
 import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.SCROLL_POSITION_KEY;
+import static ondrej.mejzlik.suntrail.configuration.Configuration.DAEDALUS_CARGO_SIZE;
+import static ondrej.mejzlik.suntrail.configuration.Configuration.ICARUS_CARGO_SIZE;
+import static ondrej.mejzlik.suntrail.configuration.Configuration.LOKYS_CARGO_SIZE;
 
 /**
  * This fragment displays space ship information. It decides which info to display based on the
@@ -94,36 +97,36 @@ public class ShipInfoFragment extends Fragment {
         ImageView shipPicture = (ImageView) (view.findViewById(R.id.ship_info_image_view_ship));
         TextView shipName = (TextView) (view.findViewById(R.id.ship_info_text_view_ship_name));
         TextView infoText = (TextView) (view.findViewById(R.id.ship_info_text_view_top));
-        TextView cargoSize = (TextView) (view.findViewById(R.id.ship_info_text_view_cargo_size));
+        TextView cargoSizeView = (TextView) (view.findViewById(R.id.ship_info_text_view_cargo_size));
         int shipNameResourceId = arguments.getInt(SPACESHIP_NAME_KEY);
         int imageResource;
         int textResource;
-        int cargoSizeResource;
+        int cargoSize;
 
         switch (shipNameResourceId) {
             case R.string.ship_name_icarus: {
                 imageResource = R.drawable.pict_icarus;
                 textResource = R.string.ship_info_icarus;
-                cargoSizeResource = R.string.ship_cargo_size_small;
+                cargoSize = ICARUS_CARGO_SIZE;
                 break;
             }
             case R.string.ship_name_lokys: {
                 imageResource = R.drawable.pict_lokys;
                 textResource = R.string.ship_info_lokys;
-                cargoSizeResource = R.string.ship_cargo_size_medium;
+                cargoSize = LOKYS_CARGO_SIZE;
                 break;
             }
             // Only other option is Daedalus.
             default: {
                 imageResource = R.drawable.pict_daedalus;
                 textResource = R.string.ship_info_daedalus;
-                cargoSizeResource = R.string.ship_cargo_size_large;
+                cargoSize = DAEDALUS_CARGO_SIZE;
             }
         }
         shipPicture.setImageResource(imageResource);
         shipName.setText(shipNameResourceId);
         // The main text is a html
         infoText.setText(htmlConverter.getHtmlForTextView(getString(textResource)));
-        cargoSize.setText(cargoSizeResource);
+        cargoSizeView.setText(String.valueOf(cargoSize));
     }
 }

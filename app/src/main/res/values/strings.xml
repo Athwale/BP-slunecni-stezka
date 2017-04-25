@@ -1069,9 +1069,6 @@
     <string name="ship_name_daedalus">Daedalus L</string>
     <string name="ship_info_title">Spaceship information</string>
     <string name="ship_info_cargo">Cargo bay size:</string>
-    <string name="ship_cargo_size_small">15</string>
-    <string name="ship_cargo_size_medium">25</string>
-    <string name="ship_cargo_size_large">35</string>
     <string name="direction_choice_title">Choose where you want to finish</string>
     <string name="direction_choice_to_sun">The Sun</string>
     <string name="direction_choice_to_neptune">The Neptune</string>
