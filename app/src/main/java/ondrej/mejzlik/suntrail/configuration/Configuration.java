@@ -48,10 +48,10 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS
  * able to buy anything in a shop he arrived to, a price of one item is set low enough for the user
  * to be able to buy it and the price is set to rise. This takes into account what the user can
  * sell in that shop. This safety feature can be disabled in a harder mode.
+ * todo do this
  * <p>
  * 7. Different ships have different cargo bay size. This can be set in this file. The size of items
- * in shops is set randomly but not to be larger than a half of currently available maximum cargo
- * bay size.
+ * in shops is set randomly but not to be larger than currently available maximum cargo bay size.
  * <p>
  * 8. On the last planet which is either the Neptune on the Sun everything is automatically sold.
  * Then based on how much credits the player has he is awarded.
@@ -59,12 +59,10 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS
  * 9 GAMEPLAY MECHANICS
  * The user might play completely randomly not thinking about anything. In this case because of the
  * bad choices safety method the user is able to finish the game.
- * Otherwise the player is supposed to make choices whether to buy an item which will be sold for
- * more credits but the price might drop a bit, or buy an item where the price will rise. Since
+ * Otherwise the player is supposed to make choices whether to keep some items. Since
  * items can be sold at any planet a decision what the user will keep in the cargo bay has to be
  * made. If he keeps it the price may rise a bit more but it will occupy some space. The player
  * has to keep an eye on the predicted price movements.
- * <p>
  * <p>
  * Game method call sequence:
  * <p>
