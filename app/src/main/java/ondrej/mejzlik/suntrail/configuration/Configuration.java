@@ -39,10 +39,8 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS
  * <p>
  * 5. Items are assigned random prices from a range which can be configured in this file.
  * The price of each item can either rise or fall before it is sold in another shop. By how much %
- * the price will change can be set in this file. Whether the price will rise or fall is initially
- * set when adding the items into the database. If the price is higher than a set value it is more
- * probable that the price will fall, if the price is lower than a set value it might rise more
- * probably. Otherwise the probability is equal.
+ * the price will change can be set in this file. Prices of all items are set to rise initially.
+ * Whether the price will fall or rise in the next shop is equally probable.
  * The next movement in price of a given item which is in the player's inventory is set randomly at
  * each stop.
  * <p>

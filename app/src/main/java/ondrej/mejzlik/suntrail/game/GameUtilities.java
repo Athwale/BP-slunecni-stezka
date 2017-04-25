@@ -56,10 +56,7 @@ public class GameUtilities {
     }
 
     /**
-     * This method returns weather the item price will fall or raise. If the price is higher than
-     * a preset price the probability that the price will fall may be higher depending on a preset
-     * value. Same goes for price lower than some price.
-     * If the price is between the preset fall and raise values the probability of either rise
+     * This method returns weather the item price will fall or raise. The probability of either rise
      * or fall is 1/2.
      *
      * @param price Item base price
@@ -69,18 +66,11 @@ public class GameUtilities {
         int result = this.randomIntGenerator(1, 10);
         int accept = ITEM_PRICE_FALL_RISE_PROBABILITY / 10;
 
-        if (price > ITEM_PRICE_MIGHT_FALL && result <= accept) {
+        if (result <= accept) {
             // price will fall
             return 0;
-        } else if (price < ITEM_PRICE_MIGHT_RISE && result <= accept) {
-            // price will raise
-            return 1;
-        } else if (price < ITEM_PRICE_MIGHT_FALL && price > ITEM_PRICE_MIGHT_RISE) {
-            if (result <= 5) {
-                return 1;
-            }
         }
-        return 0;
+        return 1;
     }
 
     /**

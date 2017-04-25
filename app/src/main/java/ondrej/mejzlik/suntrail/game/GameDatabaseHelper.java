@@ -348,9 +348,8 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_BOUGHT, 0);
                 // Set all items as displayable
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_DISPLAYABLE, 1);
-                // Determine whether the price will raise or fall if price is high it might fall if
-                // low it might rise
-                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE_RISE, gameUtilities.calculatePriceMovement(itemBasePrice));
+                // All items have price movement set to rise initially.
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE_RISE, 1);
                 // Determine item size. The size of the item can not be larger than a half of the
                 // available cargo bay size.
                 int itemSize;
