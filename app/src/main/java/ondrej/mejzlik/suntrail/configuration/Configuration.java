@@ -147,13 +147,6 @@ public final class Configuration {
     // In percent how much the price will raise or fall.
     public static final int MIN_ITEM_PRICE_MOVEMENT = 10;
     public static final int MAX_ITEM_PRICE_MOVEMENT = 30;
-    // From which price should the probability of price falling be higher and lower
-    public static final int ITEM_PRICE_MIGHT_FALL = 250;
-    public static final int ITEM_PRICE_MIGHT_RISE = 100;
-    // probability in % of price fall or rise if price is above ITEM_PRICE_MIGHT_FALL or below
-    // ITEM_PRICE_MIGHT_RISE
-    public static final int ITEM_PRICE_FALL_RISE_PROBABILITY = 70;
-
 
     // To prevent someone from accidentally instantiating the contract class,
     // make the constructor private.

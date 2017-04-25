@@ -5,9 +5,6 @@ import android.app.Activity;
 import java.io.File;
 import java.util.Random;
 
-import static ondrej.mejzlik.suntrail.configuration.Configuration.ITEM_PRICE_FALL_RISE_PROBABILITY;
-import static ondrej.mejzlik.suntrail.configuration.Configuration.ITEM_PRICE_MIGHT_FALL;
-import static ondrej.mejzlik.suntrail.configuration.Configuration.ITEM_PRICE_MIGHT_RISE;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.MAX_ITEM_PRICE_MOVEMENT;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.MIN_ITEM_PRICE_MOVEMENT;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
@@ -59,18 +56,14 @@ public class GameUtilities {
      * This method returns weather the item price will fall or raise. The probability of either rise
      * or fall is 1/2.
      *
-     * @param price Item base price
      * @return Whether the price will raise or fall, 1 rise, 0 fall
      */
-    int calculatePriceMovement(int price) {
-        int result = this.randomIntGenerator(1, 10);
-        int accept = ITEM_PRICE_FALL_RISE_PROBABILITY / 10;
-
-        if (result <= accept) {
-            // price will fall
-            return 0;
+    int calculatePriceMovement() {
+        boolean result = this.randomNumberGenerator.nextBoolean();
+        if (result) {
+            return 1;
         }
-        return 1;
+        return 0;
     }
 
     /**

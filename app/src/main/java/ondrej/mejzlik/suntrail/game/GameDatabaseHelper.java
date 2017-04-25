@@ -350,18 +350,18 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_DISPLAYABLE, 1);
                 // All items have price movement set to rise initially.
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE_RISE, 1);
-                // Determine item size. The size of the item can not be larger than a half of the
-                // available cargo bay size.
+                // Determine item size. The size of the item can not be larger than available cargo
+                // bay size.
                 int itemSize;
                 if (availableAt == PLANET_ID_SUN || availableAt == PLANET_ID_MERCURY || availableAt == PLANET_ID_VENUS || availableAt == PLANET_ID_EARTH) {
                     // We have Icarus S
-                    itemSize = gameUtilities.randomIntGenerator(1, ICARUS_CARGO_SIZE / 2);
+                    itemSize = gameUtilities.randomIntGenerator(1, ICARUS_CARGO_SIZE - 2);
                 } else if (availableAt == PLANET_ID_MOON || availableAt == PLANET_ID_MARS || availableAt == PLANET_ID_CERES) {
                     // We have Lokys M
-                    itemSize = gameUtilities.randomIntGenerator(1, LOKYS_CARGO_SIZE / 2);
+                    itemSize = gameUtilities.randomIntGenerator(1, LOKYS_CARGO_SIZE - 2);
                 } else {
                     // We have Daedalus L
-                    itemSize = gameUtilities.randomIntGenerator(1, DAEDALUS_CARGO_SIZE / 2);
+                    itemSize = gameUtilities.randomIntGenerator(1, DAEDALUS_CARGO_SIZE - 2);
                 }
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SIZE, itemSize);
 
@@ -646,7 +646,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                     // Update the item price and price movement and return it into the database
                     int newPrice = this.gameUtilities.calculateSellingPrice(itemPrice, this.intToBoolean(priceMovement));
                     updatedItem.put(COLUMN_NAME_ITEM_PRICE, newPrice);
-                    updatedItem.put(COLUMN_NAME_ITEM_PRICE_RISE, gameUtilities.calculatePriceMovement(newPrice));
+                    updatedItem.put(COLUMN_NAME_ITEM_PRICE_RISE, gameUtilities.calculatePriceMovement());
                     updatedItem.put(COLUMN_NAME_ITEM_IS_DISPLAYABLE, 1);
                     db.update(TABLE_NAME_ITEMS, updatedItem, "_id=" + String.valueOf(id), null);
                 } while (cursor.moveToNext());
