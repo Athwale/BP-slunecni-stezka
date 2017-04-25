@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/inventory_fragment_relative_layout"
+    android:id="@+id/shop_fragment_relative_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pict_yellow_activity_background"
-    tools:context="ondrej.mejzlik.suntrail.fragments.InventoryFragment">
+    tools:context="ondrej.mejzlik.suntrail.fragments.ShopFragment">
 
     <TextView
-        android:id="@+id/inventory_text_view_loading_message"
+        android:id="@+id/shop_fragment_text_view_loading_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -18,7 +18,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/inventory_title"
+        android:id="@+id/shop_fragment_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -26,12 +26,12 @@
         android:layout_marginTop="16dp"
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
-        android:text="@string/inventory_title"
+        android:text="@string/shop_title"
         android:textColor="@color/spacerBlue"
         android:textStyle="bold" />
 
     <View
-        android:id="@+id/inventory_view_spacer"
+        android:id="@+id/shop_fragment_view_spacer"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_alignParentStart="true"
@@ -41,14 +41,14 @@
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <LinearLayout
-        android:id="@+id/inventory_linear_layout_main"
+        android:id="@+id/shop_fragment_linear_layout_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/inventory_view_spacer"
+        android:layout_below="@+id/shop_fragment_view_spacer"
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/inventory_linear_layout_top"
+            android:id="@+id/shop_fragment_linear_layout_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -61,10 +61,10 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/inventory_image_view_ship"
+                    android:id="@+id/shop_fragment_image_view_ship"
                     style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:adjustViewBounds="true"
                     android:background="@drawable/transparent_button_background"
                     android:contentDescription="@string/start_new_game_image_description"
@@ -73,7 +73,7 @@
                     tools:src="@drawable/pict_icarus_info" />
 
                 <TextView
-                    android:id="@+id/inventory_text_view_ship_name"
+                    android:id="@+id/shop_fragment_text_view_ship_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/ship_name_icarus"
@@ -99,18 +99,18 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/inventory_cargo_bay_title"
+                        android:id="@+id/shop_fragment_cargo_bay_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/inventory_cargo_bay"
                         android:textColor="@color/textBlack" />
 
                     <TextView
-                        android:id="@+id/inventory_cargo_bay_contents"
+                        android:id="@+id/shop_fragment_cargo_bay_contents"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textBlack"
-                        android:textSize="30sp"
+                        android:textSize="24sp"
                         android:textStyle="bold"
                         tools:text="5/15" />
 
@@ -125,25 +125,25 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/inventory_credits_title"
+                        android:id="@+id/shop_fragment_credits_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/inventory_credits"
                         android:textColor="@color/textBlack" />
 
                     <TextView
-                        android:id="@+id/inventory_credits_amount"
+                        android:id="@+id/shop_fragment_credits_amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textBlack"
-                        android:textSize="30sp"
+                        android:textSize="24sp"
                         android:textStyle="bold"
                         tools:text="256" />
 
                     <ImageView
-                        android:id="@+id/inventory_image_view_coin"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:id="@+id/shop_fragment_image_view_coin"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
                         android:contentDescription="@string/inventory_coin_description"
                         android:src="@drawable/pict_coin" />
 
@@ -154,18 +154,18 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/inventory_cargo_bay_contents_title"
+            android:id="@+id/shop_fragment_cargo_bay_contents_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:paddingEnd="16dp"
             android:paddingStart="16dp"
-            android:text="@string/inventory_cargo_bay_contents"
+            android:text="@string/shop_item_list_title"
             android:textColor="@color/spacerBlue"
             android:textStyle="bold" />
 
         <View
-            android:id="@+id/inventory_view_spacer_items"
+            android:id="@+id/shop_fragment_view_spacer_items"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginTop="16dp"
@@ -173,7 +173,7 @@
             tools:ignore="UnknownId,UnknownIdInLayout" />
 
         <ListView
-            android:id="@+id/inventory_list_view_items"
+            android:id="@+id/shop_fragment_list_view_items"
             android:layout_width="450dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"

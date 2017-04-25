@@ -59,8 +59,8 @@
 
             <ImageView
                 android:id="@+id/planet_text_image_view_photo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="600dp"
+                android:layout_height="150dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/planet_image_description"
                 android:cropToPadding="false"
