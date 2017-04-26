@@ -107,7 +107,6 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private static GameDatabaseHelper instance;
     private GameUtilities gameUtilities = null;
 
-    // TODO safety function
     // TODO change ship
     // TODO sell all and win
 
@@ -573,7 +572,6 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
 
         // Get current planet
         PlayerModel player = this.getPlayerData();
-        ;
 
         // Get remaining cargo space
         int remainingCargoSpace = this.getShipData().getRemainingCargoSpace();
