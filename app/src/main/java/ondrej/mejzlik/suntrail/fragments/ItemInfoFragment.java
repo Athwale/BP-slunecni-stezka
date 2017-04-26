@@ -156,13 +156,13 @@ public class ItemInfoFragment extends Fragment {
                         itemBuy.setVisibility(View.VISIBLE);
                         itemSell.setVisibility(View.GONE);
                         message.setVisibility(View.GONE);
-                    } else if (item.isBought() && item.isDisplayable()) {
+                    } else if (item.isBought() && item.isSaleable()) {
                         // Display price and sell button.
                         itemPrice.setText(" " + String.valueOf(item.getPrice()));
                         itemBuy.setVisibility(View.GONE);
                         itemSell.setVisibility(View.VISIBLE);
                         message.setVisibility(View.GONE);
-                    } else if (!item.isDisplayable()) {
+                    } else if (!item.isSaleable()) {
                         // We bough the item in this shop and must not be able to sell it back
                         itemPrice.setText(" " + String.valueOf(item.getPrice()));
                         itemBuy.setVisibility(View.GONE);

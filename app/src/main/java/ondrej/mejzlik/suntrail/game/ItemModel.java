@@ -28,7 +28,7 @@ public class ItemModel implements Parcelable {
     private final int itemDescriptionResId;
     private final int availableAtPlanet;
     private final int size;
-    private final boolean isDisplayable;
+    private final boolean isSaleable;
     private int price;
     private boolean priceMovement;
     private boolean isInShop;
@@ -45,11 +45,11 @@ public class ItemModel implements Parcelable {
      * @param itemDescriptionResId item description string resource id from database
      * @param priceMovement        true if the price will rise, false otherwise
      * @param availableAtPlanet    planet id (from PlanetIdentifier) where this item is available
-     * @param isDisplayable        true if the item can be displayed in shop or inventory
+     * @param isSaleable           true if the item can be displayed in shop or inventory
      * @param isBought             is the item in player's inventory?
      * @param size                 item size in cargo bay (S, M, L)
      */
-    ItemModel(int id, int price, int itemNameResId, int itemImageResId, int itemImageIconResId, int itemDescriptionResId, int availableAtPlanet, boolean isDisplayable,
+    ItemModel(int id, int price, int itemNameResId, int itemImageResId, int itemImageIconResId, int itemDescriptionResId, int availableAtPlanet, boolean isSaleable,
               boolean isBought, boolean priceMovement, int size) {
         this.id = id;
         this.price = price;
@@ -57,7 +57,7 @@ public class ItemModel implements Parcelable {
         this.itemImageResId = itemImageResId;
         this.itemImageIconResId = itemImageIconResId;
         this.itemDescriptionResId = itemDescriptionResId;
-        this.isDisplayable = isDisplayable;
+        this.isSaleable = isSaleable;
         this.availableAtPlanet = availableAtPlanet;
         this.isBought = isBought;
         this.priceMovement = priceMovement;
@@ -77,7 +77,7 @@ public class ItemModel implements Parcelable {
         this.isInShop = in.readByte() != 0;
         this.isBought = in.readByte() != 0;
         this.canBeBought = in.readByte() != 0;
-        this.isDisplayable = in.readByte() != 0;
+        this.isSaleable = in.readByte() != 0;
     }
 
     /**
@@ -85,8 +85,8 @@ public class ItemModel implements Parcelable {
      *
      * @return Returns true if this item can be shown in a list.
      */
-    public boolean isDisplayable() {
-        return isDisplayable;
+    public boolean isSaleable() {
+        return isSaleable;
     }
 
     /**
@@ -217,6 +217,6 @@ public class ItemModel implements Parcelable {
         dest.writeByte(this.isInShop ? (byte) 1 : (byte) 0);
         dest.writeByte(this.isBought ? (byte) 1 : (byte) 0);
         dest.writeByte(this.canBeBought ? (byte) 1 : (byte) 0);
-        dest.writeByte(this.isDisplayable ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.isSaleable ? (byte) 1 : (byte) 0);
     }
 }

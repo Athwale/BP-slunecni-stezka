@@ -66,6 +66,17 @@ public final class GameDatabaseContract {
         static final String COLUMN_NAME_ITEM_IS_BOUGHT = "isBought";
         static final String COLUMN_NAME_ITEM_AVAILABLE_AT = "availableAt";
         static final String COLUMN_NAME_ITEM_PRICE_RISE = "priceRise";
-        static final String COLUMN_NAME_ITEM_IS_DISPLAYABLE = "isDisplayable";
+        static final String COLUMN_NAME_ITEM_IS_SALEABLE = "isSaleable";
+        static final String COLUMN_NAME_ITEM_HAS_BEEN_BOUGHT = "hasBeenBought";
+    }
+
+    /**
+     * This class defines the names for Game items table. This table has 33 rows.
+     */
+    static class VisitedPlanets implements BaseColumns {
+        static final String TABLE_NAME_VISITED_PLANETS = "visitedPlanets";
+        // All Integer values
+        // Primary key is _ID
+        static final String COLUMN_NAME_PLANET_ID = "visitedPlanetId";
     }
 }

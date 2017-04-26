@@ -22,7 +22,6 @@ import ondrej.mejzlik.suntrail.fragments.StartGameFragment;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
 import ondrej.mejzlik.suntrail.game.GameUtilities;
 import ondrej.mejzlik.suntrail.game.ItemModel;
-import ondrej.mejzlik.suntrail.game.PlayerModel;
 
 import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.PLANET_RESOURCES_KEY;
 import static ondrej.mejzlik.suntrail.fragments.ItemInfoFragment.ITEM_KEY;
@@ -387,14 +386,8 @@ public class GameActivity extends Activity {
             // The database helper is a singleton we always get the same instance it will not
             // cause any concurrent troubles.
             GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.context);
-            // Only update the database if we open the game activity on a not yet visited planet.
-            PlayerModel player = databaseHelper.getPlayerData();
-            if (this.currentPlanet == player.getCurrentPlanet()) {
-                return null;
-            }
-            // Else update the database
-            databaseHelper.updateCurrentPlanet(this.currentPlanet);
-            databaseHelper.updateItems();
+            databaseHelper.updateItems(this.currentPlanet);
+            databaseHelper.updateVisitedPlanets(this.currentPlanet);
             return null;
         }
 

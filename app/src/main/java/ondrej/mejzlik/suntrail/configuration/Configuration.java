@@ -68,8 +68,8 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS
  * <p>
  * OPENING GAME MODE ON A PLANET (It is impossible to open game mode on already visited planets)
  * initializeDatabase
- * updateCurrentPlanet(New scanned planet id)
- * updateItems()
+ * updateItems(current planet)
+ * updateVisitedPlanets(current planet)
  * <p>
  * ENTERING SHOP
  * getItemsForShop()
