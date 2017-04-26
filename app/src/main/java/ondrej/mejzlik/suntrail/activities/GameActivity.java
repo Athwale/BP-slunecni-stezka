@@ -387,6 +387,7 @@ public class GameActivity extends Activity {
             // cause any concurrent troubles.
             GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.context);
             databaseHelper.updateItems(this.currentPlanet);
+            databaseHelper.failSafe(this.currentPlanet, true);
             databaseHelper.updateVisitedPlanets(this.currentPlanet);
             return null;
         }

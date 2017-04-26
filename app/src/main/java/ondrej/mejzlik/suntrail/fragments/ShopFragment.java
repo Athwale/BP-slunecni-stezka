@@ -130,8 +130,8 @@ public class ShopFragment extends Fragment {
             // The database helper is a singleton we always get the same instance it will not
             // cause any concurrent troubles.
             GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.context);
-            ArrayList<ItemModel> itemsInShop = databaseHelper.getItemsForShop();
             PlayerModel player = databaseHelper.getPlayerData();
+            ArrayList<ItemModel> itemsInShop = databaseHelper.getItemsForShop(player.getCurrentPlanet());
             ShipModel ship = databaseHelper.getShipData();
 
             return new GameDataHolder(itemsInShop, ship, player);

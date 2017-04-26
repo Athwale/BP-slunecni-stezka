@@ -108,6 +108,8 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private GameUtilities gameUtilities = null;
 
     // TODO safety function
+    // TODO change ship
+    // TODO sell all and win
 
     /**
      * Constructor creates the database helper.
@@ -559,7 +561,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      *
      * @return List of items in the shop on the current planet + bought items.
      */
-    public ArrayList<ItemModel> getItemsForShop() {
+    public ArrayList<ItemModel> getItemsForShop(int currentPlanet) {
         ArrayList<ItemModel> shopItems = new ArrayList<>();
 
         // Get all bought items from database and set that they are now displayed in shop.
@@ -571,7 +573,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
 
         // Get current planet
         PlayerModel player = this.getPlayerData();
-        int currentPlanet = player.getCurrentPlanet();
+        ;
 
         // Get remaining cargo space
         int remainingCargoSpace = this.getShipData().getRemainingCargoSpace();
@@ -612,7 +614,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                         // This prevents bought items from appearing in the shop twice and only adds
                         // those items to the list that are supposed to be in the shop. Items must
                         // not be saleable in the same shop where they were bought at. Bought items
-                        // also have isSaleable set to false. isSaleable is used in ItemInfoFragment
+                        // may have isSaleable set to false. isSaleable is used in ItemInfoFragment
                         // to prevent the user from selling the item in the same shop the user is in.
                         shopItems.add(item);
                     }
@@ -797,6 +799,55 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         ContentValues player = new ContentValues();
         player.put(COLUMN_NAME_PLAYER_CREDITS, newCreditValue);
         db.update(TABLE_NAME_PLAYER, player, "_id=1", null);
+    }
+
+    /**
+     * This method checks if the player can buy something in the shop on the current planet. It
+     * takes into account both the credits and how many credits the player can obtain if he sells
+     * everything he has in the current shop. If despite that nothing can be bought, a price of
+     * one item is decreased to the poin the player can buy it.
+     *
+     * @param enabled True if this method should be run.
+     */
+    public void failSafe(int currentPlanet, boolean enabled) {
+        if (enabled) {
+            if (!this.checkVisitedPlanets(currentPlanet)) {
+                // Get current credits
+                int credits = this.getPlayerData().getCredits();
+                // Get available items
+                ArrayList<ItemModel> itemsForShop = this.getItemsForShop(currentPlanet);
+                // Add credits that the player would have if he sold what he has
+                for (ItemModel item : itemsForShop) {
+                    if (item.isSaleable() && item.isBought()) {
+                        credits += item.getPrice();
+                    }
+                }
+                // Check if some item can be bought
+                for (ItemModel item : itemsForShop) {
+                    if (!item.isBought() && (item.getPrice() < credits)) {
+                        return;
+                    }
+                }
+                // Nothing can be bought lower the price of one item
+                ItemModel itemToChange = itemsForShop.get(0);
+                itemToChange.setPrice(credits / 2);
+                this.updateItemPrice(itemToChange);
+            }
+        }
+    }
+
+    /**
+     * This method updates an item price.
+     *
+     * @param itemToChange Item to be updated in the database.
+     */
+    private void updateItemPrice(ItemModel itemToChange) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues item = new ContentValues();
+        // Set new price
+        item.put(COLUMN_NAME_ITEM_PRICE, itemToChange.getPrice());
+        // The table has only one row with automatic id 1.
+        db.update(TABLE_NAME_ITEMS, item, "_id=" + String.valueOf(itemToChange.getId()), null);
     }
 
     /**

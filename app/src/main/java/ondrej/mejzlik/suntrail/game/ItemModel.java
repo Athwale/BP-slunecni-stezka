@@ -144,6 +144,15 @@ public class ItemModel implements Parcelable {
     }
 
     /**
+     * Sets a new price of the item.
+     *
+     * @param price New price of the item.
+     */
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    /**
      * Returns item name string resource id.
      *
      * @return Returns item name string resource id.
