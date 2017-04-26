@@ -371,18 +371,28 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_HAS_BEEN_BOUGHT, 0);
                 // Determine item size. The size of the item can not be larger than available cargo
                 // bay size.
-                int itemSize;
+                int sizeLimit;
                 if (availableAt == PLANET_ID_SUN || availableAt == PLANET_ID_MERCURY || availableAt == PLANET_ID_VENUS || availableAt == PLANET_ID_EARTH) {
-                    // We have Icarus S
-                    itemSize = gameUtilities.randomIntGenerator(1, ICARUS_CARGO_SIZE - 2);
+                    if (direction) {
+                        // We have Icarus S
+                        sizeLimit = ICARUS_CARGO_SIZE;
+                    } else {
+                        // We have Daedalus L
+                        sizeLimit = DAEDALUS_CARGO_SIZE;
+                    }
                 } else if (availableAt == PLANET_ID_MOON || availableAt == PLANET_ID_MARS || availableAt == PLANET_ID_CERES) {
-                    // We have Lokys M
-                    itemSize = gameUtilities.randomIntGenerator(1, LOKYS_CARGO_SIZE - 2);
+                    // We have Lokys M. We always have lokys in the middle section.
+                    sizeLimit = LOKYS_CARGO_SIZE;
                 } else {
-                    // We have Daedalus L
-                    itemSize = gameUtilities.randomIntGenerator(1, DAEDALUS_CARGO_SIZE - 2);
+                    if (direction) {
+                        // We have Daedalus L
+                        sizeLimit = DAEDALUS_CARGO_SIZE;
+                    } else {
+                        // We have Icarus S
+                        sizeLimit = ICARUS_CARGO_SIZE;
+                    }
                 }
-                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SIZE, itemSize);
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SIZE, gameUtilities.randomIntGenerator(1, sizeLimit - 2));
 
                 db.insertOrThrow(TABLE_NAME_ITEMS, null, shopItem);
                 db.setTransactionSuccessful();
