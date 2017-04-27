@@ -16,9 +16,9 @@ import ondrej.mejzlik.suntrail.fragments.DirectionChoiceFragment;
 import ondrej.mejzlik.suntrail.fragments.GameMenuFragment;
 import ondrej.mejzlik.suntrail.fragments.InventoryFragment;
 import ondrej.mejzlik.suntrail.fragments.ItemInfoFragment;
+import ondrej.mejzlik.suntrail.fragments.ReceiveShipFragment;
 import ondrej.mejzlik.suntrail.fragments.ShipInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.ShopFragment;
-import ondrej.mejzlik.suntrail.fragments.StartGameFragment;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
 import ondrej.mejzlik.suntrail.game.GameUtilities;
 import ondrej.mejzlik.suntrail.game.ItemModel;
@@ -37,7 +37,6 @@ public class GameActivity extends Activity {
     // Used to back up lock variables
     private static final String DATABASE_CREATED_KEY = "isDatabaseCreatedKey";
     private static final String CURRENT_PLANET_UPDATED_KEY = "isPlanetUpdatedKey";
-    private AsyncDatabaseInitializer databaseInitializer = null;
     // The resources contain all about the planet
     private Bundle planetResources = null;
     // This is used to prevent multiple toasts from showing.
@@ -81,22 +80,12 @@ public class GameActivity extends Activity {
             // If there is no database, we start a new game and initialize the database to default
             // contents.
             if (!gameUtilities.isDatabaseCreated(this)) {
-                // The database is created when we call getWritable or getReadable database the first
-                // time, which happens here and may take longer time to finish. Therefore we run
-                // it in a background thread. Once the initialization is done game buttons are
-                // enabled by checking isDatabaseCreated. Database initialization only happens in this
-                // activity. Other activities use the created database through the singleton helper.
-                // Only the creation of the database is expensive once it is done here other calls
-                // for writable or readable database are quick.
-                this.databaseInitializer = new AsyncDatabaseInitializer(this.scannedPlanet, this);
-
-                // Both the fragments are added onto the screen, but if the direction choice fragment
-                // is used, it covers the game start fragment until the player picks a direction.
-                StartGameFragment startGameFragment = new StartGameFragment();
-                FragmentTransaction startGame = fragmentManager.beginTransaction();
-                startGame.add(R.id.game_activity_fragment_container, startGameFragment);
-                startGame.commit();
-
+                // Give the player a first ship Icarus which is also the player's ship in database
+                // after initialization.
+                ReceiveShipFragment receiveShipFragment = new ReceiveShipFragment();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.game_activity_fragment_container, receiveShipFragment);
+                transaction.commit();
                 // Check if we are going to have to manually pick direction.
                 // If the user scans first or second planet, the direction is set to Sun -> Neptune
                 // If the user scans one of the last two planets, direction is set to Neptune -> Sun
@@ -105,14 +94,16 @@ public class GameActivity extends Activity {
                 if (this.scannedPlanet == PLANET_ID_SUN || this.scannedPlanet == PLANET_ID_MERCURY) {
                     // We go from Sun to Neptune = true
                     // Initialize database with the now known direction
-                    databaseInitializer.execute(true);
+                    this.initializeDatabase(true);
                 } else if (this.scannedPlanet == PLANET_ID_NEPTUNE || this.scannedPlanet == PLANET_ID_URANUS) {
                     // We go from Neptune to Sun = false
-                    databaseInitializer.execute(false);
+                    this.initializeDatabase(false);
                 } else {
                     // Let the player choose
                     // No need to add to back stack, this is the first fragment and we do not want
                     // to return to it in the future.
+                    // Both the fragments are added to screen but direction choice covers the
+                    // receive ship fragment.
                     DirectionChoiceFragment directionChoiceFragment = new DirectionChoiceFragment();
                     FragmentTransaction pickDirection = fragmentManager.beginTransaction();
                     pickDirection.replace(R.id.game_activity_fragment_container, directionChoiceFragment, DIRECTION_FRAGMENT_TAG);
@@ -163,6 +154,24 @@ public class GameActivity extends Activity {
     }
 
     /**
+     * This method runs the database initialization in background and opens a loading fragment
+     * to distract the player.
+     *
+     * @param direction Trip direction.
+     */
+    private void initializeDatabase(boolean direction) {
+        // The database is created when we call getWritable or getReadable database the first
+        // time, which happens here and may take longer time to finish. Therefore we run
+        // it in a background thread. Once the initialization is done game buttons are
+        // enabled by checking isDatabaseCreated. Database initialization only happens in this
+        // activity. Other activities use the created database through the singleton helper.
+        // Only the creation of the database is expensive once it is done here other calls
+        // for writable or readable database are quick.
+        AsyncDatabaseInitializer databaseInitializer = new AsyncDatabaseInitializer(this.scannedPlanet, this);
+        databaseInitializer.execute(direction);
+    }
+
+    /**
      * This method handles clicks to direction buttons from direction choice fragment.
      *
      * @param view The button that has been pressed.
@@ -183,16 +192,11 @@ public class GameActivity extends Activity {
                 break;
             }
         }
-        // Initialize database with the now known direction. Initialization did not happen in
-        // onCreate. The initializer might be null if the activity was killed and the
-        // instance from onCreate did not survive.
-        if (this.databaseInitializer == null) {
-            this.databaseInitializer = new AsyncDatabaseInitializer(this.scannedPlanet, this);
-        }
-        this.databaseInitializer.execute(direction);
         // Remove the direction choice fragment now
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.popBackStackImmediate();
+        // Initialize database
+        this.initializeDatabase(direction);
     }
 
     /**
@@ -358,7 +362,7 @@ public class GameActivity extends Activity {
         @Override
         protected void onPostExecute(Void result) {
             // This method is called in main thread automatically after finishing the work.
-            // Once both isDatabaseCreated and isCurrentDatabaseUpdated are true, the player can
+            // Once isDatabaseCreated and isCurrentDatabaseUpdated are true, the player can
             // enter inventory and shop.
             isDatabaseCreated = true;
             isCurrentDatabaseUpdated = true;

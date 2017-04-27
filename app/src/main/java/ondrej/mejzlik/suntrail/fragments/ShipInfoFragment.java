@@ -94,39 +94,41 @@ public class ShipInfoFragment extends Fragment {
     private void setContents(View view) {
         HtmlConverter htmlConverter = new HtmlConverter();
         Bundle arguments = getArguments();
-        ImageView shipPicture = (ImageView) (view.findViewById(R.id.ship_info_image_view_ship));
-        TextView shipName = (TextView) (view.findViewById(R.id.ship_info_text_view_ship_name));
-        TextView infoText = (TextView) (view.findViewById(R.id.ship_info_text_view_top));
-        TextView cargoSizeView = (TextView) (view.findViewById(R.id.ship_info_text_view_cargo_size));
-        int shipNameResourceId = arguments.getInt(SPACESHIP_NAME_KEY);
-        int imageResource;
-        int textResource;
-        int cargoSize;
+        if (arguments != null && arguments.containsKey(SPACESHIP_NAME_KEY)) {
+            ImageView shipPicture = (ImageView) (view.findViewById(R.id.ship_info_image_view_ship));
+            TextView shipName = (TextView) (view.findViewById(R.id.ship_info_text_view_ship_name));
+            TextView infoText = (TextView) (view.findViewById(R.id.ship_info_text_view_top));
+            TextView cargoSizeView = (TextView) (view.findViewById(R.id.ship_info_text_view_cargo_size));
+            int shipNameResourceId = arguments.getInt(SPACESHIP_NAME_KEY);
+            int imageResource;
+            int textResource;
+            int cargoSize;
 
-        switch (shipNameResourceId) {
-            case R.string.ship_name_icarus: {
-                imageResource = R.drawable.pict_icarus;
-                textResource = R.string.ship_info_icarus;
-                cargoSize = ICARUS_CARGO_SIZE;
-                break;
+            switch (shipNameResourceId) {
+                case R.string.ship_name_icarus: {
+                    imageResource = R.drawable.pict_icarus;
+                    textResource = R.string.ship_info_icarus;
+                    cargoSize = ICARUS_CARGO_SIZE;
+                    break;
+                }
+                case R.string.ship_name_lokys: {
+                    imageResource = R.drawable.pict_lokys;
+                    textResource = R.string.ship_info_lokys;
+                    cargoSize = LOKYS_CARGO_SIZE;
+                    break;
+                }
+                // Only other option is Daedalus.
+                default: {
+                    imageResource = R.drawable.pict_daedalus;
+                    textResource = R.string.ship_info_daedalus;
+                    cargoSize = DAEDALUS_CARGO_SIZE;
+                }
             }
-            case R.string.ship_name_lokys: {
-                imageResource = R.drawable.pict_lokys;
-                textResource = R.string.ship_info_lokys;
-                cargoSize = LOKYS_CARGO_SIZE;
-                break;
-            }
-            // Only other option is Daedalus.
-            default: {
-                imageResource = R.drawable.pict_daedalus;
-                textResource = R.string.ship_info_daedalus;
-                cargoSize = DAEDALUS_CARGO_SIZE;
-            }
+            shipPicture.setImageResource(imageResource);
+            shipName.setText(shipNameResourceId);
+            // The main text is a html
+            infoText.setText(htmlConverter.getHtmlForTextView(getString(textResource)));
+            cargoSizeView.setText(String.valueOf(cargoSize));
         }
-        shipPicture.setImageResource(imageResource);
-        shipName.setText(shipNameResourceId);
-        // The main text is a html
-        infoText.setText(htmlConverter.getHtmlForTextView(getString(textResource)));
-        cargoSizeView.setText(String.valueOf(cargoSize));
     }
 }

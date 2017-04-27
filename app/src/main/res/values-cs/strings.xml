@@ -1103,12 +1103,43 @@
     <![CDATA[
         <p>
         Tato loď vám byla darována Obchodní federací. Společně s ní dostáváte <b>jistý obnos kreditů</b>.<br>
-        Vaším novým úkolem je převážet zboží a obchodovat s ním na planetách a jiných astronomických objektech v naší Sluneční soustavě.
+        Vaším novým úkolem je převážet zboží a obchodovat s ním na planetách a jiných astronomických
+        objektech v naší Sluneční soustavě.
         </p>
         <p>
         Hodně štěstí.
         </p>
     ]]>
+    </string>
+    <string name="receive_lokys_text_top">
+        <![CDATA[
+        <p>
+        Gratulujeme, získáváte novou vesmírnou loď.
+        </p>
+        ]]>
+    </string>
+    <string name="receive_lokys_text_bottom">
+        <![CDATA[
+        <p>
+        Loď získáváte od společnosti Lunar Industries. <br> Je vhodná pro přepravu na střední
+        vzdálenosti. Reaktor má výkon 2 petawatty, klíčky na Vás čekají v zapalování.
+        </p>
+        ]]>
+    </string>
+    <string name="receive_daedalus_text_top">
+        <![CDATA[
+        <p>
+        Máme pro Vás dobrou zprávu.
+        </p>
+        ]]>
+    </string>
+    <string name="receive_daedalus_text_bottom">
+        <![CDATA[
+        <p>
+        Jupiterská důlní společnost potřebuje přepravovat větší kontejnery a proto od ní dostáváte
+        novou loď. <br> Loď bude vybavena experimentálním gravitonovým štítem.
+        </p>
+        ]]>
     </string>
     <string name="ship_info_icarus">
     <![CDATA[

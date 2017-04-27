@@ -10,6 +10,7 @@ import android.os.Parcelable;
  * and use the getters and setters as usual.
  */
 public class ItemModel implements Parcelable {
+
     public static final Parcelable.Creator<ItemModel> CREATOR = new Parcelable.Creator<ItemModel>() {
         @Override
         public ItemModel createFromParcel(Parcel source) {
@@ -34,6 +35,7 @@ public class ItemModel implements Parcelable {
     private boolean isInShop;
     private boolean isBought;
     private boolean canBeBought;
+    private boolean isShip;
 
     /**
      * Create a new game item information holder.
@@ -50,7 +52,7 @@ public class ItemModel implements Parcelable {
      * @param size                 item size in cargo bay (S, M, L)
      */
     ItemModel(int id, int price, int itemNameResId, int itemImageResId, int itemImageIconResId, int itemDescriptionResId, int availableAtPlanet, boolean isSaleable,
-              boolean isBought, boolean priceMovement, int size) {
+              boolean isBought, boolean priceMovement, int size, boolean isShip) {
         this.id = id;
         this.price = price;
         this.itemNameResId = itemNameResId;
@@ -62,9 +64,10 @@ public class ItemModel implements Parcelable {
         this.isBought = isBought;
         this.priceMovement = priceMovement;
         this.size = size;
+        this.isShip = isShip;
     }
 
-    private ItemModel(Parcel in) {
+    protected ItemModel(Parcel in) {
         this.id = in.readInt();
         this.itemNameResId = in.readInt();
         this.itemImageResId = in.readInt();
@@ -72,12 +75,31 @@ public class ItemModel implements Parcelable {
         this.itemDescriptionResId = in.readInt();
         this.availableAtPlanet = in.readInt();
         this.size = in.readInt();
+        this.isSaleable = in.readByte() != 0;
         this.price = in.readInt();
         this.priceMovement = in.readByte() != 0;
         this.isInShop = in.readByte() != 0;
         this.isBought = in.readByte() != 0;
         this.canBeBought = in.readByte() != 0;
-        this.isSaleable = in.readByte() != 0;
+        this.isShip = in.readByte() != 0;
+    }
+
+    /**
+     * Returns true if this item is a ship.
+     *
+     * @return Returns true if this item is a ship.
+     */
+    public boolean isShip() {
+        return isShip;
+    }
+
+    /**
+     * Sets if this item is a ship.
+     *
+     * @param ship True if this item is a ship.
+     */
+    public void setShip(boolean ship) {
+        isShip = ship;
     }
 
     /**
@@ -221,11 +243,12 @@ public class ItemModel implements Parcelable {
         dest.writeInt(this.itemDescriptionResId);
         dest.writeInt(this.availableAtPlanet);
         dest.writeInt(this.size);
+        dest.writeByte(this.isSaleable ? (byte) 1 : (byte) 0);
         dest.writeInt(this.price);
         dest.writeByte(this.priceMovement ? (byte) 1 : (byte) 0);
         dest.writeByte(this.isInShop ? (byte) 1 : (byte) 0);
         dest.writeByte(this.isBought ? (byte) 1 : (byte) 0);
         dest.writeByte(this.canBeBought ? (byte) 1 : (byte) 0);
-        dest.writeByte(this.isSaleable ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.isShip ? (byte) 1 : (byte) 0);
     }
 }

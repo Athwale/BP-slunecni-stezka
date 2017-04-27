@@ -51,14 +51,10 @@ import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.SpaceshipTable.C
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.SpaceshipTable.TABLE_NAME_SPACESHIP;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.VisitedPlanets.COLUMN_NAME_PLANET_ID;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.VisitedPlanets.TABLE_NAME_VISITED_PLANETS;
-import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_CERES;
-import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_EARTH;
-import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MARS;
-import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MERCURY;
+import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_JUPITER;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MOON;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_NEPTUNE;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_SUN;
-import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS;
 
 /**
  * This class is a singleton.
@@ -369,31 +365,8 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 // this item. It is later used to exclude all once bought items from shops if the
                 // player returns to an already visited planet.
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_HAS_BEEN_BOUGHT, 0);
-                // Determine item size. The size of the item can not be larger than available cargo
-                // bay size.
-                int sizeLimit;
-                if (availableAt == PLANET_ID_SUN || availableAt == PLANET_ID_MERCURY || availableAt == PLANET_ID_VENUS || availableAt == PLANET_ID_EARTH) {
-                    if (direction) {
-                        // We have Icarus S
-                        sizeLimit = ICARUS_CARGO_SIZE;
-                    } else {
-                        // We have Daedalus L
-                        sizeLimit = DAEDALUS_CARGO_SIZE;
-                    }
-                } else if (availableAt == PLANET_ID_MOON || availableAt == PLANET_ID_MARS || availableAt == PLANET_ID_CERES) {
-                    // We have Lokys M. We always have lokys in the middle section.
-                    sizeLimit = LOKYS_CARGO_SIZE;
-                } else {
-                    if (direction) {
-                        // We have Daedalus L
-                        sizeLimit = DAEDALUS_CARGO_SIZE;
-                    } else {
-                        // We have Icarus S
-                        sizeLimit = ICARUS_CARGO_SIZE;
-                    }
-                }
-                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SIZE, gameUtilities.randomIntGenerator(1, sizeLimit - 2));
-
+                // Size of items is dynamically changed while entering each shop to fit current ship
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SIZE, 0);
                 db.insertOrThrow(TABLE_NAME_ITEMS, null, shopItem);
                 db.setTransactionSuccessful();
             } catch (SQLException ex) {
@@ -463,7 +436,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                     int isSaleable = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_IS_SALEABLE));
                     int priceMovement = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_PRICE_RISE));
                     ItemModel item = new ItemModel(id, itemPrice, itemName, itemImage,
-                            itemImageIcon, itemDescription, availableAt, this.intToBoolean(isSaleable), this.intToBoolean(isBought), this.intToBoolean(priceMovement), itemSize);
+                            itemImageIcon, itemDescription, availableAt, this.intToBoolean(isSaleable), this.intToBoolean(isBought), this.intToBoolean(priceMovement), itemSize, false);
                     boughtItems.add(item);
                 } while (cursor.moveToNext());
             }
@@ -608,7 +581,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                     int priceMovement = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_PRICE_RISE));
                     int hasBeenBought = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_HAS_BEEN_BOUGHT));
                     ItemModel item = new ItemModel(id, itemPrice, itemName, itemImage,
-                            itemImageIcon, itemDescription, availableAt, this.intToBoolean(isSaleable), this.intToBoolean(isBought), this.intToBoolean(priceMovement), itemSize);
+                            itemImageIcon, itemDescription, availableAt, this.intToBoolean(isSaleable), this.intToBoolean(isBought), this.intToBoolean(priceMovement), itemSize, false);
                     // Set items are in shop and set if can be bought.
                     if (remainingCargoSpace < itemSize || player.getCredits() < itemPrice) {
                         item.setCanBeBought(false);
@@ -635,8 +608,60 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 cursor.close();
             }
         }
+        // Add ship to the list if we are on the right planet.
+        ItemModel ship = this.makeShip(player, currentPlanet);
+        if (ship != null) {
+            shopItems.add(ship);
+        }
         return shopItems;
     }
+
+    /**
+     * This method makes a special game item which represents a spaceship and returns it only if
+     * the player is on a planet where a ship should be available. Otherwise returns null.
+     *
+     * @param player PlayerModel instance.
+     * @param currentPlanet Current planet
+     * @return ItemModel representing a ship or null.
+     */
+    private ItemModel makeShip(PlayerModel player, int currentPlanet) {
+        // The id is irrelevant the ship item is not in database.
+        // Calculate how much money the player has and determine ship price as half of that.
+        int credits = player.getCredits();
+        ArrayList<ItemModel> boughtItems = this.getBoughtItems();
+        for (ItemModel item : boughtItems) {
+            credits += item.getPrice();
+        }
+        int shipPrice = credits / 2;
+        ItemModel lokys = new ItemModel(500, shipPrice, R.string.ship_name_lokys, R.drawable.pict_lokys,
+                R.drawable.pict_lokys_small, R.string.ship_info_lokys, currentPlanet, false, false, false, LOKYS_CARGO_SIZE, true);
+        ItemModel daedalus = new ItemModel(500, shipPrice, R.string.ship_name_daedalus, R.drawable.pict_daedalus,
+                R.drawable.pict_daedalus_small, R.string.ship_info_daedalus, currentPlanet, false, false, false, DAEDALUS_CARGO_SIZE, true);
+
+        if (player.getDirection()) {
+            // Sun -> Neptune
+            if (currentPlanet == PLANET_ID_MOON) {
+                // Get lokys
+                return lokys;
+            } else if (currentPlanet == PLANET_ID_JUPITER) {
+                // Jupiter, get daedalus
+                return daedalus;
+            }
+        } else {
+            // Neptune -> Sun
+            if (currentPlanet == PLANET_ID_JUPITER) {
+                // Get lokys
+                return lokys;
+            } else if (currentPlanet == PLANET_ID_MOON) {
+                // Moon, get daedalus
+                return daedalus;
+            }
+        }
+        return null;
+    }
+
+    // todo automatically adapt item size
+    // todo is isShip behave differently
 
     /**
      * Updates the current planet value in the player table.
@@ -709,15 +734,34 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * This method changes the size of items inside shop on the current planet so that a single
+     * item may not be bigger than available cargo space of the current ship.
+     *
+     * @param currentPlanet Current planet.
+     */
+    public void adaptItemSizes(int currentPlanet) {
+        int cargoSize = this.getShipData().getCargoBaySize();
+
+        // todo item must not be bought or has been bought
+        SQLiteDatabase db = this.getWritableDatabase();
+        final String QUERY = "SELECT * FROM " + TABLE_NAME_ITEMS + " WHERE " + COLUMN_NAME_ITEM_AVAILABLE_AT + " = " + String.valueOf(currentPlanet);
+        Cursor cursor = db.rawQuery(QUERY, null);
+
+    }
+
+    /**
      * This method add the currently visited planet to the list of visited planets.
      * Visited planets are used to check where we must not update prices of bought items.
+     *
+     * @return True if the current planet already was visited.
      */
-    public void updateVisitedPlanets(int currentPlanet) {
+    public boolean updateVisitedPlanets(int currentPlanet) {
         // The database connection is cached so it's not expensive to call getWritableDatabase()
         // multiple times.
         SQLiteDatabase db = getWritableDatabase();
         // Update current planet in player table.
         this.updateCurrentPlanet(currentPlanet);
+        boolean planetAlreadyVisited = false;
 
         try {
             db.beginTransaction();
@@ -727,12 +771,16 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 planet.put(COLUMN_NAME_PLANET_ID, currentPlanet);
                 db.insertOrThrow(TABLE_NAME_VISITED_PLANETS, null, planet);
                 db.setTransactionSuccessful();
+                planetAlreadyVisited = false;
+            } else {
+                planetAlreadyVisited = true;
             }
         } catch (Exception e) {
             Log.d(TAG, "Inserting visited planet list from database failed");
         } finally {
             db.endTransaction();
         }
+        return planetAlreadyVisited;
     }
 
     /**
@@ -837,9 +885,11 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                     }
                 }
                 // Nothing can be bought lower the price of one item
-                ItemModel itemToChange = itemsForShop.get(0);
-                itemToChange.setPrice(credits / 2);
-                this.updateItemPrice(itemToChange);
+                if (!itemsForShop.isEmpty()) {
+                    ItemModel itemToChange = itemsForShop.get(0);
+                    itemToChange.setPrice(credits / 2);
+                    this.updateItemPrice(itemToChange);
+                }
             }
         }
     }

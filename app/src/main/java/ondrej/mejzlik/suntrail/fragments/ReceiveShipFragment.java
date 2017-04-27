@@ -1,6 +1,5 @@
 package ondrej.mejzlik.suntrail.fragments;
 
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,10 +19,10 @@ import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.SCROLL_POSITIO
  * The player is informed that he was given a ship and a small amount of credits to start with.
  * When the confirm button is pressed a new database and game data are created.
  */
-public class StartGameFragment extends Fragment {
+public class ReceiveShipFragment extends Fragment {
     private int scrollPosition = 0;
 
-    public StartGameFragment() {
+    public ReceiveShipFragment() {
         // Required empty public constructor
     }
 
@@ -31,18 +30,13 @@ public class StartGameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_start_game, container, false);
-        this.fillText(view);
+        View view = inflater.inflate(R.layout.fragment_receive_ship, container, false);
+        this.setContents(view);
 
         // If we're being restored from a previous state, restore last known scroll position.
         if (savedInstanceState != null) {
             this.scrollPosition = savedInstanceState.getInt(SCROLL_POSITION_KEY);
         }
-
-        // Set a tag to the ship image button containing the ship name string resource id for the
-        // ship info fragment.
-        ImageButton shipButton = (ImageButton) (view.findViewById(R.id.start_game_image_button_ship));
-        shipButton.setTag(R.string.ship_name_icarus);
 
         return view;
     }
@@ -54,7 +48,7 @@ public class StartGameFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        final ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.start_game_scroll_view_main);
+        final ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.receive_ship_scroll_view_main);
         // For some reason scrollTo does not work in main thread.
         scrollView.post(new Runnable() {
             public void run() {
@@ -70,7 +64,7 @@ public class StartGameFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.start_game_scroll_view_main);
+        ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.receive_ship_scroll_view_main);
         // scrollView can be null if the system tries to save position when the user presses home
         // from a fragment opened from this fragment.
         if (scrollView != null) {
@@ -92,12 +86,16 @@ public class StartGameFragment extends Fragment {
      *
      * @param view The main view of this fragment
      */
-    private void fillText(View view) {
+    private void setContents(View view) {
         HtmlConverter htmlConverter = new HtmlConverter();
-        TextView textViewTop = (TextView) (view.findViewById(R.id.start_game_text_view_top));
+        ImageButton shipButton = (ImageButton) (view.findViewById(R.id.receive_ship_image_button_ship));
+        TextView textViewTop = (TextView) (view.findViewById(R.id.receive_ship_text_view_top));
+        TextView textViewBottom = (TextView) (view.findViewById(R.id.receive_ship_text_view_bottom));
+        // Set a tag to the ship image button containing the ship name string resource id for the
+        // ship info fragment.
+        shipButton.setTag(R.string.ship_name_icarus);
         textViewTop.setText(htmlConverter.getHtmlForTextView(getString(R.string.start_new_game_text_top)));
-
-        TextView textViewBottom = (TextView) (view.findViewById(R.id.start_game_text_view_bottom));
         textViewBottom.setText(htmlConverter.getHtmlForTextView(getString(R.string.start_new_game_text_bottom)));
+
     }
 }
