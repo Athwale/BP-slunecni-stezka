@@ -1123,37 +1123,6 @@
         </p>
     ]]>
     </string>
-    <string name="receive_lokys_text_top">
-        <![CDATA[
-        <p>
-        Congratulations, you are being given a new spaceship.
-        </p>
-        ]]>
-        </string>
-    <string name="receive_lokys_text_bottom">
-        <![CDATA[
-        <p>
-        You are receiving the ship from Lunar Industries. <br> It is suitable for mid-range
-        transportation. The core reactor outputs 2 petawats of energy. Keys await you on the bridge.
-        </p>
-        ]]>
-    </string>
-    <string name="receive_daedalus_text_top">
-        <![CDATA[
-        <p>
-        We have some great news for you.
-        </p>
-        ]]>
-    </string>
-    <string name="receive_daedalus_text_bottom">
-        <![CDATA[
-        <p>
-        Jupiter mining company needs you to transport larger
-        cargo. <br> Therefore you are receiving a new ship from them. The ship will be equipped with
-        experimental graviton shields.
-        </p>
-        ]]>
-    </string>
     <string name="ship_info_icarus">
     <![CDATA[
         <p>
