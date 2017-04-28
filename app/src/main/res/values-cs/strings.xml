@@ -1089,6 +1089,7 @@
     <string name="shop_buying_item">Probíhá nákup</string>
     <string name="shop_selling_item">Probíhá prodej</string>
     <string name="shop_can_not_sell">Nelze prodat v tomto obchodě.</string>
+    <string name="end_game_title">Vítězství</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>

@@ -16,7 +16,7 @@
         android:layout_marginTop="16dp"
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
-        android:text="@string/direction_choice_title"
+        android:text="@string/end_game_title"
         android:textColor="@color/spacerBlue"
         android:textStyle="bold" />
 
@@ -29,5 +29,18 @@
         android:layout_marginTop="48dp"
         android:background="@color/spacerBlue"
         tools:ignore="UnknownId,UnknownIdInLayout" />
+
+    <TextView
+        android:id="@+id/end_game_final_credits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:textColor="@color/textBlack"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        tools:text="1678" />
 
 </RelativeLayout>

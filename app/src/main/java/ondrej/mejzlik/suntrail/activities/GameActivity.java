@@ -130,9 +130,6 @@ public class GameActivity extends Activity {
                 this.isDatabaseCreated = true;
                 // Can not save direction into saved instance state because it not survive finish();
                 if ((tripDirection && (scannedPlanet == PLANET_ID_NEPTUNE)) || (!tripDirection && (scannedPlanet == PLANET_ID_SUN))) {
-                    // End game and save game end to preferences and disable game button
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putBoolean(END_GAME_PREFERENCE_KEY, true).apply();
                     // Start game end fragment
                     EndGameFragment endGameFragment = new EndGameFragment();
                     FragmentTransaction endGame = fragmentManager.beginTransaction();
