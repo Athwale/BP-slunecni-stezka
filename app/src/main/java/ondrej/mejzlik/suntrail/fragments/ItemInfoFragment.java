@@ -17,6 +17,7 @@ import android.widget.Toast;
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
 import ondrej.mejzlik.suntrail.game.ItemModel;
+import ondrej.mejzlik.suntrail.game.ShipModel;
 import ondrej.mejzlik.suntrail.utilities.HtmlConverter;
 
 import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.SCROLL_POSITION_KEY;
@@ -102,7 +103,7 @@ public class ItemInfoFragment extends Fragment {
         Bundle arguments = this.getArguments();
         if (arguments != null) {
             // Get the item model filled with data
-            ItemModel item = arguments.getParcelable(ITEM_KEY);
+            final ItemModel item = arguments.getParcelable(ITEM_KEY);
 
             ImageView itemImage = (ImageView) view.findViewById(R.id.item_info_image_view_item);
             TextView itemName = (TextView) view.findViewById(R.id.item_info_text_view_item_name);
@@ -111,6 +112,7 @@ public class ItemInfoFragment extends Fragment {
             TextView itemSize = (TextView) view.findViewById(R.id.item_info_text_view_cargo_size);
             TextView itemPriceMovementText = (TextView) view.findViewById(R.id.item_info_text_view_price_movement);
             TextView itemPriceTitle = (TextView) view.findViewById(R.id.item_info_text_view_price_title);
+            TextView itemSizeTitle = (TextView) view.findViewById(R.id.item_info_text_view_cargo_size_title);
             TextView itemPrice = (TextView) view.findViewById(R.id.item_info_text_view_item_price);
             TextView itemPriceCr = (TextView) view.findViewById(R.id.item_info_text_view_item_price_cr);
             TextView message = (TextView) view.findViewById(R.id.item_info_text_view_cant_be_bought);
@@ -122,14 +124,18 @@ public class ItemInfoFragment extends Fragment {
             buyButton.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    buyOrSell(v);
+                    if (item != null && item.isShip()) {
+                        buyShip();
+                    } else {
+                        itemBuyOrSell(v);
+                    }
                 }
             });
 
             sellButton.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    buyOrSell(v);
+                    itemBuyOrSell(v);
                 }
             });
 
@@ -148,6 +154,7 @@ public class ItemInfoFragment extends Fragment {
                 itemPrice.setText(" " + String.valueOf(item.getPrice()));
                 if (item.isInShop()) {
                     // Set price and enable sell/buy.
+                    itemSizeTitle.setText(R.string.list_size);
                     itemPriceTitle.setVisibility(View.VISIBLE);
                     itemPriceCr.setVisibility(View.VISIBLE);
                     if (item.canBeBought()) {
@@ -177,6 +184,21 @@ public class ItemInfoFragment extends Fragment {
                         message.setText(R.string.shop_can_not_be_bought);
                         message.setVisibility(View.VISIBLE);
                     }
+                } else if (item.isShip()) {
+                    // The item is a special item which is a spaceship.
+                    if (item.canBeBought()) {
+                        itemBuy.setVisibility(View.VISIBLE);
+                        message.setVisibility(View.GONE);
+                    } else {
+                        itemBuy.setVisibility(View.GONE);
+                        message.setText(R.string.shop_can_not_be_bought);
+                        message.setVisibility(View.VISIBLE);
+                    }
+                    imagePriceMovement.setVisibility(View.GONE);
+                    itemSizeTitle.setText(R.string.ship_info_cargo);
+                    itemPriceMovementText.setVisibility(View.GONE);
+                    message.setVisibility(View.GONE);
+                    itemSell.setVisibility(View.GONE);
                 } else {
                     // We are in inventory, hide all shop related stuff
                     itemSell.setVisibility(View.GONE);
@@ -188,11 +210,13 @@ public class ItemInfoFragment extends Fragment {
     }
 
     /**
-     * This method handles buy and sell buttons.
+     * This method handles buy and sell buttons. It updates the database and closes the fragment as
+     * soon as the change is done while displaying a message. This change is finished quickly and
+     * does not have to be done in a separate thread.
      *
      * @param view The button that was clicked.
      */
-    private void buyOrSell(View view) {
+    private void itemBuyOrSell(View view) {
         Button button = (Button) view;
         GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(getActivity());
         // Get the item row id in database
@@ -211,6 +235,25 @@ public class ItemInfoFragment extends Fragment {
                     break;
                 }
             }
+        }
+        // Close this fragment as soon as the item is bought.
+        getFragmentManager().popBackStackImmediate();
+    }
+
+    /**
+     * This method updates the database and changes the player's ship. Then closes the fragment as
+     * soon as the change is done while displaying a message that a purchase is being made. This
+     * change is finished quickly and does not have to be done in a separate thread.
+     */
+    private void buyShip() {
+        GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(getActivity());
+        // Get the item row id in database
+        Bundle arguments = this.getArguments();
+        ItemModel item = arguments.getParcelable(ITEM_KEY);
+        if (item != null) {
+            Toast.makeText(getActivity(), getResources().getString(R.string.shop_buying_item), Toast.LENGTH_SHORT).show();
+            ShipModel ship = new ShipModel(500, item.getItemImageResId(), item.getItemNameResId(), item.getPrice(), item.getSize(), item.getSize());
+            databaseHelper.buyShip(ship);
         }
         // Close this fragment as soon as the item is bought.
         getFragmentManager().popBackStackImmediate();

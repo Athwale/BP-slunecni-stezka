@@ -22,7 +22,7 @@ public class ShipModel {
      * @param cargoBaySize        ship cargo bay container size from database
      * @param remainingCargoSpace ship cargo bay container size from database
      */
-    ShipModel(int id, int imageResId, int shipNameResId, int price, int cargoBaySize, int remainingCargoSpace) {
+    public ShipModel(int id, int imageResId, int shipNameResId, int price, int cargoBaySize, int remainingCargoSpace) {
         this.id = id;
         this.imageResId = imageResId;
         this.shipNameResId = shipNameResId;
@@ -65,5 +65,14 @@ public class ShipModel {
      */
     public int getCargoBaySize() {
         return cargoBaySize;
+    }
+
+    /**
+     * Returns ship price.
+     *
+     * @return Returns ship price.
+     */
+    public int getPrice() {
+        return price;
     }
 }

@@ -70,7 +70,7 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS
  * initializeDatabase
  * updateItems(current planet)
  * updateVisitedPlanets(current planet)
- * changeShip(id)
+ * adaptItemSize(currentPlanet)
  * <p>
  * ENTERING SHOP
  * getItemsForShop()

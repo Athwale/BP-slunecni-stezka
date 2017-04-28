@@ -6,6 +6,7 @@
     <color name="rowGreen">#2200FF00</color>
     <color name="rowOrange">#11FF6600</color>
     <color name="rowRed">#33FF0000</color>
+    <color name="rowBlue">#330000FF</color>
     <color name="textBlue">#003399</color>
     <color name="textBlack">#000000</color>
     <color name="textRed">#ca151e</color>

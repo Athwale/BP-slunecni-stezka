@@ -142,7 +142,7 @@
 
                 <TextView
                     android:id="@+id/item_info_text_view_price_movement"
-                    android:layout_width="wrap_content"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:paddingEnd="0dp"
