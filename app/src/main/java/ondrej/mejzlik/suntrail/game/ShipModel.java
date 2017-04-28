@@ -32,6 +32,15 @@ public class ShipModel {
     }
 
     /**
+     * Returnd database id.
+     *
+     * @return Returns database id.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
      * Returns remaining cargo bay space.
      *
      * @return Returns ship database row ID.

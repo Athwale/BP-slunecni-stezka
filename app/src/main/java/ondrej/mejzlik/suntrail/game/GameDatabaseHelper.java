@@ -2,6 +2,7 @@ package ondrej.mejzlik.suntrail.game;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,6 +18,8 @@ import java.util.Random;
 import ondrej.mejzlik.suntrail.R;
 
 import static android.provider.BaseColumns._ID;
+import static ondrej.mejzlik.suntrail.activities.GameActivity.END_GAME_PREFERENCE_KEY;
+import static ondrej.mejzlik.suntrail.activities.GameActivity.PREFERENCES_KEY;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.DAEDALUS_CARGO_SIZE;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.FIRST_SHIP;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.ICARUS_CARGO_SIZE;
@@ -104,8 +107,6 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private static final String TAG = "DATABASE";
     private static GameDatabaseHelper instance;
     private GameUtilities gameUtilities = null;
-
-    // TODO sell all and win
 
     /**
      * Constructor creates the database helper.
@@ -705,9 +706,10 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         // The table has only one row with automatic id 1.
         db.update(TABLE_NAME_PLAYER, ship, "_id=1", null);
 
-        // Update ship price
+        // Update ship price, this is later used to sell the ship at game end.
         ship.clear();
-        ship.put(COLUMN_NAME_SHIP_PRICE, price);
+        // Add a little bit to the ship price.
+        ship.put(COLUMN_NAME_SHIP_PRICE, this.gameUtilities.calculateSellingPrice(price, true));
         db.update(TABLE_NAME_SPACESHIP, ship, COLUMN_NAME_SHIP_NAME_RES_ID + "=" + String.valueOf(shipNameResId), null);
     }
 
@@ -921,25 +923,31 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
 
     /**
      * This method sells everything including the player's ship.
+     *
+     * @param context Application context.
      */
-    public void endGame() {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public void endGame(Context context) {
+        // Only calculate the final credits if the game is ending the first time.
+        SharedPreferences preferences = context.getApplicationContext().getSharedPreferences(PREFERENCES_KEY, 0);
+        boolean gameEnded = preferences.getBoolean(END_GAME_PREFERENCE_KEY, false);
+        if (!gameEnded) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            // Get total credits
+            ArrayList<ItemModel> boughtItems = this.getBoughtItems();
+            int credits = this.getPlayerData().getCredits();
+            for (ItemModel item : boughtItems) {
+                credits += item.getPrice();
+            }
+            credits += this.getShipData().getPrice();
 
-        // Get total credits
-        ArrayList<ItemModel> boughtItems = this.getBoughtItems();
-        int credits = this.getPlayerData().getCredits();
-        for (ItemModel item : boughtItems) {
-            credits += item.getPrice();
+            // Set game finished 1. Used in fragments to display that game has finished and update
+            // credits.
+            ContentValues player = new ContentValues();
+            player.put(COLUMN_NAME_PLAYER_CREDITS, credits);
+            // todo assign reward
+            player.put(COLUMN_NAME_PLAYER_REWARD, 100);
+            db.update(TABLE_NAME_PLAYER, player, "_id=1", null);
         }
-        credits += this.getShipData().getPrice();
-
-        // Set game finished 1. Used in fragments to display that game has finished and update
-        // credits.
-        ContentValues player = new ContentValues();
-        player.put(COLUMN_NAME_PLAYER_CREDITS, credits);
-        // todo assign reward
-        player.put(COLUMN_NAME_PLAYER_REWARD, 100);
-        db.update(TABLE_NAME_PLAYER, player, "_id=1", null);
     }
 
     /**

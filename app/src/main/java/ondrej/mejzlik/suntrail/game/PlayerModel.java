@@ -10,6 +10,7 @@ public class PlayerModel {
     private int shipResId;
     private int credits;
     private int currentPlanet;
+    private int reward;
 
     /**
      * Creates a new player and sets all attributes.
@@ -25,6 +26,42 @@ public class PlayerModel {
         this.credits = credits;
         this.currentPlanet = currentPlanet;
         this.direction = direction;
+    }
+
+    /**
+     * Returns database id.
+     *
+     * @return Returns database id.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Returns ship name string resource id.
+     *
+     * @return Returns ship name string resource id.
+     */
+    public int getShipResId() {
+        return shipResId;
+    }
+
+    /**
+     * Returns reward id.
+     *
+     * @return Returns reward id;
+     */
+    public int getReward() {
+        return reward;
+    }
+
+    /**
+     * Set reward id;
+     *
+     * @param reward New reward id.
+     */
+    public void setReward(int reward) {
+        this.reward = reward;
     }
 
     /**
