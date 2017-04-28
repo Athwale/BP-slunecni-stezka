@@ -32,6 +32,7 @@ public final class GameDatabaseContract {
         static final String COLUMN_NAME_PLAYER_CREDITS = "credits";
         static final String COLUMN_NAME_PLAYER_CURRENT_PLANET = "currentPlanet";
         static final String COLUMN_NAME_PLAYER_DIRECTION = "direction";
+        static final String COLUMN_NAME_PLAYER_REWARD = "reward";
     }
 
     /**

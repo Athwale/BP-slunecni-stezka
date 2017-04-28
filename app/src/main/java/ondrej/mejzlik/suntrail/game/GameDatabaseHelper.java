@@ -68,7 +68,8 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_SHIP_NAME_RES_ID + " INTEGER," +
             GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_CREDITS + " INTEGER," +
             GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_CURRENT_PLANET + " INTEGER," +
-            GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_DIRECTION + " INTEGER)";
+            GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_DIRECTION + " INTEGER," +
+            GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_REWARD + " INTEGER)";
 
     private static final String CREATE_SPACESHIP_TABLE = "CREATE TABLE " + TABLE_NAME_SPACESHIP + " (" +
             GameDatabaseContract.SpaceshipTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -194,6 +195,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             player.put(GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_CREDITS, STARTING_CREDITS);
             player.put(GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_CURRENT_PLANET, currentPlanet);
             player.put(GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_DIRECTION, this.booleanToInt(direction));
+            player.put(GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_REWARD, 1);
 
             db.insertOrThrow(TABLE_NAME_PLAYER, null, player);
             db.setTransactionSuccessful();
@@ -818,16 +820,13 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     /**
      * This method add the currently visited planet to the list of visited planets.
      * Visited planets are used to check where we must not update prices of bought items.
-     *
-     * @return True if the current planet already was visited.
      */
-    public boolean updateVisitedPlanets(int currentPlanet) {
+    public void updateVisitedPlanets(int currentPlanet) {
         // The database connection is cached so it's not expensive to call getWritableDatabase()
         // multiple times.
         SQLiteDatabase db = getWritableDatabase();
         // Update current planet in player table.
         this.updateCurrentPlanet(currentPlanet);
-        boolean planetAlreadyVisited = false;
 
         try {
             db.beginTransaction();
@@ -837,16 +836,12 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 planet.put(COLUMN_NAME_PLANET_ID, currentPlanet);
                 db.insertOrThrow(TABLE_NAME_VISITED_PLANETS, null, planet);
                 db.setTransactionSuccessful();
-                planetAlreadyVisited = false;
-            } else {
-                planetAlreadyVisited = true;
             }
         } catch (Exception e) {
             Log.d(TAG, "Inserting visited planet list from database failed");
         } finally {
             db.endTransaction();
         }
-        return planetAlreadyVisited;
     }
 
     /**
@@ -927,7 +922,9 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      * This method sells everything including the player's ship.
      */
     public void endGame() {
-        // Get total credist
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Get total credits
         ArrayList<ItemModel> boughtItems = this.getBoughtItems();
         int credits = this.getPlayerData().getCredits();
         for (ItemModel item : boughtItems) {
@@ -935,9 +932,12 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         }
         credits += this.getShipData().getPrice();
 
-        // Set all items as sold, not and set availableAt to invalid for all items to clear shops.
-        // Set game finished 1. Used in inventory to display that game has finished.
-
+        // Set game finished 1. Used in fragments to display that game has finished and update
+        // credits.
+        ContentValues player = new ContentValues();
+        player.put(COLUMN_NAME_PLAYER_CREDITS, credits);
+        // todo assign reward
+        db.update(TABLE_NAME_PLAYER, player, "_id=1", null);
     }
 
     /**
@@ -999,7 +999,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     public String toString() {
         SQLiteDatabase db = this.getReadableDatabase();
         // Add player table data
-        String output = "PlayerModel table: \n\tID\t\t\tSHIP NAME RES ID\tCREDITS\t\tCUR PLANET\t\tDIRECTION\n";
+        String output = "PlayerModel table: \n\tID\t\t\tSHIP NAME RES ID\tCREDITS\t\tCUR PLANET\t\tDIRECTION\t\tREWARD\n";
         Cursor cursorPlayer = db.rawQuery("select * from " + TABLE_NAME_PLAYER, null);
         output += this.getDataFromCursor(cursorPlayer) + "\n\n";
 

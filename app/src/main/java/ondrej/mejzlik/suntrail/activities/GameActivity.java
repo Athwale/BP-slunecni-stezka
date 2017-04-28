@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +38,9 @@ public class GameActivity extends Activity {
     // Used to back up lock variables
     private static final String DATABASE_CREATED_KEY = "isDatabaseCreatedKey";
     private static final String CURRENT_PLANET_UPDATED_KEY = "isPlanetUpdatedKey";
+    private static final String DIRECTION_PREFERENCE_KEY = "directionPreferenceKey";
+    // Used to save trip direction here.
+    SharedPreferences preferences = null;
     // The resources contain all about the planet
     private Bundle planetResources = null;
     // This is used to prevent multiple toasts from showing.
@@ -45,6 +49,7 @@ public class GameActivity extends Activity {
     // These variables are set to true once we have a functional, initialized and updated database.
     private boolean isDatabaseCreated = false;
     private boolean isCurrentDatabaseUpdated = false;
+    private boolean tripDirection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,10 @@ public class GameActivity extends Activity {
                 this.isCurrentDatabaseUpdated = savedInstanceState.getBoolean(CURRENT_PLANET_UPDATED_KEY);
                 return;
             }
+
+            // Restore chosen direction from preferences, faster than from database.
+            this.preferences = getSharedPreferences(DIRECTION_PREFERENCE_KEY, 0);
+            this.tripDirection = this.preferences.getBoolean(DIRECTION_PREFERENCE_KEY, true);
 
             // If savedInstance == null initialize all variables that were not retrieved
             FragmentManager fragmentManager = getFragmentManager();
@@ -117,7 +126,13 @@ public class GameActivity extends Activity {
                 planetUpdater.execute();
                 // We already have a database from before.
                 this.isDatabaseCreated = true;
-                this.openGameMenuFragment();
+                // Can not save direction into saved instance state because it not survive finish();
+                if ((this.tripDirection && (scannedPlanet == PLANET_ID_NEPTUNE)) || (!this.tripDirection && (scannedPlanet == PLANET_ID_SUN))) {
+                    // End game
+                    // todo save game end to preferences and disable game button
+                } else {
+                    this.openGameMenuFragment();
+                }
             }
         }
     }
@@ -169,6 +184,9 @@ public class GameActivity extends Activity {
         // for writable or readable database are quick.
         AsyncDatabaseInitializer databaseInitializer = new AsyncDatabaseInitializer(this.scannedPlanet, this);
         databaseInitializer.execute(direction);
+        // Save chosen direction to preferences
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(DIRECTION_PREFERENCE_KEY, direction).apply();
     }
 
     /**
