@@ -42,6 +42,7 @@ import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.TABLE
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_CREDITS;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_CURRENT_PLANET;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_DIRECTION;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_REWARD;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.PlayerTable.COLUMN_NAME_PLAYER_SHIP_NAME_RES_ID;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.PlayerTable.TABLE_NAME_PLAYER;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE;
@@ -937,6 +938,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         ContentValues player = new ContentValues();
         player.put(COLUMN_NAME_PLAYER_CREDITS, credits);
         // todo assign reward
+        player.put(COLUMN_NAME_PLAYER_REWARD, 100);
         db.update(TABLE_NAME_PLAYER, player, "_id=1", null);
     }
 

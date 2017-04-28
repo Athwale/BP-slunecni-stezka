@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,6 +24,8 @@ import ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector;
 
 import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.MAP_KEY;
 import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.PLANET_RESOURCES_KEY;
+import static ondrej.mejzlik.suntrail.activities.GameActivity.END_GAME_PREFERENCE_KEY;
+import static ondrej.mejzlik.suntrail.activities.GameActivity.PREFERENCES_KEY;
 import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_END;
 import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_KEY_FROM;
 import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_KEY_TO;
@@ -237,8 +240,13 @@ public class ScannerActivity extends Activity {
             } else {
                 // It is a planet, open planet menu
                 this.planetResources = this.resourceCollector.getPlanetResources(planetId, this);
-                // Make the menu fragment show the game mode button
-                this.planetResources.putString(SHOW_GAME_BUTTON_KEY, SHOW_GAME_BUTTON);
+                // Make the menu fragment show the game mode button if game is still in progress.
+                // If game has been ended, it is inside the shared preferences, disable game button.
+                SharedPreferences preferences = getSharedPreferences(PREFERENCES_KEY, 0);
+                boolean isGameFinished = preferences.getBoolean(END_GAME_PREFERENCE_KEY, false);
+                if (!isGameFinished) {
+                    this.planetResources.putString(SHOW_GAME_BUTTON_KEY, SHOW_GAME_BUTTON);
+                }
                 // Send rotation data to continue where we finished
                 this.planetResources.putFloat(ROTATION_KEY_FROM, this.savedRotationFrom);
                 this.planetResources.putFloat(ROTATION_KEY_TO, this.savedRotationTo);

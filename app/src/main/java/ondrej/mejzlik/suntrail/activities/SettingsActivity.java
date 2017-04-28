@@ -1,6 +1,7 @@
 package ondrej.mejzlik.suntrail.activities;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,8 @@ import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
 import ondrej.mejzlik.suntrail.game.GameUtilities;
 
+import static ondrej.mejzlik.suntrail.activities.GameActivity.END_GAME_PREFERENCE_KEY;
+import static ondrej.mejzlik.suntrail.activities.GameActivity.PREFERENCES_KEY;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 
 public class SettingsActivity extends Activity {
@@ -78,6 +81,12 @@ public class SettingsActivity extends Activity {
                     view.setEnabled(false);
                     checkBoxClear.setEnabled(false);
                     databaseExistsText.setText(R.string.settings_data_info_not_exists);
+                    // Clear shared preferences, because now we need to display inventory again.
+                    SharedPreferences preferences = getSharedPreferences(PREFERENCES_KEY, 0);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    // Set that game is running, used in main activity in inventory button handler and scanner
+                    // activity to disable game mode.
+                    editor.putBoolean(END_GAME_PREFERENCE_KEY, false).apply();
                 } else {
                     Toast.makeText(this, this.getResources().getString(R.string.toast_database_delete_fail), Toast.LENGTH_LONG).show();
                 }

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.fragments.DirectionChoiceFragment;
+import ondrej.mejzlik.suntrail.fragments.EndGameFragment;
 import ondrej.mejzlik.suntrail.fragments.GameMenuFragment;
 import ondrej.mejzlik.suntrail.fragments.InventoryFragment;
 import ondrej.mejzlik.suntrail.fragments.ItemInfoFragment;
@@ -34,6 +35,8 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_I
 
 public class GameActivity extends Activity {
     public static final String SPACESHIP_NAME_KEY = "spaceshipNameKey";
+    public static final String PREFERENCES_KEY = "preferencesKey";
+    public static final String END_GAME_PREFERENCE_KEY = "endGamePreferenceKey";
     private static final String DIRECTION_FRAGMENT_TAG = "directionFragment";
     // Used to back up lock variables
     private static final String DATABASE_CREATED_KEY = "isDatabaseCreatedKey";
@@ -49,7 +52,6 @@ public class GameActivity extends Activity {
     // These variables are set to true once we have a functional, initialized and updated database.
     private boolean isDatabaseCreated = false;
     private boolean isCurrentDatabaseUpdated = false;
-    private boolean tripDirection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +76,8 @@ public class GameActivity extends Activity {
             }
 
             // Restore chosen direction from preferences, faster than from database.
-            this.preferences = getSharedPreferences(DIRECTION_PREFERENCE_KEY, 0);
-            this.tripDirection = this.preferences.getBoolean(DIRECTION_PREFERENCE_KEY, true);
+            this.preferences = getSharedPreferences(PREFERENCES_KEY, 0);
+            boolean tripDirection = this.preferences.getBoolean(DIRECTION_PREFERENCE_KEY, true);
 
             // If savedInstance == null initialize all variables that were not retrieved
             FragmentManager fragmentManager = getFragmentManager();
@@ -127,9 +129,15 @@ public class GameActivity extends Activity {
                 // We already have a database from before.
                 this.isDatabaseCreated = true;
                 // Can not save direction into saved instance state because it not survive finish();
-                if ((this.tripDirection && (scannedPlanet == PLANET_ID_NEPTUNE)) || (!this.tripDirection && (scannedPlanet == PLANET_ID_SUN))) {
-                    // End game
-                    // todo save game end to preferences and disable game button
+                if ((tripDirection && (scannedPlanet == PLANET_ID_NEPTUNE)) || (!tripDirection && (scannedPlanet == PLANET_ID_SUN))) {
+                    // End game and save game end to preferences and disable game button
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putBoolean(END_GAME_PREFERENCE_KEY, true).apply();
+                    // Start game end fragment
+                    EndGameFragment endGameFragment = new EndGameFragment();
+                    FragmentTransaction endGame = fragmentManager.beginTransaction();
+                    endGame.replace(R.id.game_activity_fragment_container, endGameFragment);
+                    endGame.commit();
                 } else {
                     this.openGameMenuFragment();
                 }
@@ -185,8 +193,11 @@ public class GameActivity extends Activity {
         AsyncDatabaseInitializer databaseInitializer = new AsyncDatabaseInitializer(this.scannedPlanet, this);
         databaseInitializer.execute(direction);
         // Save chosen direction to preferences
-        SharedPreferences.Editor editor = preferences.edit();
+        SharedPreferences.Editor editor = this.preferences.edit();
         editor.putBoolean(DIRECTION_PREFERENCE_KEY, direction).apply();
+        // Set that game is running, used in main activity in inventory button handler and scanner
+        // activity to disable game mode.
+        editor.putBoolean(END_GAME_PREFERENCE_KEY, false).apply();
     }
 
     /**

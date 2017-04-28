@@ -4,17 +4,21 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
 import ondrej.mejzlik.suntrail.R;
+import ondrej.mejzlik.suntrail.fragments.EndGameFragment;
 import ondrej.mejzlik.suntrail.fragments.InventoryFragment;
 import ondrej.mejzlik.suntrail.fragments.ItemInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.MainMenuFragment;
 import ondrej.mejzlik.suntrail.fragments.ShipInfoFragment;
 import ondrej.mejzlik.suntrail.game.ItemModel;
 
+import static ondrej.mejzlik.suntrail.activities.GameActivity.END_GAME_PREFERENCE_KEY;
+import static ondrej.mejzlik.suntrail.activities.GameActivity.PREFERENCES_KEY;
 import static ondrej.mejzlik.suntrail.activities.GameActivity.SPACESHIP_NAME_KEY;
 import static ondrej.mejzlik.suntrail.fragments.ItemInfoFragment.ITEM_KEY;
 
@@ -113,15 +117,23 @@ public class MainMenuActivity extends Activity {
     /**
      * Handles clicks from Inventory button in main menu fragment. The fragment it self checks
      * the existence of a game database and in case there is no database, a message saying that
-     * game has to be started first is displayed.
+     * game has to be started first is displayed. If game has ended, displays end game fragment.
      *
      * @param view The button that has been clicked
      */
     public void InventoryButtonHandlerManiMenu(View view) {
+        SharedPreferences preferences = getSharedPreferences(PREFERENCES_KEY, 0);
+        boolean gameEnded = preferences.getBoolean(END_GAME_PREFERENCE_KEY, false);
         FragmentManager fragmentManager = getFragmentManager();
-        InventoryFragment inventoryFragment = new InventoryFragment();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.main_menu_fragment_container, inventoryFragment);
+
+        if (gameEnded) {
+            EndGameFragment endGameFragment = new EndGameFragment();
+            transaction.replace(R.id.main_menu_fragment_container, endGameFragment);
+        } else {
+            InventoryFragment inventoryFragment = new InventoryFragment();
+            transaction.replace(R.id.main_menu_fragment_container, inventoryFragment);
+        }
         transaction.addToBackStack(null);
         transaction.commit();
     }
