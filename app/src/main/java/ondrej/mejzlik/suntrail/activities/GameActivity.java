@@ -32,6 +32,7 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_NEPTU
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_SUN;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_URANUS;
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_ID_KEY;
+import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_NAME_KEY;
 
 public class GameActivity extends Activity {
     public static final String SPACESHIP_NAME_KEY = "spaceshipNameKey";
@@ -324,6 +325,11 @@ public class GameActivity extends Activity {
         if (this.checkIsDatabaseCreated()) {
             FragmentManager fragmentManager = getFragmentManager();
             ShopFragment shopFragment = new ShopFragment();
+            // Sent the planet name to the fragment
+            Bundle arguments = new Bundle();
+            arguments.putInt(PLANET_NAME_KEY, this.planetResources.getInt(PLANET_NAME_KEY));
+            shopFragment.setArguments(arguments);
+
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.game_activity_fragment_container, shopFragment);
             transaction.addToBackStack(null);

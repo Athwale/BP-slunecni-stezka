@@ -72,9 +72,9 @@
             <View
                 android:id="@+id/item_info_view_spacer_bottom"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/spacerBlue"
+                android:background="@color/spacerBlack"
                 tools:ignore="UnknownId,UnknownIdInLayout" />
 
             <LinearLayout

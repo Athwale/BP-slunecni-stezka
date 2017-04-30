@@ -30,6 +30,7 @@ import ondrej.mejzlik.suntrail.game.PlayerModel;
 import ondrej.mejzlik.suntrail.game.ShipModel;
 
 import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.SCROLL_POSITION_KEY;
+import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_NAME_KEY;
 
 /**
  * This fragment displays the shop. It sends a query to the database in another thread and
@@ -54,6 +55,13 @@ public class ShopFragment extends Fragment {
         if (savedInstanceState != null) {
             this.listViewState = savedInstanceState.getParcelable(SCROLL_POSITION_KEY);
         }
+        // Add planet name to the title
+        Bundle arguments = getArguments();
+        if (arguments != null && arguments.containsKey(PLANET_NAME_KEY)) {
+            TextView title = (TextView) this.mainView.findViewById(R.id.shop_fragment_title);
+            title.setText(title.getText() + ": " + getResources().getString(arguments.getInt(PLANET_NAME_KEY)));
+        }
+
         // Hide all views until the query is finished. Database is created because shop can only
         // be entered once the database is prepared.
         loadingMessage.setText(R.string.inventory_loading);

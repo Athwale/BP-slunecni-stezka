@@ -159,12 +159,12 @@
 
     <TextView
         android:id="@+id/main_menu_text_view_no_scanner"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
-        android:text="@string/main_menu_no_scanner"
+        android:text="@string/end_game_main_menu_message"
         android:textAlignment="center"
         android:textColor="@color/textRed" />
 

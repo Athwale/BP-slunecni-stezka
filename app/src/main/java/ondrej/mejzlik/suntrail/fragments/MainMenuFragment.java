@@ -2,6 +2,7 @@ package ondrej.mejzlik.suntrail.fragments;
 
 
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,12 +14,16 @@ import android.widget.TextView;
 
 import ondrej.mejzlik.suntrail.R;
 
+import static ondrej.mejzlik.suntrail.activities.GameActivity.END_GAME_PREFERENCE_KEY;
+import static ondrej.mejzlik.suntrail.activities.GameActivity.PREFERENCES_KEY;
+
 /**
  * This fragment shows the main menu. In case the device does not have neither a camera nor a nfc
  * scanner the game related buttons are hidden and a message is shown. The user still can at least
  * browse the planet menu.
  */
 public class MainMenuFragment extends Fragment {
+    private View mainView = null;
 
     public MainMenuFragment() {
         // Required empty public constructor
@@ -28,15 +33,35 @@ public class MainMenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
+        this.mainView = inflater.inflate(R.layout.fragment_main_menu, container, false);
         // Remove scan button if the device does not have both a camera and a nfc reader
-        this.disableScanButton(view);
-        return view;
+        this.disableScanButton(this.mainView);
+        return this.mainView;
+    }
+
+    @Override
+    public void onResume() {
+        // Checks if the game was finished from shared preferences and if yes, displays a message.
+        // Has to be done in onResume because the main activity almost never restarts and the
+        // change in preference would not reflect here.
+        SharedPreferences preferences = getActivity().getSharedPreferences(PREFERENCES_KEY, 0);
+        boolean gameEnded = preferences.getBoolean(END_GAME_PREFERENCE_KEY, false);
+        TextView gameEndedMessage = (TextView) this.mainView.findViewById(R.id.main_menu_text_view_no_scanner);
+        if (gameEnded) {
+            gameEndedMessage = (TextView) this.mainView.findViewById(R.id.main_menu_text_view_no_scanner);
+            gameEndedMessage.setText(R.string.end_game_main_menu_message);
+            gameEndedMessage.setVisibility(View.VISIBLE);
+        } else {
+            gameEndedMessage.setVisibility(View.GONE);
+        }
+        super.onResume();
     }
 
     /**
      * Disables game related buttons in main menu if the device does not have both a camera
      * and a NFC reader.
+     *
+     * @param view View from onCreateView.
      */
     private void disableScanButton(View view) {
         PackageManager packageManager = getActivity().getPackageManager();
@@ -48,6 +73,7 @@ public class MainMenuFragment extends Fragment {
         Button settingsButton = (Button) view.findViewById(R.id.main_menu_button_settings);
         LinearLayout howToPlayLayout = (LinearLayout) view.findViewById(R.id.main_menu_linear_layout_how_to_play);
         TextView warningNoScanner = (TextView) view.findViewById(R.id.main_menu_text_view_no_scanner);
+        warningNoScanner.setText(R.string.main_menu_no_scanner);
         if (!camera && !nfc) {
             scanButton.setVisibility(View.GONE);
             inventoryButton.setVisibility(View.GONE);
@@ -67,5 +93,4 @@ public class MainMenuFragment extends Fragment {
             howToPlayLayout.setVisibility(View.VISIBLE);
         }
     }
-
 }

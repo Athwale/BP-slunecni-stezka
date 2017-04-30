@@ -246,8 +246,9 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_NAME_RES_ID, R.string.ship_name_icarus);
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_IMAGE_RES_ID, R.drawable.pict_icarus_info);
             ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_CARGO_SIZE, ICARUS_CARGO_SIZE);
-            // Icarus always costs 100.
-            ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE, 100);
+            // Icarus base price is always 100. We add a little bit to that. When new ship is bought
+            // the old one is sold.
+            ship.put(GameDatabaseContract.SpaceshipTable.COLUMN_NAME_SHIP_PRICE, this.gameUtilities.calculateSellingPrice(100, true));
             // Insert the new row (return the primary key value of the new row which we do not use)
             db.insertOrThrow(TABLE_NAME_SPACESHIP, null, ship);
             db.setTransactionSuccessful();
@@ -636,6 +637,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private ItemModel makeShip(PlayerModel player, int currentPlanet) {
         // The id is irrelevant the ship item is not in database.
         // Calculate how much money the player has and determine ship price as half of that.
+        // The player will get the money back when he sells the ship and buys a new one.
         int credits = player.getCredits();
         ArrayList<ItemModel> boughtItems = this.getBoughtItems();
         for (ItemModel item : boughtItems) {
@@ -697,6 +699,9 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         int price = shipToChange.getPrice();
         int currentCredits = this.getPlayerData().getCredits();
 
+        // Sell current ship. Just add the price to player's credits.
+        currentCredits += this.getShipData().getPrice();
+
         // Change ship in database.
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues ship = new ContentValues();
@@ -706,7 +711,8 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         // The table has only one row with automatic id 1.
         db.update(TABLE_NAME_PLAYER, ship, "_id=1", null);
 
-        // Update ship price, this is later used to sell the ship at game end.
+        // Update the newly bought ship's price, this is later used to sell the ship.
+        // The buying price of the ship in shop is set in makeShip().
         ship.clear();
         // Add a little bit to the ship price.
         ship.put(COLUMN_NAME_SHIP_PRICE, this.gameUtilities.calculateSellingPrice(price, true));
