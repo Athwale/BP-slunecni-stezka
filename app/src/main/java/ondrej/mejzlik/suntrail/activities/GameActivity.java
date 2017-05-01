@@ -44,7 +44,7 @@ public class GameActivity extends Activity {
     private static final String CURRENT_PLANET_UPDATED_KEY = "isPlanetUpdatedKey";
     private static final String DIRECTION_PREFERENCE_KEY = "directionPreferenceKey";
     // Used to save trip direction here.
-    SharedPreferences preferences = null;
+    private SharedPreferences preferences = null;
     // The resources contain all about the planet
     private Bundle planetResources = null;
     // This is used to prevent multiple toasts from showing.

@@ -7,9 +7,9 @@ package ondrej.mejzlik.suntrail.game;
 public class PlayerModel {
     private final int id;
     private final boolean direction;
-    private int shipResId;
-    private int credits;
-    private int currentPlanet;
+    private final int shipResId;
+    private final int credits;
+    private final int currentPlanet;
     private int reward;
 
     /**
@@ -26,15 +26,6 @@ public class PlayerModel {
         this.credits = credits;
         this.currentPlanet = currentPlanet;
         this.direction = direction;
-    }
-
-    /**
-     * Returns database id.
-     *
-     * @return Returns database id.
-     */
-    public int getId() {
-        return id;
     }
 
     /**
@@ -60,7 +51,7 @@ public class PlayerModel {
      *
      * @param reward New reward id.
      */
-    public void setReward(int reward) {
+    void setReward(int reward) {
         this.reward = reward;
     }
 
@@ -87,7 +78,7 @@ public class PlayerModel {
      *
      * @return Direction of the trip.
      */
-    public boolean getDirection() {
+    boolean getDirection() {
         return direction;
     }
 

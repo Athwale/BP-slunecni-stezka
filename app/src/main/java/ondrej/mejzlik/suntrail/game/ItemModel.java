@@ -30,10 +30,10 @@ public class ItemModel implements Parcelable {
     private final int availableAtPlanet;
     private final int size;
     private final boolean isSaleable;
+    private final boolean priceMovement;
+    private final boolean isBought;
     private int price;
-    private boolean priceMovement;
     private boolean isInShop;
-    private boolean isBought;
     private boolean canBeBought;
     private boolean isShip;
 
@@ -67,7 +67,7 @@ public class ItemModel implements Parcelable {
         this.isShip = isShip;
     }
 
-    protected ItemModel(Parcel in) {
+    private ItemModel(Parcel in) {
         this.id = in.readInt();
         this.itemNameResId = in.readInt();
         this.itemImageResId = in.readInt();
@@ -91,15 +91,6 @@ public class ItemModel implements Parcelable {
      */
     public boolean isShip() {
         return isShip;
-    }
-
-    /**
-     * Sets if this item is a ship.
-     *
-     * @param ship True if this item is a ship.
-     */
-    public void setShip(boolean ship) {
-        isShip = ship;
     }
 
     /**
@@ -237,8 +228,7 @@ public class ItemModel implements Parcelable {
 
         ItemModel itemModel = (ItemModel) o;
 
-        if (id != itemModel.id) return false;
-        return itemNameResId == itemModel.itemNameResId;
+        return id == itemModel.id && itemNameResId == itemModel.itemNameResId;
 
     }
 

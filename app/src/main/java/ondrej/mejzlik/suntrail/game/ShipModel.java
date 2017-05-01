@@ -9,8 +9,8 @@ public class ShipModel {
     private final int imageResId;
     private final int shipNameResId;
     private final int cargoBaySize;
-    private int price;
-    private int remainingCargoSpace;
+    private final int price;
+    private final int remainingCargoSpace;
 
     /**
      * Create a new ship information holder.
@@ -29,15 +29,6 @@ public class ShipModel {
         this.price = price;
         this.cargoBaySize = cargoBaySize;
         this.remainingCargoSpace = remainingCargoSpace;
-    }
-
-    /**
-     * Returnd database id.
-     *
-     * @return Returns database id.
-     */
-    public int getId() {
-        return id;
     }
 
     /**

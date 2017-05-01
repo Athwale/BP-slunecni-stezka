@@ -72,13 +72,13 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS
  * GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.context);
  * databaseHelper.initializeDatabaseContents(direction, this.startPlanet, this.context);
  * databaseHelper.adaptItemSizes(this.startPlanet);
- *
+ * <p>
  * Other planets:
  * databaseHelper.updateItems(this.currentPlanet);
  * databaseHelper.adaptItemSizes(this.currentPlanet);
  * databaseHelper.failSafe(this.currentPlanet, true);
  * databaseHelper.updateVisitedPlanets(this.currentPlanet);
- *
+ * <p>
  * On each planet:
  * databaseHelper.buySellItem(item, true/false);
  * if ship is available:

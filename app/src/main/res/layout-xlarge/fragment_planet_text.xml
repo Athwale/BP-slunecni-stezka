@@ -61,15 +61,15 @@
                 android:id="@+id/planet_text_image_view_photo"
                 android:layout_width="600dp"
                 android:layout_height="150dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/planet_image_description"
                 android:cropToPadding="false"
                 android:paddingEnd="5dp"
                 android:paddingStart="5dp"
                 android:scaleType="fitXY"
-                tools:src="@drawable/pict_sun_half"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                tools:src="@drawable/pict_sun_half" />
 
             <TextView
                 android:id="@+id/planet_text_text_view_top"

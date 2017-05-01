@@ -97,8 +97,8 @@
 
     <ImageView
         android:id="@+id/end_game_image_view_reward_clear"
-        android:layout_width="200dp"
-        android:layout_height="300dp"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
         android:layout_alignStart="@+id/end_game_image_view_reward_blurry"
         android:layout_below="@+id/end_game_text_reward_text"
         android:contentDescription="@string/end_game_reward_description"
@@ -106,8 +106,8 @@
 
     <ImageView
         android:id="@+id/end_game_image_view_reward_blurry"
-        android:layout_width="200dp"
-        android:layout_height="300dp"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
         android:layout_below="@+id/end_game_text_reward_text"
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/end_game_reward_description"

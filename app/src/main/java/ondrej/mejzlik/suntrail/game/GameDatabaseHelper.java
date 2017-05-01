@@ -158,17 +158,6 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Removes all tables.
-     */
-    public void deleteDatabase() {
-        SQLiteDatabase database = this.getWritableDatabase();
-        database.execSQL(DELETE_PLAYER_TABLE);
-        database.execSQL(DELETE_SPACESHIP_TABLE);
-        database.execSQL(DELETE_ITEMS_TABLE);
-        database.execSQL(DELETE_VISITED_PLANETS_TABLE);
-    }
-
-    /**
      * This method fills the database with initial data. Creates a player, ships and items.
      *
      * @param direction     Whether we are going from the Sun to Neptune or vice versa
@@ -984,7 +973,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      * This method checks if the player can buy something in the shop on the current planet. It
      * takes into account both the credits and how many credits the player can obtain if he sells
      * everything he has in the current shop. If despite that nothing can be bought, a price of
-     * one item is decreased to the poin the player can buy it.
+     * one item is decreased to the point the player can buy it.
      *
      * @param enabled True if this method should be run.
      */
@@ -1049,7 +1038,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         output += this.getDataFromCursor(cursorShips) + "\n\n";
 
         // Add item data
-        output += "Items table: \n\tID\t\t\tPRICE\t\tSIZE\t\tITEM NAME RES ID\tIMAGE RES ID\t\tICON RES ID\t\t\tTEXT RES ID\t\t\tRISE/FALL\tIS BOUGH\tDISPLAYABLE\tHAS BEEN BOUGT\tAVAILABLE AT\n";
+        output += "Items table: \n\tID\t\t\tPRICE\t\tSIZE\t\tITEM NAME RES ID\tIMAGE RES ID\t\tICON RES ID\t\t\tTEXT RES ID\t\t\tRISE/FALL\tIS BOUGH\tDISPLAYABLE\tHAS BEEN BOUGHT\tAVAILABLE AT\n";
         Cursor cursorItems = db.rawQuery("select * from " + TABLE_NAME_ITEMS, null);
         output += this.getDataFromCursor(cursorItems) + "\n\n";
 

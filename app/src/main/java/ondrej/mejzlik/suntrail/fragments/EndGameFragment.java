@@ -71,7 +71,7 @@ public class EndGameFragment extends Fragment {
      * Sets up the fade in animations.
      */
     private void prepareAnimations() {
-        this.score.setVisibility(View.GONE);
+        this.score.setVisibility(View.INVISIBLE);
         this.clearReward.setVisibility(View.GONE);
         this.rewardDescription.setVisibility(View.GONE);
 
@@ -149,8 +149,25 @@ public class EndGameFragment extends Fragment {
             SharedPreferences preferences = getActivity().getApplicationContext().getSharedPreferences(PREFERENCES_KEY, 0);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean(END_GAME_PREFERENCE_KEY, true).apply();
+            // Set texts
             finalCredits.setText(String.valueOf(player.getCredits()));
             rewardDescription.setText(player.getReward());
+
+            // Set correct medal
+            switch (player.getReward()) {
+                case R.string.end_game_first_reward: {
+                    clearReward.setImageResource(R.drawable.pict_award_first);
+                    break;
+                }
+                case R.string.end_game_second_reward: {
+                    clearReward.setImageResource(R.drawable.pict_award_second);
+                    break;
+                }
+                default: {
+                    clearReward.setImageResource(R.drawable.pict_award_third);
+                    break;
+                }
+            }
 
             playSound();
             // Start playing the fade in/out animation and then make it visible.
@@ -158,6 +175,7 @@ public class EndGameFragment extends Fragment {
             clearRewardFadeIn.start();
             blurryRewardFadeOut.start();
             rewardDescriptionFadeIn.start();
+            // Make the view visible
             rewardDescription.setVisibility(View.VISIBLE);
             score.setVisibility(View.VISIBLE);
             clearReward.setVisibility(View.VISIBLE);
