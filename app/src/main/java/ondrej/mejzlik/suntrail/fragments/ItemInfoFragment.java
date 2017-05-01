@@ -255,7 +255,7 @@ public class ItemInfoFragment extends Fragment {
         Bundle arguments = this.getArguments();
         ItemModel item = arguments.getParcelable(ITEM_KEY);
         if (item != null) {
-            Toast.makeText(getActivity(), getResources().getString(R.string.shop_buying_item), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getResources().getString(R.string.shop_ship_sold_and_bought), Toast.LENGTH_LONG).show();
             ShipModel ship = new ShipModel(500, item.getItemImageResId(), item.getItemNameResId(), item.getPrice(), item.getSize(), item.getSize());
             databaseHelper.buyShip(ship);
         }

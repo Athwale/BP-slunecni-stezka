@@ -21,12 +21,14 @@ import static android.provider.BaseColumns._ID;
 import static ondrej.mejzlik.suntrail.activities.GameActivity.END_GAME_PREFERENCE_KEY;
 import static ondrej.mejzlik.suntrail.activities.GameActivity.PREFERENCES_KEY;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.DAEDALUS_CARGO_SIZE;
+import static ondrej.mejzlik.suntrail.configuration.Configuration.FIRST_PLACE;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.FIRST_SHIP;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.ICARUS_CARGO_SIZE;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.LOKYS_CARGO_SIZE;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.MAX_ITEM_PRICE;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.MIN_ITEM_PRICE;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.PLANETS_WITH_SHOPS;
+import static ondrej.mejzlik.suntrail.configuration.Configuration.SECOND_PLACE;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.STARTING_CREDITS;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_VERSION;
@@ -153,6 +155,17 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         database.execSQL(DELETE_VISITED_PLANETS_TABLE);
         // Create new tables
         onCreate(database);
+    }
+
+    /**
+     * Removes all tables.
+     */
+    public void deleteDatabase() {
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.execSQL(DELETE_PLAYER_TABLE);
+        database.execSQL(DELETE_SPACESHIP_TABLE);
+        database.execSQL(DELETE_ITEMS_TABLE);
+        database.execSQL(DELETE_VISITED_PLANETS_TABLE);
     }
 
     /**
@@ -474,7 +487,9 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                     int credits = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_PLAYER_CREDITS));
                     int currentPlanet = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_PLAYER_CURRENT_PLANET));
                     int direction = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_PLAYER_DIRECTION));
+                    int reward = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_PLAYER_REWARD));
                     playerModel = new PlayerModel(id, shipName, credits, currentPlanet, this.intToBoolean(direction));
+                    playerModel.setReward(reward);
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
@@ -946,12 +961,21 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             }
             credits += this.getShipData().getPrice();
 
+            int rewardResId;
+            // Set reward string id
+            if (credits >= FIRST_PLACE) {
+                rewardResId = R.string.end_game_first_reward;
+            } else if (credits < FIRST_PLACE && credits >= SECOND_PLACE) {
+                rewardResId = R.string.end_game_second_reward;
+            } else {
+                rewardResId = R.string.end_game_third_reward;
+            }
+
             // Set game finished 1. Used in fragments to display that game has finished and update
             // credits.
             ContentValues player = new ContentValues();
             player.put(COLUMN_NAME_PLAYER_CREDITS, credits);
-            // todo assign reward
-            player.put(COLUMN_NAME_PLAYER_REWARD, 100);
+            player.put(COLUMN_NAME_PLAYER_REWARD, rewardResId);
             db.update(TABLE_NAME_PLAYER, player, "_id=1", null);
         }
     }
@@ -1048,7 +1072,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             cursorPlanets.close();
         }
 
-        Log.d(TAG, output);
+        //Log.d(TAG, output);
         return output;
     }
 

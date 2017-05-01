@@ -1102,12 +1102,20 @@
     <string name="shop_buying_item">Buying item</string>
     <string name="shop_selling_item">Selling item</string>
     <string name="shop_can_not_sell">You can not sell this item here.</string>
+    <string name="shop_ship_sold_and_bought">Ship sold, new ship bought</string>
     <string name="end_game_title">You won</string>
     <string name="end_game_main_menu_message">Game finished, restart in settings.</string>
+    <string name="end_game_you_won">Congratulations, you have earned:</string>
+    <string name="end_game_reward_text">For your great work, the Milky way headquarters awards you
+    with:</string>
+    <string name="end_game_reward_description">A medal</string>
+    <string name="end_game_first_reward">Honored first class merchant</string>
+    <string name="end_game_second_reward">Valuable Starfleet helpmate</string>
+    <string name="end_game_third_reward">Humble merchant</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>
-        You are beginning a new game.
+        Welcome to the sector C-137. You are beginning a new game here.
         </p>
         <p>
         Congratulations young pilot, you were given your first space ship.

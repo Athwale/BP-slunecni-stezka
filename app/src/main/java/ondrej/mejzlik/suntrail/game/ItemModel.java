@@ -230,6 +230,26 @@ public class ItemModel implements Parcelable {
     }
 
     @Override
+    // IDs are unique so we can use them.
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ItemModel itemModel = (ItemModel) o;
+
+        if (id != itemModel.id) return false;
+        return itemNameResId == itemModel.itemNameResId;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + itemNameResId;
+        return result;
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }

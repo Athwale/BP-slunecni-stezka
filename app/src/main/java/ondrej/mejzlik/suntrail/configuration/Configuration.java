@@ -152,6 +152,9 @@ public final class Configuration {
     // In percent how much the price will raise or fall.
     public static final int MIN_ITEM_PRICE_MOVEMENT = 30;
     public static final int MAX_ITEM_PRICE_MOVEMENT = 60;
+    // Prize limits
+    public static final int FIRST_PLACE = 5500;
+    public static final int SECOND_PLACE = 3500;
 
     // To prevent someone from accidentally instantiating this class, make the constructor private.
     private Configuration() {
