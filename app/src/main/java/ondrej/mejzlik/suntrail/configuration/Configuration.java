@@ -86,14 +86,14 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS
  */
 public final class Configuration {
 
-    // Strings that the QR code must contain in order to verify which planet the user scanned
-    public static final String SUN_TRAIL_NAME = "http://slunecnistezka.cz/app/";
-
     //----------------------------
     // Shop items:
     // The number of shop items must be X * PLANETS_WITH_SHOPS (each shop must have equal amount of
     // wares, otherwise a test will fail.
     // TODO write a test for this
+
+    // Strings that the QR code must contain in order to verify which planet the user scanned
+    public static final String SUN_TRAIL_NAME = "http://slunecnistezka.cz/app/";
     public static final String NAME_INTRO = "start";
     public static final String NAME_SUN = "slunce";
     public static final String NAME_MERCURY = "merkur";

@@ -4,7 +4,8 @@
 
     <supports-screens android:normalScreens="true" />
     <supports-screens android:largeScreens="true" />
-    <supports-screens android:smallScreens="false" />
+    <supports-screens android:xlargeScreens="true" />
+    <supports-screens android:smallScreens="true" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.NFC" />
