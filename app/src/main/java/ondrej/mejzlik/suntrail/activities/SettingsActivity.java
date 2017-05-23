@@ -40,6 +40,18 @@ public class SettingsActivity extends Activity {
         }
     }
 
+    @Override
+    public void onResume() {
+        Button buttonClear = (Button) findViewById(R.id.settings_button_clear_data);
+        CheckBox checkBoxClear = (CheckBox) findViewById(R.id.settings_checkbox_clear_data);
+
+        // The button would stay disabled if the the user left the activity and then returned.
+        if (checkBoxClear.isChecked()) {
+            buttonClear.setEnabled(true);
+        }
+        super.onResume();
+    }
+
     /**
      * Handles clicks from clear game data checkbox in settings.
      * If the checkbox is clicked and checked, enables clear game data button.

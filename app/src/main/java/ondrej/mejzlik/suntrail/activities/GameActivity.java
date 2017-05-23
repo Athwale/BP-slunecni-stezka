@@ -71,6 +71,9 @@ public class GameActivity extends Activity {
             // we could end up with overlapping fragments.
             if (savedInstanceState != null) {
                 this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
+                if (this.planetResources != null) {
+                    this.scannedPlanet = this.planetResources.getInt(PLANET_ID_KEY);
+                }
                 this.isDatabaseCreated = savedInstanceState.getBoolean(DATABASE_CREATED_KEY);
                 this.isCurrentDatabaseUpdated = savedInstanceState.getBoolean(CURRENT_PLANET_UPDATED_KEY);
                 return;
@@ -191,6 +194,11 @@ public class GameActivity extends Activity {
         AsyncDatabaseInitializer databaseInitializer = new AsyncDatabaseInitializer(this.scannedPlanet, this);
         databaseInitializer.execute(direction);
         // Save chosen direction to preferences
+        if (this.preferences == null) {
+            // Preferences might be null if the activity is replaced and then restarted while the
+            // user is in the direction selection fragment.
+            this.preferences = getSharedPreferences(PREFERENCES_KEY, 0);
+        }
         SharedPreferences.Editor editor = this.preferences.edit();
         editor.putBoolean(DIRECTION_PREFERENCE_KEY, direction).apply();
         // Set that game is running, used in main activity in inventory button handler and scanner
