@@ -1087,8 +1087,8 @@
     <string name="inventory_coin_description">Coin image</string>
     <string name="inventory_loading">Retrieving cargo list</string>
     <string name="inventory_empty">The game has not been started yet.</string>
-    <string name="item_info_price_rise">The price of this item will rise on the next planet:</string>
-    <string name="item_info_price_decrease">Price of this item will decrease on the next planet:</string>
+    <string name="item_info_price_rise">The price of this item will rise on the next not yet visited planet:</string>
+    <string name="item_info_price_decrease">Price of this item will decrease on the next not yet visited planet:</string>
     <string name="list_selling_price">Selling price:</string>
     <string name="list_price">Price:</string>
     <string name="list_size">Size:</string>
@@ -1112,6 +1112,7 @@
     <string name="end_game_first_reward">Honored first class merchant</string>
     <string name="end_game_second_reward">Valuable Starfleet helpmate</string>
     <string name="end_game_third_reward">Humble merchant</string>
+    <string name="end_game_main_menu_button_result">Game score</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>

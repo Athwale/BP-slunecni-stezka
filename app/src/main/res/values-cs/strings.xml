@@ -1074,8 +1074,8 @@
     <string name="inventory_coin_description">Obrázek mince</string>
     <string name="inventory_loading">Prohledávání nákladového prostoru</string>
     <string name="inventory_empty">Hra ještě nebyla spuštěna.</string>
-    <string name="item_info_price_rise">Cena tohoto zboží vzroste na další planetě:</string>
-    <string name="item_info_price_decrease">Cena tohoto zboží klesne na další planetě:</string>
+    <string name="item_info_price_rise">Cena tohoto zboží vzroste na další nenavštívené planetě:</string>
+    <string name="item_info_price_decrease">Cena tohoto zboží klesne na další nenavštívené planetě:</string>
     <string name="list_selling_price">Prodejní cena:</string>
     <string name="list_price">Cena:</string>
     <string name="list_size">Velikost:</string>
@@ -1099,6 +1099,7 @@
     <string name="end_game_first_reward">Ctěný obchodník první třídy</string>
     <string name="end_game_second_reward">Užitečný pomocník Hvězdné flotily</string>
     <string name="end_game_third_reward">Skromný obchodník</string>
+    <string name="end_game_main_menu_button_result">Výsledek hry</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>

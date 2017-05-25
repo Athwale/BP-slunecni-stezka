@@ -47,12 +47,15 @@ public class MainMenuFragment extends Fragment {
         SharedPreferences preferences = getActivity().getSharedPreferences(PREFERENCES_KEY, 0);
         boolean gameEnded = preferences.getBoolean(END_GAME_PREFERENCE_KEY, false);
         TextView gameEndedMessage = (TextView) this.mainView.findViewById(R.id.main_menu_text_view_no_scanner);
+        Button inventoryButton = (Button) this.mainView.findViewById(R.id.main_menu_button_inventory);
         if (gameEnded) {
             gameEndedMessage = (TextView) this.mainView.findViewById(R.id.main_menu_text_view_no_scanner);
             gameEndedMessage.setText(R.string.end_game_main_menu_message);
             gameEndedMessage.setVisibility(View.VISIBLE);
+            inventoryButton.setText(R.string.end_game_main_menu_button_result);
         } else {
             gameEndedMessage.setVisibility(View.GONE);
+            inventoryButton.setText(R.string.main_menu_inventory_icon_text);
         }
         super.onResume();
     }
