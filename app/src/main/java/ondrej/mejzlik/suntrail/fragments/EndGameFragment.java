@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import ondrej.mejzlik.suntrail.R;
@@ -22,6 +23,7 @@ import ondrej.mejzlik.suntrail.game.PlayerModel;
 
 import static ondrej.mejzlik.suntrail.activities.GameActivity.END_GAME_PREFERENCE_KEY;
 import static ondrej.mejzlik.suntrail.activities.GameActivity.PREFERENCES_KEY;
+import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.SCROLL_POSITION_KEY;
 
 /**
  * This fragment is shown at the end of the game. It runs the endGame method and then loads data
@@ -38,6 +40,7 @@ public class EndGameFragment extends Fragment {
     private ObjectAnimator blurryRewardFadeOut = null;
     private ObjectAnimator rewardDescriptionFadeIn = null;
     private MediaPlayer player = null;
+    private int scrollPosition = 0;
 
     public EndGameFragment() {
         // Required empty public constructor
@@ -58,13 +61,51 @@ public class EndGameFragment extends Fragment {
         // Load results and then play animations.
         AsyncEndGame endGame = new AsyncEndGame(getActivity());
         endGame.execute();
+        // If we're being restored from a previous state, restore last known scroll position.
+        if (savedInstanceState != null) {
+            this.scrollPosition = savedInstanceState.getInt(SCROLL_POSITION_KEY);
+        }
         return view;
     }
 
+    /**
+     * Restore scroll position here, because in onCreateView the scroll view height is still 0.
+     * This method is called every time the fragment is starting and after onCreateView.
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        final ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.end_game_scroll_view);
+        // For some reason scrollTo does not work in main thread.
+        scrollView.post(new Runnable() {
+            public void run() {
+                scrollView.scrollTo(0, scrollPosition);
+            }
+        });
+    }
+
+    /**
+     * Save scroll position here, onSaveInstanceState is only called when the activity may be
+     * killed by the system. onPause is called every time the fragment is replaced with another.
+     */
     @Override
     public void onPause() {
         this.stopSound();
+        ScrollView scrollView = (ScrollView) getActivity().findViewById(R.id.end_game_scroll_view);
+        // scrollView can be null if the system tries to save position when the user presses home
+        // from a fragment opened from this fragment.
+        if (scrollView != null) {
+            this.scrollPosition = scrollView.getScrollY();
+        }
         super.onPause();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Saves the instance state when home button is pressed or when the system decides that it
+        // may kill the activity with this fragment. Back up last known scroll position.
+        outState.putInt(SCROLL_POSITION_KEY, this.scrollPosition);
     }
 
     /**
