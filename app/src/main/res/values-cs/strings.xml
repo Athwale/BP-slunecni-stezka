@@ -1057,8 +1057,8 @@
     <string name="ship_info_title">Informace o lodi</string>
     <string name="ship_info_cargo">Velikost nákladního prostoru:</string>
     <string name="direction_choice_title">Vyberte kde budete končit</string>
-    <string name="direction_choice_to_sun">Slunce</string>
-    <string name="direction_choice_to_neptune">Neptun</string>
+    <string name="direction_choice_to_sun">Slunce (Křtiny)</string>
+    <string name="direction_choice_to_neptune">Neptun (Hájovna na lukách)</string>
     <string name="toast_pick_direction">Prosím vyberte směr</string>
     <string name="toast_flight_route">Prosím vyčkejte, počítá se dráha letu</string>
     <string name="toast_planet_already_visited">V tomto obchodě jste už byl</string>
