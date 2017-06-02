@@ -72,7 +72,8 @@ public final class GameDatabaseContract {
     }
 
     /**
-     * This class defines the names for Game items table. This table has 33 rows.
+     * This class defines the names for Visited Planets table. It is used to prevent price changes
+     * on planets which have been visited already.
      */
     static class VisitedPlanets implements BaseColumns {
         static final String TABLE_NAME_VISITED_PLANETS = "visitedPlanets";
