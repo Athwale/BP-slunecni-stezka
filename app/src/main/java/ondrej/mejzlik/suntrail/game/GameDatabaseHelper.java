@@ -905,14 +905,15 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
 
         // Mark item as bought
         ContentValues item = new ContentValues();
-        // True - buy = 1, False - sell = 0.
+        // True - buy = 1, False - sell = 0. IsBought = 1 makes the item appear in inventory.
         item.put(COLUMN_NAME_ITEM_IS_BOUGHT, this.booleanToInt(operation));
         // If we buy an item, remove it from the planet. If we sell an item, do not add it into the
         // shop. This variable is also used to disable selling in a shop where the item was bought.
         item.put(COLUMN_NAME_ITEM_IS_SALEABLE, 0);
+        // If we are selling an item, it has been bought in the past, so changing this value again
+        // to 1 does not hurt.
         item.put(COLUMN_NAME_ITEM_HAS_BEEN_BOUGHT, 1);
 
-        // The table has only one row with automatic id 1.
         db.update(TABLE_NAME_ITEMS, item, "_id=" + String.valueOf(itemFromShop.getId()), null);
 
         // Get current player's credits
@@ -928,6 +929,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         // Update player's credits.
         ContentValues player = new ContentValues();
         player.put(COLUMN_NAME_PLAYER_CREDITS, newCreditValue);
+        // The table has only one row with automatic id 1.
         db.update(TABLE_NAME_PLAYER, player, "_id=1", null);
     }
 
