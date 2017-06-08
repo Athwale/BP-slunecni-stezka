@@ -451,10 +451,18 @@ public class GameActivity extends Activity {
             GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.context);
             databaseHelper.updateItems(this.currentPlanet);
             databaseHelper.adaptItemSizes(this.currentPlanet);
-            // Fail safe returns false if we already visited the planet. Then we do not need to
-            // update the visited planets table.
-            boolean result = databaseHelper.failSafe(this.currentPlanet);
-            databaseHelper.updateVisitedPlanets(this.currentPlanet, result);
+            boolean alreadyVisited = databaseHelper.checkVisitedPlanets(this.currentPlanet);
+            // If the planet has been visited, we do no need to run the failsafe again and update
+            // the visited planets table
+            if (!alreadyVisited) {
+                databaseHelper.failSafe(this.currentPlanet);
+                databaseHelper.updateVisitedPlanets(this.currentPlanet);
+            } else {
+                // Add current planet to visited planets table
+                databaseHelper.updateVisitedPlanets(this.currentPlanet);
+            }
+            // Update current planet value in the player table.
+            databaseHelper.updateCurrentPlanet(this.currentPlanet);
             return null;
         }
 
