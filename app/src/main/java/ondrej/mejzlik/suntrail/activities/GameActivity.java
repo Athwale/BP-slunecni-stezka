@@ -80,8 +80,12 @@ public class GameActivity extends Activity {
             }
 
             // Restore chosen direction from preferences, faster than from database.
+            // Can not save direction into saved instance state because it not survive finish();
             this.preferences = getSharedPreferences(PREFERENCES_KEY, 0);
             boolean tripDirection = this.preferences.getBoolean(DIRECTION_PREFERENCE_KEY, true);
+            // Restore if game ended. This is useful if the user ends game on Saturn. Without this
+            // the user would be able to enter shop after game ended.
+            boolean endGame = this.preferences.getBoolean(END_GAME_PREFERENCE_KEY, true);
 
             // If savedInstance == null initialize all variables that were not retrieved
             FragmentManager fragmentManager = getFragmentManager();
@@ -132,13 +136,12 @@ public class GameActivity extends Activity {
                 planetUpdater.execute();
                 // We already have a database from before.
                 this.isDatabaseCreated = true;
-                // Can not save direction into saved instance state because it not survive finish();
-                if ((tripDirection && (scannedPlanet == PLANET_ID_NEPTUNE)) || (!tripDirection && (scannedPlanet == PLANET_ID_SUN))) {
+                if ((tripDirection && (this.scannedPlanet == PLANET_ID_NEPTUNE)) || (!tripDirection && (this.scannedPlanet == PLANET_ID_SUN)) || endGame) {
                     // Start game end fragment
                     EndGameFragment endGameFragment = new EndGameFragment();
-                    FragmentTransaction endGame = fragmentManager.beginTransaction();
-                    endGame.replace(R.id.game_activity_fragment_container, endGameFragment);
-                    endGame.commit();
+                    FragmentTransaction endGameTransaction = fragmentManager.beginTransaction();
+                    endGameTransaction.replace(R.id.game_activity_fragment_container, endGameFragment);
+                    endGameTransaction.commit();
                 } else {
                     this.openGameMenuFragment();
                 }
@@ -242,6 +245,21 @@ public class GameActivity extends Activity {
      */
     public void confirmGameStartButtonHandler(View view) {
         this.openGameMenuFragment();
+    }
+
+    /**
+     * This method handles clicks to end game button from game menu fragment.
+     * Ends the game. This is only possible on Saturn.
+     *
+     * @param view The button that has been pressed.
+     */
+    public void endGameButtonHandler(View view) {
+        // Start game end fragment and end the game
+        FragmentManager fragmentManager = getFragmentManager();
+        EndGameFragment endGameFragment = new EndGameFragment();
+        FragmentTransaction endGame = fragmentManager.beginTransaction();
+        endGame.replace(R.id.game_activity_fragment_container, endGameFragment);
+        endGame.commit();
     }
 
     /**
@@ -433,8 +451,10 @@ public class GameActivity extends Activity {
             GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.context);
             databaseHelper.updateItems(this.currentPlanet);
             databaseHelper.adaptItemSizes(this.currentPlanet);
-            databaseHelper.failSafe(this.currentPlanet, true);
-            databaseHelper.updateVisitedPlanets(this.currentPlanet);
+            // Fail safe returns false if we already visited the planet. Then we do not need to
+            // update the visited planets table.
+            boolean result = databaseHelper.failSafe(this.currentPlanet);
+            databaseHelper.updateVisitedPlanets(this.currentPlanet, result);
             return null;
         }
 

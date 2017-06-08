@@ -1070,8 +1070,8 @@
     <string name="ship_info_title">Spaceship information</string>
     <string name="ship_info_cargo">Cargo bay size:</string>
     <string name="direction_choice_title">Choose where you want to finish</string>
-    <string name="direction_choice_to_sun">The Sun</string>
-    <string name="direction_choice_to_neptune">The Neptune</string>
+    <string name="direction_choice_to_sun">The Sun (Křtiny)</string>
+    <string name="direction_choice_to_neptune">The Neptune (Hájovna na lukách)</string>
     <string name="toast_pick_direction">Choose direction</string>
     <string name="toast_flight_route">Please wait, Calculating flight route</string>
     <string name="toast_planet_already_visited">You have already visited this shop</string>
@@ -1080,6 +1080,7 @@
     <string name="game_menu_button_inventory">Inventory</string>
     <string name="game_menu_button_shop">Shop</string>
     <string name="game_menu_button_leave_game">Leave planet</string>
+    <string name="game_menu_button_end_game">End game here</string>
     <string name="inventory_title">Inventory</string>
     <string name="inventory_cargo_bay">Cargo bay</string>
     <string name="inventory_credits">Credits</string>

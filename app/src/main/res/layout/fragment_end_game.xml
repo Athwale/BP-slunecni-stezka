@@ -30,101 +30,116 @@
         android:background="@color/spacerBlue"
         tools:ignore="UnknownId,UnknownIdInLayout" />
 
-    <LinearLayout
-        android:id="@+id/end_game_linear_layout_score"
-        android:layout_width="match_parent"
+    <ScrollView
+        android:id="@+id/end_game_scroll_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/end_game_view_spacer"
-        android:orientation="vertical">
+        android:layout_below="@id/end_game_view_spacer">
 
-        <TextView
-            android:id="@+id/end_game_text_top"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingStart="16dp"
-            android:text="@string/end_game_you_won"
-            android:textColor="@color/textBlack"
-            android:textSize="18sp" />
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/linearLayout5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            tools:ignore="UseCompoundDrawables">
+            <LinearLayout
+                android:id="@+id/end_game_linear_layout_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/end_game_text_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:text="@string/end_game_you_won"
+                    android:textColor="@color/textBlack"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <TextView
+                        android:id="@+id/end_game_final_credits"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:textColor="@color/textBlue"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        tools:text="1678" />
+
+                    <ImageView
+                        android:id="@+id/inventory_image_view_coin"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="5dp"
+                        android:contentDescription="@string/inventory_coin_description"
+                        android:src="@drawable/pict_coin" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/end_game_final_credits"
+                android:id="@+id/end_game_text_reward_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/end_game_linear_layout_score"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
-                android:textColor="@color/textBlue"
-                android:textSize="32sp"
-                android:textStyle="bold"
-                tools:text="1678" />
+                android:text="@string/end_game_reward_text"
+                android:textAlignment="center"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp" />
 
             <ImageView
-                android:id="@+id/inventory_image_view_coin"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:id="@+id/end_game_image_view_reward_clear"
+                android:layout_width="200dp"
+                android:layout_height="300dp"
+                android:layout_alignEnd="@+id/end_game_image_view_reward_blurry"
+                android:layout_below="@+id/end_game_text_reward_text"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/end_game_reward_description"
+                tools:src="@drawable/pict_award_first" />
+
+            <ImageView
+                android:id="@+id/end_game_image_view_reward_blurry"
+                android:layout_width="200dp"
+                android:layout_height="300dp"
+                android:layout_below="@+id/end_game_text_reward_text"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/end_game_reward_description"
+                android:src="@drawable/pict_award_blurry" />
+
+            <TextView
+                android:id="@+id/end_game_text_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/end_game_image_view_reward_clear"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:contentDescription="@string/inventory_coin_description"
-                android:src="@drawable/pict_coin" />
+                android:paddingBottom="16dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:textColor="@color/textBlack"
+                android:textSize="18sp"
+                tools:text="Humble merchant" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/end_game_text_reward_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/end_game_linear_layout_score"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:text="@string/end_game_reward_text"
-        android:textAlignment="center"
-        android:textColor="@color/textBlack"
-        android:textSize="14sp" />
-
-    <ImageView
-        android:id="@+id/end_game_image_view_reward_clear"
-        android:layout_width="200dp"
-        android:layout_height="300dp"
-        android:layout_alignStart="@+id/end_game_image_view_reward_blurry"
-        android:layout_below="@+id/end_game_text_reward_text"
-        android:contentDescription="@string/end_game_reward_description"
-        tools:src="@drawable/pict_award_first" />
-
-    <ImageView
-        android:id="@+id/end_game_image_view_reward_blurry"
-        android:layout_width="200dp"
-        android:layout_height="300dp"
-        android:layout_below="@+id/end_game_text_reward_text"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/end_game_reward_description"
-        android:src="@drawable/pict_award_blurry" />
-
-    <TextView
-        android:id="@+id/end_game_text_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/end_game_image_view_reward_clear"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:textColor="@color/textBlack"
-        android:textSize="18sp"
-        tools:text="Humble merchant" />
+    </ScrollView>
 
 </RelativeLayout>
