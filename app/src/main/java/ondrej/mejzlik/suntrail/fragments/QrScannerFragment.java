@@ -83,12 +83,15 @@ public class QrScannerFragment extends Fragment implements ZXingScannerView.Resu
     public void onPause() {
         super.onPause();
         scannerView.stopCameraPreview();
+        scannerView.removeAllViews();
         scannerView.stopCamera();
     }
 
     @Override
     public void handleResult(Result rawResult) {
         // Scanner is run from scanner activity only.
+        scannerView.stopCameraPreview();
+        scannerView.removeAllViews();
         scannerView.stopCamera();
 
         // Play sound

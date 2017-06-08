@@ -171,7 +171,8 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         this.addPlayer(db, direction, currentPlanet);
         this.addShips(db);
         this.addItems(db, context.getApplicationContext(), direction);
-        this.updateVisitedPlanets(currentPlanet, true);
+        this.updateCurrentPlanet(currentPlanet);
+        this.updateVisitedPlanets(currentPlanet);
         if (db != null && db.isOpen()) {
             db.close();
         }
@@ -728,7 +729,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      *
      * @param currentlyScannedPlanetId The planet id the user scanned.
      */
-    private void updateCurrentPlanet(int currentlyScannedPlanetId) {
+    public void updateCurrentPlanet(int currentlyScannedPlanetId) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues player = new ContentValues();
@@ -839,7 +840,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      * @param planetId Planet id to check.
      * @return True if the planet is already in database, false otherwise.
      */
-    private boolean checkVisitedPlanets(int planetId) {
+    public boolean checkVisitedPlanets(int planetId) {
         SQLiteDatabase db = getReadableDatabase();
         // Check if this planet already is in the database, if yes return true.
         final String QUERY = "SELECT * FROM " + TABLE_NAME_VISITED_PLANETS + " WHERE " + COLUMN_NAME_PLANET_ID + " = " + String.valueOf(planetId);
@@ -952,9 +953,9 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      * everything he has in the current shop. If despite that nothing can be bought, a price of
      * one item is decreased to the point the player can buy it.
      *
-     * @return False if this planet has already been visited, true if not.
+     * @param currentPlanet Planet id of the planet currently being visited.
      */
-    public boolean failSafe(int currentPlanet) {
+    public void failSafe(int currentPlanet) {
         if (!this.checkVisitedPlanets(currentPlanet)) {
             // Get current credits
             int credits = this.getPlayerData().getCredits();
@@ -969,7 +970,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             // Check if some item can be bought
             for (ItemModel item : itemsForShop) {
                 if (!item.isBought() && (item.getPrice() < credits)) {
-                    return true;
+                    return;
                 }
             }
             // Nothing can be bought lower the price of one item
@@ -977,10 +978,8 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 ItemModel itemToChange = itemsForShop.get(0);
                 itemToChange.setPrice(credits / 2);
                 this.updateItemPrice(itemToChange);
-                return true;
             }
         }
-        return false;
     }
 
     /**
@@ -988,24 +987,19 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      * Visited planets are used to check where we must not update prices of bought items.
      *
      * @param currentPlanet Planet id of the planet currently being visited.
-     * @param doUpdate      True if the id should be added to visited planets database table.
      */
-    public void updateVisitedPlanets(int currentPlanet, boolean doUpdate) {
+    public void updateVisitedPlanets(int currentPlanet) {
         // The database connection is cached so it's not expensive to call getWritableDatabase()
         // multiple times.
         SQLiteDatabase db = getWritableDatabase();
-        // Update current planet in player table.
-        this.updateCurrentPlanet(currentPlanet);
 
         try {
             db.beginTransaction();
-            if (doUpdate) {
-                // The current planet is not in the database, insert it
-                ContentValues planet = new ContentValues();
-                planet.put(COLUMN_NAME_PLANET_ID, currentPlanet);
-                db.insertOrThrow(TABLE_NAME_VISITED_PLANETS, null, planet);
-                db.setTransactionSuccessful();
-            }
+            // The current planet is not in the database, insert it
+            ContentValues planet = new ContentValues();
+            planet.put(COLUMN_NAME_PLANET_ID, currentPlanet);
+            db.insertOrThrow(TABLE_NAME_VISITED_PLANETS, null, planet);
+            db.setTransactionSuccessful();
         } catch (Exception e) {
             Log.d(TAG, "Inserting visited planet list from database failed");
         } finally {
