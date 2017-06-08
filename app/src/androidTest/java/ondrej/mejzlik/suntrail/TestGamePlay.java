@@ -59,8 +59,8 @@ public class TestGamePlay {
                 // Perform database updates before buying just like in game activity.
                 databaseHelper.updateItems(currentPlanet);
                 databaseHelper.adaptItemSizes(currentPlanet);
-                databaseHelper.failSafe(currentPlanet, true);
-                databaseHelper.updateVisitedPlanets(currentPlanet);
+                boolean result = databaseHelper.failSafe(currentPlanet);
+                databaseHelper.updateVisitedPlanets(currentPlanet, result);
 
                 // Enter shop.
                 ArrayList<ItemModel> itemsForShop = databaseHelper.getItemsForShop(currentPlanet);
@@ -131,8 +131,8 @@ public class TestGamePlay {
                 // Perform database updates before buying just like in game activity.
                 databaseHelper.updateItems(currentPlanet);
                 databaseHelper.adaptItemSizes(currentPlanet);
-                databaseHelper.failSafe(currentPlanet, true);
-                databaseHelper.updateVisitedPlanets(currentPlanet);
+                boolean result = databaseHelper.failSafe(currentPlanet);
+                databaseHelper.updateVisitedPlanets(currentPlanet, result);
 
                 // Enter shop.
                 ArrayList<ItemModel> itemsForShop = databaseHelper.getItemsForShop(currentPlanet);
