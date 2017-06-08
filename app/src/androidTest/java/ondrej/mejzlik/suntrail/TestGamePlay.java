@@ -59,8 +59,18 @@ public class TestGamePlay {
                 // Perform database updates before buying just like in game activity.
                 databaseHelper.updateItems(currentPlanet);
                 databaseHelper.adaptItemSizes(currentPlanet);
-                boolean result = databaseHelper.failSafe(currentPlanet);
-                databaseHelper.updateVisitedPlanets(currentPlanet, result);
+                boolean alreadyVisited = databaseHelper.checkVisitedPlanets(currentPlanet);
+                // If the planet has been visited, we do no need to run the failsafe again and update
+                // the visited planets table
+                if (!alreadyVisited) {
+                    databaseHelper.failSafe(currentPlanet);
+                    databaseHelper.updateVisitedPlanets(currentPlanet);
+                } else {
+                    // Add current planet to visited planets table
+                    databaseHelper.updateVisitedPlanets(currentPlanet);
+                }
+                // Update current planet value in the player table.
+                databaseHelper.updateCurrentPlanet(currentPlanet);
 
                 // Enter shop.
                 ArrayList<ItemModel> itemsForShop = databaseHelper.getItemsForShop(currentPlanet);
@@ -131,8 +141,18 @@ public class TestGamePlay {
                 // Perform database updates before buying just like in game activity.
                 databaseHelper.updateItems(currentPlanet);
                 databaseHelper.adaptItemSizes(currentPlanet);
-                boolean result = databaseHelper.failSafe(currentPlanet);
-                databaseHelper.updateVisitedPlanets(currentPlanet, result);
+                boolean alreadyVisited = databaseHelper.checkVisitedPlanets(currentPlanet);
+                // If the planet has been visited, we do no need to run the failsafe again and update
+                // the visited planets table
+                if (!alreadyVisited) {
+                    databaseHelper.failSafe(currentPlanet);
+                    databaseHelper.updateVisitedPlanets(currentPlanet);
+                } else {
+                    // Add current planet to visited planets table
+                    databaseHelper.updateVisitedPlanets(currentPlanet);
+                }
+                // Update current planet value in the player table.
+                databaseHelper.updateCurrentPlanet(currentPlanet);
 
                 // Enter shop.
                 ArrayList<ItemModel> itemsForShop = databaseHelper.getItemsForShop(currentPlanet);
