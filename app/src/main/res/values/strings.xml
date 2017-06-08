@@ -1080,6 +1080,7 @@
     <string name="game_menu_button_inventory">Inventory</string>
     <string name="game_menu_button_shop">Shop</string>
     <string name="game_menu_button_leave_game">Leave planet</string>
+    <string name="game_menu_button_end_game">End game here</string>
     <string name="inventory_title">Inventory</string>
     <string name="inventory_cargo_bay">Cargo bay</string>
     <string name="inventory_credits">Credits</string>
