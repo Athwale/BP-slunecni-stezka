@@ -16,10 +16,10 @@
     <string name="run_scanner_button_description">Run scanner and start to play</string>
     <string name="game_info_screen_title">How to play</string>
     <string name="settings_title">Settings</string>
-    <string name="settings_data_info_exists">Game data exist</string>
-    <string name="settings_data_info_not_exists">Game data removed</string>
-    <string name="checkbox_clear_data">Clear game data</string>
-    <string name="button_clear_data">Clear</string>
+    <string name="settings_data_info_exists">Game has been started</string>
+    <string name="settings_data_info_not_exists">Game has not been started</string>
+    <string name="checkbox_clear_data">Restart game?</string>
+    <string name="button_clear_data">Restart</string>
     <string name="scanner_screen_title_nfc">Place your device onto the NFC tag</string>
     <string name="scanner_screen_title_qr">Scan the QR code with your device</string>
     <string name="default_image_description">Picture</string>

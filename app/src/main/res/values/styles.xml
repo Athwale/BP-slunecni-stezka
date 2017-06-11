@@ -9,4 +9,9 @@
         <item name="android:windowBackground">@drawable/pict_yellow_activity_background</item>
     </style>
 
+    <style name="checkBoxStyle" parent="Base.Theme.AppCompat">
+        <item name="colorAccent">@color/buttonCremeBlue</item>
+        <item name="android:textColorSecondary">@color/colorTransparent</item>
+    </style>
+
 </resources>

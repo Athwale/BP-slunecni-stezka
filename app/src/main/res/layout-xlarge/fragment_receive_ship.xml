@@ -84,6 +84,8 @@
                 android:id="@+id/receive_ship_button_ok"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/white_button_background"
                 android:onClick="confirmGameStartButtonHandler"
                 android:text="@string/start_new_game_confirm" />
 
