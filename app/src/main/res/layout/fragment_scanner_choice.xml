@@ -65,7 +65,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/scanner_choice_use_flash"
-                android:textColor="@color/textBlack" />
+                android:textColor="@color/textBlack"
+                android:theme="@style/checkBoxStyle" />
         </LinearLayout>
 
         <LinearLayout

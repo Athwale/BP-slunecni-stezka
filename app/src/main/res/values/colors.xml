@@ -12,4 +12,6 @@
     <color name="textRed">#ca151e</color>
     <color name="spacerBlue">#ff0099cc</color>
     <color name="spacerBlack">#000000</color>
+    <color name="buttonCremeBlue">#ded3eff9</color>
+    <color name="colorTransparent">#00ffffff</color>
 </resources>

@@ -17,10 +17,10 @@
     <string name="schema_image_description">Schéma solárního systému</string>
     <string name="game_info_screen_title">Jak hrát</string>
     <string name="settings_title">Nastavení</string>
-    <string name="settings_data_info_exists">Herní data jsou uložena</string>
-    <string name="settings_data_info_not_exists">Herní data jsou vymazána</string>
-    <string name="checkbox_clear_data">Vymazat herní data</string>
-    <string name="button_clear_data">Vymazat</string>
+    <string name="settings_data_info_exists">Probíhá hra</string>
+    <string name="settings_data_info_not_exists">Hra ještě nebyla spuštěna</string>
+    <string name="checkbox_clear_data">Restartovat hru?</string>
+    <string name="button_clear_data">Restartovat</string>
     <string name="scanner_screen_title_nfc">Přiložte zařízení k NFC tagu</string>
     <string name="scanner_screen_title_qr">Naskenujte QR kód</string>
     <string name="default_image_description">Obrázek</string>
