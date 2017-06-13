@@ -33,6 +33,8 @@ public class PlanetResourceCollector {
     // Identifier key for planet id when saved in bundle of arguments for fragment
     public static final String PLANET_ID_KEY = "planetId";
     public static final String PLANET_AUDIO_KEY = "planetAudioKey";
+    // Used to identify the map image with marked user position
+    public static final String PLANET_MAP_POSITION_KEY = "mapPositionKey";
 
     private static final String CERES_AUTHOR = "NASA/JPL-Caltech";
     private static final String EARTH_AUTHOR = "NASA/Goddard";
@@ -59,6 +61,7 @@ public class PlanetResourceCollector {
      * - Resource ID - planet symbol for planet text fragment
      * - Resource ID - main planet text for planet text fragment
      * - Resource ID - main planet parameters for planet text fragment
+     * - Resource ID - map where the user is standing right now
      * This returns resource ids because they get automatically translated when
      * the language of the app changes.
      *
@@ -169,6 +172,12 @@ public class PlanetResourceCollector {
         String audioResourceName = "planet_audio_" + planetName;
         int audioResourceId = activity.getResources().getIdentifier(audioResourceName, "raw", activity.getPackageName());
 
+        // Get planet map resource
+        // The resources for planet map files must have a name "pict_map_planets_*name*"
+        // If resource is not found it throws ResourceNotFoundException
+        String mapResourceName = "pict_map_planets_" + planetName;
+        int mapResourceId = activity.getResources().getIdentifier(mapResourceName, "drawable", activity.getPackageName());
+
         // If the resource is not found, no image is displayed. Anyway resources do not change
         // the photo should always be found.
 
@@ -193,6 +202,7 @@ public class PlanetResourceCollector {
         resources.putInt(PLANET_TEXT_KEY, textTopId);
         resources.putInt(PLANET_TEXT_TECH_KEY, textTechId);
         resources.putInt(PLANET_AUDIO_KEY, audioResourceId);
+        resources.putInt(PLANET_MAP_POSITION_KEY, mapResourceId);
 
         return resources;
     }

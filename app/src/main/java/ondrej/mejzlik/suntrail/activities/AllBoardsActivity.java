@@ -21,6 +21,7 @@ import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_KEY_
 import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_KEY_TO;
 import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_START;
 import static ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment.IMAGE_KEY;
+import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_MAP_POSITION_KEY;
 
 /**
  * This activity displays a list of all available planets on the Sun path.
@@ -30,10 +31,6 @@ import static ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment.IMAGE_KEY;
 public class AllBoardsActivity extends Activity {
     // Key to identify planet resources in a bundle
     public static final String PLANET_RESOURCES_KEY = "planetResourcesKey";
-    // Key to identify bundle with sun trail map in a saved instance bundle
-    public static final String MAP_KEY = "mapKey";
-    // mapArguments hold the sun trail map for zoomable image fragment
-    private Bundle mapArguments = null;
     private Bundle planetResources = null;
     private float savedRotationFrom = ROTATION_END;
     private float savedRotationTo = ROTATION_START;
@@ -56,18 +53,14 @@ public class AllBoardsActivity extends Activity {
             if (savedInstanceState != null) {
                 // Restore bundle with planet id and image
                 this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
-                this.mapArguments = savedInstanceState.getBundle(MAP_KEY);
                 this.savedRotationFrom = savedInstanceState.getFloat(ROTATION_KEY_FROM);
                 this.savedRotationTo = savedInstanceState.getFloat(ROTATION_KEY_TO);
                 return;
             }
 
             // Initialize variables is savedInstance == null and they were not retrieved
-            this.mapArguments = new Bundle();
             this.planetResources = new Bundle();
 
-            // Put the map into mapArguments. We will not change the image any more, we can do it once.
-            this.mapArguments.putInt(IMAGE_KEY, R.drawable.pict_map_planets);
             // Add planet list fragment to the fragment_container
             BoardsListFragment boardsListFragment = new BoardsListFragment();
             FragmentManager fragmentManager = getFragmentManager();
@@ -81,8 +74,6 @@ public class AllBoardsActivity extends Activity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         // Save the chosen planet resources for use in planet text and audio fragments
         savedInstanceState.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
-        // Save the bundle with sun trail map
-        savedInstanceState.putBundle(MAP_KEY, this.mapArguments);
         // Save planet rotation
         savedInstanceState.putFloat(ROTATION_KEY_FROM, this.savedRotationFrom);
         savedInstanceState.putFloat(ROTATION_KEY_TO, this.savedRotationTo);
@@ -95,7 +86,6 @@ public class AllBoardsActivity extends Activity {
         // Always call the superclass so it can restore the view hierarchy
         super.onRestoreInstanceState(savedInstanceState);
         this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
-        this.mapArguments = savedInstanceState.getBundle(MAP_KEY);
         this.savedRotationFrom = savedInstanceState.getFloat(ROTATION_KEY_FROM);
         this.savedRotationTo = savedInstanceState.getFloat(ROTATION_KEY_TO);
     }
@@ -172,8 +162,11 @@ public class AllBoardsActivity extends Activity {
 
         // Create fragment and set fragment mapArguments
         ZoomableImageFragment imageFragment = new ZoomableImageFragment();
+        // Put the right map with marked position into the zoomable image fragment arguments
+        Bundle mapArguments = new Bundle();
+        mapArguments.putInt(IMAGE_KEY, this.planetResources.getInt(PLANET_MAP_POSITION_KEY));
         // Set the argument to contain boards map
-        imageFragment.setArguments(this.mapArguments);
+        imageFragment.setArguments(mapArguments);
 
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back

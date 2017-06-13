@@ -22,7 +22,6 @@ import ondrej.mejzlik.suntrail.fragments.SunPathInfoFragment;
 import ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment;
 import ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector;
 
-import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.MAP_KEY;
 import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.PLANET_RESOURCES_KEY;
 import static ondrej.mejzlik.suntrail.activities.GameActivity.END_GAME_PREFERENCE_KEY;
 import static ondrej.mejzlik.suntrail.activities.GameActivity.PREFERENCES_KEY;
@@ -34,6 +33,7 @@ import static ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment.IMAGE_KEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_ATHWALE;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_INVALID;
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_ID_KEY;
+import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_MAP_POSITION_KEY;
 
 /**
  * This activity allows the user to pick which scanner to use. Then starts corresponding fragment
@@ -57,7 +57,6 @@ public class ScannerActivity extends Activity {
     private static final int NFC_REQUEST = 1;
     private PlanetResourceCollector resourceCollector;
     private Bundle planetResources = null;
-    private Bundle mapArguments = null;
     private float savedRotationFrom = ROTATION_END;
     private float savedRotationTo = ROTATION_START;
 
@@ -67,7 +66,6 @@ public class ScannerActivity extends Activity {
         setContentView(R.layout.activity_scanner);
 
         // Initialize variables
-        this.mapArguments = new Bundle();
         this.resourceCollector = new PlanetResourceCollector();
         this.planetResources = new Bundle();
         if (findViewById(R.id.scanner_fragment_container) != null) {
@@ -77,14 +75,11 @@ public class ScannerActivity extends Activity {
             if (savedInstanceState != null) {
                 // Restore planet resources
                 this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
-                this.mapArguments = savedInstanceState.getBundle(MAP_KEY);
                 this.savedRotationFrom = savedInstanceState.getFloat(ROTATION_KEY_FROM);
                 this.savedRotationTo = savedInstanceState.getFloat(ROTATION_KEY_TO);
                 return;
             }
 
-            // Put the map into mapArguments. We will not change the image any more, we can do it once.
-            this.mapArguments.putInt(IMAGE_KEY, R.drawable.pict_map_planets);
             // If the device only has a camera and no NFC reader, run qr scanner right away.
             // If the device only has NFC run NFC scanner.
             // If the device has both, open a selection screen.
@@ -113,8 +108,6 @@ public class ScannerActivity extends Activity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         // Save the chosen planet resources for use in planet text and audio fragments
         savedInstanceState.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
-        // Save the bundle with sun trail map
-        savedInstanceState.putBundle(MAP_KEY, this.mapArguments);
         // Save planet rotation
         savedInstanceState.putFloat(ROTATION_KEY_FROM, this.savedRotationFrom);
         savedInstanceState.putFloat(ROTATION_KEY_TO, this.savedRotationTo);
@@ -127,7 +120,6 @@ public class ScannerActivity extends Activity {
         // Always call the superclass so it can restore the view hierarchy
         super.onRestoreInstanceState(savedInstanceState);
         this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
-        this.mapArguments = savedInstanceState.getBundle(MAP_KEY);
         this.savedRotationFrom = savedInstanceState.getFloat(ROTATION_KEY_FROM);
         this.savedRotationTo = savedInstanceState.getFloat(ROTATION_KEY_TO);
     }
@@ -295,8 +287,11 @@ public class ScannerActivity extends Activity {
 
         // Create fragment and set fragment mapArguments
         ZoomableImageFragment imageFragment = new ZoomableImageFragment();
+        // Put the right map with marked position into the zoomable image fragment arguments
+        Bundle mapArguments = new Bundle();
+        mapArguments.putInt(IMAGE_KEY, this.planetResources.getInt(PLANET_MAP_POSITION_KEY));
         // Set the argument to contain boards map
-        imageFragment.setArguments(this.mapArguments);
+        imageFragment.setArguments(mapArguments);
 
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
