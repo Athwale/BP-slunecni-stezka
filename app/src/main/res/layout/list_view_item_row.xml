@@ -192,7 +192,8 @@
                     android:paddingEnd="0dp"
                     android:paddingStart="2dp"
                     android:text="@string/list_price_rise"
-                    android:textColor="@color/textBlack" />
+                    android:textColor="@color/textBlack"
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

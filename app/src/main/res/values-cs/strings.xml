@@ -1081,10 +1081,10 @@
     <string name="list_sell">(Prodat)</string>
     <string name="list_buy">(Koupit)</string>
     <string name="list_can_not_buy">Nelze koupit</string>
-    <string name="list_can_not_sell">Nelze prodat v tomto obchodě</string>
+    <string name="list_can_not_sell">Zde nelze prodat</string>
     <string name="list_bought_for">Zakoupeno za:</string>
     <string name="list_current_price">Nynější cena:</string>
-    <string name="list_size">Velikost:</string>
+    <string name="list_size">Objem:</string>
     <string name="list_price">Cena:</string>
     <string name="list_cr">cr</string>
     <string name="list_price_rise">Cena poroste</string>
