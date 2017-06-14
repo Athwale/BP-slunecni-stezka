@@ -157,18 +157,17 @@
             android:id="@+id/inventory_cargo_bay_contents_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingStart="16dp"
             android:text="@string/inventory_cargo_bay_contents"
             android:textColor="@color/spacerBlue"
             android:textStyle="bold" />
 
         <View
-            android:id="@+id/inventory_view_spacer_items"
+            android:id="@+id/inventory_view_spacer_list"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginTop="16dp"
             android:background="@color/spacerBlue"
             tools:ignore="UnknownId,UnknownIdInLayout" />
 

@@ -3,6 +3,7 @@ package ondrej.mejzlik.suntrail.activities;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -32,9 +33,11 @@ public class SettingsActivity extends Activity {
 
         if (this.gameUtilities.isDatabaseCreated(this)) {
             databaseExistsText.setText(R.string.settings_data_info_exists);
+            databaseExistsText.setTextColor(ContextCompat.getColor(this, R.color.textGreen));
             checkBoxClear.setEnabled(true);
         } else {
             databaseExistsText.setText(R.string.settings_data_info_not_exists);
+            databaseExistsText.setTextColor(ContextCompat.getColor(this, R.color.textRed));
             buttonClear.setEnabled(false);
             checkBoxClear.setEnabled(false);
         }
@@ -93,6 +96,7 @@ public class SettingsActivity extends Activity {
                     view.setEnabled(false);
                     checkBoxClear.setEnabled(false);
                     databaseExistsText.setText(R.string.settings_data_info_not_exists);
+                    databaseExistsText.setTextColor(ContextCompat.getColor(this, R.color.textRed));
                     // Clear shared preferences, because now we need to display inventory again.
                     SharedPreferences preferences = getSharedPreferences(PREFERENCES_KEY, 0);
                     SharedPreferences.Editor editor = preferences.edit();

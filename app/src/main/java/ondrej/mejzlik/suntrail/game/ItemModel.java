@@ -29,6 +29,7 @@ public class ItemModel implements Parcelable {
     private final int itemDescriptionResId;
     private final int availableAtPlanet;
     private final int size;
+    private final int originalPrice;
     private final boolean isSaleable;
     private final boolean priceMovement;
     private final boolean isBought;
@@ -52,7 +53,7 @@ public class ItemModel implements Parcelable {
      * @param size                 item size in cargo bay (S, M, L)
      */
     ItemModel(int id, int price, int itemNameResId, int itemImageResId, int itemImageIconResId, int itemDescriptionResId, int availableAtPlanet, boolean isSaleable,
-              boolean isBought, boolean priceMovement, int size, boolean isShip) {
+              boolean isBought, boolean priceMovement, int size, boolean isShip, int originalPrice) {
         this.id = id;
         this.price = price;
         this.itemNameResId = itemNameResId;
@@ -65,9 +66,10 @@ public class ItemModel implements Parcelable {
         this.priceMovement = priceMovement;
         this.size = size;
         this.isShip = isShip;
+        this.originalPrice = originalPrice;
     }
 
-    private ItemModel(Parcel in) {
+    protected ItemModel(Parcel in) {
         this.id = in.readInt();
         this.itemNameResId = in.readInt();
         this.itemImageResId = in.readInt();
@@ -75,11 +77,12 @@ public class ItemModel implements Parcelable {
         this.itemDescriptionResId = in.readInt();
         this.availableAtPlanet = in.readInt();
         this.size = in.readInt();
+        this.originalPrice = in.readInt();
         this.isSaleable = in.readByte() != 0;
-        this.price = in.readInt();
         this.priceMovement = in.readByte() != 0;
-        this.isInShop = in.readByte() != 0;
         this.isBought = in.readByte() != 0;
+        this.price = in.readInt();
+        this.isInShop = in.readByte() != 0;
         this.canBeBought = in.readByte() != 0;
         this.isShip = in.readByte() != 0;
     }
@@ -193,6 +196,15 @@ public class ItemModel implements Parcelable {
     }
 
     /**
+     * Returns original item's price.
+     *
+     * @return Returns original item's price.
+     */
+    public int getOriginalPrice() {
+        return originalPrice;
+    }
+
+    /**
      * Returns true if the player has bought this item and it is in his inventory.
      *
      * @return Returns true if the player has bought this item and it is in his inventory.
@@ -253,11 +265,12 @@ public class ItemModel implements Parcelable {
         dest.writeInt(this.itemDescriptionResId);
         dest.writeInt(this.availableAtPlanet);
         dest.writeInt(this.size);
+        dest.writeInt(this.originalPrice);
         dest.writeByte(this.isSaleable ? (byte) 1 : (byte) 0);
-        dest.writeInt(this.price);
         dest.writeByte(this.priceMovement ? (byte) 1 : (byte) 0);
-        dest.writeByte(this.isInShop ? (byte) 1 : (byte) 0);
         dest.writeByte(this.isBought ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.price);
+        dest.writeByte(this.isInShop ? (byte) 1 : (byte) 0);
         dest.writeByte(this.canBeBought ? (byte) 1 : (byte) 0);
         dest.writeByte(this.isShip ? (byte) 1 : (byte) 0);
     }

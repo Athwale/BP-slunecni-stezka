@@ -115,6 +115,9 @@ public class ItemInfoFragment extends Fragment {
             TextView itemSizeTitle = (TextView) view.findViewById(R.id.item_info_text_view_cargo_size_title);
             TextView itemPrice = (TextView) view.findViewById(R.id.item_info_text_view_item_price);
             TextView itemPriceCr = (TextView) view.findViewById(R.id.item_info_text_view_item_price_cr);
+            TextView itemOriginalPriceTitle = (TextView) view.findViewById(R.id.item_info_text_view_item_original_price_title);
+            TextView itemOriginalPrice = (TextView) view.findViewById(R.id.item_info_text_view_item_original_price);
+            TextView itemOriginalPriceCr = (TextView) view.findViewById(R.id.item_info_text_view_item_original_price_cr);
             TextView message = (TextView) view.findViewById(R.id.item_info_text_view_cant_be_bought);
             LinearLayout itemBuy = (LinearLayout) view.findViewById(R.id.item_info_linear_layout_buy);
             LinearLayout itemSell = (LinearLayout) view.findViewById(R.id.item_info_linear_layout_sell);
@@ -152,9 +155,10 @@ public class ItemInfoFragment extends Fragment {
                 }
                 itemSize.setText(" " + String.valueOf(item.getSize()));
                 itemPrice.setText(" " + String.valueOf(item.getPrice()));
+                itemOriginalPrice.setText(" " + String.valueOf(item.getOriginalPrice()));
                 if (item.isInShop()) {
                     // Set price and enable sell/buy.
-                    itemPriceTitle.setText(R.string.list_price);
+                    itemPriceTitle.setText(R.string.list_current_price);
                     itemSizeTitle.setText(R.string.list_size);
                     itemPriceTitle.setVisibility(View.VISIBLE);
                     itemPriceCr.setVisibility(View.VISIBLE);
@@ -164,26 +168,44 @@ public class ItemInfoFragment extends Fragment {
                         itemBuy.setVisibility(View.VISIBLE);
                         itemSell.setVisibility(View.GONE);
                         message.setVisibility(View.GONE);
+                        // We are buying the item, original price is the same and should not be
+                        // displayed
+                        itemOriginalPriceTitle.setVisibility(View.GONE);
+                        itemOriginalPrice.setVisibility(View.GONE);
+                        itemOriginalPriceCr.setVisibility(View.GONE);
                     } else if (item.isBought() && item.isSaleable()) {
                         // Display price and sell button.
                         itemPrice.setText(" " + String.valueOf(item.getPrice()));
-                        itemPriceTitle.setText(R.string.list_price);
+                        itemPriceTitle.setText(R.string.list_current_price);
                         itemBuy.setVisibility(View.GONE);
                         itemSell.setVisibility(View.VISIBLE);
                         message.setVisibility(View.GONE);
+                        // Display original price
+                        itemOriginalPriceTitle.setVisibility(View.VISIBLE);
+                        itemOriginalPrice.setVisibility(View.VISIBLE);
+                        itemOriginalPriceCr.setVisibility(View.VISIBLE);
                     } else if (!item.isSaleable()) {
                         // We bough the item in this shop and must not be able to sell it back
                         itemPrice.setText(" " + String.valueOf(item.getPrice()));
-                        itemPriceTitle.setText(R.string.list_price);
+                        // Set that we bought this item for some credits
+                        itemPriceTitle.setText(R.string.list_bought_for);
                         itemBuy.setVisibility(View.GONE);
                         itemSell.setVisibility(View.GONE);
                         message.setText(R.string.shop_can_not_sell);
                         message.setVisibility(View.VISIBLE);
+                        // Original price is irrelevant
+                        itemOriginalPriceTitle.setVisibility(View.GONE);
+                        itemOriginalPrice.setVisibility(View.GONE);
+                        itemOriginalPriceCr.setVisibility(View.GONE);
                     } else {
                         // Item can not be bought, not enough credits or cargo space
                         itemPrice.setText(" " + String.valueOf(item.getPrice()));
                         itemBuy.setVisibility(View.GONE);
                         itemSell.setVisibility(View.GONE);
+                        // We can not buy this item, original price is irrelevant
+                        itemOriginalPriceTitle.setVisibility(View.GONE);
+                        itemOriginalPrice.setVisibility(View.GONE);
+                        itemOriginalPriceCr.setVisibility(View.GONE);
                         message.setText(R.string.shop_can_not_be_bought);
                         message.setVisibility(View.VISIBLE);
                     }
@@ -202,12 +224,20 @@ public class ItemInfoFragment extends Fragment {
                     itemPriceMovementText.setVisibility(View.GONE);
                     message.setVisibility(View.GONE);
                     itemSell.setVisibility(View.GONE);
+                    // Original price is irrelevant for ships
+                    itemOriginalPriceTitle.setVisibility(View.GONE);
+                    itemOriginalPrice.setVisibility(View.GONE);
+                    itemOriginalPriceCr.setVisibility(View.GONE);
                 } else {
                     // We are in inventory, hide all shop related stuff
                     itemSell.setVisibility(View.GONE);
                     itemBuy.setVisibility(View.GONE);
                     message.setVisibility(View.GONE);
-                    itemPriceTitle.setText(R.string.list_price);
+                    itemPriceTitle.setText(R.string.list_current_price);
+                    // Display original price, we need to know that in inventory
+                    itemOriginalPriceTitle.setVisibility(View.VISIBLE);
+                    itemOriginalPrice.setVisibility(View.VISIBLE);
+                    itemOriginalPriceCr.setVisibility(View.VISIBLE);
                 }
             }
         }

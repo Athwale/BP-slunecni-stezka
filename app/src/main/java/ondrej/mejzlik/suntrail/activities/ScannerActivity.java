@@ -6,6 +6,9 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -168,7 +171,7 @@ public class ScannerActivity extends Activity {
         if (requestCode == NFC_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Bundle result = data.getExtras();
-                this.processScannerResult(result.getInt(PLANET_ID_KEY));
+                this.processScannerResult(result.getInt(PLANET_ID_KEY), false);
             }
         }
     }
@@ -198,8 +201,10 @@ public class ScannerActivity extends Activity {
      * QR scanner fragment is destroyed.
      *
      * @param planetId Scanned decoded planet ID
+     * @param playSound True if this method should play scanning success sound. Used when we are
+     *                  not using the NFC scanner.
      */
-    public void processScannerResult(int planetId) {
+    public void processScannerResult(int planetId, boolean playSound) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
@@ -208,6 +213,18 @@ public class ScannerActivity extends Activity {
         // It will add the scanner back onto screen because there is no scanner choice fragment.
         // On such devices if the QR code is incorrect, we have to finish scanner activity.
         fragmentManager.popBackStackImmediate();
+
+        if (playSound) {
+            // Play sound only when we are using the QR scanner, NFC plays it's own sound.
+            try {
+                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                Ringtone r = RingtoneManager.getRingtone(this.getApplicationContext(), notification);
+                r.play();
+            } catch (Exception e) {
+                Toast.makeText(this, getResources().getString(R.string.toast_scanning_success), Toast.LENGTH_SHORT).show();
+                // If the device can not provide built in ringtone, there is not much else we can do.
+            }
+        }
 
         // Scanned code is not a Sun trail QR planet identifier
         if (planetId == PLANET_ID_ATHWALE || planetId == PLANET_ID_INVALID) {

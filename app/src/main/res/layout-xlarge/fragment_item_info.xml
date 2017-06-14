@@ -82,56 +82,106 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/item_info_text_view_cargo_size_title"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="0dp"
-                    android:paddingStart="16dp"
-                    android:text="@string/list_size"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/textBlack"
-                    android:textSize="14sp" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/item_info_text_view_cargo_size"
+                    <TextView
+                        android:id="@+id/item_info_text_view_cargo_size_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="0dp"
+                        android:paddingStart="5dp"
+                        android:text="@string/list_size"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/textBlack"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/item_info_text_view_cargo_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textBlack"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:text=" 17" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/textBlack"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    tools:text=" 17" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/item_info_text_view_price_title"
+                    <TextView
+                        android:id="@+id/item_info_text_view_price_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="0dp"
+                        android:paddingStart="5dp"
+                        android:text="@string/list_current_price"
+                        android:textColor="@color/textBlack"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/item_info_text_view_item_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/textBlue"
+                        android:textStyle="bold"
+                        tools:text=" 156" />
+
+                    <TextView
+                        android:id="@+id/item_info_text_view_item_price_cr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingEnd="0dp"
+                        android:paddingStart="2dp"
+                        android:text="@string/list_cr"
+                        android:textColor="@color/textBlack" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="0dp"
-                    android:paddingStart="16dp"
-                    android:text="@string/list_price"
-                    android:textColor="@color/textBlack"
-                    android:textSize="14sp" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/item_info_text_view_item_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/textBlue"
-                    android:textStyle="bold"
-                    tools:text=" 156" />
+                    <TextView
+                        android:id="@+id/item_info_text_view_item_original_price_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="0dp"
+                        android:paddingStart="5dp"
+                        android:text="@string/list_original_price"
+                        android:textColor="@color/textBlack"
+                        android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/item_info_text_view_item_price_cr"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:paddingEnd="0dp"
-                    android:paddingStart="2dp"
-                    android:text="@string/list_cr"
-                    android:textColor="@color/textBlack" />
+                    <TextView
+                        android:id="@+id/item_info_text_view_item_original_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/textBlack"
+                        android:textStyle="bold"
+                        tools:text=" 116" />
+
+                    <TextView
+                        android:id="@+id/item_info_text_view_item_original_price_cr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingEnd="0dp"
+                        android:paddingStart="2dp"
+                        android:text="@string/list_cr"
+                        android:textColor="@color/textBlack" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

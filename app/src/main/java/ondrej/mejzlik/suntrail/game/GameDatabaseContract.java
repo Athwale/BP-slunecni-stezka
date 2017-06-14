@@ -58,6 +58,7 @@ public final class GameDatabaseContract {
         static final String TABLE_NAME_ITEMS = "gameItems";
         // All Integer values
         // Primary key is _ID
+        static final String COLUMN_NAME_ITEM_ORIGINAL_PRICE = "itemOriginalPrice";
         static final String COLUMN_NAME_ITEM_PRICE = "itemPrice";
         static final String COLUMN_NAME_ITEM_SIZE = "itemSize";
         static final String COLUMN_NAME_ITEM_NAME_RES_ID = "itemName";

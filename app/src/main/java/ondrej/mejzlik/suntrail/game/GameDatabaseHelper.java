@@ -39,6 +39,7 @@ import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUM
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_BOUGHT;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_SALEABLE;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_NAME_RES_ID;
+import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_ORIGINAL_PRICE;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE_RISE;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SIZE;
@@ -86,6 +87,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_ITEMS_TABLE = "CREATE TABLE " + TABLE_NAME_ITEMS + " (" +
             GameDatabaseContract.ItemsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_ORIGINAL_PRICE + " INTEGER," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE + " INTEGER," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_SIZE + " INTEGER," +
             GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_NAME_RES_ID + " INTEGER," +
@@ -360,8 +362,10 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 // shopsWithoutWares list so we can simply pick a planet at the index where we are
                 // in this loop.
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_AVAILABLE_AT, availableAt);
-                // Set random item price from a defined range
+                // Set random item price from a defined range, the regular price will change, save
+                // original price to a different column.
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_PRICE, itemBasePrice);
+                shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_ORIGINAL_PRICE, itemBasePrice);
                 // No items are bought in the beginning
                 shopItem.put(GameDatabaseContract.ItemsTable.COLUMN_NAME_ITEM_IS_BOUGHT, 0);
                 // Set all items as displayable
@@ -442,8 +446,9 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                     int availableAt = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_AVAILABLE_AT));
                     int isSaleable = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_IS_SALEABLE));
                     int priceMovement = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_PRICE_RISE));
+                    int originalPrice = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_ORIGINAL_PRICE));
                     ItemModel item = new ItemModel(id, itemPrice, itemName, itemImage,
-                            itemImageIcon, itemDescription, availableAt, this.intToBoolean(isSaleable), this.intToBoolean(isBought), this.intToBoolean(priceMovement), itemSize, false);
+                            itemImageIcon, itemDescription, availableAt, this.intToBoolean(isSaleable), this.intToBoolean(isBought), this.intToBoolean(priceMovement), itemSize, false, originalPrice);
                     boughtItems.add(item);
                 } while (cursor.moveToNext());
             }
@@ -589,8 +594,9 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                     int isSaleable = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_IS_SALEABLE));
                     int priceMovement = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_PRICE_RISE));
                     int hasBeenBought = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_HAS_BEEN_BOUGHT));
+                    int originalPrice = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_ITEM_ORIGINAL_PRICE));
                     ItemModel item = new ItemModel(id, itemPrice, itemName, itemImage,
-                            itemImageIcon, itemDescription, availableAt, this.intToBoolean(isSaleable), this.intToBoolean(isBought), this.intToBoolean(priceMovement), itemSize, false);
+                            itemImageIcon, itemDescription, availableAt, this.intToBoolean(isSaleable), this.intToBoolean(isBought), this.intToBoolean(priceMovement), itemSize, false, originalPrice);
                     // Set items are in shop and set if can be bought.
                     if (remainingCargoSpace < itemSize || player.getCredits() < itemPrice) {
                         item.setCanBeBought(false);
@@ -653,10 +659,10 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         int currentShip = shipData.getShipNameResId();
 
         ItemModel lokys = new ItemModel(500, shipPrice, R.string.ship_name_lokys, R.drawable.pict_lokys,
-                R.drawable.pict_lokys_small, R.string.ship_info_lokys, currentPlanet, false, false, false, LOKYS_CARGO_SIZE, true);
+                R.drawable.pict_lokys_small, R.string.ship_info_lokys, currentPlanet, false, false, false, LOKYS_CARGO_SIZE, true, shipPrice);
         lokys.setCanBeBought(true);
         ItemModel daedalus = new ItemModel(500, shipPrice, R.string.ship_name_daedalus, R.drawable.pict_daedalus,
-                R.drawable.pict_daedalus_small, R.string.ship_info_daedalus, currentPlanet, false, false, false, DAEDALUS_CARGO_SIZE, true);
+                R.drawable.pict_daedalus_small, R.string.ship_info_daedalus, currentPlanet, false, false, false, DAEDALUS_CARGO_SIZE, true, shipPrice);
         daedalus.setCanBeBought(true);
 
         if (player.getDirection()) {
@@ -1039,7 +1045,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         output += this.getDataFromCursor(cursorShips) + "\n\n";
 
         // Add item data
-        output += "Items table: \n\tID\t\t\tPRICE\t\tSIZE\t\tITEM NAME RES ID\tIMAGE RES ID\t\tICON RES ID\t\t\tTEXT RES ID\t\t\tRISE/FALL\tIS BOUGH\tDISPLAYABLE\tHAS BEEN BOUGHT\tAVAILABLE AT\n";
+        output += "Items table: \n\tID\t\t\tORIGINAL PRICE\t\tPRICE\t\tSIZE\t\tITEM NAME RES ID\tIMAGE RES ID\t\tICON RES ID\t\t\tTEXT RES ID\t\t\tRISE/FALL\tIS BOUGH\tDISPLAYABLE\tHAS BEEN BOUGHT\tAVAILABLE AT\n";
         Cursor cursorItems = db.rawQuery("select * from " + TABLE_NAME_ITEMS, null);
         output += this.getDataFromCursor(cursorItems) + "\n\n";
 

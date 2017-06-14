@@ -3,16 +3,12 @@ package ondrej.mejzlik.suntrail.fragments;
 import android.Manifest;
 import android.app.Fragment;
 import android.content.pm.PackageManager;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
@@ -20,7 +16,6 @@ import com.google.zxing.Result;
 import java.util.ArrayList;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.activities.ScannerActivity;
 import ondrej.mejzlik.suntrail.utilities.PlanetIdentifier;
 
@@ -103,18 +98,8 @@ public class QrScannerFragment extends Fragment implements ZXingScannerView.Resu
         scannerView.removeAllViews();
         scannerView.stopCamera();
 
-        // Play sound
-        try {
-            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            Ringtone r = RingtoneManager.getRingtone(getActivity().getApplicationContext(), notification);
-            r.play();
-        } catch (Exception e) {
-            Toast.makeText(getActivity(), getResources().getString(R.string.toast_scanning_success), Toast.LENGTH_SHORT).show();
-            // If the device can not provide built in ringtone, there is not much else we can do.
-        }
-
         // Parse and pass planet id to scanner activity
         int planetId = this.identifier.getPlanetIdFromQr(rawResult.getText());
-        ((ScannerActivity) this.getActivity()).processScannerResult(planetId);
+        ((ScannerActivity) this.getActivity()).processScannerResult(planetId, true);
     }
 }
