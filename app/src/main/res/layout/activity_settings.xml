@@ -88,4 +88,16 @@
 
     </LinearLayout>
 
+    <CheckBox
+        android:id="@+id/settings_checkbox_use_flash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:onClick="useFlashCheckBoxHandler"
+        android:text="@string/settings_use_flash"
+        android:textColor="@color/textBlack"
+        android:theme="@style/checkBoxStyle" />
+
 </RelativeLayout>

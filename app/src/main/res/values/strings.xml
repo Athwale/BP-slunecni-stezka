@@ -18,6 +18,7 @@
     <string name="settings_title">Settings</string>
     <string name="settings_data_info_exists">Game has been started</string>
     <string name="settings_data_info_not_exists">Game has not been started</string>
+    <string name="settings_use_flash">Use flash for QR scanner</string>
     <string name="checkbox_clear_data">Restart game?</string>
     <string name="button_clear_data">Restart</string>
     <string name="scanner_screen_title_nfc">Place your device onto the NFC tag</string>

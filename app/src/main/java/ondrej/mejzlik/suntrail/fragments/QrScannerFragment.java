@@ -2,6 +2,7 @@ package ondrej.mejzlik.suntrail.fragments;
 
 import android.Manifest;
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -19,6 +20,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import ondrej.mejzlik.suntrail.activities.ScannerActivity;
 import ondrej.mejzlik.suntrail.utilities.PlanetIdentifier;
 
+import static ondrej.mejzlik.suntrail.activities.GameActivity.PREFERENCES_KEY;
 import static ondrej.mejzlik.suntrail.activities.ScannerActivity.PERMISSION_CAMERA;
 import static ondrej.mejzlik.suntrail.activities.ScannerActivity.USE_FLASH_KEY;
 
@@ -27,6 +29,7 @@ import static ondrej.mejzlik.suntrail.activities.ScannerActivity.USE_FLASH_KEY;
  * This fragment asks for camera permissions.
  */
 public class QrScannerFragment extends Fragment implements ZXingScannerView.ResultHandler {
+    public static final String USE_FLASH_PREFERENCE_KEY = "useFlashPreferenceKey";
     private ZXingScannerView scannerView;
     private PlanetIdentifier identifier;
 
@@ -42,9 +45,14 @@ public class QrScannerFragment extends Fragment implements ZXingScannerView.Resu
         scannerView = new ZXingScannerView(getActivity());
         // Turn on flash if the user wants it
         Bundle arguments = getArguments();
-        // Turn on flash if user checked the use flash checkbox
+        // Turn on flash if user checked the use flash checkbox in scanner choice or settings
+        // Load flash preference from preferences
+        SharedPreferences preferences = getActivity().getSharedPreferences(PREFERENCES_KEY, 0);
+        boolean useFlash = preferences.getBoolean(USE_FLASH_PREFERENCE_KEY, false);
         if (arguments != null && arguments.containsKey(USE_FLASH_KEY)) {
             scannerView.setFlash(arguments.getBoolean(USE_FLASH_KEY));
+        } else if (useFlash) {
+            scannerView.setFlash(true);
         }
         // Set supported format to QR code only.
         ArrayList<BarcodeFormat> formats = new ArrayList<>();

@@ -19,6 +19,7 @@
     <string name="settings_title">Nastavení</string>
     <string name="settings_data_info_exists">Probíhá hra</string>
     <string name="settings_data_info_not_exists">Hra ještě nebyla spuštěna</string>
+    <string name="settings_use_flash">Použít blesk při skenování</string>
     <string name="checkbox_clear_data">Restartovat hru?</string>
     <string name="button_clear_data">Restartovat</string>
     <string name="scanner_screen_title_nfc">Přiložte zařízení k NFC tagu</string>

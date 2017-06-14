@@ -16,10 +16,12 @@ import ondrej.mejzlik.suntrail.game.GameUtilities;
 
 import static ondrej.mejzlik.suntrail.activities.GameActivity.END_GAME_PREFERENCE_KEY;
 import static ondrej.mejzlik.suntrail.activities.GameActivity.PREFERENCES_KEY;
+import static ondrej.mejzlik.suntrail.fragments.QrScannerFragment.USE_FLASH_PREFERENCE_KEY;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 
 public class SettingsActivity extends Activity {
     private GameUtilities gameUtilities = null;
+    private SharedPreferences preferences = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,11 @@ public class SettingsActivity extends Activity {
             buttonClear.setEnabled(false);
             checkBoxClear.setEnabled(false);
         }
+
+        // Restore flash checkbox state
+        CheckBox checkBoxFlash = (CheckBox) findViewById(R.id.settings_checkbox_use_flash);
+        this.preferences = this.getSharedPreferences(PREFERENCES_KEY, 0);
+        checkBoxFlash.setChecked(preferences.getBoolean(USE_FLASH_PREFERENCE_KEY, false));
     }
 
     @Override
@@ -71,6 +78,18 @@ public class SettingsActivity extends Activity {
     }
 
     /**
+     * Handles clicks from use flash checkbox in settings.
+     * If the checkbox is clicked and checked, saves a value into preference so that
+     * flash is turned on when using the qr scanner.
+     *
+     * @param checkBoxClear The button that has been clicked
+     */
+    public void useFlashCheckBoxHandler(View checkBoxClear) {
+        SharedPreferences.Editor editor = this.preferences.edit();
+        editor.putBoolean(USE_FLASH_PREFERENCE_KEY, ((CheckBox) checkBoxClear).isChecked()).apply();
+    }
+
+    /**
      * Handles clicks from clear game data button in settings.
      * If clear game data checkbox is checked, clears game data.
      * After completion disables itself and uncheck clear game data checkbox.
@@ -98,8 +117,7 @@ public class SettingsActivity extends Activity {
                     databaseExistsText.setText(R.string.settings_data_info_not_exists);
                     databaseExistsText.setTextColor(ContextCompat.getColor(this, R.color.textRed));
                     // Clear shared preferences, because now we need to display inventory again.
-                    SharedPreferences preferences = getSharedPreferences(PREFERENCES_KEY, 0);
-                    SharedPreferences.Editor editor = preferences.edit();
+                    SharedPreferences.Editor editor = this.preferences.edit();
                     // Set that game is running, used in main activity in inventory button handler and scanner
                     // activity to disable game mode.
                     editor.putBoolean(END_GAME_PREFERENCE_KEY, false).apply();
