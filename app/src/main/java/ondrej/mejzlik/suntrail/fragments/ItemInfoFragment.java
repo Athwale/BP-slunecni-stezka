@@ -167,14 +167,14 @@ public class ItemInfoFragment extends Fragment {
                     } else if (item.isBought() && item.isSaleable()) {
                         // Display price and sell button.
                         itemPrice.setText(" " + String.valueOf(item.getPrice()));
-                        itemPriceTitle.setText(R.string.list_selling_price);
+                        itemPriceTitle.setText(R.string.list_price);
                         itemBuy.setVisibility(View.GONE);
                         itemSell.setVisibility(View.VISIBLE);
                         message.setVisibility(View.GONE);
                     } else if (!item.isSaleable()) {
                         // We bough the item in this shop and must not be able to sell it back
                         itemPrice.setText(" " + String.valueOf(item.getPrice()));
-                        itemPriceTitle.setText(R.string.list_selling_price);
+                        itemPriceTitle.setText(R.string.list_price);
                         itemBuy.setVisibility(View.GONE);
                         itemSell.setVisibility(View.GONE);
                         message.setText(R.string.shop_can_not_sell);
@@ -207,7 +207,7 @@ public class ItemInfoFragment extends Fragment {
                     itemSell.setVisibility(View.GONE);
                     itemBuy.setVisibility(View.GONE);
                     message.setVisibility(View.GONE);
-                    itemPriceTitle.setText(R.string.list_selling_price);
+                    itemPriceTitle.setText(R.string.list_price);
                 }
             }
         }
