@@ -49,6 +49,8 @@ public class ItemListAdapter extends ArrayAdapter<ItemModel> {
             viewHolder.itemPrice = (TextView) convertView.findViewById(R.id.row_item_price);
             viewHolder.itemPriceTitle = (TextView) convertView.findViewById(R.id.row_item_price_title);
             viewHolder.itemSizeTitle = (TextView) convertView.findViewById(R.id.row_item_size_title);
+            viewHolder.itemPriceCr = (TextView) convertView.findViewById(R.id.row_item_price_cr);
+            viewHolder.itemPriceMovementText = (TextView) convertView.findViewById(R.id.row_text_view_price_movement);
             // Add the holder to the view
             convertView.setTag(viewHolder);
         } else {
@@ -62,8 +64,10 @@ public class ItemListAdapter extends ArrayAdapter<ItemModel> {
             // Set price movement indicator
             if (item.getPriceMovement()) {
                 viewHolder.itemPriceMovement.setImageResource(R.drawable.pict_arrow_green);
+                viewHolder.itemPriceMovementText.setText(R.string.list_price_rise);
             } else {
                 viewHolder.itemPriceMovement.setImageResource(R.drawable.pict_arrow_red);
+                viewHolder.itemPriceMovementText.setText(R.string.list_price_fall);
             }
             viewHolder.itemName.setText(item.getItemNameResId());
             viewHolder.itemSize.setText(" " + String.valueOf(item.getSize()));
@@ -73,25 +77,32 @@ public class ItemListAdapter extends ArrayAdapter<ItemModel> {
                 // Set background and set size title to be Size:
                 viewHolder.itemSizeTitle.setText(R.string.list_size);
                 viewHolder.itemPriceMovement.setVisibility(View.VISIBLE);
-                if (item.isBought()) {
+                if (!item.isSaleable()) {
+                    // We bough the item in this shop and must not be able to sell it back
+                    viewHolder.itemPriceTitle.setText(R.string.list_can_not_sell);
+                    viewHolder.itemPrice.setVisibility(View.GONE);
+                    viewHolder.itemPriceCr.setVisibility(View.GONE);
+                    int backgroundColor = ContextCompat.getColor(context, R.color.rowRed);
+                    convertView.setBackgroundColor(backgroundColor);
+                } else if (item.isBought()) {
                     // The player has this in inventory, so it can be sold, set green.
-                    viewHolder.itemPriceTitle.setText(R.string.list_selling_price);
+                    viewHolder.itemPriceTitle.setText(R.string.list_sell);
                     int backgroundColor = ContextCompat.getColor(context, R.color.rowGreen);
                     convertView.setBackgroundColor(backgroundColor);
                 } else if (item.canBeBought()) {
                     // The item is in the shop and can be bought, set orange.
-                    viewHolder.itemPriceTitle.setText(R.string.list_price);
+                    viewHolder.itemPriceTitle.setText(R.string.list_buy);
                     int backgroundColor = ContextCompat.getColor(context, R.color.rowOrange);
                     convertView.setBackgroundColor(backgroundColor);
                 } else {
                     // The item is in shop and can not be bough, price is too high or there is not
                     // enough space in the cargo bay. Set red background.
-                    viewHolder.itemPriceTitle.setText(R.string.list_price);
+                    viewHolder.itemPriceTitle.setText(R.string.list_can_not_buy);
                     int backgroundColor = ContextCompat.getColor(context, R.color.rowRed);
                     convertView.setBackgroundColor(backgroundColor);
                 }
             } else if (item.isShip()) {
-                viewHolder.itemPriceTitle.setText(R.string.list_price);
+                viewHolder.itemPriceTitle.setText(R.string.list_buy);
                 viewHolder.itemSizeTitle.setText(context.getResources().getString(R.string.inventory_cargo_bay) + ":");
                 viewHolder.itemPriceMovement.setVisibility(View.GONE);
                 int backgroundColor;
@@ -104,7 +115,7 @@ public class ItemListAdapter extends ArrayAdapter<ItemModel> {
             } else {
                 // We are in inventory, display green and show current selling price.
                 viewHolder.itemSizeTitle.setText(R.string.list_size);
-                viewHolder.itemPriceTitle.setText(R.string.list_selling_price);
+                viewHolder.itemPriceTitle.setText(R.string.list_price);
                 int backgroundColor = ContextCompat.getColor(context, R.color.rowGreen);
                 convertView.setBackgroundColor(backgroundColor);
             }
@@ -121,11 +132,13 @@ public class ItemListAdapter extends ArrayAdapter<ItemModel> {
     private static class ViewHolder {
         ImageView itemImage;
         ImageView itemPriceMovement;
+        TextView itemPriceMovementText;
         TextView itemName;
         TextView itemSize;
         TextView itemSizeTitle;
         TextView itemPrice;
         TextView itemPriceTitle;
+        TextView itemPriceCr;
     }
 
 }
