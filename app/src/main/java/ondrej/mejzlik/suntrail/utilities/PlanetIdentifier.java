@@ -1,9 +1,22 @@
 package ondrej.mejzlik.suntrail.utilities;
 
+import android.content.Context;
 import android.widget.Button;
 
 import ondrej.mejzlik.suntrail.R;
 
+import static ondrej.mejzlik.suntrail.R.string.all_boards_button_name_ceres;
+import static ondrej.mejzlik.suntrail.R.string.all_boards_button_name_earth;
+import static ondrej.mejzlik.suntrail.R.string.all_boards_button_name_halley;
+import static ondrej.mejzlik.suntrail.R.string.all_boards_button_name_jupiter;
+import static ondrej.mejzlik.suntrail.R.string.all_boards_button_name_mars;
+import static ondrej.mejzlik.suntrail.R.string.all_boards_button_name_mercury;
+import static ondrej.mejzlik.suntrail.R.string.all_boards_button_name_moon;
+import static ondrej.mejzlik.suntrail.R.string.all_boards_button_name_neptune;
+import static ondrej.mejzlik.suntrail.R.string.all_boards_button_name_saturn;
+import static ondrej.mejzlik.suntrail.R.string.all_boards_button_name_sun;
+import static ondrej.mejzlik.suntrail.R.string.all_boards_button_name_uranus;
+import static ondrej.mejzlik.suntrail.R.string.all_boards_button_name_venus;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.NAME_ATHWALE;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.NAME_CERES;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.NAME_EARTH;
@@ -55,6 +68,7 @@ public class PlanetIdentifier {
     public static final int PLANET_ID_MARS = 6;
     public static final int PLANET_ID_CERES = 7;
     public static final int PLANET_ID_VENUS = 3;
+    public static final String INVALID_ID = "INVALID_ID";
     // Planet identifiers used in PlanetResourceCollector and PlanetIdentifier to identify which
     // planet data should we load.
     private static final int PLANET_ID_INTRO = 0;
@@ -220,12 +234,12 @@ public class PlanetIdentifier {
     }
 
     /**
-     * Reverse method to get planet name from id.
+     * Reverse method to get the planet name from inside the QR codes from ID.
      *
      * @param planetId Constant planet ID from PlanetIdentifier
      * @return Planet name from Configuration
      */
-    public String getPlanetName(int planetId) {
+    public String getPlanetQrName(int planetId) {
         switch (planetId) {
             case PLANET_ID_CERES: {
                 return NAME_CERES;
@@ -267,6 +281,58 @@ public class PlanetIdentifier {
                 return NAME_INTRO;
             }
         }
-        return "INVALID_ID";
+        return INVALID_ID;
+    }
+
+    /**
+     * Reverse method to get the planet name from it's ID.
+     *
+     * @param planetId Constant planet ID from PlanetIdentifier
+     * @param context  Application context to access getResources method.
+     * @return Planet name from Configuration
+     */
+    public String getPlanetLocalizedName(int planetId, Context context) {
+        switch (planetId) {
+            case PLANET_ID_CERES: {
+                // The button names are planet names
+                return context.getResources().getString(all_boards_button_name_ceres);
+            }
+            case PLANET_ID_EARTH: {
+                return context.getResources().getString(all_boards_button_name_earth);
+            }
+            case PLANET_ID_HALLEY: {
+                return context.getResources().getString(all_boards_button_name_halley);
+            }
+            case PLANET_ID_JUPITER: {
+                return context.getResources().getString(all_boards_button_name_jupiter);
+            }
+            case PLANET_ID_MARS: {
+                return context.getResources().getString(all_boards_button_name_mars);
+            }
+            case PLANET_ID_MERCURY: {
+                return context.getResources().getString(all_boards_button_name_mercury);
+            }
+            case PLANET_ID_MOON: {
+                return context.getResources().getString(all_boards_button_name_moon);
+            }
+            case PLANET_ID_NEPTUNE: {
+                return context.getResources().getString(all_boards_button_name_neptune);
+            }
+            case PLANET_ID_SATURN: {
+                return context.getResources().getString(all_boards_button_name_saturn);
+            }
+            case PLANET_ID_VENUS: {
+                return context.getResources().getString(all_boards_button_name_venus);
+            }
+            case PLANET_ID_URANUS: {
+                return context.getResources().getString(all_boards_button_name_uranus);
+            }
+            case PLANET_ID_SUN: {
+                return context.getResources().getString(all_boards_button_name_sun);
+            }
+            default: {
+                return INVALID_ID;
+            }
+        }
     }
 }

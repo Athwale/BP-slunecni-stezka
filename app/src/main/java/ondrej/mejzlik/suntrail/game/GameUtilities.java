@@ -1,9 +1,12 @@
 package ondrej.mejzlik.suntrail.game;
 
 import android.app.Activity;
+import android.content.Context;
 
 import java.io.File;
 import java.util.Random;
+
+import ondrej.mejzlik.suntrail.utilities.PlanetIdentifier;
 
 import static ondrej.mejzlik.suntrail.configuration.Configuration.MAX_ITEM_PRICE_MOVEMENT;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.MIN_ITEM_PRICE_MOVEMENT;
@@ -85,6 +88,23 @@ public class GameUtilities {
     public boolean isDatabaseCreated(Activity activity) {
         File dbFile = activity.getApplicationContext().getDatabasePath(DATABASE_NAME);
         return dbFile.exists();
+    }
+
+    /**
+     * Used from MainMenuFragment, this method returns which is the next stop based on the current
+     * planet and trip direction.
+     *
+     * @param currentPlanet Currently visited planet.
+     * @param direction     Trip direction.
+     * @param context       Application context to access getResources method.
+     * @return Name of the next planet.
+     */
+    public String getNextPlanetName(int currentPlanet, boolean direction, Context context) {
+        PlanetIdentifier identifier = new PlanetIdentifier();
+        if (direction) {
+            return identifier.getPlanetLocalizedName(currentPlanet + 1, context);
+        }
+        return identifier.getPlanetLocalizedName(currentPlanet - 1, context);
     }
 
 }

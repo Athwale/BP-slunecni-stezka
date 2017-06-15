@@ -78,7 +78,7 @@ public class PlayerModel {
      *
      * @return Direction of the trip.
      */
-    boolean getDirection() {
+    public boolean getDirection() {
         return direction;
     }
 

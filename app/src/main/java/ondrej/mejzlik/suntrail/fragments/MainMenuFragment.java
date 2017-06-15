@@ -13,9 +13,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import ondrej.mejzlik.suntrail.R;
+import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
+import ondrej.mejzlik.suntrail.game.GameUtilities;
+import ondrej.mejzlik.suntrail.game.PlayerModel;
 
 import static ondrej.mejzlik.suntrail.activities.GameActivity.END_GAME_PREFERENCE_KEY;
 import static ondrej.mejzlik.suntrail.activities.GameActivity.PREFERENCES_KEY;
+import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.INVALID_ID;
 
 /**
  * This fragment shows the main menu. In case the device does not have neither a camera nor a nfc
@@ -24,6 +28,7 @@ import static ondrej.mejzlik.suntrail.activities.GameActivity.PREFERENCES_KEY;
  */
 public class MainMenuFragment extends Fragment {
     private View mainView = null;
+    private GameUtilities gameUtilities = null;
 
     public MainMenuFragment() {
         // Required empty public constructor
@@ -36,6 +41,8 @@ public class MainMenuFragment extends Fragment {
         this.mainView = inflater.inflate(R.layout.fragment_main_menu, container, false);
         // Remove scan button if the device does not have both a camera and a nfc reader
         this.disableScanButton(this.mainView);
+        // Initialize variables
+        this.gameUtilities = new GameUtilities();
         return this.mainView;
     }
 
@@ -46,16 +53,30 @@ public class MainMenuFragment extends Fragment {
         // change in preference would not reflect here.
         SharedPreferences preferences = getActivity().getSharedPreferences(PREFERENCES_KEY, 0);
         boolean gameEnded = preferences.getBoolean(END_GAME_PREFERENCE_KEY, false);
-        TextView gameEndedMessage = (TextView) this.mainView.findViewById(R.id.main_menu_text_view_no_scanner);
+        TextView gameMessage = (TextView) this.mainView.findViewById(R.id.main_menu_text_view_no_scanner);
         Button inventoryButton = (Button) this.mainView.findViewById(R.id.main_menu_button_inventory);
-        if (gameEnded) {
-            gameEndedMessage = (TextView) this.mainView.findViewById(R.id.main_menu_text_view_no_scanner);
-            gameEndedMessage.setText(R.string.end_game_main_menu_message);
-            gameEndedMessage.setVisibility(View.VISIBLE);
-            inventoryButton.setText(R.string.end_game_main_menu_button_result);
+        GameUtilities gameUtilities = new GameUtilities();
+        // Tell the user what to do in the message. For this we need the database to look at next planet.
+        if (this.gameUtilities.isDatabaseCreated(this.getActivity())) {
+            GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.getActivity().getApplicationContext());
+            PlayerModel playerModel = databaseHelper.getPlayerData();
+            int currentPlanet = playerModel.getCurrentPlanet();
+            boolean direction = playerModel.getDirection();
+            String nextPlanet = gameUtilities.getNextPlanetName(currentPlanet, direction, this.getActivity().getApplicationContext());
+            if (nextPlanet.equals(INVALID_ID)) {
+                gameMessage.setText(R.string.guidance_message_game_end);
+            } else {
+                gameMessage.setText(getResources().getString(R.string.guidance_message_scan_next) + " " + nextPlanet);
+            }
         } else {
-            gameEndedMessage.setVisibility(View.GONE);
-            inventoryButton.setText(R.string.main_menu_inventory_icon_text);
+            gameMessage.setText(R.string.guidance_message_scan_first);
+        }
+        // Set the inventory button name to Inventory if the game has not ended yet.
+        inventoryButton.setText(R.string.main_menu_inventory_icon_text);
+        if (gameEnded) {
+            gameMessage = (TextView) this.mainView.findViewById(R.id.main_menu_text_view_no_scanner);
+            gameMessage.setText(R.string.end_game_main_menu_message);
+            inventoryButton.setText(R.string.end_game_main_menu_button_result);
         }
         super.onResume();
     }
@@ -89,7 +110,6 @@ public class MainMenuFragment extends Fragment {
             params.setMargins(0, 0, 0, 0);
             allBoardsButton.setLayoutParams(params);
         } else {
-            warningNoScanner.setVisibility(View.GONE);
             scanButton.setVisibility(View.VISIBLE);
             inventoryButton.setVisibility(View.VISIBLE);
             settingsButton.setVisibility(View.VISIBLE);

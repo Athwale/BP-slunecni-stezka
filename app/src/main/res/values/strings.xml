@@ -192,12 +192,11 @@
     <string name="game_info_text_bottom">
        <![CDATA[
        <p>
-       Certain items can be sold only on certain planets. Other items can be sold everywhere.
-       You can read info about each item by tapping the red question mark either in the shop or in
-       your inventory.
+       Items can be sold at on planet. The price of each ware is not fixed, it may rise or fall on the next planet.
+       But the price will only move on a not yet visited planet.
        <p>
        During the game you will have a chance to buy better, larger space ships. Those will allow you
-       to transport larger amount of goods.
+       to transport larger amount of goods. The old ship will be sold when buying a new one.
        </p>
        <p>
        Based on how much credits you earn at the end of the game, you will be rewarded with a space
@@ -1126,6 +1125,9 @@
     <string name="end_game_second_reward">Valuable Starfleet helpmate</string>
     <string name="end_game_third_reward">Humble merchant</string>
     <string name="end_game_main_menu_button_result">Game score</string>
+    <string name="guidance_message_game_end">Game ends here</string>
+    <string name="guidance_message_scan_first">Scan code from a board</string>
+    <string name="guidance_message_scan_next">Scan code at:</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>

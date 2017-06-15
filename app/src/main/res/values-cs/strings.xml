@@ -185,7 +185,7 @@
         Než doletíte na konec, zkuste si vydělat co nejvíc.
         </p>
         <p>
-        Na začátku dostanete základní, léty prověřenou loď <b>Ikarus M</b> a malý obnos <b>42 vesmírných kreditů</b>.
+        Na začátku dostanete základní, léty prověřenou loď <b>Ikarus M a malý obnos vesmírných kreditů</b>.
         </p>
         <p>
         Na zastávce naskenujete kód planety. Pak můžete vstoupit do obchodu.
@@ -195,11 +195,11 @@
     <string name="game_info_text_bottom">
     <![CDATA[
         <p>
-        Některé věci lze prodat pouze na určených planetách, jiné kdekoli. Informace o konkrétní věci získáte
-        klepnutím na ikonu červeného otazníku v obchodě nebo inventáři.
+        Věci lze prodávat na libovolné planetě. Cena každého zboží je pohyblivá, na příští planetě může růst nebo klesat.
+        Ale pozor, cena se změní pouze na planetě, která ještě nebyla navštívena.
         </p>
         <p>
-        V průběhu hry budete mít možnost koupit větší, lepší lodě. Umožní vám převážet větší množství nákladu.
+        V průběhu hry budete mít možnost koupit větší, lepší lodě. Umožní vám převážet větší množství nákladu. Při koupi nové lodě, starou prodáte.
         </p>
         <p>
         Podle počtu kreditů získáte na konci hry hodnost důstojníka planetární flotily.
@@ -1112,6 +1112,9 @@
     <string name="end_game_second_reward">Užitečný pomocník Hvězdné flotily</string>
     <string name="end_game_third_reward">Skromný obchodník</string>
     <string name="end_game_main_menu_button_result">Výsledek hry</string>
+    <string name="guidance_message_game_end">Poslední zastávka</string>
+    <string name="guidance_message_scan_first">Naskenujte kód z tabule</string>
+    <string name="guidance_message_scan_next">Naskenujte kód na planetě:</string>
     <string name="start_new_game_text_top">
     <![CDATA[
         <p>

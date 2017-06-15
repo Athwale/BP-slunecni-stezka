@@ -222,7 +222,7 @@ public class NfcScannerActivity extends Activity {
             // Decode planet
             int planetId = this.identifier.getPlanetIdFromNfc(nuid);
             tagInfo += "Internal planet ID: " + planetId;
-            tagInfo += "\nPlanet name: " + this.identifier.getPlanetName(planetId);
+            tagInfo += "\nPlanet name: " + this.identifier.getPlanetQrName(planetId);
             // Show a dialog with the info
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(tagInfo);
