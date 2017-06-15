@@ -26,6 +26,7 @@
     <string name="default_image_description">Picture</string>
     <string name="planet_image_description">Picture of the planet</string>
     <string name="schema_image_description">Solar system diagram</string>
+    <string name="sponsor_image_description">Sponsor logo</string>
     <string name="animation_image_description">Scanning animation</string>
     <string name="all_boards_screen_title">View all boards</string>
     <string name="all_boards_button_name_sun">Sun</string>
@@ -141,8 +142,9 @@
         A lot of people already helped us, we will be happy to hear from you!
         </p>
         <p>
-        The Sun trail is a community project and is run under the management of <a href="http://www.krtiny.cz/">Křtiny.</a><br>
+        The Sun trail is a community project and is run under the management of <a href="http://www.krtiny.cz/">Křtiny.</a>
         More at <a href="http://slunecnistezka.cz/www/">The Sun trail</a>
+        This application was created as a part of a bachelor thesis at FI MU. More at <a href="https://github.com/Athwale/BP-slunecni-stezka">Git hub</a>.
         </p>
         <p>
         Please also have a look at
@@ -163,6 +165,7 @@
         Uranus: NASA/JPL/Voyager 2/Joe Ruhinski<br>
         Neptune: NASA/JPL/Voyager 2
         </p>
+        <h2>Sponsors</h2>
     ]]>
     </string>
     <string name="game_info_text_top">

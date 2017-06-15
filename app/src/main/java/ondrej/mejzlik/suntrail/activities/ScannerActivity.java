@@ -218,8 +218,8 @@ public class ScannerActivity extends Activity {
             // Play sound only when we are using the QR scanner, NFC plays it's own sound.
             try {
                 Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                Ringtone r = RingtoneManager.getRingtone(this.getApplicationContext(), notification);
-                r.play();
+                Ringtone ringtone = RingtoneManager.getRingtone(this.getApplicationContext(), notification);
+                ringtone.play();
             } catch (Exception e) {
                 Toast.makeText(this, getResources().getString(R.string.toast_scanning_success), Toast.LENGTH_SHORT).show();
                 // If the device can not provide built in ringtone, there is not much else we can do.

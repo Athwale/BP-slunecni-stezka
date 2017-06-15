@@ -129,6 +129,42 @@
                 android:textColor="@color/textBlack"
                 tools:text="TextView" />
 
+            <ImageView
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/sponsor_image_description"
+                android:src="@drawable/pict_sponsor_jihomoravsky_kraj" />
+
+            <ImageView
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/sponsor_image_description"
+                android:src="@drawable/pict_sponsor_mendelova_univerzita" />
+
+            <ImageView
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/sponsor_image_description"
+                android:src="@drawable/pict_sponsor_mestys_krtiny" />
+
+            <ImageView
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/sponsor_image_description"
+                android:src="@drawable/pict_sponsor_skaut_krtiny" />
+
+            <ImageView
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/sponsor_image_description"
+                android:src="@drawable/pict_sponsor_zs_krtiny" />
+
         </LinearLayout>
     </ScrollView>
+
 </RelativeLayout>
