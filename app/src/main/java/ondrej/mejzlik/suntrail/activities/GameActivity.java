@@ -457,9 +457,6 @@ public class GameActivity extends Activity {
             if (!alreadyVisited) {
                 databaseHelper.failSafe(this.currentPlanet);
                 databaseHelper.updateVisitedPlanets(this.currentPlanet);
-            } else {
-                // Add current planet to visited planets table
-                databaseHelper.updateVisitedPlanets(this.currentPlanet);
             }
             // Update current planet value in the player table.
             databaseHelper.updateCurrentPlanet(this.currentPlanet);
