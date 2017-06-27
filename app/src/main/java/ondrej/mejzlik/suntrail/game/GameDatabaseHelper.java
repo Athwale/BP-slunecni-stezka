@@ -962,29 +962,27 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      * @param currentPlanet Planet id of the planet currently being visited.
      */
     public void failSafe(int currentPlanet) {
-        if (!this.checkVisitedPlanets(currentPlanet)) {
-            // Get current credits
-            int credits = this.getPlayerData().getCredits();
-            // Get available items
-            ArrayList<ItemModel> itemsForShop = this.getItemsForShop(currentPlanet);
-            // Add credits that the player would have if he sold what he has
-            for (ItemModel item : itemsForShop) {
-                if (item.isSaleable() && item.isBought()) {
-                    credits += item.getPrice();
-                }
+        // Get current credits
+        int credits = this.getPlayerData().getCredits();
+        // Get available items
+        ArrayList<ItemModel> itemsForShop = this.getItemsForShop(currentPlanet);
+        // Add credits that the player would have if he sold what he has
+        for (ItemModel item : itemsForShop) {
+            if (item.isSaleable() && item.isBought()) {
+                credits += item.getPrice();
             }
-            // Check if some item can be bought
-            for (ItemModel item : itemsForShop) {
-                if (!item.isBought() && (item.getPrice() < credits)) {
-                    return;
-                }
+        }
+        // Check if some item can be bought
+        for (ItemModel item : itemsForShop) {
+            if (!item.isBought() && (item.getPrice() < credits)) {
+                return;
             }
-            // Nothing can be bought lower the price of one item
-            if (!itemsForShop.isEmpty()) {
-                ItemModel itemToChange = itemsForShop.get(0);
-                itemToChange.setPrice(credits / 2);
-                this.updateItemPrice(itemToChange);
-            }
+        }
+        // Nothing can be bought lower the price of one item
+        if (!itemsForShop.isEmpty()) {
+            ItemModel itemToChange = itemsForShop.get(0);
+            itemToChange.setPrice(credits / 2);
+            this.updateItemPrice(itemToChange);
         }
     }
 
@@ -998,7 +996,6 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         // The database connection is cached so it's not expensive to call getWritableDatabase()
         // multiple times.
         SQLiteDatabase db = getWritableDatabase();
-
         try {
             db.beginTransaction();
             // The current planet is not in the database, insert it
