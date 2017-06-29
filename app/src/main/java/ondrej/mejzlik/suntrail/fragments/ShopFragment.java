@@ -17,8 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.activities.GameActivity;
 import ondrej.mejzlik.suntrail.activities.MainMenuActivity;
@@ -26,10 +24,9 @@ import ondrej.mejzlik.suntrail.game.GameDataHolder;
 import ondrej.mejzlik.suntrail.game.GameDatabaseHelper;
 import ondrej.mejzlik.suntrail.game.ItemListAdapter;
 import ondrej.mejzlik.suntrail.game.ItemModel;
-import ondrej.mejzlik.suntrail.game.PlayerModel;
-import ondrej.mejzlik.suntrail.game.ShipModel;
 
 import static ondrej.mejzlik.suntrail.activities.MainMenuActivity.SCROLL_POSITION_KEY;
+import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_ID_KEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_NAME_KEY;
 
 /**
@@ -48,6 +45,7 @@ public class ShopFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        int currentPlanet = 0;
         // Inflate the layout for this fragment
         this.mainView = inflater.inflate(R.layout.fragment_shop, container, false);
         TextView loadingMessage = (TextView) this.mainView.findViewById(R.id.shop_fragment_text_view_loading_message);
@@ -58,6 +56,7 @@ public class ShopFragment extends Fragment {
         // Add planet name to the title
         Bundle arguments = getArguments();
         if (arguments != null && arguments.containsKey(PLANET_NAME_KEY)) {
+            currentPlanet = arguments.getInt(PLANET_ID_KEY);
             TextView title = (TextView) this.mainView.findViewById(R.id.shop_fragment_title);
             title.setText(title.getText() + ": " + getResources().getString(arguments.getInt(PLANET_NAME_KEY)));
         }
@@ -65,7 +64,7 @@ public class ShopFragment extends Fragment {
         // Hide all views until the query is finished. Database is created because shop can only
         // be entered once the database is prepared.
         loadingMessage.setText(R.string.inventory_loading);
-        AsyncGetData databaseQuery = new AsyncGetData(getActivity().getApplicationContext());
+        AsyncGetData databaseQuery = new AsyncGetData(getActivity().getApplicationContext(), currentPlanet);
         databaseQuery.execute();
         this.displayLoadingMessage(this.mainView, true);
 
@@ -128,9 +127,11 @@ public class ShopFragment extends Fragment {
      */
     private class AsyncGetData extends AsyncTask<Void, Void, GameDataHolder> {
         private final Context context;
+        private final int currentPlanet;
 
-        AsyncGetData(Context context) {
+        AsyncGetData(Context context, int currentPlanet) {
             super();
+            this.currentPlanet = currentPlanet;
             this.context = context;
         }
 
@@ -138,11 +139,7 @@ public class ShopFragment extends Fragment {
             // The database helper is a singleton we always get the same instance it will not
             // cause any concurrent troubles.
             GameDatabaseHelper databaseHelper = GameDatabaseHelper.getInstance(this.context);
-            PlayerModel player = databaseHelper.getPlayerData();
-            ArrayList<ItemModel> itemsInShop = databaseHelper.getItemsForShop(player.getCurrentPlanet());
-            ShipModel ship = databaseHelper.getShipData();
-
-            return new GameDataHolder(itemsInShop, ship, player);
+            return databaseHelper.getDataForShop(this.currentPlanet);
         }
 
         @Override

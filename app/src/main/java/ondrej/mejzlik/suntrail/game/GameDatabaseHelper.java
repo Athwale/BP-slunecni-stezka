@@ -550,14 +550,14 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Returns items for shop fragment. Each item has isInShop set to true. If the item can not
-     * be bought because cargo bay is too small or the player has not enough credits canBeBought is
-     * se to false. The returned list contains both already bough items which can be sold and
-     * items available in the shop on the current planet.
+     * Returns all information needed for shop fragment. Each item has isInShop set to true. If the
+     * item can not be bought because cargo bay is too small or the player has not enough credits
+     * canBeBought is set to false. The returned list contains both already bough items which
+     * can be sold and items available in the shop on the current planet.
      *
-     * @return List of items in the shop on the current planet + bought items.
+     * @return All data needed for shop including player and ship data and items to display.
      */
-    public ArrayList<ItemModel> getItemsForShop(int currentPlanet) {
+    public GameDataHolder getDataForShop(int currentPlanet) {
         ArrayList<ItemModel> shopItems = new ArrayList<>();
 
         // Get all bought items from database and set that they are now displayed in shop.
@@ -568,10 +568,11 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         }
 
         // Get current planet
-        PlayerModel player = this.getPlayerData();
+        PlayerModel playerData = this.getPlayerData();
 
         // Get remaining cargo space
-        int remainingCargoSpace = this.getShipData().getRemainingCargoSpace();
+        ShipModel shipData = this.getShipData();
+        int remainingCargoSpace = shipData.getRemainingCargoSpace();
 
         // Get items available on current planet and set they are in shop and whether they can be
         // bought. Current planet is updated when we call this method.
@@ -598,7 +599,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                     ItemModel item = new ItemModel(id, itemPrice, itemName, itemImage,
                             itemImageIcon, itemDescription, availableAt, this.intToBoolean(isSaleable), this.intToBoolean(isBought), this.intToBoolean(priceMovement), itemSize, false, originalPrice);
                     // Set items are in shop and set if can be bought.
-                    if (remainingCargoSpace < itemSize || player.getCredits() < itemPrice) {
+                    if (remainingCargoSpace < itemSize || playerData.getCredits() < itemPrice) {
                         item.setCanBeBought(false);
                     } else {
                         item.setCanBeBought(true);
@@ -624,17 +625,17 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             }
         }
         // Add ship to the list if we are on the right planet.
-        ItemModel ship = this.makeShip(player, currentPlanet);
+        ItemModel ship = this.makeShip(playerData, currentPlanet);
         if (ship != null) {
             // Set if the ship can be bought.
-            if (player.getCredits() < ship.getPrice()) {
+            if (playerData.getCredits() < ship.getPrice()) {
                 ship.setCanBeBought(false);
             } else {
                 ship.setCanBeBought(true);
             }
             shopItems.add(ship);
         }
-        return shopItems;
+        return new GameDataHolder(shopItems, shipData, playerData);
     }
 
     /**
@@ -965,7 +966,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         // Get current credits
         int credits = this.getPlayerData().getCredits();
         // Get available items
-        ArrayList<ItemModel> itemsForShop = this.getItemsForShop(currentPlanet);
+        ArrayList<ItemModel> itemsForShop = this.getDataForShop(currentPlanet).getItems();
         // Add credits that the player would have if he sold what he has
         for (ItemModel item : itemsForShop) {
             if (item.isSaleable() && item.isBought()) {

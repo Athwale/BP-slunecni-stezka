@@ -354,6 +354,7 @@ public class GameActivity extends Activity {
             // Sent the planet name to the fragment
             Bundle arguments = new Bundle();
             arguments.putInt(PLANET_NAME_KEY, this.planetResources.getInt(PLANET_NAME_KEY));
+            arguments.putInt(PLANET_ID_KEY, this.planetResources.getInt(PLANET_ID_KEY));
             shopFragment.setArguments(arguments);
 
             FragmentTransaction transaction = fragmentManager.beginTransaction();
