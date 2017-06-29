@@ -561,7 +561,8 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         ArrayList<ItemModel> shopItems = new ArrayList<>();
 
         // Get all bought items from database and set that they are now displayed in shop.
-        shopItems.addAll(this.getBoughtItems());
+        ArrayList<ItemModel> boughtItems = this.getBoughtItems();
+        shopItems.addAll(boughtItems);
         for (ItemModel item : shopItems) {
             item.setInShop(true);
             // Here we could prevent bought items from showing up green in the shop once bought.
@@ -625,7 +626,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             }
         }
         // Add ship to the list if we are on the right planet.
-        ItemModel ship = this.makeShip(playerData, currentPlanet);
+        ItemModel ship = this.makeShip(playerData, currentPlanet, shipData, boughtItems);
         if (ship != null) {
             // Set if the ship can be bought.
             if (playerData.getCredits() < ship.getPrice()) {
@@ -644,20 +645,20 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
      *
      * @param player        PlayerModel instance.
      * @param currentPlanet Current planet
+     * @param currentShip   Currently owned ship is used to check whether to add ship to list.
+     * @param boughtItems   Items the player has, used to calculate amount of accessible credits.
      * @return ItemModel representing a ship or null.
      */
-    private ItemModel makeShip(PlayerModel player, int currentPlanet) {
+    private ItemModel makeShip(PlayerModel player, int currentPlanet, ShipModel currentShip, ArrayList<ItemModel> boughtItems) {
         // The id is irrelevant the ship item is not in database.
         // Calculate how much money the player has and determine ship price as half of that.
         // The player will get the money back when he sells the ship and buys a new one.
         int credits = player.getCredits();
-        ArrayList<ItemModel> boughtItems = this.getBoughtItems();
         for (ItemModel item : boughtItems) {
             credits += item.getPrice();
         }
         int shipPrice = credits / 2;
-        ShipModel shipData = this.getShipData();
-        int currentShip = shipData.getShipNameResId();
+        int currentShipName = currentShip.getShipNameResId();
 
         ItemModel lokys = new ItemModel(500, shipPrice, R.string.ship_name_lokys, R.drawable.pict_lokys,
                 R.drawable.pict_lokys_small, R.string.ship_info_lokys, currentPlanet, false, false, false, LOKYS_CARGO_SIZE, true, shipPrice);
@@ -670,13 +671,13 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             // Sun -> Neptune
             if (currentPlanet == PLANET_ID_MOON) {
                 // Only return lokys if we have a worse ship.
-                if (currentShip == R.string.ship_name_lokys || currentShip == R.string.ship_info_daedalus) {
+                if (currentShipName == R.string.ship_name_lokys || currentShipName == R.string.ship_name_daedalus) {
                     return null;
                 } else {
                     return lokys;
                 }
             } else if (currentPlanet == PLANET_ID_JUPITER) {
-                if (currentShip == R.string.ship_name_daedalus) {
+                if (currentShipName == R.string.ship_name_daedalus) {
                     return null;
                 } else {
                     return daedalus;
@@ -685,13 +686,13 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
         } else {
             // Neptune -> Sun
             if (currentPlanet == PLANET_ID_JUPITER) {
-                if (currentShip == R.string.ship_name_lokys || currentShip == R.string.ship_info_daedalus) {
+                if (currentShipName == R.string.ship_name_lokys || currentShipName == R.string.ship_name_daedalus) {
                     return null;
                 } else {
                     return lokys;
                 }
             } else if (currentPlanet == PLANET_ID_MOON) {
-                if (currentShip == R.string.ship_name_daedalus) {
+                if (currentShipName == R.string.ship_name_daedalus) {
                     return null;
                 } else {
                     return daedalus;
