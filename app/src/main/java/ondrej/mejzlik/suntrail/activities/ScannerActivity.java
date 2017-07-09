@@ -88,7 +88,7 @@ public class ScannerActivity extends Activity {
             // If the device has both, open a selection screen.
             // If nothing show that scanner functions are disabled.
             // TODO remove this and uncomment selectScanner this is for testing purposes in emulator
-            //this.processScannerResult(2);
+            //this.processScannerResult(2, true);
             this.selectScanner();
         }
     }
