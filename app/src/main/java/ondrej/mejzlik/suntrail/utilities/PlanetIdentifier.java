@@ -31,19 +31,7 @@ import static ondrej.mejzlik.suntrail.configuration.Configuration.NAME_SATURN;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.NAME_SUN;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.NAME_URANUS;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.NAME_VENUS;
-import static ondrej.mejzlik.suntrail.configuration.Configuration.NFC_CERES;
-import static ondrej.mejzlik.suntrail.configuration.Configuration.NFC_EARTH;
-import static ondrej.mejzlik.suntrail.configuration.Configuration.NFC_HALLEY;
-import static ondrej.mejzlik.suntrail.configuration.Configuration.NFC_INTRO;
-import static ondrej.mejzlik.suntrail.configuration.Configuration.NFC_JUPITER;
-import static ondrej.mejzlik.suntrail.configuration.Configuration.NFC_MARS;
-import static ondrej.mejzlik.suntrail.configuration.Configuration.NFC_MERCURY;
-import static ondrej.mejzlik.suntrail.configuration.Configuration.NFC_MOON;
-import static ondrej.mejzlik.suntrail.configuration.Configuration.NFC_NEPTUNE;
-import static ondrej.mejzlik.suntrail.configuration.Configuration.NFC_SATURN;
-import static ondrej.mejzlik.suntrail.configuration.Configuration.NFC_SUN;
-import static ondrej.mejzlik.suntrail.configuration.Configuration.NFC_URANUS;
-import static ondrej.mejzlik.suntrail.configuration.Configuration.NFC_VENUS;
+import static ondrej.mejzlik.suntrail.configuration.Configuration.PLANET_TAGS;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.SUN_TRAIL_NAME;
 
 /**
@@ -71,7 +59,7 @@ public class PlanetIdentifier {
     public static final String INVALID_ID = "INVALID_ID";
     // Planet identifiers used in PlanetResourceCollector and PlanetIdentifier to identify which
     // planet data should we load.
-    private static final int PLANET_ID_INTRO = 0;
+    public static final int PLANET_ID_INTRO = 0;
 
     /**
      * Identifies planet based on which button was pressed in all boards fragment.
@@ -183,53 +171,18 @@ public class PlanetIdentifier {
     }
 
     /**
-     * Identifies planet by comparing the code from NFC tag string.
+     * Identifies planet by comparing the code from NFC tag string. The final map PLANET_TAGS from
+     * Configuration may contain several tag IDs for each planet. If the ID is in the map key set
+     * then the corresponding integer value is the ID of the board.
      *
      * @param string The string read NFC tag
      * @return PLANET_ID constant from Configuration
      */
     public int getPlanetIdFromNfc(String string) {
-        if (string.equals(NFC_INTRO)) {
-            return PLANET_ID_INTRO;
+        if (PLANET_TAGS.containsKey(string)) {
+            return PLANET_TAGS.get(string);
         }
-        if (string.equals(NFC_CERES)) {
-            return PLANET_ID_CERES;
-        }
-        if (string.equals(NFC_EARTH)) {
-            return PLANET_ID_EARTH;
-        }
-        if (string.equals(NFC_HALLEY)) {
-            return PLANET_ID_HALLEY;
-        }
-        if (string.equals(NFC_JUPITER)) {
-            return PLANET_ID_JUPITER;
-        }
-        if (string.equals(NFC_MARS)) {
-            return PLANET_ID_MARS;
-        }
-        if (string.equals(NFC_MERCURY)) {
-            return PLANET_ID_MERCURY;
-        }
-        if (string.equals(NFC_MOON)) {
-            return PLANET_ID_MOON;
-        }
-        if (string.equals(NFC_NEPTUNE)) {
-            return PLANET_ID_NEPTUNE;
-        }
-        if (string.equals(NFC_SATURN)) {
-            return PLANET_ID_SATURN;
-        }
-        if (string.equals(NFC_SUN)) {
-            return PLANET_ID_SUN;
-        }
-        if (string.equals(NFC_URANUS)) {
-            return PLANET_ID_URANUS;
-        }
-        if (string.equals(NFC_VENUS)) {
-            return PLANET_ID_VENUS;
-        }
-
-        // If none of the ifs above worked, we scanned a wrong code.
+        // If the UID is not in the map, we scanned a wrong code.
         return PLANET_ID_INVALID;
     }
 

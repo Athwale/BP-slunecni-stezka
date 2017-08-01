@@ -2,18 +2,23 @@ package ondrej.mejzlik.suntrail.configuration;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ondrej.mejzlik.suntrail.R;
 
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_CERES;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_EARTH;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_HALLEY;
+import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_INTRO;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_JUPITER;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MARS;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MERCURY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MOON;
+import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_NEPTUNE;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_SATURN;
+import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_SUN;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_URANUS;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_VENUS;
 
@@ -110,19 +115,23 @@ public final class Configuration {
     // Easteregg authors name shows up
     public static final String NAME_ATHWALE = "Athwale";
     // Strings that NFC NUID must contain to verify which planet the user scanned
-    public static final String NFC_INTRO = "4a3e26";
-    public static final String NFC_SUN = "4573726";
-    public static final String NFC_MERCURY = "349e3c26";
-    public static final String NFC_VENUS = "846b3526";
-    public static final String NFC_EARTH = "14513526";
-    public static final String NFC_MOON = "9473926";
-    public static final String NFC_MARS = "d4413b26";
-    public static final String NFC_CERES = "948e3526";
-    public static final String NFC_JUPITER = "34983526";
-    public static final String NFC_HALLEY = "b46c3326";
-    public static final String NFC_SATURN = "e4e43626";
-    public static final String NFC_URANUS = "546c3926";
-    public static final String NFC_NEPTUNE = "a4973526";
+    // Map is used to enable more IDs for each planet to make repair of stolen tags easy
+    public static final Map<String, Integer> PLANET_TAGS = Collections.unmodifiableMap(
+            new HashMap<String, Integer>() {{
+                put("4a3e26", PLANET_ID_INTRO);
+                put("4573726", PLANET_ID_SUN);
+                put("349e3c26", PLANET_ID_MERCURY);
+                put("846b3526", PLANET_ID_VENUS);
+                put("14513526", PLANET_ID_EARTH);
+                put("9473926", PLANET_ID_MOON);
+                put("d4413b26", PLANET_ID_MARS);
+                put("948e3526", PLANET_ID_CERES);
+                put("34983526", PLANET_ID_JUPITER);
+                put("b46c3326", PLANET_ID_HALLEY);
+                put("e4e43626", PLANET_ID_SATURN);
+                put("546c3926", PLANET_ID_URANUS);
+                put("a4973526", PLANET_ID_NEPTUNE);
+            }});
     // Contains planet Ids where shops are located. The Sun or Neptune is added to the list inside
     // GameDatabaseHelper depending on which trip direction is chosen.
     // If the player goes Sun -> Neptune, there is no shop on Neptune, since the game ends there and
