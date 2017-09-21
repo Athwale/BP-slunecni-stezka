@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -63,6 +62,8 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MOON;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_NEPTUNE;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_SUN;
 
+//import android.util.Log;
+
 /**
  * This class is a singleton.
  * This class provides methods to handle the database. Create it, add tables, remove whole database,
@@ -108,7 +109,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     private static final String DELETE_SPACESHIP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME_SPACESHIP;
     private static final String DELETE_ITEMS_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME_ITEMS;
     private static final String DELETE_VISITED_PLANETS_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME_VISITED_PLANETS;
-    private static final String TAG = "DATABASE";
+    //private static final String TAG = "DATABASE";
     private static GameDatabaseHelper instance;
     private GameUtilities gameUtilities = null;
 
@@ -207,7 +208,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             db.insertOrThrow(TABLE_NAME_PLAYER, null, player);
             db.setTransactionSuccessful();
         } catch (SQLException ex) {
-            Log.d(TAG, "Error while trying to add player to database");
+            //Log.d(TAG, "Error while trying to add player to database");
         } finally {
             db.endTransaction();
         }
@@ -258,7 +259,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             db.insertOrThrow(TABLE_NAME_SPACESHIP, null, ship);
             db.setTransactionSuccessful();
         } catch (SQLException ex) {
-            Log.d(TAG, "Error while trying to add icarus to database");
+            //Log.d(TAG, "Error while trying to add icarus to database");
         } finally {
             db.endTransaction();
             ship.clear();
@@ -275,7 +276,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             db.insertOrThrow(TABLE_NAME_SPACESHIP, null, ship);
             db.setTransactionSuccessful();
         } catch (SQLException ex) {
-            Log.d(TAG, "Error while trying to add lokys to database");
+            //Log.d(TAG, "Error while trying to add lokys to database");
         } finally {
             db.endTransaction();
             ship.clear();
@@ -292,7 +293,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             db.insertOrThrow(TABLE_NAME_SPACESHIP, null, ship);
             db.setTransactionSuccessful();
         } catch (SQLException ex) {
-            Log.d(TAG, "Error while trying to add daedalus to database");
+            //Log.d(TAG, "Error while trying to add daedalus to database");
         } finally {
             db.endTransaction();
             ship.clear();
@@ -381,7 +382,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 db.insertOrThrow(TABLE_NAME_ITEMS, null, shopItem);
                 db.setTransactionSuccessful();
             } catch (SQLException ex) {
-                Log.d(TAG, "Error while trying to add item " + itemImage + " to database");
+                //Log.d(TAG, "Error while trying to add item " + itemImage + " to database");
             } finally {
                 db.endTransaction();
                 shopItem.clear();
@@ -453,7 +454,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
-            Log.d(TAG, "Getting items from database failed");
+            //.d(TAG, "Getting items from database failed");
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -488,7 +489,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
-            Log.d(TAG, "Getting player from database failed");
+            //Log.d(TAG, "Getting player from database failed");
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -521,7 +522,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 itemSizeSum = cursorItems.getInt(cursorItems.getColumnIndex("totalSize"));
             }
         } catch (Exception e) {
-            Log.d(TAG, "Getting total items size from database failed");
+            //Log.d(TAG, "Getting total items size from database failed");
         } finally {
             if (cursorItems != null && !cursorItems.isClosed()) {
                 cursorItems.close();
@@ -540,7 +541,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 } while (cursorShip.moveToNext());
             }
         } catch (Exception e) {
-            Log.d(TAG, "Getting ship from database failed");
+            //Log.d(TAG, "Getting ship from database failed");
         } finally {
             if (cursorShip != null && !cursorShip.isClosed()) {
                 cursorShip.close();
@@ -619,7 +620,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
-            Log.d(TAG, "Getting shop items from database failed");
+            //Log.d(TAG, "Getting shop items from database failed");
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -794,7 +795,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
-            Log.d(TAG, "Updating prices in database failed");
+            //Log.d(TAG, "Updating prices in database failed");
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -833,7 +834,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
-            Log.d(TAG, "Updating item size in database failed");
+            //Log.d(TAG, "Updating item size in database failed");
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -867,7 +868,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
-            Log.d(TAG, "Reading visited planets list from database failed");
+            //Log.d(TAG, "Reading visited planets list from database failed");
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -1006,7 +1007,7 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
             db.insertOrThrow(TABLE_NAME_VISITED_PLANETS, null, planet);
             db.setTransactionSuccessful();
         } catch (Exception e) {
-            Log.d(TAG, "Inserting visited planet list from database failed");
+            //Log.d(TAG, "Inserting visited planet list from database failed");
         } finally {
             db.endTransaction();
         }

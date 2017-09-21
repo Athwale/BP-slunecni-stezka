@@ -73,7 +73,7 @@ public class TestGamePlay {
                 databaseHelper.updateCurrentPlanet(currentPlanet);
 
                 // Enter shop.
-                ArrayList<ItemModel> itemsForShop = databaseHelper.getItemsForShop(currentPlanet);
+                ArrayList<ItemModel> itemsForShop = databaseHelper.getDataForShop(currentPlanet).getItems();
                 // Sell everything the player has in inventory.
                 for (ItemModel item : itemsForShop) {
                     if (item.isBought() && item.isSaleable() && item.isInShop()) {
@@ -81,7 +81,7 @@ public class TestGamePlay {
                     }
                 }
                 // Update the list
-                itemsForShop = databaseHelper.getItemsForShop(currentPlanet);
+                itemsForShop = databaseHelper.getDataForShop(currentPlanet).getItems();
 
                 // Buy ship if available
                 for (ItemModel item : itemsForShop) {
@@ -92,7 +92,7 @@ public class TestGamePlay {
                 }
 
                 // Update the list
-                itemsForShop = databaseHelper.getItemsForShop(currentPlanet);
+                itemsForShop = databaseHelper.getDataForShop(currentPlanet).getItems();
 
                 // Buy everything possible
                 for (ItemModel item : itemsForShop) {
@@ -155,7 +155,7 @@ public class TestGamePlay {
                 databaseHelper.updateCurrentPlanet(currentPlanet);
 
                 // Enter shop.
-                ArrayList<ItemModel> itemsForShop = databaseHelper.getItemsForShop(currentPlanet);
+                ArrayList<ItemModel> itemsForShop = databaseHelper.getDataForShop(currentPlanet).getItems();
                 // Sell only items where the price movement is set to decrease.
                 for (ItemModel item : itemsForShop) {
                     if (item.isBought() && item.isSaleable() && item.isInShop() && !item.getPriceMovement()) {
@@ -163,7 +163,7 @@ public class TestGamePlay {
                     }
                 }
                 // Update the list
-                itemsForShop = databaseHelper.getItemsForShop(currentPlanet);
+                itemsForShop = databaseHelper.getDataForShop(currentPlanet).getItems();
 
                 // Buy ship if available and if possible
                 for (ItemModel item : itemsForShop) {
@@ -174,7 +174,7 @@ public class TestGamePlay {
                 }
 
                 // Update the list
-                itemsForShop = databaseHelper.getItemsForShop(currentPlanet);
+                itemsForShop = databaseHelper.getDataForShop(currentPlanet).getItems();
                 // Sort the list from smallest to largest.
                 Collections.sort(itemsForShop, new ItemSizeComparator());
 
