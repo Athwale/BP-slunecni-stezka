@@ -61,7 +61,6 @@
                 android:id="@+id/settings_checkbox_clear_data"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:onClick="clearCheckBoxHandler"
                 android:text="@string/checkbox_clear_data"
                 android:textColor="@color/textBlack"
                 android:theme="@style/checkBoxStyle" />
@@ -95,7 +94,6 @@
         android:layout_below="@id/linearLayout4"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:onClick="useFlashCheckBoxHandler"
         android:text="@string/settings_use_flash"
         android:textColor="@color/textBlack"
         android:theme="@style/checkBoxStyle" />

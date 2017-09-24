@@ -32,6 +32,7 @@ public class SettingsActivity extends Activity {
         TextView databaseExistsText = (TextView) findViewById(R.id.settings_text_view_data_info);
         Button buttonClear = (Button) findViewById(R.id.settings_button_clear_data);
         CheckBox checkBoxClear = (CheckBox) findViewById(R.id.settings_checkbox_clear_data);
+        CheckBox checkBoxFlash = (CheckBox) findViewById(R.id.settings_checkbox_use_flash);
 
         if (this.gameUtilities.isDatabaseCreated(this)) {
             databaseExistsText.setText(R.string.settings_data_info_exists);
@@ -44,8 +45,22 @@ public class SettingsActivity extends Activity {
             checkBoxClear.setEnabled(false);
         }
 
+        // Set onClickListeners because using XML makes problems in MIUI launcher
+        checkBoxClear.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearCheckBoxHandler(v);
+            }
+        });
+
+        checkBoxFlash.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                useFlashCheckBoxHandler(v);
+            }
+        });
+
         // Restore flash checkbox state
-        CheckBox checkBoxFlash = (CheckBox) findViewById(R.id.settings_checkbox_use_flash);
         this.preferences = this.getSharedPreferences(PREFERENCES_KEY, 0);
         checkBoxFlash.setChecked(preferences.getBoolean(USE_FLASH_PREFERENCE_KEY, false));
     }
@@ -68,7 +83,7 @@ public class SettingsActivity extends Activity {
      *
      * @param checkBoxClear The button that has been clicked
      */
-    public void clearCheckBoxHandler(View checkBoxClear) {
+    private void clearCheckBoxHandler(View checkBoxClear) {
         Button buttonClear = (Button) findViewById(R.id.settings_button_clear_data);
         if (((CheckBox) checkBoxClear).isChecked()) {
             buttonClear.setEnabled(true);
@@ -84,7 +99,7 @@ public class SettingsActivity extends Activity {
      *
      * @param checkBoxClear The button that has been clicked
      */
-    public void useFlashCheckBoxHandler(View checkBoxClear) {
+    private void useFlashCheckBoxHandler(View checkBoxClear) {
         SharedPreferences.Editor editor = this.preferences.edit();
         editor.putBoolean(USE_FLASH_PREFERENCE_KEY, ((CheckBox) checkBoxClear).isChecked()).apply();
     }
