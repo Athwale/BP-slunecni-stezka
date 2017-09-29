@@ -28,6 +28,7 @@ import ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector;
 import static ondrej.mejzlik.suntrail.activities.AllBoardsActivity.PLANET_RESOURCES_KEY;
 import static ondrej.mejzlik.suntrail.activities.GameActivity.END_GAME_PREFERENCE_KEY;
 import static ondrej.mejzlik.suntrail.activities.GameActivity.PREFERENCES_KEY;
+import static ondrej.mejzlik.suntrail.activities.InfoScreenActivity.IMAGE_ARGUMENT;
 import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_END;
 import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_KEY_FROM;
 import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_KEY_TO;
@@ -62,6 +63,8 @@ public class ScannerActivity extends Activity {
     private Bundle planetResources = null;
     private float savedRotationFrom = ROTATION_END;
     private float savedRotationTo = ROTATION_START;
+    // Zoomable image fragment accepts a bundle with an image id
+    private Bundle arguments = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,9 +83,11 @@ public class ScannerActivity extends Activity {
                 this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
                 this.savedRotationFrom = savedInstanceState.getFloat(ROTATION_KEY_FROM);
                 this.savedRotationTo = savedInstanceState.getFloat(ROTATION_KEY_TO);
+                // Restore bundle with image
+                this.arguments = savedInstanceState.getBundle(IMAGE_ARGUMENT);
                 return;
             }
-
+            this.arguments = new Bundle();
             // If the device only has a camera and no NFC reader, run qr scanner right away.
             // If the device only has NFC run NFC scanner.
             // If the device has both, open a selection screen.
@@ -114,6 +119,8 @@ public class ScannerActivity extends Activity {
         // Save planet rotation
         savedInstanceState.putFloat(ROTATION_KEY_FROM, this.savedRotationFrom);
         savedInstanceState.putFloat(ROTATION_KEY_TO, this.savedRotationTo);
+        // Save the bundle with image
+        savedInstanceState.putBundle(IMAGE_ARGUMENT, this.arguments);
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -125,6 +132,7 @@ public class ScannerActivity extends Activity {
         this.planetResources = savedInstanceState.getBundle(PLANET_RESOURCES_KEY);
         this.savedRotationFrom = savedInstanceState.getFloat(ROTATION_KEY_FROM);
         this.savedRotationTo = savedInstanceState.getFloat(ROTATION_KEY_TO);
+        this.arguments = savedInstanceState.getBundle(IMAGE_ARGUMENT);
     }
 
     /**
@@ -389,6 +397,51 @@ public class ScannerActivity extends Activity {
         parameters.putBundle(PLANET_RESOURCES_KEY, this.planetResources);
         intent.putExtras(parameters);
         startActivity(intent);
+    }
+
+    /**
+     * Handles clicks from display map button and schema button.
+     * Opens a new zoomable image fragment with the image.
+     *
+     * @param view The button which has been clicked
+     */
+    public void imageButtonsHandler(View view) {
+        switch (view.getId()) {
+            case R.id.sun_path_info_button_map: {
+                // Prepare map for zoomable image argument
+                this.arguments.putInt(IMAGE_KEY, R.drawable.pict_overall_map_full_size);
+                break;
+            }
+            case R.id.sun_path_info_button_schema: {
+                this.arguments.putInt(IMAGE_KEY, R.drawable.pict_schema_white);
+                break;
+            }
+        }
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        // Create fragment and set fragment arguments
+        ZoomableImageFragment imageFragment = new ZoomableImageFragment();
+        imageFragment.setArguments(this.arguments);
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack so the user can navigate back
+        transaction.replace(R.id.scanner_fragment_container, imageFragment);
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    /**
+     * Handles clicks from all boards button in game info screen.
+     * Launches a new activity with boards buttons screen.
+     *
+     * @param view The button that has been clicked
+     */
+    public void allBoardsButtonHandlerInfoScreen(View view) {
+        Intent intent = new Intent(this, AllBoardsActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 
 }

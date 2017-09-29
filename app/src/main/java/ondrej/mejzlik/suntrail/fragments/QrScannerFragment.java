@@ -78,33 +78,42 @@ public class QrScannerFragment extends Fragment implements ZXingScannerView.Resu
     @Override
     public void onResume() {
         super.onResume();
-        scannerView.setResultHandler(this);
-        scannerView.startCamera();
+        if (scannerView != null) {
+            scannerView.setResultHandler(this);
+            scannerView.startCamera();
+        }
     }
 
     @Override
     public void onPause() {
-        scannerView.stopCameraPreview();
-        scannerView.removeAllViews();
-        scannerView.stopCamera();
+        if (scannerView != null) {
+            scannerView.stopCameraPreview();
+            scannerView.removeAllViews();
+            scannerView.stopCamera();
+        }
         super.onPause();
     }
 
     @Override
     public void onDestroy() {
-        // This is needed on slower devices to properly close the camera
-        scannerView.stopCameraPreview();
-        scannerView.removeAllViews();
-        scannerView.stopCamera();
+        // This is needed on slower devices to properly close the camera. Sometimes the scanner
+        // wiew will be destroyed before this on very fast devices so the null checking is needed.
+        if (scannerView != null) {
+            scannerView.stopCameraPreview();
+            scannerView.removeAllViews();
+            scannerView.stopCamera();
+        }
         super.onDestroy();
     }
 
     @Override
     public void handleResult(Result rawResult) {
         // Scanner is run from scanner activity only.
-        scannerView.stopCameraPreview();
-        scannerView.removeAllViews();
-        scannerView.stopCamera();
+        if (scannerView != null) {
+            scannerView.stopCameraPreview();
+            scannerView.removeAllViews();
+            scannerView.stopCamera();
+        }
 
         // Parse and pass planet id to scanner activity
         int planetId = this.identifier.getPlanetIdFromQr(rawResult.getText());

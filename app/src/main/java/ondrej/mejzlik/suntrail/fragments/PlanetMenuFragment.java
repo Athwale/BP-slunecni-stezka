@@ -99,7 +99,7 @@ public class PlanetMenuFragment extends Fragment {
             ParametrizedToastOnClickListener listener = new ParametrizedToastOnClickListener();
             listener.setToast(author, getActivity(), Toast.LENGTH_SHORT);
             planetPhoto.setOnClickListener(listener);
-            // Set on lick listener to play the slide up animation
+            // Set onClick listener to play the slide up animation
             this.setTextOnClickListener(view);
             // Create animator and set animation on the main photo to spin the planet around slowly
             // Restore rotation angle

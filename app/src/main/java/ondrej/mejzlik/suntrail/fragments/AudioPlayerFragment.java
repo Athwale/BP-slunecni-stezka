@@ -14,10 +14,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import ondrej.mejzlik.suntrail.R;
 import ondrej.mejzlik.suntrail.activities.AllBoardsActivity;
 import ondrej.mejzlik.suntrail.activities.ScannerActivity;
+import ondrej.mejzlik.suntrail.utilities.ParametrizedToastOnClickListener;
 
 import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_END;
 import static ondrej.mejzlik.suntrail.fragments.PlanetMenuFragment.ROTATION_KEY_FROM;
@@ -31,6 +33,7 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_SATUR
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_AUDIO_KEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_ID_KEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_NAME_KEY;
+import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_PHOTO_AUTHOR_KEY;
 import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_PHOTO_KEY;
 
 /**
@@ -69,6 +72,10 @@ public class AudioPlayerFragment extends Fragment {
         Bundle resources = getArguments();
         TextView mainTitle = (TextView) (view.findViewById(R.id.audio_player_title));
         ImageView planetPhoto = (ImageView) (view.findViewById(R.id.audio_player_image_view_photo));
+        // This variable will be assigned a value of who shot the planet photo and then is used
+        // To set author toast.
+        String author;
+
 
         // Resources must contain planet id
         if (resources != null && resources.containsKey(PLANET_ID_KEY)) {
@@ -77,6 +84,12 @@ public class AudioPlayerFragment extends Fragment {
             planetPhoto.setImageResource(resources.getInt(PLANET_PHOTO_KEY));
             this.newValueFrom = resources.getFloat(ROTATION_KEY_FROM);
             this.newValueTo = resources.getFloat(ROTATION_KEY_TO);
+            author = resources.getString(PLANET_PHOTO_AUTHOR_KEY);
+
+            // Set on click listener once for photo to show author
+            ParametrizedToastOnClickListener listener = new ParametrizedToastOnClickListener();
+            listener.setToast(author, getActivity(), Toast.LENGTH_SHORT);
+            planetPhoto.setOnClickListener(listener);
 
             // Create animator and set animation on the main photo to spin the planet around slowly
             // Restore rotation angle

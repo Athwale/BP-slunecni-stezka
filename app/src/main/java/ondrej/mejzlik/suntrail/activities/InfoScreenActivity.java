@@ -23,7 +23,7 @@ import static ondrej.mejzlik.suntrail.fragments.ZoomableImageFragment.IMAGE_KEY;
  */
 public class InfoScreenActivity extends Activity {
     // Name for the bundle of arguments with a map inside saved instance state bundle
-    private static final String IMAGE_ARGUMENT = "imageArgument";
+    public static final String IMAGE_ARGUMENT = "imageArgument";
     // Zoomable image fragment accepts a bundle with an image id
     private Bundle arguments = null;
 
@@ -129,8 +129,8 @@ public class InfoScreenActivity extends Activity {
     }
 
     /**
-     * Handles clicks from scanner button in game info screen.
-     * Launches a new activity with scanner screen.
+     * Handles clicks from all boards button in game info screen.
+     * Launches a new activity with board buttons screen.
      *
      * @param view The button that has been clicked
      */
