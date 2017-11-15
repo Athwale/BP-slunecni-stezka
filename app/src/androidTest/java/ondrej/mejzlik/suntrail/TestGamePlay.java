@@ -18,11 +18,11 @@ import ondrej.mejzlik.suntrail.game.ItemModel;
 import ondrej.mejzlik.suntrail.game.PlayerModel;
 import ondrej.mejzlik.suntrail.game.ShipModel;
 
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 import static ondrej.mejzlik.suntrail.configuration.Configuration.STARTING_CREDITS;
 import static ondrej.mejzlik.suntrail.game.GameDatabaseContract.DATABASE_NAME;
 import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_SUN;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Instrumentation test, which will execute on an Android device.
