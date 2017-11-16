@@ -1,11 +1,15 @@
 package ondrej.mejzlik.suntrail;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import ondrej.mejzlik.suntrail.activities.MainMenuActivity;
 import ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector;
 
 import static junit.framework.Assert.assertEquals;
@@ -27,14 +31,23 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetResourceCollector.PLANET_T
  */
 @RunWith(AndroidJUnit4.class)
 public class PlanetResourceCollectorTest {
+    @Rule
+    public ActivityTestRule<MainMenuActivity> mActivityRule = new ActivityTestRule<>(
+            MainMenuActivity.class);
+    MainMenuActivity activity = null;
 
+    @Before
+    public void setUp() {
+        this.activity = mActivityRule.getActivity();
+    }
+
+    @Test
     public void TestResourceCollection() throws Exception {
         PlanetResourceCollector collector = new PlanetResourceCollector();
-        Activity activity = getActivity();
 
-        Bundle resources = collector.getPlanetResources(PLANET_ID_CERES, activity);
+        Bundle resources = collector.getPlanetResources(PLANET_ID_CERES, this.activity);
         if (resources != null && resources.containsKey(PLANET_ID_KEY)) {
-            assertEquals(resources.getInt(PLANET_NAME_KEY), R.id.all_boards_button_ceres);
+            assertEquals(resources.getInt(PLANET_NAME_KEY), R.string.all_boards_button_name_ceres);
             assertEquals(resources.getInt(PLANET_PHOTO_KEY), R.drawable.pict_ceres);
             assertEquals(resources.getInt(PLANET_HALF_PHOTO_KEY), R.drawable.pict_ceres_half);
             assertEquals(resources.getInt(PLANET_QUARTER_PHOTO_KEY), R.drawable.pict_ceres_quarter);

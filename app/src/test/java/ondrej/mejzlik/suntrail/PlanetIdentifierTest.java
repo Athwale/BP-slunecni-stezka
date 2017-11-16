@@ -12,7 +12,7 @@ import static ondrej.mejzlik.suntrail.utilities.PlanetIdentifier.PLANET_ID_MOON;
 import static org.junit.Assert.assertEquals;
 
 /**
- *
+ * Test for ensuring that the planet identifier returns correct values.
  */
 public class PlanetIdentifierTest {
 
