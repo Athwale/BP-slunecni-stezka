@@ -53,7 +53,7 @@
     <string name="toast_no_scanner">Scanning functions unavailable</string>
     <string name="toast_scanning_success">Scanning success</string>
     <string name="toast_scanning_fail">Unknown planet</string>
-    <string name="toast_athwale">Athwale</string>
+    <string name="toast_athwale">Author: Ondřej Mejzlík (Athwale)</string>
     <string name="toast_author">Author: </string>
     <string name="toast_developer_mode">Developer mode enabled. NFC scanner will now output
         full info</string>
@@ -79,7 +79,7 @@
         information about the planet on the nearby board.
         </p>
         <p>
-        Our Sun trail was inspired by <a href="http://www.astrohk.cz/planetarni_stezka/">.
+        Our Sun trail was inspired by: <a href="http://www.astrohk.cz/planetarni_stezka/">
         Planetary trail build by the observatory in Hradec Králové</a>, but it is not just a plain
         copy. The realization of this trail was originally supposed to be self aided. But thanks to
         the support of ŠLP Křtiny and the South moravian district it was possible to build a more
